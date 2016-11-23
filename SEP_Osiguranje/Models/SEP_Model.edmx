@@ -1,0 +1,819 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CK_Rizik">
+          <Key>
+            <PropertyRef Name="Id_CK_Rizik" />
+          </Key>
+          <Property Name="Id_CK_Rizik" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Koeficijent_CK_Rizik" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="Cena_CK_Rizik" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="Datum_pocetka_vazenja_CL_Rizik" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nekretnina">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="JMBG_vlasnik_Nekretnina" Type="numeric" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="Adresa_Nekretnina" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ime_vlasnik_Nekretnina" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Prezime_vlasnik_Nekretnina" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Povrsina_Nekretnina" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Starost_Nekretnina" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Procenjena_vrednost_Nekretnina" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Osoba">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="JMBG_Osoba" Type="numeric" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="Ime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Prezime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Broj_pasosa_Osoba" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Adresa_Osoba" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Broj_telefona_Osoba" Type="varchar" MaxLength="20" />
+          <Property Name="E_mail_Osoba" Type="varchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="PDV">
+          <Key>
+            <PropertyRef Name="Id_PDV" />
+          </Key>
+          <Property Name="Id_PDV" Type="smallint" Nullable="false" />
+          <Property Name="Naziv_PDV" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Realizacija_osiguranja">
+          <Key>
+            <PropertyRef Name="Id_Realizacija_osiguranja" />
+          </Key>
+          <Property Name="Id_Realizacija_osiguranja" Type="int" Nullable="false" />
+          <Property Name="Id_PDV" Type="smallint" Nullable="false" />
+          <Property Name="Datum_Realizacija_osiguranja" Type="datetime" />
+          <Property Name="Vrednost_Realizacija_osiguranja" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="Vrednost_PDV_Realizacija_osiguranja" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="Ukupna_vrednost_Realizacija_osiguranja" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="Datum_od" Type="datetime" Nullable="false" />
+          <Property Name="Datum_do" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rizik">
+          <Key>
+            <PropertyRef Name="Id_Rizik" />
+          </Key>
+          <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_Vrsta_rizika" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Naziv_Rizik" Type="varchar" MaxLength="50" />
+          <Property Name="Vrednost_Rizik" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Rizik_za_osigurani_entitet">
+          <Key>
+            <PropertyRef Name="Id_Rizik_za_osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Rizik_za_osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="Id_Stavka_u_realizaciji" Type="int" />
+          <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" />
+        </EntityType>
+        <EntityType Name="Stavka_u_realizaciji">
+          <Key>
+            <PropertyRef Name="Id_Stavka_u_realizaciji" />
+          </Key>
+          <Property Name="Id_Stavka_u_realizaciji" Type="int" Nullable="false" />
+          <Property Name="Id_Realizacija_osiguranja" Type="int" Nullable="false" />
+          <Property Name="Id_Osigurana_osoba" Type="int" Nullable="false" />
+          <Property Name="Id_Osigurana_nekretnina" Type="int" Nullable="false" />
+          <Property Name="Id_Osigurano_vozilo" Type="int" Nullable="false" />
+          <Property Name="Nosilac_Stavka_u_realiziciji" Type="bit" />
+        </EntityType>
+        <EntityType Name="Stopa_PDV">
+          <Key>
+            <PropertyRef Name="Id_Stopa_PDV" />
+          </Key>
+          <Property Name="Id_Stopa_PDV" Type="smallint" Nullable="false" />
+          <Property Name="Id_PDV" Type="smallint" />
+          <Property Name="Stopa_PDV" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Datum_pocetka_vazenja_Stopa_PDV" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tip_osiguranja">
+          <Key>
+            <PropertyRef Name="Id_Tip_osiguranja" />
+          </Key>
+          <Property Name="Id_Tip_osiguranja" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Naziv_Tip_osiguranja" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis_Tip_osiguranja" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Vozilo">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="JMBG_Vlasnik_Vozilo" Type="numeric" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="Ime_Vlasnik_Vozilo" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Prezime_Vlasnik_Vozilo" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Broj_sasije_Vozilo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Broj_registarske_tablice_Vozilo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Godina_proizvodnje_Vozilo" Type="numeric" Precision="4" Scale="0" />
+        </EntityType>
+        <EntityType Name="Vrsta_rizika">
+          <Key>
+            <PropertyRef Name="Id_Vrsta_rizika" />
+          </Key>
+          <Property Name="Id_Vrsta_rizika" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Id_Tip_osiguranja" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Naziv_Vrsta_rizika" Type="varchar" MaxLength="35" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CK_RIZIK_RELATIONS_RIZIK">
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="1" />
+          <End Role="CK_Rizik" Type="Self.CK_Rizik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Principal>
+            <Dependent Role="CK_Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REALIZAC_RELATIONS_PDV">
+          <End Role="PDV" Type="Self.PDV" Multiplicity="1" />
+          <End Role="Realizacija_osiguranja" Type="Self.Realizacija_osiguranja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PDV">
+              <PropertyRef Name="Id_PDV" />
+            </Principal>
+            <Dependent Role="Realizacija_osiguranja">
+              <PropertyRef Name="Id_PDV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_RELATIONS_VRSTA_RI">
+          <End Role="Vrsta_rizika" Type="Self.Vrsta_rizika" Multiplicity="1" />
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta_rizika">
+              <PropertyRef Name="Id_Vrsta_rizika" />
+            </Principal>
+            <Dependent Role="Rizik">
+              <PropertyRef Name="Id_Vrsta_rizika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_ZA_RELATIONS_RIZIK">
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="0..1" />
+          <End Role="Rizik_za_osigurani_entitet" Type="Self.Rizik_za_osigurani_entitet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Principal>
+            <Dependent Role="Rizik_za_osigurani_entitet">
+              <PropertyRef Name="Id_Rizik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U">
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="0..1" />
+          <End Role="Rizik_za_osigurani_entitet" Type="Self.Rizik_za_osigurani_entitet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Stavka_u_realizaciji" />
+            </Principal>
+            <Dependent Role="Rizik_za_osigurani_entitet">
+              <PropertyRef Name="Id_Stavka_u_realizaciji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
+          <End Role="Nekretnina" Type="Self.Nekretnina" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nekretnina">
+              <PropertyRef Name="Id_Osigurani_entitet" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurana_nekretnina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_OSOBA">
+          <End Role="Osoba" Type="Self.Osoba" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Osoba">
+              <PropertyRef Name="Id_Osigurani_entitet" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurana_osoba" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_REALIZAC">
+          <End Role="Realizacija_osiguranja" Type="Self.Realizacija_osiguranja" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realizacija_osiguranja">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_VOZILO">
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="Id_Osigurani_entitet" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurano_vozilo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOPA_PD_RELATIONS_PDV">
+          <End Role="PDV" Type="Self.PDV" Multiplicity="0..1" />
+          <End Role="Stopa_PDV" Type="Self.Stopa_PDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PDV">
+              <PropertyRef Name="Id_PDV" />
+            </Principal>
+            <Dependent Role="Stopa_PDV">
+              <PropertyRef Name="Id_PDV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VRSTA_RI_RELATIONS_TIP_OSIG">
+          <End Role="Tip_osiguranja" Type="Self.Tip_osiguranja" Multiplicity="1" />
+          <End Role="Vrsta_rizika" Type="Self.Vrsta_rizika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_osiguranja">
+              <PropertyRef Name="Id_Tip_osiguranja" />
+            </Principal>
+            <Dependent Role="Vrsta_rizika">
+              <PropertyRef Name="Id_Tip_osiguranja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SEPModelStoreContainer">
+          <EntitySet Name="CK_Rizik" EntityType="Self.CK_Rizik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nekretnina" EntityType="Self.Nekretnina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Osoba" EntityType="Self.Osoba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PDV" EntityType="Self.PDV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realizacija_osiguranja" EntityType="Self.Realizacija_osiguranja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rizik" EntityType="Self.Rizik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="Self.Rizik_za_osigurani_entitet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stavka_u_realizaciji" EntityType="Self.Stavka_u_realizaciji" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stopa_PDV" EntityType="Self.Stopa_PDV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tip_osiguranja" EntityType="Self.Tip_osiguranja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vrsta_rizika" EntityType="Self.Vrsta_rizika" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CK_RIZIK_RELATIONS_RIZIK" Association="Self.FK_CK_RIZIK_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="CK_Rizik" EntitySet="CK_Rizik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REALIZAC_RELATIONS_PDV" Association="Self.FK_REALIZAC_RELATIONS_PDV">
+            <End Role="PDV" EntitySet="PDV" />
+            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_RELATIONS_VRSTA_RI" Association="Self.FK_RIZIK_RELATIONS_VRSTA_RI">
+            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
+            <End Role="Rizik" EntitySet="Rizik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_RIZIK" Association="Self.FK_RIZIK_ZA_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U" Association="Self.FK_RIZIK_ZA_RELATIONS_STAVKA_U">
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_NEKRETNI" Association="Self.FK_STAVKA_U_RELATIONS_NEKRETNI">
+            <End Role="Nekretnina" EntitySet="Nekretnina" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_OSOBA" Association="Self.FK_STAVKA_U_RELATIONS_OSOBA">
+            <End Role="Osoba" EntitySet="Osoba" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_REALIZAC" Association="Self.FK_STAVKA_U_RELATIONS_REALIZAC">
+            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_VOZILO" Association="Self.FK_STAVKA_U_RELATIONS_VOZILO">
+            <End Role="Vozilo" EntitySet="Vozilo" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOPA_PD_RELATIONS_PDV" Association="Self.FK_STOPA_PD_RELATIONS_PDV">
+            <End Role="PDV" EntitySet="PDV" />
+            <End Role="Stopa_PDV" EntitySet="Stopa_PDV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VRSTA_RI_RELATIONS_TIP_OSIG" Association="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG">
+            <End Role="Tip_osiguranja" EntitySet="Tip_osiguranja" />
+            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SEPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CK_Rizik">
+          <Key>
+            <PropertyRef Name="Id_CK_Rizik" />
+          </Key>
+          <Property Name="Id_CK_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Koeficijent_CK_Rizik" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Cena_CK_Rizik" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Datum_pocetka_vazenja_CL_Rizik" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Rizik" Relationship="Self.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="CK_Rizik" ToRole="Rizik" />
+        </EntityType>
+        <EntityType Name="Nekretnina">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
+          <Property Name="JMBG_vlasnik_Nekretnina" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="Adresa_Nekretnina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ime_vlasnik_Nekretnina" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime_vlasnik_Nekretnina" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Povrsina_Nekretnina" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Starost_Nekretnina" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Procenjena_vrednost_Nekretnina" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Nekretnina" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <EntityType Name="Osoba">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
+          <Property Name="JMBG_Osoba" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="Ime_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Broj_pasosa_Osoba" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adresa_Osoba" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Broj_telefona_Osoba" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="E_mail_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Osoba" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <EntityType Name="PDV">
+          <Key>
+            <PropertyRef Name="Id_PDV" />
+          </Key>
+          <Property Name="Id_PDV" Type="Int16" Nullable="false" />
+          <Property Name="Naziv_PDV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Realizacija_osiguranja" Relationship="Self.FK_REALIZAC_RELATIONS_PDV" FromRole="PDV" ToRole="Realizacija_osiguranja" />
+          <NavigationProperty Name="Stopa_PDV" Relationship="Self.FK_STOPA_PD_RELATIONS_PDV" FromRole="PDV" ToRole="Stopa_PDV" />
+        </EntityType>
+        <EntityType Name="Realizacija_osiguranja">
+          <Key>
+            <PropertyRef Name="Id_Realizacija_osiguranja" />
+          </Key>
+          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" />
+          <Property Name="Id_PDV" Type="Int16" Nullable="false" />
+          <Property Name="Datum_Realizacija_osiguranja" Type="DateTime" Precision="3" />
+          <Property Name="Vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Vrednost_PDV_Realizacija_osiguranja" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="Ukupna_vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Datum_od" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Datum_do" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PDV" Relationship="Self.FK_REALIZAC_RELATIONS_PDV" FromRole="Realizacija_osiguranja" ToRole="PDV" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Realizacija_osiguranja" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <EntityType Name="Rizik">
+          <Key>
+            <PropertyRef Name="Id_Rizik" />
+          </Key>
+          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_Vrsta_rizika" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Naziv_Rizik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Vrednost_Rizik" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="CK_Rizik" Relationship="Self.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="Rizik" ToRole="CK_Rizik" />
+          <NavigationProperty Name="Vrsta_rizika" Relationship="Self.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Rizik" ToRole="Vrsta_rizika" />
+          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="Self.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik" ToRole="Rizik_za_osigurani_entitet" />
+        </EntityType>
+        <EntityType Name="Rizik_za_osigurani_entitet">
+          <Key>
+            <PropertyRef Name="Id_Rizik_za_osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Rizik_za_osigurani_entitet" Type="Int32" Nullable="false" />
+          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" />
+          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" />
+          <NavigationProperty Name="Rizik" Relationship="Self.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik_za_osigurani_entitet" ToRole="Rizik" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Rizik_za_osigurani_entitet" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <EntityType Name="Stavka_u_realizaciji">
+          <Key>
+            <PropertyRef Name="Id_Stavka_u_realizaciji" />
+          </Key>
+          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" Nullable="false" />
+          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" />
+          <Property Name="Id_Osigurana_osoba" Type="Int32" Nullable="false" />
+          <Property Name="Id_Osigurana_nekretnina" Type="Int32" Nullable="false" />
+          <Property Name="Id_Osigurano_vozilo" Type="Int32" Nullable="false" />
+          <Property Name="Nosilac_Stavka_u_realiziciji" Type="Boolean" />
+          <NavigationProperty Name="Nekretnina" Relationship="Self.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Stavka_u_realizaciji" ToRole="Nekretnina" />
+          <NavigationProperty Name="Osoba" Relationship="Self.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Stavka_u_realizaciji" ToRole="Osoba" />
+          <NavigationProperty Name="Realizacija_osiguranja" Relationship="Self.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Stavka_u_realizaciji" ToRole="Realizacija_osiguranja" />
+          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="Self.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Stavka_u_realizaciji" ToRole="Rizik_za_osigurani_entitet" />
+          <NavigationProperty Name="Vozilo" Relationship="Self.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Stavka_u_realizaciji" ToRole="Vozilo" />
+        </EntityType>
+        <EntityType Name="Stopa_PDV">
+          <Key>
+            <PropertyRef Name="Id_Stopa_PDV" />
+          </Key>
+          <Property Name="Id_Stopa_PDV" Type="Int16" Nullable="false" />
+          <Property Name="Id_PDV" Type="Int16" />
+          <Property Name="Stopa_PDV1" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Datum_pocetka_vazenja_Stopa_PDV" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PDV" Relationship="Self.FK_STOPA_PD_RELATIONS_PDV" FromRole="Stopa_PDV" ToRole="PDV" />
+        </EntityType>
+        <EntityType Name="Tip_osiguranja">
+          <Key>
+            <PropertyRef Name="Id_Tip_osiguranja" />
+          </Key>
+          <Property Name="Id_Tip_osiguranja" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Naziv_Tip_osiguranja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis_Tip_osiguranja" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vrsta_rizika" Relationship="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG" FromRole="Tip_osiguranja" ToRole="Vrsta_rizika" />
+        </EntityType>
+        <EntityType Name="Vozilo">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
+          <Property Name="JMBG_Vlasnik_Vozilo" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="Ime_Vlasnik_Vozilo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime_Vlasnik_Vozilo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Broj_sasije_Vozilo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Broj_registarske_tablice_Vozilo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Godina_proizvodnje_Vozilo" Type="Decimal" Precision="4" Scale="0" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Vozilo" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <EntityType Name="Vrsta_rizika">
+          <Key>
+            <PropertyRef Name="Id_Vrsta_rizika" />
+          </Key>
+          <Property Name="Id_Vrsta_rizika" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Id_Tip_osiguranja" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Naziv_Vrsta_rizika" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Rizik" Relationship="Self.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Vrsta_rizika" ToRole="Rizik" />
+          <NavigationProperty Name="Tip_osiguranja" Relationship="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG" FromRole="Vrsta_rizika" ToRole="Tip_osiguranja" />
+        </EntityType>
+        <Association Name="FK_CK_RIZIK_RELATIONS_RIZIK">
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="1" />
+          <End Role="CK_Rizik" Type="Self.CK_Rizik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Principal>
+            <Dependent Role="CK_Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
+          <End Role="Nekretnina" Type="Self.Nekretnina" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nekretnina">
+              <PropertyRef Name="Id_Osigurani_entitet" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurana_nekretnina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_OSOBA">
+          <End Role="Osoba" Type="Self.Osoba" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Osoba">
+              <PropertyRef Name="Id_Osigurani_entitet" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurana_osoba" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REALIZAC_RELATIONS_PDV">
+          <End Role="PDV" Type="Self.PDV" Multiplicity="1" />
+          <End Role="Realizacija_osiguranja" Type="Self.Realizacija_osiguranja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PDV">
+              <PropertyRef Name="Id_PDV" />
+            </Principal>
+            <Dependent Role="Realizacija_osiguranja">
+              <PropertyRef Name="Id_PDV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOPA_PD_RELATIONS_PDV">
+          <End Role="PDV" Type="Self.PDV" Multiplicity="0..1" />
+          <End Role="Stopa_PDV" Type="Self.Stopa_PDV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PDV">
+              <PropertyRef Name="Id_PDV" />
+            </Principal>
+            <Dependent Role="Stopa_PDV">
+              <PropertyRef Name="Id_PDV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_REALIZAC">
+          <End Role="Realizacija_osiguranja" Type="Self.Realizacija_osiguranja" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realizacija_osiguranja">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_RELATIONS_VRSTA_RI">
+          <End Role="Vrsta_rizika" Type="Self.Vrsta_rizika" Multiplicity="1" />
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta_rizika">
+              <PropertyRef Name="Id_Vrsta_rizika" />
+            </Principal>
+            <Dependent Role="Rizik">
+              <PropertyRef Name="Id_Vrsta_rizika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_ZA_RELATIONS_RIZIK">
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="0..1" />
+          <End Role="Rizik_za_osigurani_entitet" Type="Self.Rizik_za_osigurani_entitet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Principal>
+            <Dependent Role="Rizik_za_osigurani_entitet">
+              <PropertyRef Name="Id_Rizik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U">
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="0..1" />
+          <End Role="Rizik_za_osigurani_entitet" Type="Self.Rizik_za_osigurani_entitet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Stavka_u_realizaciji" />
+            </Principal>
+            <Dependent Role="Rizik_za_osigurani_entitet">
+              <PropertyRef Name="Id_Stavka_u_realizaciji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_VOZILO">
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="Id_Osigurani_entitet" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurano_vozilo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VRSTA_RI_RELATIONS_TIP_OSIG">
+          <End Role="Tip_osiguranja" Type="Self.Tip_osiguranja" Multiplicity="1" />
+          <End Role="Vrsta_rizika" Type="Self.Vrsta_rizika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_osiguranja">
+              <PropertyRef Name="Id_Tip_osiguranja" />
+            </Principal>
+            <Dependent Role="Vrsta_rizika">
+              <PropertyRef Name="Id_Tip_osiguranja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SEPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CK_Rizik" EntityType="Self.CK_Rizik" />
+          <EntitySet Name="Nekretnina" EntityType="Self.Nekretnina" />
+          <EntitySet Name="Osoba" EntityType="Self.Osoba" />
+          <EntitySet Name="PDV" EntityType="Self.PDV" />
+          <EntitySet Name="Realizacija_osiguranja" EntityType="Self.Realizacija_osiguranja" />
+          <EntitySet Name="Rizik" EntityType="Self.Rizik" />
+          <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="Self.Rizik_za_osigurani_entitet" />
+          <EntitySet Name="Stavka_u_realizaciji" EntityType="Self.Stavka_u_realizaciji" />
+          <EntitySet Name="Stopa_PDV" EntityType="Self.Stopa_PDV" />
+          <EntitySet Name="Tip_osiguranja" EntityType="Self.Tip_osiguranja" />
+          <EntitySet Name="Vozilo" EntityType="Self.Vozilo" />
+          <EntitySet Name="Vrsta_rizika" EntityType="Self.Vrsta_rizika" />
+          <AssociationSet Name="FK_CK_RIZIK_RELATIONS_RIZIK" Association="Self.FK_CK_RIZIK_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="CK_Rizik" EntitySet="CK_Rizik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_NEKRETNI" Association="Self.FK_STAVKA_U_RELATIONS_NEKRETNI">
+            <End Role="Nekretnina" EntitySet="Nekretnina" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_OSOBA" Association="Self.FK_STAVKA_U_RELATIONS_OSOBA">
+            <End Role="Osoba" EntitySet="Osoba" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REALIZAC_RELATIONS_PDV" Association="Self.FK_REALIZAC_RELATIONS_PDV">
+            <End Role="PDV" EntitySet="PDV" />
+            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOPA_PD_RELATIONS_PDV" Association="Self.FK_STOPA_PD_RELATIONS_PDV">
+            <End Role="PDV" EntitySet="PDV" />
+            <End Role="Stopa_PDV" EntitySet="Stopa_PDV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_REALIZAC" Association="Self.FK_STAVKA_U_RELATIONS_REALIZAC">
+            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_RELATIONS_VRSTA_RI" Association="Self.FK_RIZIK_RELATIONS_VRSTA_RI">
+            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
+            <End Role="Rizik" EntitySet="Rizik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_RIZIK" Association="Self.FK_RIZIK_ZA_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U" Association="Self.FK_RIZIK_ZA_RELATIONS_STAVKA_U">
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_VOZILO" Association="Self.FK_STAVKA_U_RELATIONS_VOZILO">
+            <End Role="Vozilo" EntitySet="Vozilo" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VRSTA_RI_RELATIONS_TIP_OSIG" Association="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG">
+            <End Role="Tip_osiguranja" EntitySet="Tip_osiguranja" />
+            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SEPModelStoreContainer" CdmEntityContainer="SEPEntities">
+          <EntitySetMapping Name="CK_Rizik">
+            <EntityTypeMapping TypeName="SEPModel.CK_Rizik">
+              <MappingFragment StoreEntitySet="CK_Rizik">
+                <ScalarProperty Name="Id_CK_Rizik" ColumnName="Id_CK_Rizik" />
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+                <ScalarProperty Name="Koeficijent_CK_Rizik" ColumnName="Koeficijent_CK_Rizik" />
+                <ScalarProperty Name="Cena_CK_Rizik" ColumnName="Cena_CK_Rizik" />
+                <ScalarProperty Name="Datum_pocetka_vazenja_CL_Rizik" ColumnName="Datum_pocetka_vazenja_CL_Rizik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nekretnina">
+            <EntityTypeMapping TypeName="SEPModel.Nekretnina">
+              <MappingFragment StoreEntitySet="Nekretnina">
+                <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
+                <ScalarProperty Name="JMBG_vlasnik_Nekretnina" ColumnName="JMBG_vlasnik_Nekretnina" />
+                <ScalarProperty Name="Adresa_Nekretnina" ColumnName="Adresa_Nekretnina" />
+                <ScalarProperty Name="Ime_vlasnik_Nekretnina" ColumnName="Ime_vlasnik_Nekretnina" />
+                <ScalarProperty Name="Prezime_vlasnik_Nekretnina" ColumnName="Prezime_vlasnik_Nekretnina" />
+                <ScalarProperty Name="Povrsina_Nekretnina" ColumnName="Povrsina_Nekretnina" />
+                <ScalarProperty Name="Starost_Nekretnina" ColumnName="Starost_Nekretnina" />
+                <ScalarProperty Name="Procenjena_vrednost_Nekretnina" ColumnName="Procenjena_vrednost_Nekretnina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Osoba">
+            <EntityTypeMapping TypeName="SEPModel.Osoba">
+              <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
+                <ScalarProperty Name="JMBG_Osoba" ColumnName="JMBG_Osoba" />
+                <ScalarProperty Name="Ime_Osoba" ColumnName="Ime_Osoba" />
+                <ScalarProperty Name="Prezime_Osoba" ColumnName="Prezime_Osoba" />
+                <ScalarProperty Name="Broj_pasosa_Osoba" ColumnName="Broj_pasosa_Osoba" />
+                <ScalarProperty Name="Adresa_Osoba" ColumnName="Adresa_Osoba" />
+                <ScalarProperty Name="Broj_telefona_Osoba" ColumnName="Broj_telefona_Osoba" />
+                <ScalarProperty Name="E_mail_Osoba" ColumnName="E_mail_Osoba" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDV">
+            <EntityTypeMapping TypeName="SEPModel.PDV">
+              <MappingFragment StoreEntitySet="PDV">
+                <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
+                <ScalarProperty Name="Naziv_PDV" ColumnName="Naziv_PDV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realizacija_osiguranja">
+            <EntityTypeMapping TypeName="SEPModel.Realizacija_osiguranja">
+              <MappingFragment StoreEntitySet="Realizacija_osiguranja">
+                <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
+                <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
+                <ScalarProperty Name="Datum_Realizacija_osiguranja" ColumnName="Datum_Realizacija_osiguranja" />
+                <ScalarProperty Name="Vrednost_Realizacija_osiguranja" ColumnName="Vrednost_Realizacija_osiguranja" />
+                <ScalarProperty Name="Vrednost_PDV_Realizacija_osiguranja" ColumnName="Vrednost_PDV_Realizacija_osiguranja" />
+                <ScalarProperty Name="Ukupna_vrednost_Realizacija_osiguranja" ColumnName="Ukupna_vrednost_Realizacija_osiguranja" />
+                <ScalarProperty Name="Datum_od" ColumnName="Datum_od" />
+                <ScalarProperty Name="Datum_do" ColumnName="Datum_do" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rizik">
+            <EntityTypeMapping TypeName="SEPModel.Rizik">
+              <MappingFragment StoreEntitySet="Rizik">
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+                <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
+                <ScalarProperty Name="Naziv_Rizik" ColumnName="Naziv_Rizik" />
+                <ScalarProperty Name="Vrednost_Rizik" ColumnName="Vrednost_Rizik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rizik_za_osigurani_entitet">
+            <EntityTypeMapping TypeName="SEPModel.Rizik_za_osigurani_entitet">
+              <MappingFragment StoreEntitySet="Rizik_za_osigurani_entitet">
+                <ScalarProperty Name="Id_Rizik_za_osigurani_entitet" ColumnName="Id_Rizik_za_osigurani_entitet" />
+                <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stavka_u_realizaciji">
+            <EntityTypeMapping TypeName="SEPModel.Stavka_u_realizaciji">
+              <MappingFragment StoreEntitySet="Stavka_u_realizaciji">
+                <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
+                <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
+                <ScalarProperty Name="Id_Osigurana_osoba" ColumnName="Id_Osigurana_osoba" />
+                <ScalarProperty Name="Id_Osigurana_nekretnina" ColumnName="Id_Osigurana_nekretnina" />
+                <ScalarProperty Name="Id_Osigurano_vozilo" ColumnName="Id_Osigurano_vozilo" />
+                <ScalarProperty Name="Nosilac_Stavka_u_realiziciji" ColumnName="Nosilac_Stavka_u_realiziciji" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stopa_PDV">
+            <EntityTypeMapping TypeName="SEPModel.Stopa_PDV">
+              <MappingFragment StoreEntitySet="Stopa_PDV">
+                <ScalarProperty Name="Id_Stopa_PDV" ColumnName="Id_Stopa_PDV" />
+                <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
+                <ScalarProperty Name="Stopa_PDV1" ColumnName="Stopa_PDV" />
+                <ScalarProperty Name="Datum_pocetka_vazenja_Stopa_PDV" ColumnName="Datum_pocetka_vazenja_Stopa_PDV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip_osiguranja">
+            <EntityTypeMapping TypeName="SEPModel.Tip_osiguranja">
+              <MappingFragment StoreEntitySet="Tip_osiguranja">
+                <ScalarProperty Name="Id_Tip_osiguranja" ColumnName="Id_Tip_osiguranja" />
+                <ScalarProperty Name="Naziv_Tip_osiguranja" ColumnName="Naziv_Tip_osiguranja" />
+                <ScalarProperty Name="Opis_Tip_osiguranja" ColumnName="Opis_Tip_osiguranja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vozilo">
+            <EntityTypeMapping TypeName="SEPModel.Vozilo">
+              <MappingFragment StoreEntitySet="Vozilo">
+                <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
+                <ScalarProperty Name="JMBG_Vlasnik_Vozilo" ColumnName="JMBG_Vlasnik_Vozilo" />
+                <ScalarProperty Name="Ime_Vlasnik_Vozilo" ColumnName="Ime_Vlasnik_Vozilo" />
+                <ScalarProperty Name="Prezime_Vlasnik_Vozilo" ColumnName="Prezime_Vlasnik_Vozilo" />
+                <ScalarProperty Name="Broj_sasije_Vozilo" ColumnName="Broj_sasije_Vozilo" />
+                <ScalarProperty Name="Broj_registarske_tablice_Vozilo" ColumnName="Broj_registarske_tablice_Vozilo" />
+                <ScalarProperty Name="Godina_proizvodnje_Vozilo" ColumnName="Godina_proizvodnje_Vozilo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vrsta_rizika">
+            <EntityTypeMapping TypeName="SEPModel.Vrsta_rizika">
+              <MappingFragment StoreEntitySet="Vrsta_rizika">
+                <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
+                <ScalarProperty Name="Id_Tip_osiguranja" ColumnName="Id_Tip_osiguranja" />
+                <ScalarProperty Name="Naziv_Vrsta_rizika" ColumnName="Naziv_Vrsta_rizika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
