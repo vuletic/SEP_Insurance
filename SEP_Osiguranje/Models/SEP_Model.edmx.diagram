@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0b8a59a57fad438eab96d46a1adeddf1" Name="Diagram1">
+      <Diagram DiagramId="e2b7069ee39d415d8065c815b466ce46" Name="Diagram1">
         <EntityTypeShape EntityType="SEPModel.CK_Rizik" Width="1.5" PointX="7.5" PointY="18.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SEPModel.Nekretnina" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SEPModel.Osoba" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />

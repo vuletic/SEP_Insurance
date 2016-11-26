@@ -164,8 +164,19 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CK_RizikController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\NekretninaController.cs" />
+    <Compile Include="Controllers\OsobaController.cs" />
+    <Compile Include="Controllers\PDVController.cs" />
+    <Compile Include="Controllers\Realizacija_osiguranjaController.cs" />
+    <Compile Include="Controllers\RizikController.cs" />
+    <Compile Include="Controllers\Rizik_za_osigurani_entitetController.cs" />
+    <Compile Include="Controllers\Stavka_u_realizacijiController.cs" />
+    <Compile Include="Controllers\Stopa_PDVController.cs" />
+    <Compile Include="Controllers\Tip_osiguranjaController.cs" />
+    <Compile Include="Controllers\VoziloController.cs" />
+    <Compile Include="Controllers\Vrsta_rizikaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

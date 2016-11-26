@@ -13,10 +13,10 @@ namespace SEP_Osiguranje.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SEPEntities : DbContext
+    public partial class SEP_Entities : DbContext
     {
-        public SEPEntities()
-            : base("name=SEPEntities")
+        public SEP_Entities()
+            : base("name=SEP_Entities")
         {
         }
     

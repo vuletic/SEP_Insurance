@@ -20,7 +20,7 @@ namespace SEP_Osiguranje.Models
         }
     
         public int Id_Osigurani_entitet { get; set; }
-        public decimal JMBG_Osoba { get; set; }
+        public string JMBG_Osoba { get; set; }
         public string Ime_Osoba { get; set; }
         public string Prezime_Osoba { get; set; }
         public string Broj_pasosa_Osoba { get; set; }

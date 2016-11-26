@@ -20,7 +20,7 @@
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
           <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
-          <Property Name="JMBG_vlasnik_Nekretnina" Type="numeric" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="JMBG_vlasnik_Nekretnina" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="Adresa_Nekretnina" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Ime_vlasnik_Nekretnina" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Prezime_vlasnik_Nekretnina" Type="varchar" MaxLength="35" Nullable="false" />
@@ -33,7 +33,7 @@
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
           <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
-          <Property Name="JMBG_Osoba" Type="numeric" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="JMBG_Osoba" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="Ime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Prezime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Broj_pasosa_Osoba" Type="varchar" MaxLength="15" Nullable="false" />
@@ -111,7 +111,7 @@
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
           <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
-          <Property Name="JMBG_Vlasnik_Vozilo" Type="numeric" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="JMBG_Vlasnik_Vozilo" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="Ime_Vlasnik_Vozilo" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Prezime_Vlasnik_Vozilo" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Broj_sasije_Vozilo" Type="varchar" MaxLength="25" Nullable="false" />
@@ -337,7 +337,7 @@
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
           <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
-          <Property Name="JMBG_vlasnik_Nekretnina" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="JMBG_vlasnik_Nekretnina" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Adresa_Nekretnina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ime_vlasnik_Nekretnina" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Prezime_vlasnik_Nekretnina" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
@@ -351,7 +351,7 @@
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
           <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
-          <Property Name="JMBG_Osoba" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="JMBG_Osoba" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Ime_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Prezime_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Broj_pasosa_Osoba" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
@@ -446,7 +446,7 @@
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
           <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
-          <Property Name="JMBG_Vlasnik_Vozilo" Type="Decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="JMBG_Vlasnik_Vozilo" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Ime_Vlasnik_Vozilo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Prezime_Vlasnik_Vozilo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Broj_sasije_Vozilo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -596,7 +596,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SEPEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SEP_Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CK_Rizik" EntityType="Self.CK_Rizik" />
           <EntitySet Name="Nekretnina" EntityType="Self.Nekretnina" />
           <EntitySet Name="Osoba" EntityType="Self.Osoba" />
@@ -659,7 +659,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SEPModelStoreContainer" CdmEntityContainer="SEPEntities">
+        <EntityContainerMapping StorageEntityContainer="SEPModelStoreContainer" CdmEntityContainer="SEP_Entities">
           <EntitySetMapping Name="CK_Rizik">
             <EntityTypeMapping TypeName="SEPModel.CK_Rizik">
               <MappingFragment StoreEntitySet="CK_Rizik">

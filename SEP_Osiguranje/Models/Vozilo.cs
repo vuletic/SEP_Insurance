@@ -20,7 +20,7 @@ namespace SEP_Osiguranje.Models
         }
     
         public int Id_Osigurani_entitet { get; set; }
-        public decimal JMBG_Vlasnik_Vozilo { get; set; }
+        public string JMBG_Vlasnik_Vozilo { get; set; }
         public string Ime_Vlasnik_Vozilo { get; set; }
         public string Prezime_Vlasnik_Vozilo { get; set; }
         public string Broj_sasije_Vozilo { get; set; }
