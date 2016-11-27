@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -240,6 +241,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\SEP_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SEP_Model.edmx</DependentUpon>
+      <LastGenOutput>SEP_Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SEP_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SEP_Model.edmx</DependentUpon>
+      <LastGenOutput>SEP_Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -305,19 +316,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SEP_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\SEP_Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SEP_Model.edmx</DependentUpon>
-      <LastGenOutput>SEP_Model.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\SEP_Model.edmx.diagram">
       <DependentUpon>SEP_Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\SEP_Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SEP_Model.edmx</DependentUpon>
-      <LastGenOutput>SEP_Model.cs</LastGenOutput>
-    </Content>
+    <None Include="Properties\PublishProfiles\SEPOsiguranje - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1095,6 +1097,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

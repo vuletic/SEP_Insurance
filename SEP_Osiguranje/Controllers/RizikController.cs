@@ -35,7 +35,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(rizik);
         }
-
+        /*
         // PUT: api/Riziks/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutRizik(decimal id, Rizik rizik)
@@ -116,7 +116,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(rizik);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

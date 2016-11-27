@@ -35,7 +35,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(stopa_PDV);
         }
-
+        /*
         // PUT: api/Stopa_PDV/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutStopa_PDV(short id, Stopa_PDV stopa_PDV)
@@ -116,7 +116,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(stopa_PDV);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

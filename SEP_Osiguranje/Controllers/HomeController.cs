@@ -14,7 +14,8 @@ namespace SEP_Osiguranje.Controllers
             ViewBag.Title = "Home Page";
 
             using (var dbCtx = new SEP_Entities())
-            {
+            {   
+                /*
                 //Add Student object into Students DBset
                 Random rnd = new Random();
                 int r = rnd.Next(1000);
@@ -22,6 +23,7 @@ namespace SEP_Osiguranje.Controllers
 
                 // call SaveChanges method to save student into database
                 dbCtx.SaveChanges();
+                */
             }
 
             return View();

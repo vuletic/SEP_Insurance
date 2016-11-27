@@ -4,30 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e2b7069ee39d415d8065c815b466ce46" Name="Diagram1">
-        <EntityTypeShape EntityType="SEPModel.CK_Rizik" Width="1.5" PointX="7.5" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Nekretnina" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Osoba" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.PDV" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Realizacija_osiguranja" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Rizik" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Rizik_za_osigurani_entitet" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Stavka_u_realizaciji" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Stopa_PDV" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Tip_osiguranja" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Vozilo" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEPModel.Vrsta_rizika" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
-        <AssociationConnector Association="SEPModel.FK_CK_RIZIK_RELATIONS_RIZIK" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_STAVKA_U_RELATIONS_NEKRETNI" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_STAVKA_U_RELATIONS_OSOBA" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_REALIZAC_RELATIONS_PDV" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_STOPA_PD_RELATIONS_PDV" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_STAVKA_U_RELATIONS_REALIZAC" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_RIZIK_RELATIONS_VRSTA_RI" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_RIZIK_ZA_RELATIONS_RIZIK" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_RIZIK_ZA_RELATIONS_STAVKA_U" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_STAVKA_U_RELATIONS_VOZILO" ManuallyRouted="false" />
-        <AssociationConnector Association="SEPModel.FK_VRSTA_RI_RELATIONS_TIP_OSIG" ManuallyRouted="false" />
+      <Diagram DiagramId="336ddb348ffe4792aeead20a682ff7c0" Name="Diagram1">
+        <EntityTypeShape EntityType="SEP_Model.CK_Rizik" Width="1.5" PointX="7.5" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Nekretnina" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Osoba" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.PDV" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Realizacija_osiguranja" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Rizik" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Rizik_za_osigurani_entitet" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Stavka_u_realizaciji" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Stopa_PDV" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Tip_osiguranja" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Vozilo" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_Model.Vrsta_rizika" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <AssociationConnector Association="SEP_Model.FK_CK_RIZIK_RELATIONS_RIZIK" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_NEKRETNI" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_REALIZAC_RELATIONS_PDV" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_STOPA_PD_RELATIONS_PDV" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_VOZILO" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_Model.FK_VRSTA_RI_RELATIONS_TIP_OSIG" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -35,7 +35,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(tip_osiguranja);
         }
-
+        /*
         // PUT: api/Tip_osiguranja/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutTip_osiguranja(decimal id, Tip_osiguranja tip_osiguranja)
@@ -116,7 +116,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(tip_osiguranja);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

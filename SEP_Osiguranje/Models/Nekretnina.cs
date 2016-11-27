@@ -14,6 +14,7 @@ namespace SEP_Osiguranje.Models
     
     public partial class Nekretnina
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nekretnina()
         {
             this.Stavka_u_realizaciji = new HashSet<Stavka_u_realizaciji>();
@@ -28,6 +29,7 @@ namespace SEP_Osiguranje.Models
         public decimal Starost_Nekretnina { get; set; }
         public decimal Procenjena_vrednost_Nekretnina { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }
     }
 }

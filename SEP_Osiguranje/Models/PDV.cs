@@ -14,6 +14,7 @@ namespace SEP_Osiguranje.Models
     
     public partial class PDV
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PDV()
         {
             this.Realizacija_osiguranja = new HashSet<Realizacija_osiguranja>();
@@ -23,7 +24,9 @@ namespace SEP_Osiguranje.Models
         public short Id_PDV { get; set; }
         public string Naziv_PDV { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Realizacija_osiguranja> Realizacija_osiguranja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stopa_PDV> Stopa_PDV { get; set; }
     }
 }
