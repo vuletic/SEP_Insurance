@@ -14,6 +14,7 @@ namespace SEP_Osiguranje.Models
     
     public partial class Vozilo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vozilo()
         {
             this.Stavka_u_realizaciji = new HashSet<Stavka_u_realizaciji>();
@@ -27,6 +28,7 @@ namespace SEP_Osiguranje.Models
         public string Broj_registarske_tablice_Vozilo { get; set; }
         public Nullable<decimal> Godina_proizvodnje_Vozilo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }
     }
 }

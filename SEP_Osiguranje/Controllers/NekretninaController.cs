@@ -35,7 +35,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(nekretnina);
         }
-
+        /*
         // PUT: api/Nekretnina/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutNekretnina(int id, Nekretnina nekretnina)
@@ -116,7 +116,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(nekretnina);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -35,7 +35,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(stavka_u_realizaciji);
         }
-
+        /*
         // PUT: api/Stavka_u_realizaciji/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutStavka_u_realizaciji(int id, Stavka_u_realizaciji stavka_u_realizaciji)
@@ -116,7 +116,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(stavka_u_realizaciji);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

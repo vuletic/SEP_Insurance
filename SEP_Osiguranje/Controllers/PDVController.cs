@@ -6,7 +6,6 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SEP_Osiguranje.Models;
@@ -16,18 +15,18 @@ namespace SEP_Osiguranje.Controllers
     public class PDVController : ApiController
     {
         private SEP_Entities db = new SEP_Entities();
-
-        // GET: api/PDVs
+        
+        // GET: api/PDV
         public IQueryable<PDV> GetPDV()
         {
             return db.PDV;
         }
 
-        // GET: api/PDVs/5
+        // GET: api/PDV/5
         [ResponseType(typeof(PDV))]
-        public async Task<IHttpActionResult> GetPDV(short id)
+        public IHttpActionResult GetPDV(short id)
         {
-            PDV pDV = await db.PDV.FindAsync(id);
+            PDV pDV = db.PDV.Find(id);
             if (pDV == null)
             {
                 return NotFound();
@@ -35,10 +34,10 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(pDV);
         }
-
-        // PUT: api/PDVs/5
+        /*
+        // PUT: api/PDV/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPDV(short id, PDV pDV)
+        public IHttpActionResult PutPDV(short id, PDV pDV)
         {
             if (!ModelState.IsValid)
             {
@@ -54,7 +53,7 @@ namespace SEP_Osiguranje.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,9 +70,9 @@ namespace SEP_Osiguranje.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/PDVs
+        // POST: api/PDV
         [ResponseType(typeof(PDV))]
-        public async Task<IHttpActionResult> PostPDV(PDV pDV)
+        public IHttpActionResult PostPDV(PDV pDV)
         {
             if (!ModelState.IsValid)
             {
@@ -84,7 +83,7 @@ namespace SEP_Osiguranje.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateException)
             {
@@ -101,22 +100,22 @@ namespace SEP_Osiguranje.Controllers
             return CreatedAtRoute("DefaultApi", new { id = pDV.Id_PDV }, pDV);
         }
 
-        // DELETE: api/PDVs/5
+        // DELETE: api/PDV/5
         [ResponseType(typeof(PDV))]
-        public async Task<IHttpActionResult> DeletePDV(short id)
+        public IHttpActionResult DeletePDV(short id)
         {
-            PDV pDV = await db.PDV.FindAsync(id);
+            PDV pDV = db.PDV.Find(id);
             if (pDV == null)
             {
                 return NotFound();
             }
 
             db.PDV.Remove(pDV);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return Ok(pDV);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

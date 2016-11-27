@@ -14,6 +14,7 @@ namespace SEP_Osiguranje.Models
     
     public partial class Vrsta_rizika
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vrsta_rizika()
         {
             this.Rizik = new HashSet<Rizik>();
@@ -23,6 +24,7 @@ namespace SEP_Osiguranje.Models
         public decimal Id_Tip_osiguranja { get; set; }
         public string Naziv_Vrsta_rizika { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rizik> Rizik { get; set; }
         public virtual Tip_osiguranja Tip_osiguranja { get; set; }
     }

@@ -35,7 +35,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(vozilo);
         }
-
+        /*
         // PUT: api/Vozilo/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutVozilo(int id, Vozilo vozilo)
@@ -116,7 +116,7 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(vozilo);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

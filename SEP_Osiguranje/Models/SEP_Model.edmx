@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SEP_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CK_Rizik">
           <Key>
             <PropertyRef Name="Id_CK_Rizik" />
@@ -258,7 +258,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SEPModelStoreContainer">
+        <EntityContainer Name="SEP_ModelStoreContainer">
           <EntitySet Name="CK_Rizik" EntityType="Self.CK_Rizik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nekretnina" EntityType="Self.Nekretnina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Osoba" EntityType="Self.Osoba" Schema="dbo" store:Type="Tables" />
@@ -320,7 +320,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SEPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SEP_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="CK_Rizik">
           <Key>
             <PropertyRef Name="Id_CK_Rizik" />
@@ -659,9 +659,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SEPModelStoreContainer" CdmEntityContainer="SEP_Entities">
+        <EntityContainerMapping StorageEntityContainer="SEP_ModelStoreContainer" CdmEntityContainer="SEP_Entities">
           <EntitySetMapping Name="CK_Rizik">
-            <EntityTypeMapping TypeName="SEPModel.CK_Rizik">
+            <EntityTypeMapping TypeName="SEP_Model.CK_Rizik">
               <MappingFragment StoreEntitySet="CK_Rizik">
                 <ScalarProperty Name="Id_CK_Rizik" ColumnName="Id_CK_Rizik" />
                 <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
@@ -672,7 +672,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Nekretnina">
-            <EntityTypeMapping TypeName="SEPModel.Nekretnina">
+            <EntityTypeMapping TypeName="SEP_Model.Nekretnina">
               <MappingFragment StoreEntitySet="Nekretnina">
                 <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
                 <ScalarProperty Name="JMBG_vlasnik_Nekretnina" ColumnName="JMBG_vlasnik_Nekretnina" />
@@ -686,7 +686,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Osoba">
-            <EntityTypeMapping TypeName="SEPModel.Osoba">
+            <EntityTypeMapping TypeName="SEP_Model.Osoba">
               <MappingFragment StoreEntitySet="Osoba">
                 <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
                 <ScalarProperty Name="JMBG_Osoba" ColumnName="JMBG_Osoba" />
@@ -700,7 +700,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PDV">
-            <EntityTypeMapping TypeName="SEPModel.PDV">
+            <EntityTypeMapping TypeName="SEP_Model.PDV">
               <MappingFragment StoreEntitySet="PDV">
                 <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
                 <ScalarProperty Name="Naziv_PDV" ColumnName="Naziv_PDV" />
@@ -708,7 +708,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Realizacija_osiguranja">
-            <EntityTypeMapping TypeName="SEPModel.Realizacija_osiguranja">
+            <EntityTypeMapping TypeName="SEP_Model.Realizacija_osiguranja">
               <MappingFragment StoreEntitySet="Realizacija_osiguranja">
                 <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
                 <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
@@ -722,7 +722,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rizik">
-            <EntityTypeMapping TypeName="SEPModel.Rizik">
+            <EntityTypeMapping TypeName="SEP_Model.Rizik">
               <MappingFragment StoreEntitySet="Rizik">
                 <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
                 <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
@@ -732,7 +732,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rizik_za_osigurani_entitet">
-            <EntityTypeMapping TypeName="SEPModel.Rizik_za_osigurani_entitet">
+            <EntityTypeMapping TypeName="SEP_Model.Rizik_za_osigurani_entitet">
               <MappingFragment StoreEntitySet="Rizik_za_osigurani_entitet">
                 <ScalarProperty Name="Id_Rizik_za_osigurani_entitet" ColumnName="Id_Rizik_za_osigurani_entitet" />
                 <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
@@ -741,7 +741,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Stavka_u_realizaciji">
-            <EntityTypeMapping TypeName="SEPModel.Stavka_u_realizaciji">
+            <EntityTypeMapping TypeName="SEP_Model.Stavka_u_realizaciji">
               <MappingFragment StoreEntitySet="Stavka_u_realizaciji">
                 <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
                 <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
@@ -753,7 +753,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Stopa_PDV">
-            <EntityTypeMapping TypeName="SEPModel.Stopa_PDV">
+            <EntityTypeMapping TypeName="SEP_Model.Stopa_PDV">
               <MappingFragment StoreEntitySet="Stopa_PDV">
                 <ScalarProperty Name="Id_Stopa_PDV" ColumnName="Id_Stopa_PDV" />
                 <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
@@ -763,7 +763,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tip_osiguranja">
-            <EntityTypeMapping TypeName="SEPModel.Tip_osiguranja">
+            <EntityTypeMapping TypeName="SEP_Model.Tip_osiguranja">
               <MappingFragment StoreEntitySet="Tip_osiguranja">
                 <ScalarProperty Name="Id_Tip_osiguranja" ColumnName="Id_Tip_osiguranja" />
                 <ScalarProperty Name="Naziv_Tip_osiguranja" ColumnName="Naziv_Tip_osiguranja" />
@@ -772,7 +772,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vozilo">
-            <EntityTypeMapping TypeName="SEPModel.Vozilo">
+            <EntityTypeMapping TypeName="SEP_Model.Vozilo">
               <MappingFragment StoreEntitySet="Vozilo">
                 <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
                 <ScalarProperty Name="JMBG_Vlasnik_Vozilo" ColumnName="JMBG_Vlasnik_Vozilo" />
@@ -785,7 +785,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vrsta_rizika">
-            <EntityTypeMapping TypeName="SEPModel.Vrsta_rizika">
+            <EntityTypeMapping TypeName="SEP_Model.Vrsta_rizika">
               <MappingFragment StoreEntitySet="Vrsta_rizika">
                 <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
                 <ScalarProperty Name="Id_Tip_osiguranja" ColumnName="Id_Tip_osiguranja" />
