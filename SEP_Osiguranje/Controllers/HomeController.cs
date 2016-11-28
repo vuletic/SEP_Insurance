@@ -13,7 +13,7 @@ namespace SEP_Osiguranje.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            using (var dbCtx = new SEP_Entities())
+            /*using (var dbCtx = new SEP_Entities())
             {   
                 
              
@@ -24,7 +24,7 @@ namespace SEP_Osiguranje.Controllers
               
                 dbCtx.SaveChanges();
                 
-            }
+            }*/
 
             return View();
         }
