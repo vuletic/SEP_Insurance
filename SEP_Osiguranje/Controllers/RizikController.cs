@@ -17,13 +17,13 @@ namespace SEP_Osiguranje.Controllers
     {
         private SEP_Entities db = new SEP_Entities();
 
-        // GET: api/Riziks
+        // GET: api/Rizik
         public IQueryable<Rizik> GetRizik()
         {
             return db.Rizik;
         }
 
-        // GET: api/Riziks/5
+        // GET: api/Rizik/5
         [ResponseType(typeof(Rizik))]
         public async Task<IHttpActionResult> GetRizik(decimal id)
         {
@@ -36,7 +36,7 @@ namespace SEP_Osiguranje.Controllers
             return Ok(rizik);
         }
         /*
-        // PUT: api/Riziks/5
+        // PUT: api/Rizik/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutRizik(decimal id, Rizik rizik)
         {
@@ -71,7 +71,7 @@ namespace SEP_Osiguranje.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Riziks
+        // POST: api/Rizik
         [ResponseType(typeof(Rizik))]
         public async Task<IHttpActionResult> PostRizik(Rizik rizik)
         {
@@ -101,7 +101,7 @@ namespace SEP_Osiguranje.Controllers
             return CreatedAtRoute("DefaultApi", new { id = rizik.Id_Rizik }, rizik);
         }
 
-        // DELETE: api/Riziks/5
+        // DELETE: api/Rizik/5
         [ResponseType(typeof(Rizik))]
         public async Task<IHttpActionResult> DeleteRizik(decimal id)
         {

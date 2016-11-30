@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SEP_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CK_Rizik">
           <Key>
             <PropertyRef Name="Id_CK_Rizik" />
           </Key>
-          <Property Name="Id_CK_Rizik" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_CK_Rizik" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" Nullable="false" />
           <Property Name="Koeficijent_CK_Rizik" Type="numeric" Precision="5" Scale="2" />
           <Property Name="Cena_CK_Rizik" Type="numeric" Precision="8" Scale="2" />
@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
-          <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="Id_Osigurani_entitet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JMBG_vlasnik_Nekretnina" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="Adresa_Nekretnina" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Ime_vlasnik_Nekretnina" Type="varchar" MaxLength="35" Nullable="false" />
@@ -32,7 +32,7 @@
           <Key>
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
-          <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="Id_Osigurani_entitet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JMBG_Osoba" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="Ime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Prezime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
@@ -45,14 +45,14 @@
           <Key>
             <PropertyRef Name="Id_PDV" />
           </Key>
-          <Property Name="Id_PDV" Type="smallint" Nullable="false" />
+          <Property Name="Id_PDV" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv_PDV" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Realizacija_osiguranja">
           <Key>
             <PropertyRef Name="Id_Realizacija_osiguranja" />
           </Key>
-          <Property Name="Id_Realizacija_osiguranja" Type="int" Nullable="false" />
+          <Property Name="Id_Realizacija_osiguranja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_PDV" Type="smallint" Nullable="false" />
           <Property Name="Datum_Realizacija_osiguranja" Type="datetime" />
           <Property Name="Vrednost_Realizacija_osiguranja" Type="numeric" Precision="8" Scale="2" />
@@ -65,7 +65,7 @@
           <Key>
             <PropertyRef Name="Id_Rizik" />
           </Key>
-          <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Vrsta_rizika" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="Naziv_Rizik" Type="varchar" MaxLength="50" />
           <Property Name="Vrednost_Rizik" Type="decimal" Precision="18" Scale="0" />
@@ -74,7 +74,7 @@
           <Key>
             <PropertyRef Name="Id_Rizik_za_osigurani_entitet" />
           </Key>
-          <Property Name="Id_Rizik_za_osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="Id_Rizik_za_osigurani_entitet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Stavka_u_realizaciji" Type="int" />
           <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" />
         </EntityType>
@@ -82,7 +82,7 @@
           <Key>
             <PropertyRef Name="Id_Stavka_u_realizaciji" />
           </Key>
-          <Property Name="Id_Stavka_u_realizaciji" Type="int" Nullable="false" />
+          <Property Name="Id_Stavka_u_realizaciji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Realizacija_osiguranja" Type="int" Nullable="false" />
           <Property Name="Id_Osigurana_osoba" Type="int" Nullable="false" />
           <Property Name="Id_Osigurana_nekretnina" Type="int" Nullable="false" />
@@ -93,7 +93,7 @@
           <Key>
             <PropertyRef Name="Id_Stopa_PDV" />
           </Key>
-          <Property Name="Id_Stopa_PDV" Type="smallint" Nullable="false" />
+          <Property Name="Id_Stopa_PDV" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_PDV" Type="smallint" />
           <Property Name="Stopa_PDV" Type="numeric" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Datum_pocetka_vazenja_Stopa_PDV" Type="datetime" Nullable="false" />
@@ -102,7 +102,7 @@
           <Key>
             <PropertyRef Name="Id_Tip_osiguranja" />
           </Key>
-          <Property Name="Id_Tip_osiguranja" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Id_Tip_osiguranja" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv_Tip_osiguranja" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Opis_Tip_osiguranja" Type="varchar" MaxLength="200" />
         </EntityType>
@@ -110,7 +110,7 @@
           <Key>
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
-          <Property Name="Id_Osigurani_entitet" Type="int" Nullable="false" />
+          <Property Name="Id_Osigurani_entitet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JMBG_Vlasnik_Vozilo" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="Ime_Vlasnik_Vozilo" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Prezime_Vlasnik_Vozilo" Type="varchar" MaxLength="35" Nullable="false" />
@@ -122,7 +122,7 @@
           <Key>
             <PropertyRef Name="Id_Vrsta_rizika" />
           </Key>
-          <Property Name="Id_Vrsta_rizika" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Id_Vrsta_rizika" Type="numeric" Precision="3" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Tip_osiguranja" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="Naziv_Vrsta_rizika" Type="varchar" MaxLength="35" Nullable="false" />
         </EntityType>
@@ -316,8 +316,7 @@
             <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

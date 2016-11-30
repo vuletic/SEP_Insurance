@@ -17,13 +17,13 @@ namespace SEP_Osiguranje.Controllers
     {
         private SEP_Entities db = new SEP_Entities();
 
-        // GET: api/Osobas
+        // GET: api/Osoba
         public IQueryable<Osoba> GetOsoba()
         {
             return db.Osoba;
         }
 
-        // GET: api/Osobas/5
+        // GET: api/Osoba/5
         [ResponseType(typeof(Osoba))]
         public async Task<IHttpActionResult> GetOsoba(int id)
         {
@@ -36,7 +36,7 @@ namespace SEP_Osiguranje.Controllers
             return Ok(osoba);
         }
         /*
-        // PUT: api/Osobas/5
+        // PUT: api/Osoba/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutOsoba(int id, Osoba osoba)
         {
@@ -71,7 +71,7 @@ namespace SEP_Osiguranje.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Osobas
+        // POST: api/Osoba
         [ResponseType(typeof(Osoba))]
         public async Task<IHttpActionResult> PostOsoba(Osoba osoba)
         {
@@ -101,7 +101,7 @@ namespace SEP_Osiguranje.Controllers
             return CreatedAtRoute("DefaultApi", new { id = osoba.Id_Osigurani_entitet }, osoba);
         }
 
-        // DELETE: api/Osobas/5
+        // DELETE: api/Osoba/5
         [ResponseType(typeof(Osoba))]
         public async Task<IHttpActionResult> DeleteOsoba(int id)
         {

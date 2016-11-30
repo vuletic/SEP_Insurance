@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SEP_Osiguranje.Models;
@@ -15,7 +16,7 @@ namespace SEP_Osiguranje.Controllers
     public class PDVController : ApiController
     {
         private SEP_Entities db = new SEP_Entities();
-        
+
         // GET: api/PDV
         public IQueryable<PDV> GetPDV()
         {
@@ -24,9 +25,9 @@ namespace SEP_Osiguranje.Controllers
 
         // GET: api/PDV/5
         [ResponseType(typeof(PDV))]
-        public IHttpActionResult GetPDV(short id)
+        public async Task<IHttpActionResult> GetPDV(short id)
         {
-            PDV pDV = db.PDV.Find(id);
+            PDV pDV = await db.PDV.FindAsync(id);
             if (pDV == null)
             {
                 return NotFound();
@@ -37,7 +38,7 @@ namespace SEP_Osiguranje.Controllers
         /*
         // PUT: api/PDV/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPDV(short id, PDV pDV)
+        public async Task<IHttpActionResult> PutPDV(short id, PDV pDV)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +54,7 @@ namespace SEP_Osiguranje.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,7 +73,7 @@ namespace SEP_Osiguranje.Controllers
 
         // POST: api/PDV
         [ResponseType(typeof(PDV))]
-        public IHttpActionResult PostPDV(PDV pDV)
+        public async Task<IHttpActionResult> PostPDV(PDV pDV)
         {
             if (!ModelState.IsValid)
             {
@@ -83,7 +84,7 @@ namespace SEP_Osiguranje.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
@@ -102,16 +103,16 @@ namespace SEP_Osiguranje.Controllers
 
         // DELETE: api/PDV/5
         [ResponseType(typeof(PDV))]
-        public IHttpActionResult DeletePDV(short id)
+        public async Task<IHttpActionResult> DeletePDV(short id)
         {
-            PDV pDV = db.PDV.Find(id);
+            PDV pDV = await db.PDV.FindAsync(id);
             if (pDV == null)
             {
                 return NotFound();
             }
 
             db.PDV.Remove(pDV);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(pDV);
         }
