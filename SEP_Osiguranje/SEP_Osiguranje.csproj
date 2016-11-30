@@ -251,6 +251,19 @@
     <Content Include="Content\angular\bower_components\angular-route\LICENSE.md" />
     <Content Include="Content\angular\bower_components\angular-route\package.json" />
     <Content Include="Content\angular\bower_components\angular-route\README.md" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\common.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\resolve.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\state.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\stateFilters.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\templateFactory.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\urlRouter.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\view.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\viewDirective.js" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\src\viewScroll.js" />
     <Content Include="Content\angular\bower_components\angular\.bower.json" />
     <Content Include="Content\angular\bower_components\angular\angular-csp.css" />
     <Content Include="Content\angular\bower_components\angular\angular.js" />
@@ -308,6 +321,12 @@
     </Content>
     <Content Include="Content\angular\app.module.js" />
     <Content Include="Content\angular\assets\css\bootstrap.css.map" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\.bower.json" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\bower.json" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\CHANGELOG.md" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\LICENSE" />
+    <Content Include="Content\angular\bower_components\angular-ui-router\README.md" />
     <None Include="Properties\PublishProfiles\SEPOsiguranje - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
