@@ -68,7 +68,6 @@
           <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Vrsta_rizika" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="Naziv_Rizik" Type="varchar" MaxLength="50" />
-          <Property Name="Vrednost_Rizik" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Rizik_za_osigurani_entitet">
           <Key>
@@ -77,6 +76,7 @@
           <Property Name="Id_Rizik_za_osigurani_entitet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Stavka_u_realizaciji" Type="int" />
           <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="Vrednost_Rizik_za_osigurani_entitet" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Stavka_u_realizaciji">
           <Key>
@@ -329,7 +329,7 @@
           <Property Name="Koeficijent_CK_Rizik" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="Cena_CK_Rizik" Type="Decimal" Precision="8" Scale="2" />
           <Property Name="Datum_pocetka_vazenja_CL_Rizik" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Rizik" Relationship="Self.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="CK_Rizik" ToRole="Rizik" />
+          <NavigationProperty Name="Rizik" Relationship="SEP_Model.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="CK_Rizik" ToRole="Rizik" />
         </EntityType>
         <EntityType Name="Nekretnina">
           <Key>
@@ -383,28 +383,6 @@
           <NavigationProperty Name="PDV" Relationship="Self.FK_REALIZAC_RELATIONS_PDV" FromRole="Realizacija_osiguranja" ToRole="PDV" />
           <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Realizacija_osiguranja" ToRole="Stavka_u_realizaciji" />
         </EntityType>
-        <EntityType Name="Rizik">
-          <Key>
-            <PropertyRef Name="Id_Rizik" />
-          </Key>
-          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
-          <Property Name="Id_Vrsta_rizika" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
-          <Property Name="Naziv_Rizik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Vrednost_Rizik" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="CK_Rizik" Relationship="Self.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="Rizik" ToRole="CK_Rizik" />
-          <NavigationProperty Name="Vrsta_rizika" Relationship="Self.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Rizik" ToRole="Vrsta_rizika" />
-          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="Self.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik" ToRole="Rizik_za_osigurani_entitet" />
-        </EntityType>
-        <EntityType Name="Rizik_za_osigurani_entitet">
-          <Key>
-            <PropertyRef Name="Id_Rizik_za_osigurani_entitet" />
-          </Key>
-          <Property Name="Id_Rizik_za_osigurani_entitet" Type="Int32" Nullable="false" />
-          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" />
-          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" />
-          <NavigationProperty Name="Rizik" Relationship="Self.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik_za_osigurani_entitet" ToRole="Rizik" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Rizik_za_osigurani_entitet" ToRole="Stavka_u_realizaciji" />
-        </EntityType>
         <EntityType Name="Stavka_u_realizaciji">
           <Key>
             <PropertyRef Name="Id_Stavka_u_realizaciji" />
@@ -418,8 +396,8 @@
           <NavigationProperty Name="Nekretnina" Relationship="Self.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Stavka_u_realizaciji" ToRole="Nekretnina" />
           <NavigationProperty Name="Osoba" Relationship="Self.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Stavka_u_realizaciji" ToRole="Osoba" />
           <NavigationProperty Name="Realizacija_osiguranja" Relationship="Self.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Stavka_u_realizaciji" ToRole="Realizacija_osiguranja" />
-          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="Self.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Stavka_u_realizaciji" ToRole="Rizik_za_osigurani_entitet" />
           <NavigationProperty Name="Vozilo" Relationship="Self.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Stavka_u_realizaciji" ToRole="Vozilo" />
+          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Stavka_u_realizaciji" ToRole="Rizik_za_osigurani_entitet" />
         </EntityType>
         <EntityType Name="Stopa_PDV">
           <Key>
@@ -460,21 +438,9 @@
           <Property Name="Id_Vrsta_rizika" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="Id_Tip_osiguranja" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="Naziv_Vrsta_rizika" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Rizik" Relationship="Self.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Vrsta_rizika" ToRole="Rizik" />
           <NavigationProperty Name="Tip_osiguranja" Relationship="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG" FromRole="Vrsta_rizika" ToRole="Tip_osiguranja" />
+          <NavigationProperty Name="Rizik" Relationship="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Vrsta_rizika" ToRole="Rizik" />
         </EntityType>
-        <Association Name="FK_CK_RIZIK_RELATIONS_RIZIK">
-          <End Role="Rizik" Type="Self.Rizik" Multiplicity="1" />
-          <End Role="CK_Rizik" Type="Self.CK_Rizik" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rizik">
-              <PropertyRef Name="Id_Rizik" />
-            </Principal>
-            <Dependent Role="CK_Rizik">
-              <PropertyRef Name="Id_Rizik" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
           <End Role="Nekretnina" Type="Self.Nekretnina" Multiplicity="1" />
           <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
@@ -535,42 +501,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RIZIK_RELATIONS_VRSTA_RI">
-          <End Role="Vrsta_rizika" Type="Self.Vrsta_rizika" Multiplicity="1" />
-          <End Role="Rizik" Type="Self.Rizik" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vrsta_rizika">
-              <PropertyRef Name="Id_Vrsta_rizika" />
-            </Principal>
-            <Dependent Role="Rizik">
-              <PropertyRef Name="Id_Vrsta_rizika" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RIZIK_ZA_RELATIONS_RIZIK">
-          <End Role="Rizik" Type="Self.Rizik" Multiplicity="0..1" />
-          <End Role="Rizik_za_osigurani_entitet" Type="Self.Rizik_za_osigurani_entitet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rizik">
-              <PropertyRef Name="Id_Rizik" />
-            </Principal>
-            <Dependent Role="Rizik_za_osigurani_entitet">
-              <PropertyRef Name="Id_Rizik" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U">
-          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="0..1" />
-          <End Role="Rizik_za_osigurani_entitet" Type="Self.Rizik_za_osigurani_entitet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stavka_u_realizaciji">
-              <PropertyRef Name="Id_Stavka_u_realizaciji" />
-            </Principal>
-            <Dependent Role="Rizik_za_osigurani_entitet">
-              <PropertyRef Name="Id_Stavka_u_realizaciji" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_STAVKA_U_RELATIONS_VOZILO">
           <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
           <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
@@ -601,17 +531,11 @@
           <EntitySet Name="Osoba" EntityType="Self.Osoba" />
           <EntitySet Name="PDV" EntityType="Self.PDV" />
           <EntitySet Name="Realizacija_osiguranja" EntityType="Self.Realizacija_osiguranja" />
-          <EntitySet Name="Rizik" EntityType="Self.Rizik" />
-          <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="Self.Rizik_za_osigurani_entitet" />
           <EntitySet Name="Stavka_u_realizaciji" EntityType="Self.Stavka_u_realizaciji" />
           <EntitySet Name="Stopa_PDV" EntityType="Self.Stopa_PDV" />
           <EntitySet Name="Tip_osiguranja" EntityType="Self.Tip_osiguranja" />
           <EntitySet Name="Vozilo" EntityType="Self.Vozilo" />
           <EntitySet Name="Vrsta_rizika" EntityType="Self.Vrsta_rizika" />
-          <AssociationSet Name="FK_CK_RIZIK_RELATIONS_RIZIK" Association="Self.FK_CK_RIZIK_RELATIONS_RIZIK">
-            <End Role="Rizik" EntitySet="Rizik" />
-            <End Role="CK_Rizik" EntitySet="CK_Rizik" />
-          </AssociationSet>
           <AssociationSet Name="FK_STAVKA_U_RELATIONS_NEKRETNI" Association="Self.FK_STAVKA_U_RELATIONS_NEKRETNI">
             <End Role="Nekretnina" EntitySet="Nekretnina" />
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
@@ -632,18 +556,6 @@
             <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
-          <AssociationSet Name="FK_RIZIK_RELATIONS_VRSTA_RI" Association="Self.FK_RIZIK_RELATIONS_VRSTA_RI">
-            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
-            <End Role="Rizik" EntitySet="Rizik" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_RIZIK" Association="Self.FK_RIZIK_ZA_RELATIONS_RIZIK">
-            <End Role="Rizik" EntitySet="Rizik" />
-            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U" Association="Self.FK_RIZIK_ZA_RELATIONS_STAVKA_U">
-            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
-            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
-          </AssociationSet>
           <AssociationSet Name="FK_STAVKA_U_RELATIONS_VOZILO" Association="Self.FK_STAVKA_U_RELATIONS_VOZILO">
             <End Role="Vozilo" EntitySet="Vozilo" />
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
@@ -652,7 +564,95 @@
             <End Role="Tip_osiguranja" EntitySet="Tip_osiguranja" />
             <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
           </AssociationSet>
+          <EntitySet Name="Rizik" EntityType="SEP_Model.Rizik" />
+          <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="SEP_Model.Rizik_za_osigurani_entitet" />
+          <AssociationSet Name="FK_CK_RIZIK_RELATIONS_RIZIK" Association="SEP_Model.FK_CK_RIZIK_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="CK_Rizik" EntitySet="CK_Rizik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_RELATIONS_VRSTA_RI" Association="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI">
+            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
+            <End Role="Rizik" EntitySet="Rizik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_RIZIK" Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U" Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U">
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Rizik">
+          <Key>
+            <PropertyRef Name="Id_Rizik" />
+          </Key>
+          <Property Name="Id_Rizik" Type="Decimal" Nullable="false" Precision="5" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Vrsta_rizika" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+          <Property Name="Naziv_Rizik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CK_Rizik" Relationship="SEP_Model.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="Rizik" ToRole="CK_Rizik" />
+          <NavigationProperty Name="Vrsta_rizika" Relationship="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Rizik" ToRole="Vrsta_rizika" />
+          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik" ToRole="Rizik_za_osigurani_entitet" />
+        </EntityType>
+        <EntityType Name="Rizik_za_osigurani_entitet">
+          <Key>
+            <PropertyRef Name="Id_Rizik_za_osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Rizik_za_osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" />
+          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="Vrednost_Rizik_za_osigurani_entitet" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Rizik" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik_za_osigurani_entitet" ToRole="Rizik" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Rizik_za_osigurani_entitet" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <Association Name="FK_CK_RIZIK_RELATIONS_RIZIK">
+          <End Type="SEP_Model.Rizik" Role="Rizik" Multiplicity="1" />
+          <End Type="SEP_Model.CK_Rizik" Role="CK_Rizik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Principal>
+            <Dependent Role="CK_Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_RELATIONS_VRSTA_RI">
+          <End Type="SEP_Model.Vrsta_rizika" Role="Vrsta_rizika" Multiplicity="1" />
+          <End Type="SEP_Model.Rizik" Role="Rizik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta_rizika">
+              <PropertyRef Name="Id_Vrsta_rizika" />
+            </Principal>
+            <Dependent Role="Rizik">
+              <PropertyRef Name="Id_Vrsta_rizika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_ZA_RELATIONS_RIZIK">
+          <End Type="SEP_Model.Rizik" Role="Rizik" Multiplicity="0..1" />
+          <End Type="SEP_Model.Rizik_za_osigurani_entitet" Role="Rizik_za_osigurani_entitet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Principal>
+            <Dependent Role="Rizik_za_osigurani_entitet">
+              <PropertyRef Name="Id_Rizik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U">
+          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="0..1" />
+          <End Type="SEP_Model.Rizik_za_osigurani_entitet" Role="Rizik_za_osigurani_entitet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Stavka_u_realizaciji" />
+            </Principal>
+            <Dependent Role="Rizik_za_osigurani_entitet">
+              <PropertyRef Name="Id_Stavka_u_realizaciji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -720,25 +720,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rizik">
-            <EntityTypeMapping TypeName="SEP_Model.Rizik">
-              <MappingFragment StoreEntitySet="Rizik">
-                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
-                <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
-                <ScalarProperty Name="Naziv_Rizik" ColumnName="Naziv_Rizik" />
-                <ScalarProperty Name="Vrednost_Rizik" ColumnName="Vrednost_Rizik" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rizik_za_osigurani_entitet">
-            <EntityTypeMapping TypeName="SEP_Model.Rizik_za_osigurani_entitet">
-              <MappingFragment StoreEntitySet="Rizik_za_osigurani_entitet">
-                <ScalarProperty Name="Id_Rizik_za_osigurani_entitet" ColumnName="Id_Rizik_za_osigurani_entitet" />
-                <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
-                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Stavka_u_realizaciji">
             <EntityTypeMapping TypeName="SEP_Model.Stavka_u_realizaciji">
               <MappingFragment StoreEntitySet="Stavka_u_realizaciji">
@@ -789,6 +770,25 @@
                 <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
                 <ScalarProperty Name="Id_Tip_osiguranja" ColumnName="Id_Tip_osiguranja" />
                 <ScalarProperty Name="Naziv_Vrsta_rizika" ColumnName="Naziv_Vrsta_rizika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rizik">
+            <EntityTypeMapping TypeName="SEP_Model.Rizik">
+              <MappingFragment StoreEntitySet="Rizik">
+                <ScalarProperty Name="Naziv_Rizik" ColumnName="Naziv_Rizik" />
+                <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rizik_za_osigurani_entitet">
+            <EntityTypeMapping TypeName="SEP_Model.Rizik_za_osigurani_entitet">
+              <MappingFragment StoreEntitySet="Rizik_za_osigurani_entitet">
+                <ScalarProperty Name="Vrednost_Rizik_za_osigurani_entitet" ColumnName="Vrednost_Rizik_za_osigurani_entitet" />
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+                <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
+                <ScalarProperty Name="Id_Rizik_za_osigurani_entitet" ColumnName="Id_Rizik_za_osigurani_entitet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
