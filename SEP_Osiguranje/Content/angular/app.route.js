@@ -10,11 +10,15 @@
       $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: 'Content/angular/app/components/core/home.html'
+            templateUrl: 'Content/angular/app/components/core/home.html',
+            controller: 'homeController',
+            controllerAs: 'hc'
         })
-        .state('test', {
-            url: '/test',
-            templateUrl: 'Content/angular/app/components/testComponent/test.html'
+        .state('prices', {
+            url: '/prices',
+            templateUrl: 'Content/angular/app/components/prices/prices.html',
+            controller: 'pricesController',
+            controllerAs: 'pc'
         });
         }]);
 

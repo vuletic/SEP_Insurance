@@ -131,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\angular\app\shared\" />
+    <Folder Include="Content\angular\app\shared\localization\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -237,20 +237,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\angular\app\components\core\home.controller.js" />
     <Content Include="Content\angular\app\components\core\home.html" />
-    <Content Include="Content\angular\app\components\testComponent\test.html" />
+    <Content Include="Content\angular\app\components\prices\prices.controller.js" />
+    <Content Include="Content\angular\app\components\prices\prices.html" />
+    <Content Include="Content\angular\app\components\prices\prices.service.js" />
     <Content Include="Content\angular\assets\css\bootstrap.css" />
     <Content Include="Content\angular\assets\js\angular-resource.js" />
     <Content Include="Content\angular\assets\js\angular.js" />
-    <Content Include="Content\angular\bower_components\angular-route\.bower.json" />
-    <Content Include="Content\angular\bower_components\angular-route\angular-route.js" />
-    <Content Include="Content\angular\bower_components\angular-route\angular-route.min.js" />
-    <Content Include="Content\angular\bower_components\angular-route\angular-route.min.js.map" />
-    <Content Include="Content\angular\bower_components\angular-route\bower.json" />
-    <Content Include="Content\angular\bower_components\angular-route\index.js" />
-    <Content Include="Content\angular\bower_components\angular-route\LICENSE.md" />
-    <Content Include="Content\angular\bower_components\angular-route\package.json" />
-    <Content Include="Content\angular\bower_components\angular-route\README.md" />
     <Content Include="Content\angular\bower_components\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="Content\angular\bower_components\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="Content\angular\bower_components\angular-ui-router\src\common.js" />

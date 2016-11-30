@@ -12,9 +12,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a ui-sref="home">Home</a></li>
-                <li><a ui-sref="test">Route test</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
+                <li><a ui-sref="prices">Prices</a></li>
             </ul>
         </div>
     </nav>
@@ -23,14 +21,17 @@
         <ui-view></ui-view>
     </div>
 
-
-
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
     <script src="../Content/angular/assets/js/angular.js"></script>
     <script src="../Content/angular/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="../Content/angular/bower_components/angular-route/angular-route.js"></script>
+
     <script src="../Content/angular/app.module.js"></script>
     <script src="../Content/angular/app.route.js"></script>
-    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="../Content/angular/app/components/core/home.controller.js"></script>
+    <script src="../Content/angular/app/components/prices/prices.controller.js"></script>
+    <script src="../Content/angular/app/components/prices/prices.service.js"></script>
+    
  
 </body>
 </html>
