@@ -30,12 +30,12 @@ namespace SEP_Osiguranje.Models
         public virtual DbSet<Osoba> Osoba { get; set; }
         public virtual DbSet<PDV> PDV { get; set; }
         public virtual DbSet<Realizacija_osiguranja> Realizacija_osiguranja { get; set; }
-        public virtual DbSet<Rizik> Rizik { get; set; }
-        public virtual DbSet<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
         public virtual DbSet<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }
         public virtual DbSet<Stopa_PDV> Stopa_PDV { get; set; }
         public virtual DbSet<Tip_osiguranja> Tip_osiguranja { get; set; }
         public virtual DbSet<Vozilo> Vozilo { get; set; }
         public virtual DbSet<Vrsta_rizika> Vrsta_rizika { get; set; }
+        public virtual DbSet<Rizik> Rizik { get; set; }
+        public virtual DbSet<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
     }
 }

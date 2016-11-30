@@ -30,8 +30,8 @@ namespace SEP_Osiguranje.Models
         public virtual Nekretnina Nekretnina { get; set; }
         public virtual Osoba Osoba { get; set; }
         public virtual Realizacija_osiguranja Realizacija_osiguranja { get; set; }
+        public virtual Vozilo Vozilo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
-        public virtual Vozilo Vozilo { get; set; }
     }
 }

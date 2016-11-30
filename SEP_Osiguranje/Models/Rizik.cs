@@ -24,7 +24,6 @@ namespace SEP_Osiguranje.Models
         public decimal Id_Rizik { get; set; }
         public decimal Id_Vrsta_rizika { get; set; }
         public string Naziv_Rizik { get; set; }
-        public Nullable<decimal> Vrednost_Rizik { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CK_Rizik> CK_Rizik { get; set; }
