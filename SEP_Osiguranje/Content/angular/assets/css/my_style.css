@@ -1,0 +1,162 @@
+/*#######	GENERAL		 	########################*/
+body {
+    font-family: 'Tahoma' !important;
+}
+
+h2,h3,h4,H5 {
+	color: #666;
+}
+
+h4 {
+	margin-top: 40px;
+}
+
+.page-holder {
+	width:100%;
+	padding-left: 150px;
+	padding-right: 150px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-image: url("../images/pattern.png");
+}
+
+/*#######	UPPER PANEL  	########################*/
+.navbar {
+	background-size:cover;
+	background-image: url("../images/image2.jpg");
+	height: 190px;
+	margin-bottom: 0px !important;
+	border-bottom: #08E solid 4px !important;
+}
+
+.logo-image {
+	padding-left: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	height: 150px;
+}
+
+.container-fluid {
+	padding-left: 150px;
+	padding-right: 100px;
+	padding-top: 150px;
+}
+
+.navbar-nav li {
+	width: 150px;
+	text-align: center;
+	background-color: #FFF;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.navbar-nav li:hover{
+	background-color: #EEE;
+}
+
+/*#######	BOTTOM PANEL  	########################*/
+.footer {
+	color: #666;
+}
+
+/*#######	FORM PANEL  	########################*/
+.main-content-holder {
+	text-align: center;
+	margin: 30px auto;
+	width: 700px;
+	overflow: hidden;
+}
+
+.float-control {
+	position: relative;
+	width: 3000px;
+}
+
+.main-content {
+	float: left;
+	text-align: center;
+	margin-left:20px;
+	width: 700px;
+}
+
+.form-holder {
+	border: #BBB solid 1px;
+	background-color: #FFF;
+	border-radius: 20px;
+	padding: 40px;
+	padding-bottom: 20px;
+}
+
+.form-holder form {
+	margin: 0px;
+}
+
+.my-form-fields-table {
+	margin: auto;
+	margin-top: 20px;
+}
+
+/*#######	USER INPUTS	########################*/
+.add-user {
+	font-size: 1.2em;
+	text-align: right;
+}
+
+.add-user:hover {
+	cursor: pointer;
+}
+
+.user-toggle:hover {
+	color: #AAA !important;
+	cursor: pointer;
+}
+
+/*#######	FORM INPUTS	########################*/
+.my-form-fields-table th {
+	padding-top: 10px;
+	vertical-align: center;
+}
+
+.my-form-fields-table td {
+	padding-left: 10px;
+	padding-top: 10px;
+	vertical-align: center;
+}
+
+.small-input {
+	width: 80px;
+}
+
+.medium-input {
+	width: 155px;
+}
+
+.big-input {
+	width: 240px;
+}
+
+/*#######	FORM BUTTONS	########################*/
+.my-form-buttons {
+	border-top: #39C solid 1px;
+	padding-top: 20px;
+	font-size: 2em;
+	color: #39C;
+	margin: 0 auto;
+	margin-top:40px;
+	width: 100%;
+	height: 70px;
+}
+
+.my-button-navigation:hover {
+	cursor: pointer;
+	color: #159;
+}
+
+.my-button-navigation {
+	margin-left:10px;
+	margin-right:10px;
+	float: left;
+	width: 46%;
+	height: 45px;
+}

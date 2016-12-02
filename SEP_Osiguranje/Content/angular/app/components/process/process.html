@@ -1,0 +1,170 @@
+﻿<div class="page-holder">
+    <div class="main-content-holder">
+
+        <div class="float-control">
+            <div class="main-content" style="margin-left: 0px">
+                <h2>Podaci o osiguranju</h2>
+                <div class="form-holder">
+                    <form>
+                        <div class="my-form-fields">
+                            <table class="my-form-fields-table">
+                                <tr><th>Mesto putovanja:</th><td><select class="form-control" /></td></tr>
+                                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                                <tr><th>Visna rizika:</th><td><select class="form-control" /></td></tr>
+                            </table>
+                        </div>
+                        <div class="my-form-buttons">
+                            <div class="my-button-navigation" style="cursor:default;"></div>
+                            <div class="my-button-navigation navigation-forth" href="panel2">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="main-content" style="display: none;">
+                <h2>Podaci o osiguranicima</h2>
+                <div class="form-holder">
+                    <div style="text-align: right;"><a class="add-user">Dodaj osiguranika</a></div>
+                    <form>
+                        <div class="my-form-fields">
+                            <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranik br 1</h3>
+                            <div>
+                                <table class="my-form-fields-table">
+                                    <tr><th>&nbsp</th><td style="text-align: right;">nosilac osiguranja <input type="checkbox" value="form-control" /></td></tr>
+                                    <tr><th>Ime:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Prezime:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>JMBG:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Br pasoša:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr>
+                                        <th>Adresa:</th>
+                                        <td>
+                                            <table>
+                                                <tr><td>Ulica:</td><td><input type="text" class="form-control" /></td></tr>
+                                                <tr><td>Broj:</td><td><input type="text" class="form-control" /></td></tr>
+                                                <tr><td>Naselje:</td><td><input type="text" class="form-control" /></td></tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr><th>Br telefona:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Starosna grupa:</th><td><select class="form-control" /></td></tr>
+                                    <tr>
+                                        <th>Bavljenje sportom:</th>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td><input type="radio" name="os"> Da</input>&nbsp&nbsp&nbsp<input type="radio" name="os" checked="true"> Ne</input></td>
+                                                    <td>
+                                                        <select class="form-control medium-input" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="my-form-buttons">
+                            <div class="my-button-navigation navigation-back" href="panel1"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation navigation-forth" href="panel3">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="main-content" style="display: none;">
+                <h2>Osiguranje objekta</h2>
+                <div class="form-holder">
+                    <form>
+                        <h3>Da li želite osiguranje objekta?<br /><br /><input type="radio" class="open-form" name="oo"> Da</input>&nbsp&nbsp&nbsp <input type="radio" name="oo" class="close-form" checked="true"> Ne</input></h3>
+                        <div class="my-form-fields" style="display: none; ">
+                            <h4>Podaci o osiguranju objekta</h4>
+                            <table class="my-form-fields-table">
+                                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                                <tr><th>Površina objekta:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Starost objekta:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Procenjena vrednost objekta:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr>
+                                    <th>Osiguranje važi u slučaju:</th>
+                                    <td>
+                                        <table>
+                                            <tr><td><input type="checkbox" /></td><td>Poplave</td></tr>
+                                            <tr><td><input type="checkbox" /></td><td>Požara</td></tr>
+                                            <tr><td><input type="checkbox" /></td><td>Krađe</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <h4>Podaci o objektu</h4>
+                            <table class="my-form-fields-table">
+                                <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" /></td>
+                                <tr>
+                                    <th>Adresa objekta:</th>
+                                    <td>
+                                        <table>
+                                            <tr><td>Ulica:</td><td><input type="text" class="form-control" /></td></tr>
+                                            <tr><td>Broj:</td><td><input type="text" class="form-control" /></td></tr>
+                                            <tr><td>Naselje:</td><td><input type="text" class="form-control" /></td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="my-form-buttons">
+                            <div class="my-button-navigation navigation-back" href="panel2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation navigation-forth" href="panel4">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="main-content" style="display: none;">
+                <h2>Pomoć na putu</h2>
+                <div class="form-holder">
+                    <form>
+                        <h3>Da li želite osiguranje "Pomoć na putu"?<br /><br /><input type="radio" class="open-form" name="pp"> Da</input>&nbsp&nbsp&nbsp <input type="radio" name="pp" class="close-form" checked="true"> Ne</input></h3>
+                        <div class="my-form-fields" style="display:none; ">
+                            <h4>Podaci o paketu osiguranja pomoći na putu</h4>
+                            <table class="my-form-fields-table">
+                                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                                <tr>
+                                    <th>Paket osiguranje pokriva:</th>
+                                    <td>
+                                        <table>
+                                            <tr><td><input type="checkbox" /></td><td>Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
+                                            <tr><td><input type="checkbox" /></td><td>Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
+                                            <tr><td><input type="checkbox" /></td><td>Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
+                                            <tr><td><input type="checkbox" /></td><td>Alternativni prevoz</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <h4>Podaci o vozilu</h4>
+                            <table class="my-form-fields-table">
+                                <tr><th>Marka:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Tip:</th><td><select class="form-control" /></td></tr>
+                                <tr><th>Godina propizvodnje:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Broj registarske tablice:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Broj šasije:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" /></td>
+                            </table>
+                        </div>
+                        <div class="my-form-buttons">
+                            <div class="my-button-navigation navigation-back" href="panel3"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation" href="panel5">Završi &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

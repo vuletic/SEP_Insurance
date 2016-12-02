@@ -5,7 +5,7 @@
 		.module('app')
         .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-      $urlRouterProvider.otherwise("/home");
+      $urlRouterProvider.otherwise("/process");
 
       $stateProvider
         .state('home', {
@@ -13,6 +13,12 @@
             templateUrl: 'Content/angular/app/components/core/home.html',
             controller: 'homeController',
             controllerAs: 'hc'
+        })
+        .state('process', {
+            url: '/process',
+            templateUrl: 'Content/angular/app/components/process/process.html',
+            controller: 'processController',
+            controllerAs: 'pc'
         })
         .state('prices', {
             url: '/prices',
