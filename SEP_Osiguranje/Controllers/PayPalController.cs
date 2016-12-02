@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 
@@ -51,7 +52,7 @@ namespace SEP_Osiguranje.Controllers
             String returnUrl = "https://github.com/vuletic/SEP_Insurance";
             String accountEMail = "projekat.sep@gmail.com";
             String ipnAddress = "no_need_for_now";
-            String price = "143";
+            String price = "1430";
             String currency = "USD";
 
             List<string> buttonVars = new List<string>();
@@ -75,11 +76,10 @@ namespace SEP_Osiguranje.Controllers
             // Creating service wrapper object to make an API call by loading configuration map. 
             PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);
             BMCreateButtonResponseType response = service.BMCreateButton(wrapper);
-            string code = response.Website;
 
             HttpResponseMessage res = new HttpResponseMessage();
-            res.Content = new StringContent(code);
-
+            res.Content = new StringContent(response.Website);
+            res.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return res;
         }
     }
