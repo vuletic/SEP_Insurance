@@ -51,6 +51,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PayPalButtonManagerSDK, Version=2.10.109.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalButtonManagerSDK.2.10.109\lib\net20\PayPalButtonManagerSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.7.0.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalCoreSDK.1.7.0\lib\net45\PayPalCoreSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -136,6 +144,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="PayPalData\PayPalConfiguration.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
@@ -170,6 +179,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NekretninaController.cs" />
     <Compile Include="Controllers\OsobaController.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="Controllers\PDVController.cs" />
     <Compile Include="Controllers\Realizacija_osiguranjaController.cs" />
     <Compile Include="Controllers\RizikController.cs" />
@@ -330,6 +340,9 @@
     <Content Include="Content\angular\bower_components\angular-ui-router\CONTRIBUTING.md" />
     <Content Include="Content\angular\bower_components\angular-ui-router\LICENSE" />
     <Content Include="Content\angular\bower_components\angular-ui-router\README.md" />
+    <Content Include="PayPalData\paypal_cert.p12">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\angular\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\angular\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\angular\assets\fonts\glyphicons-halflings-regular.woff" />
