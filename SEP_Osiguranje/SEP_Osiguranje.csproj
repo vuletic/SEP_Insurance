@@ -59,6 +59,9 @@
       <HintPath>..\packages\PayPalCoreSDK.1.7.0\lib\net45\PayPalCoreSDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RuleEngine">
+      <HintPath>..\packages\SimpleRuleEngine.1.0.4.1\lib\net40\RuleEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -144,6 +147,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Controllers\RuleEngineController.cs" />
     <Compile Include="PayPalData\PayPalConfiguration.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -247,6 +251,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\angular\app\components\calculator\calculator.controller.js" />
+    <Content Include="Content\angular\app\components\calculator\calculator.html" />
+    <Content Include="Content\angular\app\components\calculator\calculator.service.js" />
     <Content Include="Content\angular\app\components\core\home.controller.js" />
     <Content Include="Content\angular\app\components\core\home.html" />
     <Content Include="Content\angular\app\components\prices\prices.controller.js" />
@@ -303,6 +310,7 @@
       <DependentUpon>SEP_Model.edmx</DependentUpon>
       <LastGenOutput>SEP_Model.cs</LastGenOutput>
     </Content>
+    <Content Include="RuleExample.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -324,7 +332,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Scripts\errors.json" />
     <EntityDeploy Include="Models\SEP_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SEP_Model.Designer.cs</LastGenOutput>
@@ -370,7 +377,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
