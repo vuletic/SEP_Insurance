@@ -1,5 +1,96 @@
-﻿<div>
+﻿<div class="page-holder">
+    <div class="overview-panel">
+        <h2 class="header-center">Kalkulator Osiguranja</h2>
+        <hr />
+        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Podaci o osiguranju</h3>
+        <div class="overview-segment">
+            <table class="my-form-fields-table">
+                <tr><th>Mesto putovanja:</th><td><select class="form-control" /></td></tr>
+                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                <tr><th>Visna rizika:</th><td><select class="form-control" /></td></tr>
+            </table>
+        </div>
 
-    {{cc.testPrice}}
+        <hr class="hr-grey" />
 
+        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranici</h3>
+        <div class="overview-segment">
+            <table class="my-form-fields-table">
+                <tr>
+                    <th>Osiguranik 1:</th>
+                    <th>Starosna grupa:</th>
+                    <td colspan="2"><select class="form-control medium-input" /></td>
+                    <th>&nbsp&nbsp Bavljenje sportom:</th>
+                    <td><input type="radio" name="os"> Da</input>&nbsp&nbsp <input type="radio" name="os" checked="true"> Ne</input>&nbsp&nbsp</td>
+                    <td><select class="form-control medium-input" /></td>
+                </tr>
+                <tr>
+                    <th>Osiguranik 2:</th>
+                    <th>Starosna grupa:</th>
+                    <td colspan="2"><select class="form-control medium-input" /></td>
+                    <th>&nbsp&nbsp Bavljenje sportom:</th>
+                    <td><input type="radio" name="os"> Da</input>&nbsp&nbsp <input type="radio" name="os" checked="true"> Ne</input>&nbsp&nbsp</td>
+                    <td><select class="form-control medium-input" /></td>
+                </tr>
+                <tr><th><a>Dodaj osiguranika</a></th></tr>
+            </table>
+        </div>
+
+        <hr class="hr-grey" />
+
+        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranje objekta</h3>
+        <div class="overview-segment">
+            <table class="my-form-fields-table">
+                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                <tr><th>Površina objekta:</th><td><input type="text" class="form-control" /></td></tr>
+                <tr><th>Starost objekta:</th><td><input type="text" class="form-control" /></td></tr>
+                <tr><th>Procenjena vrednost objekta:</th><td><input type="text" class="form-control" /></td></tr>
+                <tr>
+                    <th>Osiguranje važi u slučaju:</th>
+                    <td>
+                        <table>
+                            <tr><td><input type="checkbox" /></td><td>Poplave</td></tr>
+                            <tr><td><input type="checkbox" /></td><td>Požara</td></tr>
+                            <tr><td><input type="checkbox" /></td><td>Krađe</td></tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <hr class="hr-grey" />
+
+        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp "Pomoc na Putu"</h3>
+        <div class="overview-segment">
+            <table class="my-form-fields-table">
+                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
+                <tr>
+                    <th>Paket osiguranje pokriva:</th>
+                    <td>
+                        <table>
+                            <tr><td><input type="checkbox" /></td><td>Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
+                            <tr><td><input type="checkbox" /></td><td>Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
+                            <tr><td><input type="checkbox" /></td><td>Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
+                            <tr><td><input type="checkbox" /></td><td>Alternativni prevoz</td></tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <hr class="hr-grey" />
+        <h3 class="header-right header-red">Cena osiguranja: 24.000 RSD</h3>
+
+        <hr />
+
+        <div class="my-overview-buttons">
+            <div class="my-button-overview-single ">Produzi ka kupovini &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="my-button-overview-single ">Izracunaj cenu</div>
+        </div>
+    </div>
 </div>

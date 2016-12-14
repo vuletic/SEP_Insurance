@@ -22,6 +22,10 @@ hr {
 	margin-bottom: 30px;
 }
 
+.hr-grey {
+    border-color: #DDD !important;
+}
+
 .highlight-text {
 	font-size: 18px;
 	font-weight: bold;
@@ -49,7 +53,7 @@ hr {
 }
 
 /*#######	UPPER PANEL  	########################*/
-.navbar {
+.navbar-custom {
 	background-size:cover;
 	background-image: url("images/image2.jpg");
 	height: 190px;
@@ -57,20 +61,20 @@ hr {
 	border-bottom: #08E solid 4px !important;
 }
 
-.logo-image {
+.navbar-custom .logo-image {
 	padding-left: 10px;
 	padding-bottom: 10px;
 	padding-top: 10px;
 	height: 150px;
 }
 
-.container-fluid {
+.navbar-custom .container-fluid {
 	padding-left: 150px;
 	padding-right: 100px;
 	padding-top: 150px;
 }
 
-.navbar-nav li {
+.navbar-custom-nav li {
 	width: 150px;
 	text-align: center;
 	background-color: #FFF;
@@ -79,15 +83,36 @@ hr {
 	margin-right: 5px;
 }
 
-.navbar-nav li:hover{
+.navbar-custom .navbar-nav li:hover{
 	background-color: #EEE;
 }
 
 /*#######	BOTTOM PANEL  	########################*/
 .footer {
-	color: #666;
+	color: #39C;
+	width: 100%;
+	border-top: #08E solid 4px !important;
 }
 
+.footer-columns {
+	clear: both;
+	margin: 0 auto;
+	width: 97%;
+	background: red;
+	margin: 0 auto;
+}
+
+.footer-column {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 240px;
+	float: left;
+}
+.ft_linkovi a{
+}
+.dada {
+	margin: 0px auto;
+}
 /*#######	INPUT DATA FORM PANEL  	########################*/
 .main-content-holder {
 	text-align: center;
@@ -170,36 +195,33 @@ hr {
 	float: left;
 	width: 46%;
 	height: 45px;
-}
-
-.my-overview-buttons {
-	font-size: 2em;
-	color: #39C;
-	margin: 0 auto;
-	width: 100%;
-	height: 85px;
-	padding-left: 2%;
-	padding-right: 2%;
-}
-
-.my-button-overview {
-	margin-left: 3%;
-	margin-right: 3%;
-	float: left;
-	width: 27%;
-	height: 80px;
+	
+}.my-button-action {
 	text-align: center;
+	font-size: 1.5em;
+	color: #39C;
+	margin: auto;
+	float: left;
+	width: 192px;
+	height: 50px;
+	font-weight: normal;
 	vertical-align: center;
+	background: #EEE;
+	margin-top: 20px;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
 }
 
-.my-button-overview-center {
-	line-height: 80px;
+.my-buttons-action {
+	margin: auto;
+	width: 400px;
 }
 
-.my-button-overview-center:hover {
+.my-button-action:hover {
 	cursor: pointer;
-	color: #048;
-	font-weight: bold;
+	background: #DDD;
 }
 
 /*#######	INPUT DATA OSIGURANICI TABELA	########################*/
@@ -305,32 +327,43 @@ hr {
 }
 
 /*#######	POLISA DUGMAD NA DNU	########################*/
-.my-button-action {
-	text-align: center;
-	font-size: 1.5em;
+.my-overview-buttons {
+	font-size: 2em;
 	color: #39C;
-	margin: auto;
+	margin: 0 auto;
+	width: 100%;
+	height: 85px;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.my-button-overview {
+	margin-left: 3%;
+	margin-right: 3%;
 	float: left;
-	width: 192px;
-	height: 50px;
-	font-weight: normal;
+	width: 27%;
+	height: 80px;
+	text-align: center;
 	vertical-align: center;
-	background: #EEE;
-	margin-top: 20px;
-	margin-right: 10px;
-	margin-left: 10px;
-	margin-bottom: 10px;
-	padding-top: 10px;
 }
 
-.my-buttons-action {
-	margin: auto;
-	width: 400px;
+.my-button-overview-center {
+	line-height: 80px;
 }
 
-.my-button-action:hover {
+.my-button-overview-single {
+	float: right;
+	width: 50%;
+	height: 80px;
+	text-align: center;
+	vertical-align: center;
+	line-height: 80px;
+}
+
+.my-button-overview-center:hover, .my-button-overview-single:hover {
 	cursor: pointer;
-	background: #DDD;
+	color: #048;
+	font-weight: bold;
 }
 
 /*#######	POLISATABELA KORISNICI		########################*/
