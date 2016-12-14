@@ -37,7 +37,7 @@ hr {
 	padding-right: 150px;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-image: url("images/pattern.png");
+	background-image: url("../images/pattern.png");
 }
 
 .header-center{
@@ -55,10 +55,10 @@ hr {
 /*#######	UPPER PANEL  	########################*/
 .navbar-custom {
 	background-size:cover;
-	background-image: url("images/image2.jpg");
+	background-image: url("../images/image2.jpg");
 	height: 190px;
 	margin-bottom: 0px !important;
-	border-bottom: #08E solid 4px !important;
+	border-bottom: #39C solid 4px !important;
 }
 
 .navbar-custom .logo-image {
@@ -74,32 +74,62 @@ hr {
 	padding-top: 150px;
 }
 
-.navbar-custom-nav li {
-	width: 150px;
-	text-align: center;
-	background-color: #FFF;
-	font-weight: bold;
-	margin-left: 5px;
-	margin-right: 5px;
+.navbar-languages {
+    margin-top: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    float: right;
+    width: 159px;
+    height: 31px;
+	background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.navbar-languages a {
+    width: 65px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.navbar-languages:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    margin-left: 30px;
+}
+
+.navbar-nav li {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 130px;
+    height: 39px;
+    color: red !important;
+    text-align: center;
+}
+
+.navbar-nav li a {
+    font-size: 18px !important;
 }
 
 .navbar-custom .navbar-nav li:hover{
-	background-color: #EEE;
+	background-color: #39C;
+    color: #EEE;
+}
+
+.navbar-custom .navbar-nav a:hover{
+    color: #EEE !important;
 }
 
 /*#######	BOTTOM PANEL  	########################*/
 .footer {
 	color: #39C;
 	width: 100%;
-	border-top: #08E solid 4px !important;
+	border-top: #39C solid 4px !important;
 }
 
 .footer-columns {
-	clear: both;
 	margin: 0 auto;
 	width: 97%;
-	background: red;
-	margin: 0 auto;
 }
 
 .footer-column {
@@ -108,11 +138,7 @@ hr {
 	width: 240px;
 	float: left;
 }
-.ft_linkovi a{
-}
-.dada {
-	margin: 0px auto;
-}
+
 /*#######	INPUT DATA FORM PANEL  	########################*/
 .main-content-holder {
 	text-align: center;

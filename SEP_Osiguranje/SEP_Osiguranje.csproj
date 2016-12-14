@@ -266,9 +266,21 @@
     <Content Include="Content\angular\assets\css\bootstrap.css" />
     <Content Include="Content\angular\assets\css\my_style.css" />
     <Content Include="Content\angular\assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\angular\assets\images\image2.jpg" />
-    <Content Include="Content\angular\assets\images\logo.png" />
-    <Content Include="Content\angular\assets\images\pattern.png" />
+    <Content Include="Content\angular\assets\images\en.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\images\image2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\images\pattern.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\images\srb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\angular\assets\js\angular-resource.js" />
     <Content Include="Content\angular\assets\js\angular.js" />
     <Content Include="Content\angular\assets\js\jquery.js" />

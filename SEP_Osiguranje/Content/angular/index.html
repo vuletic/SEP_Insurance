@@ -9,19 +9,22 @@
 <body ng-app="app">
 
     <nav class="navbar navbar-default navbar-custom">
-        <a class="navbar-brand" href="#">
+        <div class="navbar-brand">
             <img class="logo-image" src="../Content/angular/assets/images/logo.png">
-        </a>
+        </div>
+
+        <div class="navbar-languages">
+            <a href="#srb"><img src="../Content/angular/assets/images/srb.png"> Srpski</a>
+            <a href="#en"><img src="../Content/angular/assets/images/en.png"> English</a>
+        </div>
 
         <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <!--
-                        <li class="active"><a ui-sref="home">Home</a></li>
-                        <li><a ui-sref="prices">Prices</a></li>
-                    -->
-                </ul>
-            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Pocetna</a></li>
+                <li><a href="#">Kalkulator</a></li>
+                <li><a href="#">Kupovina</a></li>
+                <li><a href="#">O Nama</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -105,7 +108,6 @@
                             <li><a href="#">Ekskluzivno zastupništvo</a></li>
                             <li><a href="#">Društvena odgovornost</a></li>
                             <li><a href="#">Impresum</a></li>
-
                         </ul>
                     </div>
                 </div>
