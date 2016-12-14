@@ -3,12 +3,28 @@ body {
     font-family: 'Tahoma' !important;
 }
 
-h2,h3,h4,H5 {
+h2,h3,h4,h5 {
 	color: #666;
 }
 
 h4 {
 	margin-top: 40px;
+}
+
+p {
+	font-size: 15px;
+}
+
+hr {
+    border-color: #39C;
+    border-width: 1px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.highlight-text {
+	font-size: 18px;
+	font-weight: bold;
 }
 
 .page-holder {
@@ -17,13 +33,25 @@ h4 {
 	padding-right: 150px;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-image: url("../images/pattern.png");
+	background-image: url("images/pattern.png");
+}
+
+.header-center{
+	text-align: center !important;
+}
+
+.header-right{
+	text-align: right !important;
+}
+
+.header-red{
+	color: red !important;
 }
 
 /*#######	UPPER PANEL  	########################*/
 .navbar {
 	background-size:cover;
-	background-image: url("../images/image2.jpg");
+	background-image: url("images/image2.jpg");
 	height: 190px;
 	margin-bottom: 0px !important;
 	border-bottom: #08E solid 4px !important;
@@ -60,7 +88,7 @@ h4 {
 	color: #666;
 }
 
-/*#######	FORM PANEL  	########################*/
+/*#######	INPUT DATA FORM PANEL  	########################*/
 .main-content-holder {
 	text-align: center;
 	margin: 30px auto;
@@ -97,22 +125,7 @@ h4 {
 	margin-top: 20px;
 }
 
-/*#######	USER INPUTS	########################*/
-.add-user {
-	font-size: 1.2em;
-	text-align: right;
-}
-
-.add-user:hover {
-	cursor: pointer;
-}
-
-.user-toggle:hover {
-	color: #AAA !important;
-	cursor: pointer;
-}
-
-/*#######	FORM INPUTS	########################*/
+/*#######	INPUT DATA FORM INPUTS	########################*/
 .my-form-fields-table th {
 	padding-top: 10px;
 	vertical-align: center;
@@ -136,21 +149,19 @@ h4 {
 	width: 240px;
 }
 
-/*#######	FORM BUTTONS	########################*/
+/*#######	INPUT DATA FORM BUTTONS	########################*/
 .my-form-buttons {
-	border-top: #39C solid 1px;
-	padding-top: 20px;
 	font-size: 2em;
 	color: #39C;
 	margin: 0 auto;
-	margin-top:40px;
 	width: 100%;
-	height: 70px;
+	height: 50px;
 }
 
 .my-button-navigation:hover {
 	cursor: pointer;
-	color: #159;
+	color: #048;
+	font-weight: bold;
 }
 
 .my-button-navigation {
@@ -159,4 +170,220 @@ h4 {
 	float: left;
 	width: 46%;
 	height: 45px;
+}
+
+.my-overview-buttons {
+	font-size: 2em;
+	color: #39C;
+	margin: 0 auto;
+	width: 100%;
+	height: 85px;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.my-button-overview {
+	margin-left: 3%;
+	margin-right: 3%;
+	float: left;
+	width: 27%;
+	height: 80px;
+	text-align: center;
+	vertical-align: center;
+}
+
+.my-button-overview-center {
+	line-height: 80px;
+}
+
+.my-button-overview-center:hover {
+	cursor: pointer;
+	color: #048;
+	font-weight: bold;
+}
+
+/*#######	INPUT DATA OSIGURANICI TABELA	########################*/
+.insured-table {
+	width: 98%;
+	margin: auto;
+	margin-top: 30px;
+	border-top:  #999 solid 1px;
+	text-align: center;
+	vertical-align: center;
+}
+
+.insured-table th {
+	height: 60px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.insured-table tr {
+	height: 40px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-bottom: #999 solid 1px;
+}
+
+.insured-table .insured-table-header {
+	background: #5AE;
+	color: #FFF;
+}
+
+.insured-table .insured-table-data:hover {
+	background: #F0F0F0;
+	cursor: pointer;
+}
+
+.insured-table .selected {
+	background: #DDD;
+}
+
+.insured-table .colname {
+	width: 16%;
+}
+
+.insured-table .colsurname {
+	width: 30%;
+}
+
+.insured-table .coljmbg {
+	width: 19%;
+}
+
+.insured-table .colcat {
+	width: 22%;
+}
+
+.insured-table .colsport {
+	width: 13%;
+}
+
+.insured-manage {
+	font-size: 16px;
+	margin-top: 10px;
+	margin-right: 10px;
+	text-align: right;
+}
+
+.insured-manage a:hover {
+	cursor: pointer;
+	color: #048;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.user-toggle {
+	font-size: 18px;
+	text-align: left;
+	padding-left: 10px;
+}
+
+.user-toggle:hover {
+	color: #AAA !important;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+/*#######	POLISA		########################*/
+.overview-panel {
+	border: #BBB solid 1px;
+	background-color: #FFF;
+	border-radius: 20px;
+	width: 1000px;
+	padding: 40px;
+	padding-bottom: 20px;
+}
+
+.overview-segment {
+	margin-top: 20px;
+	margin-bottom: 40px;
+	margin-left: 20px;
+	width: 100%;
+}
+
+/*#######	POLISA DUGMAD NA DNU	########################*/
+.my-button-action {
+	text-align: center;
+	font-size: 1.5em;
+	color: #39C;
+	margin: auto;
+	float: left;
+	width: 192px;
+	height: 50px;
+	font-weight: normal;
+	vertical-align: center;
+	background: #EEE;
+	margin-top: 20px;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+}
+
+.my-buttons-action {
+	margin: auto;
+	width: 400px;
+}
+
+.my-button-action:hover {
+	cursor: pointer;
+	background: #DDD;
+}
+
+/*#######	POLISATABELA KORISNICI		########################*/
+.overview-table {
+	width: 98%;
+	vertical-align: center;
+	text-align: left;
+}
+
+.overview-table .insured-name {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.overview-table tr {
+	height: 25px;
+}
+
+.overview-table th {
+	font-size: 14px;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.overview-table td {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.overview-table .overview-table-first {
+	height: 10px;
+}
+
+.overview-table .col0{
+	width: 4%;
+}
+
+.overview-table .col1{
+	width: 28%;
+}
+
+.overview-table .col2h{
+	width: 6%;
+}
+
+.overview-table .col3{
+	width: 16%;
+}
+
+.overview-table .col4h{
+	width: 9%;
+}
+
+.overview-table .col5{
+	width: 37%;
 }

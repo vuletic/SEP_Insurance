@@ -256,6 +256,7 @@
     <Content Include="Content\angular\app\components\calculator\calculator.service.js" />
     <Content Include="Content\angular\app\components\core\home.controller.js" />
     <Content Include="Content\angular\app\components\core\home.html" />
+    <Content Include="Content\angular\app\components\overview\overview.html" />
     <Content Include="Content\angular\app\components\prices\prices.controller.js" />
     <Content Include="Content\angular\app\components\prices\prices.html" />
     <Content Include="Content\angular\app\components\prices\prices.service.js" />

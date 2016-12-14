@@ -14,9 +14,10 @@
                                 <tr><th>Visna rizika:</th><td><select class="form-control" /></td></tr>
                             </table>
                         </div>
+                        <hr />
                         <div class="my-form-buttons">
                             <div class="my-button-navigation" style="cursor:default;"></div>
-                            <div class="my-button-navigation navigation-forth" href="panel2">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation navigation-forth">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
@@ -25,48 +26,55 @@
             <div class="main-content" style="display: none;">
                 <h2>Podaci o osiguranicima</h2>
                 <div class="form-holder">
-                    <div style="text-align: right;"><a class="add-user">Dodaj osiguranika</a></div>
+                    <div>
+                        <table class="insured-table">
+                            <tr class="insured-table-header"><th class="colname">Ime</th><th class="colsurname">Prezime</th><th class="coljmbg">JMBG</th><th class="colcat">Kategorija</th><th class="colsport">Sport</th></tr>
+                            <tr class="insured-table-data"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td>Da</td></tr>
+                            <tr class="insured-table-data selected"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td>Da</td></tr>
+                        </table>
+                        <div class="insured-manage"><a>Ukloni osiguranika</a>&nbsp&nbsp&nbsp <a>Dodaj osiguranika</a></div>
+                    </div>
                     <form>
                         <div class="my-form-fields">
-                            <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranik br 1</h3>
-                            <div>
+                            <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show" style="display:none;"></span><span class="glyphicon glyphicon-menu-right user-hide"></span>&nbsp Detalji</h3>
+                            <div style="display:none;">
                                 <table class="my-form-fields-table">
-                                    <tr><th>&nbsp</th><td style="text-align: right;">nosilac osiguranja <input type="checkbox" value="form-control" /></td></tr>
-                                    <tr><th>Ime:</th><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Prezime:</th><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>JMBG:</th><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Br pasoša:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Ime:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Prezime:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>JMBG:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Br pasoša:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
                                     <tr>
                                         <th>Adresa:</th>
-                                        <td>
+                                        <td colspan="2">
                                             <table>
                                                 <tr><td>Ulica:</td><td><input type="text" class="form-control" /></td></tr>
                                                 <tr><td>Broj:</td><td><input type="text" class="form-control" /></td></tr>
-                                                <tr><td>Naselje:</td><td><input type="text" class="form-control" /></td></tr>
+                                                <tr><td>Mesto:</td><td><input type="text" class="form-control" /></td></tr>
                                             </table>
                                         </td>
                                     </tr>
-                                    <tr><th>Br telefona:</th><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Starosna grupa:</th><td><select class="form-control" /></td></tr>
+                                    <tr><th>Br telefona:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Starosna grupa:</th><td colspan="2"><select class="form-control" /></td></tr>
                                     <tr>
                                         <th>Bavljenje sportom:</th>
                                         <td>
-                                            <table>
-                                                <tr>
-                                                    <td><input type="radio" name="os"> Da</input>&nbsp&nbsp&nbsp<input type="radio" name="os" checked="true"> Ne</input></td>
-                                                    <td>
-                                                        <select class="form-control medium-input" />
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            <input type="radio" name="os"> Da</input>&nbsp&nbsp <input type="radio" name="os" checked="true"> Ne</input>&nbsp&nbsp
                                         </td>
+                                        <td>
+                                            <select class="form-control medium-input" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3"><div class="my-button-action">Potvrdi</div><div class="my-button-action">Odustani</div></th>
                                     </tr>
                                 </table>
                             </div>
                         </div>
+
+                        <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation navigation-back" href="panel1"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation navigation-forth" href="panel3">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation navigation-back"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation navigation-forth">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
@@ -114,9 +122,10 @@
                                 </tr>
                             </table>
                         </div>
+                        <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation navigation-back" href="panel2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation navigation-forth" href="panel4">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation navigation-back"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation navigation-forth">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
@@ -157,9 +166,10 @@
                                 <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" /></td>
                             </table>
                         </div>
+                        <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation navigation-back" href="panel3"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation" href="panel5">Završi &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation navigation-back"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation">Završi &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
