@@ -10,8 +10,7 @@
 namespace SEP_Osiguranje.Models
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class Stopa_PDV
     {
         public short Id_Stopa_PDV { get; set; }

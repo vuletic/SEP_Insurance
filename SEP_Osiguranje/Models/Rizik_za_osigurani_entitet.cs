@@ -10,8 +10,7 @@
 namespace SEP_Osiguranje.Models
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class Rizik_za_osigurani_entitet
     {
         public int Id_Rizik_za_osigurani_entitet { get; set; }

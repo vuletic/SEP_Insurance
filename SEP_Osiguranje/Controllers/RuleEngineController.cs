@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Web.Http;
-using SEP_Osiguranje.Models;
-using System.Xml;
-using RuleEngine;
-using RuleEngine.Compiler;
 
 namespace SEP_Osiguranje.Controllers
 {

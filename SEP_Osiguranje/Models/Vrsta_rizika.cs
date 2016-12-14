@@ -9,9 +9,8 @@
 
 namespace SEP_Osiguranje.Models
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class Vrsta_rizika
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
