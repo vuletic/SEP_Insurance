@@ -2,7 +2,7 @@
     <div class="overview-panel">
         <h2 class="header-center">Kalkulator Osiguranja</h2>
         <hr />
-        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Podaci o osiguranju</h3>
+        <h3><span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Podaci o osiguranju</span></h3>
         <div class="overview-segment">
             <table class="my-form-fields-table">
                 <tr>
@@ -22,32 +22,39 @@
 
         <hr class="hr-grey" />
 
-        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranici</h3>
+        <h3><span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranici</span></h3>
         <div class="overview-segment">
             <table class="my-form-fields-table">
                 <tr>
                     <th>Osiguranik 1:</th>
-                    <th>Starosna grupa:</th>
+                    <th>&nbsp&nbsp Starosna grupa:</th>
                     <td colspan="2"><select class="form-control medium-input" /></td>
                     <th>&nbsp&nbsp Bavljenje sportom:</th>
-                    <td><input type="radio" name="os"> Da</input>&nbsp&nbsp <input type="radio" name="os" checked="true"> Ne</input>&nbsp&nbsp</td>
+                    <td><input type="radio" name="os7"> Da</input>&nbsp&nbsp <input type="radio" name="os7" checked="true"> Ne</input>&nbsp&nbsp</td>
                     <td><select class="form-control medium-input" /></td>
+                    <td><img class="remove-img" src="../Content/angular/assets/images/remove.png"></td>
                 </tr>
                 <tr>
                     <th>Osiguranik 2:</th>
-                    <th>Starosna grupa:</th>
+                    <th>&nbsp&nbsp Starosna grupa:</th>
                     <td colspan="2"><select class="form-control medium-input" /></td>
                     <th>&nbsp&nbsp Bavljenje sportom:</th>
-                    <td><input type="radio" name="os"> Da</input>&nbsp&nbsp <input type="radio" name="os" checked="true"> Ne</input>&nbsp&nbsp</td>
+                    <td><input type="radio" name="os6"> Da</input>&nbsp&nbsp <input type="radio" name="os6" checked="true"> Ne</input>&nbsp&nbsp</td>
                     <td><select class="form-control medium-input" /></td>
+                    <td><img class="remove-img" src="../Content/angular/assets/images/remove.png"></td>
                 </tr>
-                <tr><th><a>Dodaj osiguranika</a></th></tr>
+                <tr><td> &nbsp </td></tr>
+                <tr><td colspan="8" class="insured-manage"><a>Dodaj osiguranika</a></td></tr>
             </table>
         </div>
 
         <hr class="hr-grey" />
 
-        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranje objekta</h3>
+        <h3>
+            <span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranje objekta</span>
+            <span class="force-header-right user-toggle-size">Zelite li osiguranje objekta: <input type="radio" name="os2"> Da</input>&nbsp&nbsp <input type="radio" name="os2" checked="true"> Ne</input></span>
+        </h3>
+
         <div class="overview-segment">
             <table class="my-form-fields-table">
                 <tr>
@@ -95,7 +102,10 @@
 
         <hr class="hr-grey" />
 
-        <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp "Pomoc na Putu"</h3>
+        <h3>
+            <span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp "Pomoc na Putu"</span>
+            <span class="force-header-right user-toggle-size">Zelite li paket "Pomoc na Putu": <input type="radio" name="os3"> Da</input>&nbsp&nbsp <input type="radio" name="os3" checked="true"> Ne</input></span>
+        </h3>
         <div class="overview-segment">
             <table class="my-form-fields-table">
                 <tr>
@@ -119,14 +129,20 @@
             </table>
         </div>
 
-        <hr class="hr-grey" />
-        <h3 class="header-right header-red">Cena osiguranja: 24.000 RSD</h3>
+        <div class="calculator-final-price">
+            <hr class="hr-grey" />
+            <h3 class="header-right header-red">Cena osiguranja: 24.000 RSD</h3>
+        </div>
 
         <hr />
 
-        <div class="my-overview-buttons">
-            <div class="my-button-overview-single ">Produzi ka kupovini &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
-            <div class="my-button-overview-single ">Izracunaj cenu</div>
+        <div>
+            <table class="my-overview-buttons">
+                <tr>
+                    <td class="my-button-overview-single"><div>&nbsp </div></td>
+                    <td class="my-button-overview-single"><div>Izracunaj cenu</div></td>
+                    <td class="my-button-overview-single calculator-final-price"><div>Produzi ka kupovini &nbsp <span class="glyphicon glyphicon-chevron-right"></span></div></td>
+            </table></tr>
         </div>
     </div>
 </div>
