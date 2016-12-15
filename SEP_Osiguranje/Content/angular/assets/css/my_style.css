@@ -128,8 +128,8 @@ hr {
 }
 
 .footer-columns {
-	margin: 0 auto;
-	width: 97%;
+    margin: 0 auto; 
+	width: 1300px;
 }
 
 .footer-column {
@@ -185,7 +185,6 @@ hr {
 .my-form-fields-table td {
 	padding-left: 10px;
 	padding-top: 10px;
-	vertical-align: center;
 }
 
 .small-input {
@@ -198,6 +197,22 @@ hr {
 
 .big-input {
 	width: 240px;
+}
+
+.input-standard {
+	width: 180px;
+}
+
+.input-group-addon {
+	width: 50px;
+}
+
+.align-row-top {
+	vertical-align:top;
+}
+
+.align-row-top  th{
+	padding-top: 17px !important;
 }
 
 /*#######	INPUT DATA FORM BUTTONS	########################*/
@@ -392,7 +407,7 @@ hr {
 	font-weight: bold;
 }
 
-/*#######	POLISATABELA KORISNICI		########################*/
+/*#######	POLISA TABELA KORISNICI		########################*/
 .overview-table {
 	width: 98%;
 	vertical-align: center;

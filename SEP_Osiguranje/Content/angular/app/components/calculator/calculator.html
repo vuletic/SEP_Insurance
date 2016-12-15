@@ -5,10 +5,18 @@
         <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Podaci o osiguranju</h3>
         <div class="overview-segment">
             <table class="my-form-fields-table">
-                <tr><th>Mesto putovanja:</th><td><select class="form-control" /></td></tr>
-                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                <tr><th>Visna rizika:</th><td><select class="form-control" /></td></tr>
+                <tr>
+                    <th>Mesto putovanja:</th>
+                    <td><select class="form-control" /></td>
+                    <th> &nbsp&nbsp Visna rizika:</th>
+                    <td><select class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Početak važenja:</th>
+                    <td><input type="date" class="form-control" /></td>
+                    <th> &nbsp&nbsp Kraj važenja:</th>
+                    <td><input type="date" class="form-control" /></td>
+                </tr>
             </table>
         </div>
 
@@ -42,13 +50,37 @@
         <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranje objekta</h3>
         <div class="overview-segment">
             <table class="my-form-fields-table">
-                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                <tr><th>Površina objekta:</th><td><input type="text" class="form-control" /></td></tr>
-                <tr><th>Starost objekta:</th><td><input type="text" class="form-control" /></td></tr>
-                <tr><th>Procenjena vrednost objekta:</th><td><input type="text" class="form-control" /></td></tr>
                 <tr>
-                    <th>Osiguranje važi u slučaju:</th>
+                    <th>Početak važenja:</th>
+                    <td><input type="date" class="form-control" /></td>
+                    <th> &nbsp&nbsp Kraj važenja:</th>
+                    <td><input type="date" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Površina objekta:</th>
+                    <td>
+                        <div class="input-group input-standard">
+                            <input type="text" class="form-control" />
+                            <span class="input-group-addon">m2</span>
+                        </div>
+                    </td>
+                    <th> &nbsp&nbsp Starost objekta:</th>
+                    <td>
+                        <div class="input-group input-standard">
+                            <input type="text" class="form-control" />
+                            <span class="input-group-addon">god</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="align-row-top">
+                    <th>Vrednost objekta:</th>
+                    <td>
+                        <div class="input-group input-standard">
+                            <input type="text" class="form-control" />
+                            <span class="input-group-addon">EUR</span>
+                        </div>
+                    </td>
+                    <th> &nbsp&nbsp Osiguranje pokriva:</th>
                     <td>
                         <table>
                             <tr><td><input type="checkbox" /></td><td>Poplave</td></tr>
@@ -66,11 +98,15 @@
         <h3 class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp "Pomoc na Putu"</h3>
         <div class="overview-segment">
             <table class="my-form-fields-table">
-                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
                 <tr>
-                    <th>Paket osiguranje pokriva:</th>
-                    <td>
+                    <th>Početak važenja:</th>
+                    <td><input type="date" class="form-control" /></td>
+                    <th> &nbsp&nbsp Kraj važenja:</th>
+                    <td><input type="date" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Paket pokriva:</th>
+                    <td colspan="3">
                         <table>
                             <tr><td><input type="checkbox" /></td><td>Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
                             <tr><td><input type="checkbox" /></td><td>Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
