@@ -48,8 +48,24 @@ hr {
 	text-align: right !important;
 }
 
+.force-header-right{
+	float: right;
+}
+
+.header-left{
+	text-align: left !important;
+}
+
 .header-red{
 	color: red !important;
+}
+
+.remove-img {
+	height: 24px;
+}
+
+.remove-img:hover {
+	cursor: pointer;
 }
 
 /*#######	UPPER PANEL  	########################*/
@@ -227,7 +243,6 @@ hr {
 .my-button-navigation:hover {
 	cursor: pointer;
 	color: #048;
-	font-weight: bold;
 }
 
 .my-button-navigation {
@@ -344,6 +359,10 @@ hr {
 	padding-left: 10px;
 }
 
+.user-toggle-size {
+	font-size: 18px;
+}
+
 .user-toggle:hover {
 	color: #AAA !important;
 	cursor: pointer;
@@ -388,13 +407,16 @@ hr {
 	vertical-align: center;
 }
 
+.my-overview-buttons td {
+	width: 27%;
+	margin-left: 3%;
+}
+
 .my-button-overview-center {
 	line-height: 80px;
 }
 
 .my-button-overview-single {
-	float: right;
-	width: 50%;
 	height: 80px;
 	text-align: center;
 	vertical-align: center;
@@ -404,7 +426,6 @@ hr {
 .my-button-overview-center:hover, .my-button-overview-single:hover {
 	cursor: pointer;
 	color: #048;
-	font-weight: bold;
 }
 
 /*#######	POLISA TABELA KORISNICI		########################*/
