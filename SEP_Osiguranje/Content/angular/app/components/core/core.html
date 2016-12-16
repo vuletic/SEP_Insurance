@@ -1,0 +1,110 @@
+﻿<div>
+
+    <nav class="navbar navbar-default navbar-custom">
+        <div class="navbar-brand">
+            <img class="logo-image" src="../Content/angular/assets/images/logo.png">
+        </div>
+
+        <div class="navbar-languages">
+            <a ng-click="cr.localize('srpski')"><img src="../Content/angular/assets/images/srb.png"> Srpski</a>
+            <a ng-click="cr.localize('english')"><img src="../Content/angular/assets/images/en.png"> English</a>
+        </div>
+
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="core.home">{{cr.l10nObj.mnuHome}}</a></li>
+                <li><a ui-sref="core.calculator">{{cr.l10nObj.mnuCalculator}}</a></li>
+                <li><a ui-sref="core.process">{{cr.l10nObj.mnuShopping}}</a></li>
+                <li><a ui-sref="core.about">{{cr.l10nObj.mnuAbout}}</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container page-holder">
+        <ui-view></ui-view>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div>
+                <div class="footer-column">
+                    <div class="ft_linkovi">
+                        <h4>{{cr.l10nObj.ftrBuyOnline}}</h4>
+                        <ul class="ft_linkovi_ul">
+                            <li><a href="#">{{cr.l10nObj.sftrPoui}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="ft_linkovi">
+                        <h4>{{cr.l10nObj.ftrCalculators}}</h4>
+                        <ul class="ft_linkovi_ul">
+                            <li><a href="#">{{cr.l10nObj.sftrKzzo}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <div class="ft_linkovi">
+                        <h4>{{cr.l10nObj.ftrFastLinks}}</h4>
+                        <ul class="ft_linkovi_ul">
+                            <li><a href="#">{{cr.l10nObj.sftrKia}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrOpo}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrPzo}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrPoui}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrOd}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrOi}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrZs}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrPza}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <div class="ft_linkovi">
+                        <h4>{{cr.l10nObj.ftrNaturalPersons}}</h4>
+                        <ul class="ft_linkovi_ul">
+                            <li><a href="#">{{cr.l10nObj.sftrZiz}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrIis}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrAip}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="ft_linkovi">
+                        <h4>{{cr.l10nObj.ftrLegalPersons}}</h4>
+                        <ul class="ft_linkovi_ul">
+                            <li><a href="#">{{cr.l10nObj.sftrVp}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrVz}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <div class="ft_linkovi">
+                        <h4>{{cr.l10nObj.ftrCAndS}}</h4>
+                        <ul class="ft_linkovi_ul">
+                            <li><a href="#">{{cr.l10nObj.sftrKia}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrPs}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrKu}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrP}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrNp}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrBdp}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrMsc}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrPd}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <div class="ft_linkovi">
+                        <h4>{{cr.l10nObj.ftrAbout}}</h4>
+                        <ul class="ft_linkovi_ul">
+                            <li><a href="#">{{cr.l10nObj.sftrHgo}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrHgg}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrM}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrMk}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrK}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrEz}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrDo}}</a></li>
+                            <li><a href="#">{{cr.l10nObj.sftrI}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>

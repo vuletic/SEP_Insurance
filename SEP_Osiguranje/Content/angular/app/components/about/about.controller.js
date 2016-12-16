@@ -3,11 +3,11 @@
 
     angular
 		.module('app')
-		.controller('pricesController', pricesController);
+		.controller('aboutController', aboutController);
 
     function pricesController() {
-        var pc = this;
-        pc.testPrice = "$2000";
+        var ac = this;
+        
     }
 
 

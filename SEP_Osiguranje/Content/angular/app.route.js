@@ -5,28 +5,34 @@
 		.module('app')
         .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-      $urlRouterProvider.otherwise("/home");
+      $urlRouterProvider.otherwise("/core");
 
       $stateProvider
-        .state('home', {
+        .state('core', {
+            url: '/core',
+            templateUrl: 'Content/angular/app/components/core/core.html',
+            controller: 'coreController',
+            controllerAs: 'cr'
+        })
+        .state('core.home', {
             url: '/home',
-            templateUrl: 'Content/angular/app/components/core/home.html',
+            templateUrl: 'Content/angular/app/components/home/home.html',
             controller: 'homeController',
             controllerAs: 'hc'
         })
-        .state('process', {
+        .state('core.process', {
             url: '/process',
             templateUrl: 'Content/angular/app/components/process/process.html',
             controller: 'processController',
-            controllerAs: 'pc'
+            controllerAs: 'pr'
         })
-        .state('prices', {
-            url: '/prices',
-            templateUrl: 'Content/angular/app/components/prices/prices.html',
-            controller: 'pricesController',
-            controllerAs: 'pc'
+        .state('core.about', {
+            url: '/about',
+            templateUrl: 'Content/angular/app/components/about/about.html',
+            controller: 'aboutController',
+            controllerAs: 'ac'
         })
-        .state('calculator', {
+        .state('core.calculator', {
             url: '/calculator',
             templateUrl: 'Content/angular/app/components/calculator/calculator.html',
             controller: 'calculatorController',
