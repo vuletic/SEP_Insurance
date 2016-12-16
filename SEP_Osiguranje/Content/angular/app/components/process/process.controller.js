@@ -49,7 +49,7 @@
             });
 
             $('.user-toggle').click(function () {
-                var formTable = $(this).next();
+                var formTable = $(this).parent().next();
                 var markHide = $(this).find(".user-hide");
                 var markShow = $(this).find(".user-show");
                 formTable.slideToggle(transition_time);
