@@ -1,8 +1,8 @@
 ﻿<div class="page-holder">
     <div class="main-content-holder">
 
-        <div class="float-control">
-            <div class="main-content" style="margin-left: 0px">
+        <div class="float-control" ng-class="{'class1' : selectedProcessPanel[0], 'class2' : selectedProcessPanel[1], 'class3' : selectedProcessPanel[2], 'class4' : selectedProcessPanel[3]}">
+            <div class="main-content" style="margin-left: 0px" ng-show="true">
                 <h2>Podaci o osiguranju</h2>
                 <div class="form-holder">
                     <form>
@@ -17,13 +17,13 @@
                         <hr />
                         <div class="my-form-buttons">
                             <div class="my-button-navigation" style="cursor:default;"></div>
-                            <div class="my-button-navigation navigation-forth">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, true, false, false]">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="main-content" style="display: none;">
+            <div class="main-content" ng-show="true">
                 <h2>Podaci o osiguranicima</h2>
                 <div class="form-holder">
                     <div>
@@ -36,8 +36,14 @@
                     </div>
                     <form>
                         <div class="my-form-fields">
-                            <h3 class="header-left"><span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show" style="display:none;"></span><span class="glyphicon glyphicon-menu-right user-hide"></span>&nbsp Detalji</span></h3>
-                            <div style="display:none;">
+                            <h3 class="header-left">
+                                <span class="user-toggle" ng-click="hideUserDetails = !hideUserDetails">
+                                    <span class="glyphicon glyphicon-menu-down user-show" ng-hide="!hideUserDetails"></span>
+                                    <span class="glyphicon glyphicon-menu-right user-hide" ng-hide="hideUserDetails"></span>
+                                    &nbsp Detalji
+                                </span>
+                            </h3>
+                            <div class="slide-up-animation-user" ng-hide="!hideUserDetails">
                                 <table class="my-form-fields-table">
                                     <tr><th>Ime:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
                                     <tr><th>Prezime:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
@@ -73,19 +79,23 @@
 
                         <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation navigation-back"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation navigation-forth">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [true, false, false, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, true, false]">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="main-content" style="display: none;">
+            <div class="main-content" ng-show="true">
                 <h2>Osiguranje objekta</h2>
                 <div class="form-holder">
                     <form>
-                        <h3>Da li želite osiguranje objekta?<br /><br /><input type="radio" class="open-form" name="oo"> Da</input>&nbsp&nbsp&nbsp <input type="radio" name="oo" class="close-form" checked="true"> Ne</input></h3>
-                        <div class="my-form-fields" style="display: none; ">
+                        <h3>
+                            Da li želite osiguranje objekta?<br /><br />
+                            <input type="radio" name="objectInsurance" ng-model="hideObjectInsurance" ng-value="true"> Da</input>&nbsp&nbsp&nbsp
+                            <input type="radio" name="objectInsurance" ng-model="hideObjectInsurance" ng-value="false" ng-checked="true"> Ne</input>
+                        </h3>
+                        <div class="my-form-fields slide-up-animation-object-proccess" ng-show="hideObjectInsurance">
                             <h4>Podaci o osiguranju objekta</h4>
                             <table class="my-form-fields-table">
                                 <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
@@ -124,19 +134,23 @@
                         </div>
                         <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation navigation-back"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation navigation-forth">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, true, false, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, false, true]">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="main-content" style="display: none;">
+            <div class="main-content" ng-show="true">
                 <h2>Pomoć na putu</h2>
                 <div class="form-holder">
                     <form>
-                        <h3>Da li želite osiguranje "Pomoć na putu"?<br /><br /><input type="radio" class="open-form" name="pp"> Da</input>&nbsp&nbsp&nbsp <input type="radio" name="pp" class="close-form" checked="true"> Ne</input></h3>
-                        <div class="my-form-fields" style="display:none; ">
+                        <h3>
+                            Da li želite osiguranje "Pomoć na putu"?<br /><br />
+                            <input type="radio" name="vehicleInsurance" ng-model="hideVehicleInsurance" ng-value="true"> Da</input>&nbsp&nbsp&nbsp
+                            <input type="radio" name="vehicleInsurance" ng-model="hideVehicleInsurance" ng-value="false" ng-checked="true"> Ne</input>
+                        </h3>
+                        <div class="my-form-fields slide-up-animation-vehicle-proccess" ng-show="hideVehicleInsurance">
                             <h4>Podaci o paketu osiguranja pomoći na putu</h4>
                             <table class="my-form-fields-table">
                                 <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
@@ -168,8 +182,8 @@
                         </div>
                         <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation navigation-back"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation">Završi &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, true, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
+                            <div class="my-button-navigation"><a ui-sref="core.preview">Završi &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></a></div>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,21 @@
+{
+  "name": "SEP_Insurance",
+  "homepage": "https://github.com/vuletic/SEP_Insurance",
+  "authors": [
+    "NNemanjaMM"
+  ],
+  "description": "Packages required for SEP_Insurance add",
+  "main": "app.module.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.2.0",
+    "angular-ui-router": "^0.3.2"
+  }
+}

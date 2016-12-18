@@ -4,8 +4,14 @@
         <div class="overview-panel">
             <h2 class="header-center">Kalkulator Osiguranja</h2>
             <hr />
-            <h3><span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Podaci o osiguranju</span></h3>
-            <div class="overview-segment">
+            <h3>
+                <span class="user-toggle" ng-click="hideInsurance=!hideInsurance">
+                    <span class="glyphicon glyphicon-menu-down" ng-hide="hideInsurance"></span>
+                    <span class="glyphicon glyphicon-menu-right" ng-hide="!hideInsurance"></span>
+                    &nbsp Osiguranje
+                </span>
+            </h3>
+            <div class="overview-segment slide-up-animation-insurance" ng-hide="hideInsurance">
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Mesto putovanja:</th>
@@ -24,8 +30,14 @@
 
             <hr class="hr-grey" />
 
-            <h3><span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranici</span></h3>
-            <div class="overview-segment">
+            <h3>
+                <span class="user-toggle" ng-click="hideInsuree=!hideInsuree">
+                    <span class="glyphicon glyphicon-menu-down" ng-hide="hideInsuree"></span>
+                    <span class="glyphicon glyphicon-menu-right" ng-hide="!hideInsuree"></span>
+                    &nbsp Osiguranici
+                </span>
+            </h3>
+            <div class="overview-segment slide-up-animation" ng-hide="hideInsuree">
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Osiguranik 1:</th>
@@ -53,11 +65,23 @@
             <hr class="hr-grey" />
 
             <h3>
-                <span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp Osiguranje objekta</span>
-                <span class="force-header-right user-toggle-size">Zelite li osiguranje objekta: <input type="radio" name="os2"> Da</input>&nbsp&nbsp <input type="radio" name="os2" checked="true"> Ne</input></span>
+                <span class="user-toggle-disabled" ng-show="!enableObject">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                    &nbsp Osiguranje Objekta
+                </span>
+                <span class="user-toggle" ng-click="showObject=!showObject" ng-show="enableObject">
+                    <span class="glyphicon glyphicon-menu-down" ng-show="showObject"></span>
+                    <span class="glyphicon glyphicon-menu-right" ng-show="!showObject"></span>
+                    &nbsp Osiguranje Objekta
+                </span>
+                <span class="force-header-right user-toggle-size">
+                    Zelite li osiguranje objekta:
+                    <input type="radio" name="radioObject" ng-model="enableObject" ng-value="true" ng-click="showObject = true"> Da</input>&nbsp&nbsp
+                    <input type="radio" name="radioObject" ng-model="enableObject" ng-value="false" ng-click="showObject = false" ng-checked="true"> Ne</input>
+                </span>
             </h3>
 
-            <div class="overview-segment">
+            <div class="overview-segment slide-up-animation-object" ng-show="showObject">
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Početak važenja:</th>
@@ -105,10 +129,22 @@
             <hr class="hr-grey" />
 
             <h3>
-                <span class="user-toggle"><span class="glyphicon glyphicon-menu-down user-show"></span><span class="glyphicon glyphicon-menu-right user-hide" style="display:none;"></span>&nbsp "Pomoc na Putu"</span>
-                <span class="force-header-right user-toggle-size">Zelite li paket "Pomoc na Putu": <input type="radio" name="os3"> Da</input>&nbsp&nbsp <input type="radio" name="os3" checked="true"> Ne</input></span>
+                <span class="user-toggle-disabled" ng-show="!enableVehicle">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                    &nbsp Pomoc na Putu
+                </span>
+                <span class="user-toggle" ng-click="showVehicle=!showVehicle" ng-show="enableVehicle">
+                    <span class="glyphicon glyphicon-menu-down" ng-show="showVehicle"></span>
+                    <span class="glyphicon glyphicon-menu-right" ng-show="!showVehicle"></span>
+                    &nbsp Pomoc na Putu
+                </span>
+                <span class="force-header-right user-toggle-size">                    
+                    Zelite li osiguranje "Pomoc na Putu": 
+                    <input type="radio" name="radioVehicle" ng-model="enableVehicle" ng-value="true" ng-click="showVehicle = true"> Da</input>&nbsp&nbsp
+                    <input type="radio" name="radioVehicle" ng-model="enableVehicle" ng-value="false" ng-click="showVehicle = false" ng-checked="true"> Ne</input>
+                </span>
             </h3>
-            <div class="overview-segment">
+            <div class="overview-segment slide-up-animation-vehicle" ng-show="showVehicle">
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Početak važenja:</th>
@@ -143,8 +179,9 @@
                     <tr>
                         <td class="my-button-overview-single"><div>&nbsp </div></td>
                         <td class="my-button-overview-single"><div>Izracunaj cenu</div></td>
-                        <td class="my-button-overview-single calculator-final-price"><div>Produzi ka kupovini &nbsp <span class="glyphicon glyphicon-chevron-right"></span></div></td>
-                </table></tr>
+                        <td class="my-button-overview-single calculator-final-price"><a ui-sref="core.process"><div>Produzi ka kupovini &nbsp <span class="glyphicon glyphicon-chevron-right"></span></div></a></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

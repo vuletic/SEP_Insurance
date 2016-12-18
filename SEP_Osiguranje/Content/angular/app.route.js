@@ -37,6 +37,12 @@
             templateUrl: 'Content/angular/app/components/calculator/calculator.html',
             controller: 'calculatorController',
             controllerAs: 'cc'
+        })
+        .state('core.preview', {
+            url: '/preview',
+            templateUrl: 'Content/angular/app/components/preview/preview.html',
+            controller: 'previewController',
+            controllerAs: 'pc'
         });
 
         }]);

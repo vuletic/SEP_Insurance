@@ -8,19 +8,14 @@
     function calculatorController() {
         var cc = this;
         cc.testPrice = "$2000";
-    
-        jQuery(function ($) {
-            var transition_time = 1000;
 
+        var hideInsurance = false;
+        var hideInsuree = false;
+        var showObject = false;
+        var showVehicle = false;
 
-            $('.user-toggle').click(function () {
-                var formTable = $(this).parent().next();
-                var markHide = $(this).find(".user-hide");
-                var markShow = $(this).find(".user-show");
-                formTable.slideToggle(transition_time);
-                markHide.toggle();
-                markShow.toggle();
-            });
-        });
+        var enableObject = false;
+        var enableVehicle = false;
+
     }
 })();

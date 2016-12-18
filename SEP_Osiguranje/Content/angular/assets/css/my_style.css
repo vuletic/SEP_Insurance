@@ -15,6 +15,10 @@ p {
 	font-size: 15px;
 }
 
+a:hover {
+    text-decoration: none !important;
+}
+
 hr {
     border-color: #39C;
     border-width: 1px;
@@ -359,6 +363,13 @@ hr {
 	padding-left: 10px;
 }
 
+.user-toggle-disabled {
+	font-size: 18px;
+    color: #AAA;
+	text-align: left;
+	padding-left: 10px;
+}
+
 .user-toggle-size {
 	font-size: 18px;
 }
@@ -367,6 +378,10 @@ hr {
 	color: #AAA !important;
 	cursor: pointer;
 	font-weight: bold;
+}
+
+.user-toggle-disabled:hover {
+	cursor: no-drop;
 }
 
 /*#######	POLISA		########################*/

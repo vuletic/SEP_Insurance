@@ -5,7 +5,7 @@
 		.module('app')
 		.controller('aboutController', aboutController);
 
-    function pricesController() {
+    function aboutController() {
         var ac = this;
         
     }
