@@ -7,11 +7,12 @@
 
     function processController() {
         
-        var selectedProcessPanel = [true, false, false, false];
+        var selectedProcessPanel = [true, false, false, false, false];
         var hideUserDetails = false;
         var hideObjectInsurance = false;
         var hideVehicleInsurance = false;
 
+        var insuranceCarrierIsNotInsured = false;
     }
 
 })();

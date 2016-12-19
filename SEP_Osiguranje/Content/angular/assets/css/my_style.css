@@ -169,7 +169,7 @@ hr {
 
 .float-control {
 	position: relative;
-	width: 3000px;
+	width: 3600px;
 }
 
 .main-content {
@@ -208,7 +208,7 @@ hr {
 }
 
 .small-input {
-	width: 80px;
+	width: 90px;
 }
 
 .medium-input {
@@ -216,7 +216,11 @@ hr {
 }
 
 .big-input {
-	width: 240px;
+	width: 210px;
+}
+
+.realy-big-input {
+	width: 340px;
 }
 
 .input-standard {
@@ -228,11 +232,19 @@ hr {
 }
 
 .align-row-top {
-	vertical-align:top;
+	vertical-align: top;
 }
 
 .align-row-top  th{
 	padding-top: 17px !important;
+}
+
+.align-cell-right {
+	text-align: right !important;
+}
+
+.align-cell-left {
+	text-align: left !important;
 }
 
 /*#######	INPUT DATA FORM BUTTONS	########################*/
@@ -254,15 +266,16 @@ hr {
 	margin-right:10px;
 	float: left;
 	width: 46%;
-	height: 45px;
-	
-}.my-button-action {
+	height: 45px;	
+}
+
+.my-button-action {
 	text-align: center;
 	font-size: 1.5em;
 	color: #39C;
 	margin: auto;
 	float: left;
-	width: 192px;
+	width: 170px;
 	height: 50px;
 	font-weight: normal;
 	vertical-align: center;
@@ -324,7 +337,7 @@ hr {
 }
 
 .insured-table .colname {
-	width: 16%;
+	width: 19%;
 }
 
 .insured-table .colsurname {
@@ -332,7 +345,7 @@ hr {
 }
 
 .insured-table .coljmbg {
-	width: 19%;
+	width: 22%;
 }
 
 .insured-table .colcat {
@@ -340,7 +353,11 @@ hr {
 }
 
 .insured-table .colsport {
-	width: 13%;
+	width: 7%;
+}
+
+.colpicksport {
+	width: 160px;
 }
 
 .insured-manage {

@@ -1,7 +1,7 @@
 ﻿<div class="page-holder">
     <div class="main-content-holder">
 
-        <div class="float-control" ng-class="{'class1' : selectedProcessPanel[0], 'class2' : selectedProcessPanel[1], 'class3' : selectedProcessPanel[2], 'class4' : selectedProcessPanel[3]}">
+        <div class="float-control" ng-class="{'class1' : selectedProcessPanel[0], 'class2' : selectedProcessPanel[1], 'class3' : selectedProcessPanel[2], 'class4' : selectedProcessPanel[3], 'class5' : selectedProcessPanel[4]}">
             <div class="main-content" style="margin-left: 0px" ng-show="true">
                 <h2>Podaci o osiguranju</h2>
                 <div class="form-holder">
@@ -17,7 +17,7 @@
                         <hr />
                         <div class="my-form-buttons">
                             <div class="my-button-navigation" style="cursor:default;"></div>
-                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, true, false, false]">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, true, false, false, false]">Dalje &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
@@ -28,50 +28,42 @@
                 <div class="form-holder">
                     <div>
                         <table class="insured-table">
-                            <tr class="insured-table-header"><th class="colname">Ime</th><th class="colsurname">Prezime</th><th class="coljmbg">JMBG</th><th class="colcat">Kategorija</th><th class="colsport">Sport</th></tr>
-                            <tr class="insured-table-data"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td>Da</td></tr>
-                            <tr class="insured-table-data selected"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td>Da</td></tr>
+                            <tr class="insured-table-header"><th class="colname">Ime</th><th class="colsurname">Prezime</th><th class="coljmbg">JMBG</th><th class="colcat">Kategorija</th><th class="colsport">&nbsp;</th></tr>
+                            <tr class="insured-table-data"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td><img class="remove-img" src="../Content/angular/assets/images/remove.png"></td></tr>
+                            <tr class="insured-table-data selected"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td><img class="remove-img" src="../Content/angular/assets/images/remove.png"></td></tr>
                         </table>
-                        <div class="insured-manage"><a>Ukloni osiguranika</a>&nbsp&nbsp&nbsp <a>Dodaj osiguranika</a></div>
+                        <div class="insured-manage"><a>Dodaj osiguranika</a></div>
                     </div>
+                    <table class="my-form-fields-table">
+                        <tr>
+                            <th>Korisnici osiguranja ce se baviti sportom:</th>
+                            <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
+                            <td class="colpicksport"><select class="form-control medium-input" /> </td>
+                        </tr>
+                    </table>
                     <form>
                         <div class="my-form-fields">
                             <h3 class="header-left">
                                 <span class="user-toggle" ng-click="hideUserDetails = !hideUserDetails">
                                     <span class="glyphicon glyphicon-menu-down user-show" ng-hide="!hideUserDetails"></span>
                                     <span class="glyphicon glyphicon-menu-right user-hide" ng-hide="hideUserDetails"></span>
-                                    &nbsp Detalji
+                                    &nbsp; Detalji
                                 </span>
                             </h3>
                             <div class="slide-up-animation-user" ng-hide="!hideUserDetails">
                                 <table class="my-form-fields-table">
-                                    <tr><th>Ime:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Prezime:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>JMBG:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Br pasoša:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Ime:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Prezime:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>JMBG:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Br. pasoša:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr class="align-row-top"><th colspan="2">Adresa</th></tr>
+                                    <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Br telefona:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Starosna grupa:</th><td><select class="form-control" /></td></tr>
                                     <tr>
-                                        <th>Adresa:</th>
-                                        <td colspan="2">
-                                            <table>
-                                                <tr><td>Ulica:</td><td><input type="text" class="form-control" /></td></tr>
-                                                <tr><td>Broj:</td><td><input type="text" class="form-control" /></td></tr>
-                                                <tr><td>Mesto:</td><td><input type="text" class="form-control" /></td></tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr><th>Br telefona:</th><td colspan="2"><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Starosna grupa:</th><td colspan="2"><select class="form-control" /></td></tr>
-                                    <tr>
-                                        <th>Bavljenje sportom:</th>
-                                        <td>
-                                            <input type="radio" name="os"> Da</input>&nbsp&nbsp <input type="radio" name="os" checked="true"> Ne</input>&nbsp&nbsp
-                                        </td>
-                                        <td>
-                                            <select class="form-control medium-input" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="3"><div class="my-button-action">Potvrdi</div><div class="my-button-action">Odustani</div></th>
+                                        <th colspan="2"><div class="my-button-action">Potvrdi</div><div class="my-button-action">Odustani</div></th>
                                     </tr>
                                 </table>
                             </div>
@@ -79,8 +71,8 @@
 
                         <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [true, false, false, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, true, false]">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [true, false, false, false, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; Nazad</div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, true, false, false]">Dalje &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
@@ -92,50 +84,76 @@
                     <form>
                         <h3>
                             Da li želite osiguranje objekta?<br /><br />
-                            <input type="radio" name="objectInsurance" ng-model="hideObjectInsurance" ng-value="true"> Da</input>&nbsp&nbsp&nbsp
+                            <input type="radio" name="objectInsurance" ng-model="hideObjectInsurance" ng-value="true"> Da</input>&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="objectInsurance" ng-model="hideObjectInsurance" ng-value="false" ng-checked="true"> Ne</input>
                         </h3>
                         <div class="my-form-fields slide-up-animation-object-proccess" ng-show="hideObjectInsurance">
                             <h4>Podaci o osiguranju objekta</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                                <tr><th>Površina objekta:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Starost objekta:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Procenjena vrednost objekta:</th><td><input type="text" class="form-control" /></td></tr>
                                 <tr>
-                                    <th>Osiguranje važi u slučaju:</th>
+                                    <th>Površina objekta:</th>
                                     <td>
+                                        <div class="input-group input-standard">
+                                            <input type="text" class="form-control" />
+                                            <span class="input-group-addon">m2</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Starost objekta:</th>
+                                    <td>
+                                        <div class="input-group input-standard">
+                                            <input type="text" class="form-control" />
+                                            <span class="input-group-addon">god</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Vrednost objekta:</th>
+                                    <td>
+                                        <div class="input-group input-standard">
+                                            <input type="text" class="form-control" />
+                                            <span class="input-group-addon">EUR</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="align-row-top">
+                                    <th colspan="2">Osiguranje važi u slučaju:</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
                                         <table>
-                                            <tr><td><input type="checkbox" /></td><td>Poplave</td></tr>
-                                            <tr><td><input type="checkbox" /></td><td>Požara</td></tr>
-                                            <tr><td><input type="checkbox" /></td><td>Krađe</td></tr>
+                                            <tr>
+                                                <td><input type="checkbox" /></td>
+                                                <td>Poplave</td>
+                                                <td> &nbsp;&nbsp;&nbsp; </td>
+                                                <td><input type="checkbox" /></td>
+                                                <td>Požara</td>
+                                                <td> &nbsp;&nbsp;&nbsp; </td>
+                                                <td><input type="checkbox" /></td>
+                                                <td>Krađe</td>
+                                            </tr>
                                         </table>
                                     </td>
                                 </tr>
 
                             </table>
-                            <h4>Podaci o objektu</h4>
+
+                            <h4> &nbsp; Podaci o objektu</h4>
                             <table class="my-form-fields-table">
                                 <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
                                 <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
                                 <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" /></td>
-                                <tr>
-                                    <th>Adresa objekta:</th>
-                                    <td>
-                                        <table>
-                                            <tr><td>Ulica:</td><td><input type="text" class="form-control" /></td></tr>
-                                            <tr><td>Broj:</td><td><input type="text" class="form-control" /></td></tr>
-                                            <tr><td>Naselje:</td><td><input type="text" class="form-control" /></td></tr>
-                                        </table>
-                                    </td>
-                                </tr>
+                                <tr class="align-row-top"><th colspan="2">Adresa objekta</th></tr>
+                                <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" /></td></tr>
+                                <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" /></td></tr>
+                                <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" /></td></tr>
                             </table>
                         </div>
                         <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, true, false, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, false, true]">Dalje &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, true, false, false, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; Nazad</div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, false, true, false]">Dalje &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div>
                         </div>
                     </form>
                 </div>
@@ -147,43 +165,85 @@
                     <form>
                         <h3>
                             Da li želite osiguranje "Pomoć na putu"?<br /><br />
-                            <input type="radio" name="vehicleInsurance" ng-model="hideVehicleInsurance" ng-value="true"> Da</input>&nbsp&nbsp&nbsp
+                            <input type="radio" name="vehicleInsurance" ng-model="hideVehicleInsurance" ng-value="true"> Da</input>&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="vehicleInsurance" ng-model="hideVehicleInsurance" ng-value="false" ng-checked="true"> Ne</input>
                         </h3>
                         <div class="my-form-fields slide-up-animation-vehicle-proccess" ng-show="hideVehicleInsurance">
-                            <h4>Podaci o paketu osiguranja pomoći na putu</h4>
+                            <h4>Podaci osiguranju "Pomoć na putu"</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                                <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                                <tr>
-                                    <th>Paket osiguranje pokriva:</th>
-                                    <td>
-                                        <table>
-                                            <tr><td><input type="checkbox" /></td><td>Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
-                                            <tr><td><input type="checkbox" /></td><td>Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
-                                            <tr><td><input type="checkbox" /></td><td>Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
-                                            <tr><td><input type="checkbox" /></td><td>Alternativni prevoz</td></tr>
-                                        </table>
-                                    </td>
-                                </tr>
-
+                                <tr><th colspan="3">Paket osiguranja pokriva:</th></tr>
+                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Alternativni prevoz</td></tr>
                             </table>
-                            <h4>Podaci o vozilu</h4>
+
+
+                            <h4>&nbsp; Podaci o vozilu</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>Marka:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Tip:</th><td><select class="form-control" /></td></tr>
-                                <tr><th>Godina propizvodnje:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Broj registarske tablice:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Marka vozila:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Tip vozila:</th><td><select class="form-control" /></td></tr>
                                 <tr><th>Broj šasije:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>God. propizvodnje:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Registarska oznaka:</th><td><input type="text" class="form-control" /></td></tr>
                                 <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
                                 <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
                                 <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" /></td>
                             </table>
                         </div>
+
                         <hr />
                         <div class="my-form-buttons">
-                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, true, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp&nbsp&nbsp Nazad</div>
-                            <div class="my-button-navigation"><a ui-sref="core.preview">Završi &nbsp&nbsp&nbsp <span class="glyphicon glyphicon-chevron-right"></span></a></div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, true, false, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; Nazad</div>
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, false, false, true]">Dalje &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="main-content" ng-show="true">
+                <h2>Nosilac osiguranja</h2>
+                <div class="form-holder">
+                    <form>
+                        <table class="my-form-fields-table">
+                            <tr>
+                                <th>Nosilac osiguranja je:</th>
+                                <td><input type="radio" name="insCarrier" ng-model="insuranceCarrierIsNotInsured" ng-value="false" ng-checked="true"> Osigurano lice</input></td>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <td><input type="radio" name="insCarrier" ng-model="insuranceCarrierIsNotInsured" ng-value="true"> Nezavisno lice</input></td>
+                            </tr>
+                        </table>
+
+                        <div ng-hide="insuranceCarrierIsNotInsured">
+                            <h4>Odaberite nosioca osiguranja</h4>
+                            <table class="my-form-fields-table">
+                                <tr>
+                                    <td><select class="form-control realy-big-input"><option>Aleksandar Petronijevicic (0909090090909)</option></select></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div ng-show="insuranceCarrierIsNotInsured">
+                            <h4>Unesite podatke o nosiocu osiguranja</h4>
+                            <table class="my-form-fields-table">
+                                <tr><th>Ime:</th><td><input type="text" class="form-control big-input" /></td></tr>
+                                <tr><th>Prezime:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>JMBG:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr class="align-row-top"><th colspan="2">Adresa</th></tr>
+                                <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" /></td></tr>
+                                <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" /></td></tr>
+                                <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Br. telefona:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>E-mail:</th><td><input type="text" class="form-control" /></td></tr>
+                            </table>
+                        </div>
+
+                        <hr />
+                        <div class="my-form-buttons">
+                            <div class="my-button-navigation" ng-click="selectedProcessPanel = [false, false, false, true, false]"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; Nazad</div>
+                            <div class="my-button-navigation"><a ui-sref="core.preview">Završi</a></div>
                         </div>
                     </form>
                 </div>
