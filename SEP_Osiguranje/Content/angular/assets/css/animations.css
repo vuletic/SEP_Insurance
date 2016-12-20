@@ -1,86 +1,86 @@
 /*##########    OVERVIEW PAGE ANIMATIONS     ##########*/
 .slide-up-animation-insurance {
     transition: .5s linear all;
-    height: 280px;
+    height: 18em;
     overflow: hidden;
     display: block !important;
 }
 
 .slide-up-animation-insurance.ng-hide {
-    height:0;
+    height: 0em;
 }
 
 .slide-up-animation-object {
     transition: .5s linear all;
-    height: 200px;
+    height: 13em;
     overflow: hidden;
     display: block !important;
 }
 
 .slide-up-animation-object.ng-hide {
-    height:0;
+    height: 0em;
 }
 
 .slide-up-animation-vehicle {
     transition: .5s linear all;
-    height: 200px;
+    height: 10em;
     overflow: hidden;
     display: block !important;
 }
 
 .slide-up-animation-vehicle.ng-hide {
-    height:0;
+    height: 0em;
 }
 
 /*##########    PROCCES PAGE ANIMATIONS     ##########*/
 .slide-up-animation-user {
     transition: .5s linear all;
-    height: 550px;
+    height: 30em;
     overflow: hidden;
     display: block !important;
 }
 
 .slide-up-animation-user.ng-hide {
-    height:0;
+    height: 0em;
 }
 
 .slide-up-animation-object-proccess {
     transition: .5s linear all;
-    height: 670px;
+    height: 44.4em;
     overflow: hidden;
     display: block !important;
 }
 
 .slide-up-animation-object-proccess.ng-hide {
-    height:0;
+    height: 0em;
 }
 
 .slide-up-animation-vehicle-proccess {
     transition: .5s linear all;
-    height: 700px;
+    height: 46.4em;
     overflow: hidden;
     display: block !important;
 }
 
 .slide-up-animation-vehicle-proccess.ng-hide {
-    height:0;
+    height: 0em;
 }
 
 
 .class1{
-  left: 0px;
+  left: 0em;
 }
 .class2{
-  left: -720px;
+  left: -52em;
 }
 .class3{
-  left: -1440px;
+  left: -104em;
 }
 .class4{
-  left: -2160px;
+  left: -156em;
 }
 .class5{
-  left: -2880px;
+  left: -208em;
 }
 
 .class1-ng-hide-add, .class1-ng-hide-remove {

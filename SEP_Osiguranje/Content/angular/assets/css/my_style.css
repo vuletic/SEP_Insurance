@@ -8,11 +8,11 @@ h2,h3,h4,h5 {
 }
 
 h4 {
-	margin-top: 40px;
+	margin-top: 2em;
 }
 
 p {
-	font-size: 15px;
+	font-size: 1em;
 }
 
 a:hover {
@@ -22,8 +22,13 @@ a:hover {
 hr {
     border-color: #39C;
     border-width: 1px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.flat {
+	margin-top: 0em !important;
+	margin-bottom: 0em !important;
 }
 
 .hr-grey {
@@ -31,16 +36,16 @@ hr {
 }
 
 .highlight-text {
-	font-size: 18px;
+	font-size: 1.3em;
 	font-weight: bold;
 }
 
 .page-holder {
 	width:100%;
-	padding-left: 150px;
-	padding-right: 150px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 1em;
+	padding-bottom: 1em;
+    padding-left: 0em !important;
+    padding-right: 0em !important;
 	background-image: url("../images/pattern.png");
 }
 
@@ -65,7 +70,7 @@ hr {
 }
 
 .remove-img {
-	height: 24px;
+	height: 1.6em;
 }
 
 .remove-img:hover {
@@ -76,38 +81,37 @@ hr {
 .navbar-custom {
 	background-size:cover;
 	background-image: url("../images/image2.jpg");
-	height: 190px;
-	margin-bottom: 0px !important;
+	height: 14em;
+	margin-bottom: 0em !important;
 	border-bottom: #39C solid 4px !important;
 }
 
 .navbar-custom .logo-image {
-	padding-left: 10px;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	height: 150px;
+	padding-left: 0.5em;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+	height: 9em;
 }
 
 .navbar-custom .container-fluid {
-	padding-left: 150px;
-	padding-right: 100px;
-	padding-top: 150px;
+	padding-left: 13em;
+	padding-top: 10.9em;
 }
 
 .navbar-languages {
-    margin-top: 5px;
-    margin-right: 5px;
-    padding: 5px;
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    padding: 0.5em;
     float: right;
-    width: 159px;
-    height: 31px;
+    width: 12em;
+    height: 2.5em;
 	background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .navbar-languages a {
-    width: 65px;
-    margin-left: 6px;
-    margin-right: 6px;
+    width: 3em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 .navbar-languages:hover {
@@ -115,20 +119,16 @@ hr {
     text-decoration: none;
 }
 
-.navbar-nav {
-    margin-left: 30px;
-}
-
 .navbar-nav li {
     background-color: rgba(255, 255, 255, 0.8);
-    width: 130px;
-    height: 39px;
+    width: 9em;
+    height: 3em;
     color: red !important;
     text-align: center;
 }
 
 .navbar-nav li a {
-    font-size: 18px !important;
+    font-size: 1.3em !important;
 }
 
 .navbar-custom .navbar-nav li:hover{
@@ -149,94 +149,98 @@ hr {
 
 .footer-columns {
     margin: 0 auto; 
-	width: 1300px;
+	width: 92em;
 }
 
 .footer-column {
-	margin-left: 10px;
-	margin-right: 10px;
-	width: 240px;
+	margin-left: 0.7em;
+	margin-right: 0.7em;
+	width: 17em;
 	float: left;
+}
+
+.footer .signature {
+    margin-top: 17.3em;
+    text-align: center;
 }
 
 /*#######	INPUT DATA FORM PANEL  	########################*/
 .main-content-holder {
 	text-align: center;
-	margin: 30px auto;
-	width: 700px;
+	margin: 0em auto;
+	width: 50.1em;
 	overflow: hidden;
 }
 
 .float-control {
 	position: relative;
-	width: 3600px;
+	width: 260em;
 }
 
 .main-content {
 	float: left;
 	text-align: center;
-	margin-left:20px;
-	width: 700px;
+	margin-left:2em;
+	width: 50em;
 }
 
 .form-holder {
 	border: #BBB solid 1px;
 	background-color: #FFF;
-	border-radius: 20px;
-	padding: 40px;
-	padding-bottom: 20px;
+	border-radius: 0.3em;
+	padding: 4em;
+	padding-bottom: 1em;
 }
 
 .form-holder form {
-	margin: 0px;
+	margin: 0em;
 }
 
 .my-form-fields-table {
 	margin: auto;
-	margin-top: 20px;
 }
 
 /*#######	INPUT DATA FORM INPUTS	########################*/
 .my-form-fields-table th {
-	padding-top: 10px;
-	vertical-align: center;
+	padding-top: 0.6em;
+	vertical-align: middle;
 }
 
 .my-form-fields-table td {
-	padding-left: 10px;
-	padding-top: 10px;
+	padding-left: 0.6em;
+	padding-top: 0.6em;
 }
 
 .small-input {
-	width: 90px;
+	width: 6em;
 }
 
 .medium-input {
-	width: 155px;
+	width: 10em;
+}
+
+.standard-input {
+	width: 12em;
 }
 
 .big-input {
-	width: 210px;
+	width: 14em;
 }
 
 .realy-big-input {
-	width: 340px;
-}
-
-.input-standard {
-	width: 180px;
+	width: 21em;
 }
 
 .input-group-addon {
-	width: 50px;
+	width: 3.7em;
 }
 
 .align-row-top {
 	vertical-align: top;
 }
 
-.align-row-top  th{
-	padding-top: 17px !important;
+.align-row-top th{
+	padding-top: 1.3em !important;
 }
 
 .align-cell-right {
@@ -253,7 +257,7 @@ hr {
 	color: #39C;
 	margin: 0 auto;
 	width: 100%;
-	height: 50px;
+	height: 2em;
 }
 
 .my-button-navigation:hover {
@@ -262,11 +266,11 @@ hr {
 }
 
 .my-button-navigation {
-	margin-left:10px;
-	margin-right:10px;
+	margin-left:5%;
+	margin-right:5%;
 	float: left;
-	width: 46%;
-	height: 45px;	
+	width: 40%;
+	height: 100%;	
 }
 
 .my-button-action {
@@ -275,21 +279,19 @@ hr {
 	color: #39C;
 	margin: auto;
 	float: left;
-	width: 170px;
-	height: 50px;
-	font-weight: normal;
-	vertical-align: center;
+    margin-left: 4%;
+    margin-right: 4%;
+	width: 42%;
+	height: 100%;
+    padding-top: 0.3em;
 	background: #EEE;
-	margin-top: 20px;
-	margin-right: 10px;
-	margin-left: 10px;
-	margin-bottom: 10px;
-	padding-top: 10px;
 }
 
 .my-buttons-action {
-	margin: auto;
-	width: 400px;
+	margin: 0em auto;
+    margin-top: 1.5em;
+	width: 25em;
+	height: 3em;
 }
 
 .my-button-action:hover {
@@ -301,24 +303,19 @@ hr {
 .insured-table {
 	width: 98%;
 	margin: auto;
-	margin-top: 30px;
 	border-top:  #999 solid 1px;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 }
 
 .insured-table th {
-	height: 60px;
+	height: 3em;
 	text-align: center;
-	font-size: 18px;
+	font-size: 1.3em;
 }
 
 .insured-table tr {
-	height: 40px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	height: 2.7em;
 	border-bottom: #999 solid 1px;
 }
 
@@ -337,33 +334,30 @@ hr {
 }
 
 .insured-table .colname {
-	width: 19%;
+	width: 21%;
 }
 
 .insured-table .colsurname {
-	width: 30%;
+	width: 32%;
 }
 
 .insured-table .coljmbg {
-	width: 22%;
+	width: 24%;
 }
 
 .insured-table .colcat {
-	width: 22%;
-}
-
-.insured-table .colsport {
-	width: 7%;
+	width: 23%;
 }
 
 .colpicksport {
-	width: 160px;
+	width: 13em;
 }
 
 .insured-manage {
-	font-size: 16px;
-	margin-top: 10px;
-	margin-right: 10px;
+	font-size: 1.2em;
+	margin-top: 0.5em;
+	margin-bottom: 0.8em;
+	margin-right: 0.5em;
 	text-align: right;
 }
 
@@ -375,20 +369,20 @@ hr {
 }
 
 .user-toggle {
-	font-size: 18px;
+	font-size: 0.8em;
 	text-align: left;
-	padding-left: 10px;
+	padding-left: 0.5em;
 }
 
 .user-toggle-disabled {
-	font-size: 18px;
+	font-size: 0.8em;
     color: #AAA;
 	text-align: left;
-	padding-left: 10px;
+	padding-left: 0.5em;
 }
 
 .user-toggle-size {
-	font-size: 18px;
+	font-size: 0.8em;
 }
 
 .user-toggle:hover {
@@ -403,23 +397,23 @@ hr {
 
 /*#######	POLISA		########################*/
 .overview-content-holder {
-	margin: 30px auto;
-	width: 1000px;
+	margin: 0em auto;
+	width: 70em;
 	overflow: hidden;
 }
 
 .overview-panel {
 	border: #BBB solid 1px;
 	background-color: #FFF;
-	border-radius: 20px;
-	width: 1000px;
-	padding: 40px;
-	padding-bottom: 20px;
+	border-radius: 0.3em;
+	width: 70em;
+	padding: 4em;
+	padding-bottom: 1em;
 }
 
 .overview-segment {
-	margin-top: 20px;
-	margin-bottom: 40px;
+	margin-top: 2em;
+	margin-bottom: 4em;
 	margin-left: 3%;
     margin-right: 2%;
 	width: 95%;
@@ -431,9 +425,10 @@ hr {
 	color: #39C;
 	margin: 0 auto;
 	width: 100%;
-	height: 85px;
+	height: 3em;
 	padding-left: 2%;
 	padding-right: 2%;
+    margin-bottom: 0.4em;
 }
 
 .my-button-overview {
@@ -441,25 +436,28 @@ hr {
 	margin-right: 3%;
 	float: left;
 	width: 27%;
-	height: 80px;
+	height: 3em;
 	text-align: center;
-	vertical-align: center;
 }
 
 .my-overview-buttons td {
-	width: 27%;
+	width: 20%;
+}
+
+.my-overview-buttons td {
+	width: 37%;
 	margin-left: 3%;
 }
 
 .my-button-overview-center {
-	line-height: 80px;
+	line-height: 3em;
 }
 
 .my-button-overview-single {
-	height: 80px;
+	height: 3em;
 	text-align: center;
-	vertical-align: center;
-	line-height: 80px;
+	vertical-align: middle;
+	height: 3em;
 }
 
 .my-button-overview-center:hover, .my-button-overview-single:hover {
@@ -470,32 +468,32 @@ hr {
 /*#######	POLISA TABELA KORISNICI		########################*/
 .overview-table {
 	width: 98%;
-	vertical-align: center;
+	vertical-align: middle;
 	text-align: left;
 }
 
 .overview-table .insured-name {
-	font-size: 20px;
+	font-size: 1.4em;
 	font-weight: bold;
 }
 
 .overview-table tr {
-	height: 25px;
+	height: 2em;
 }
 
 .overview-table th {
-	font-size: 14px;
+	font-size: 1em;
 	font-weight: normal;
 	font-style: italic;
 }
 
 .overview-table td {
-	font-size: 14px;
+	font-size: 1em;
 	font-weight: bold;
 }
 
 .overview-table .overview-table-first {
-	height: 10px;
+	height: 1.3em;
 }
 
 .overview-table .col0{
@@ -503,7 +501,7 @@ hr {
 }
 
 .overview-table .col1{
-	width: 28%;
+	width: 30%;
 }
 
 .overview-table .col2h{
@@ -519,5 +517,5 @@ hr {
 }
 
 .overview-table .col5{
-	width: 37%;
+	width: 35%;
 }

@@ -2,7 +2,7 @@
     <div class="main-content-holder">
 
         <div class="float-control" ng-class="{'class1' : selectedProcessPanel[0], 'class2' : selectedProcessPanel[1], 'class3' : selectedProcessPanel[2], 'class4' : selectedProcessPanel[3], 'class5' : selectedProcessPanel[4]}">
-            <div class="main-content" style="margin-left: 0px" ng-show="true">
+            <div class="main-content" style="margin-left: 0em" ng-show="true">
                 <h2>Podaci o osiguranju</h2>
                 <div class="form-holder">
                     <form>
@@ -28,17 +28,17 @@
                 <div class="form-holder">
                     <div>
                         <table class="insured-table">
-                            <tr class="insured-table-header"><th class="colname">Ime</th><th class="colsurname">Prezime</th><th class="coljmbg">JMBG</th><th class="colcat">Kategorija</th><th class="colsport">&nbsp;</th></tr>
-                            <tr class="insured-table-data"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td><img class="remove-img" src="../Content/angular/assets/images/remove.png"></td></tr>
-                            <tr class="insured-table-data selected"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td><td><img class="remove-img" src="../Content/angular/assets/images/remove.png"></td></tr>
+                            <tr class="insured-table-header"><th class="colname">Ime</th><th class="colsurname">Prezime</th><th class="coljmbg">JMBG</th><th class="colcat">Kategorija</th></tr>
+                            <tr class="insured-table-data"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td></tr>
+                            <tr class="insured-table-data selected"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td></tr>
                         </table>
-                        <div class="insured-manage"><a>Dodaj osiguranika</a></div>
+                        <div class="insured-manage"><a class="header-red">Ukloni osiguranika</a> &nbsp;&nbsp;&nbsp;&nbsp; <a>Dodaj osiguranika</a></div>
                     </div>
                     <table class="my-form-fields-table">
                         <tr>
                             <th>Korisnici osiguranja ce se baviti sportom:</th>
                             <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                            <td class="colpicksport"><select class="form-control medium-input" /> </td>
+                            <td class="colpicksport"><select class="form-control standard-input" /> </td>
                         </tr>
                     </table>
                     <form>
@@ -47,7 +47,7 @@
                                 <span class="user-toggle" ng-click="hideUserDetails = !hideUserDetails">
                                     <span class="glyphicon glyphicon-menu-down user-show" ng-hide="!hideUserDetails"></span>
                                     <span class="glyphicon glyphicon-menu-right user-hide" ng-hide="hideUserDetails"></span>
-                                    &nbsp; Detalji
+                                     Detalji
                                 </span>
                             </h3>
                             <div class="slide-up-animation-user" ng-hide="!hideUserDetails">
@@ -63,7 +63,12 @@
                                     <tr><th>Br telefona:</th><td><input type="text" class="form-control" /></td></tr>
                                     <tr><th>Starosna grupa:</th><td><select class="form-control" /></td></tr>
                                     <tr>
-                                        <th colspan="2"><div class="my-button-action">Potvrdi</div><div class="my-button-action">Odustani</div></th>
+                                        <td colspan="2">
+                                            <div class="my-buttons-action">
+                                                <div class="my-button-action">Potvrdi</div>
+                                                <div class="my-button-action">Odustani</div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -93,7 +98,7 @@
                                 <tr>
                                     <th>Površina objekta:</th>
                                     <td>
-                                        <div class="input-group input-standard">
+                                        <div class="input-group standard-input">
                                             <input type="text" class="form-control" />
                                             <span class="input-group-addon">m2</span>
                                         </div>
@@ -102,7 +107,7 @@
                                 <tr>
                                     <th>Starost objekta:</th>
                                     <td>
-                                        <div class="input-group input-standard">
+                                        <div class="input-group standard-input">
                                             <input type="text" class="form-control" />
                                             <span class="input-group-addon">god</span>
                                         </div>
@@ -111,7 +116,7 @@
                                 <tr>
                                     <th>Vrednost objekta:</th>
                                     <td>
-                                        <div class="input-group input-standard">
+                                        <div class="input-group standard-input">
                                             <input type="text" class="form-control" />
                                             <span class="input-group-addon">EUR</span>
                                         </div>
