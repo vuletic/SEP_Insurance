@@ -519,3 +519,124 @@ hr {
 .overview-table .col5{
 	width: 35%;
 }
+
+/*#######	ABOUT PAGE		########################*/
+.about-img {
+    margin: 2em;
+}
+
+/*#######	HOME PAGE		########################*/
+.overview-panel-home {
+	border: #BBB solid 1px;
+	background-color: #FFF;
+	border-radius: 0.3em;
+	width: 70em;
+}
+
+.home-picker {
+    width: 55em;
+    height: 15em;
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.home-picker:hover {
+    cursor: pointer;
+}
+
+.home-picker p {
+    margin: 0em !important;
+}
+
+.home-picker h4 {
+    margin: 0em;
+    margin-bottom: 0.5em;
+    padding: 0em;
+}
+
+.home-picker a {
+    color: #666;
+}
+
+.home-img {
+    margin: 2em;
+    margin-top: 54em;
+    width: 94%;
+}
+
+.home-picker-img {
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.picker-border {
+    background: rgba(230, 230, 230, 0.5);
+    height: 100%;
+    padding: 1em;
+    border-top: 1px solid #39C;
+    border-bottom: 1px solid #39C;
+}
+
+.picker-image {
+    width: 16em;
+    height: 100%;
+}
+
+.picker-text {
+    height: 100%;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+/*#######	LEFT / RIGHT */
+.picker-text-left {
+    margin-left: 40em;
+    text-align: left;
+}
+
+.picker-image-left {
+    margin-left: 22em;
+    text-align: right;
+    float: left;
+}
+
+.picker-border-left {
+    border-right: 1px solid #39C;
+    float: left;
+}
+
+.picker-text-right {
+    margin-right: 40em;
+    text-align: right;
+}
+
+.picker-image-right {
+    margin-right: 22em;
+    text-align: left;
+    float: right;
+}
+
+.picker-border-right {
+    border-left: 1px solid #39C;
+    float: right;
+}
+
+.picker-1-position {
+    position: absolute;
+    top: 15em;
+    left: 0em;
+}
+
+.picker-2-position {
+    position: absolute;
+    top: 32em;
+    right: 0em;
+}
+
+.picker-3-position {
+    position: absolute;
+    top: 49em;
+    left: 0em;
+}
