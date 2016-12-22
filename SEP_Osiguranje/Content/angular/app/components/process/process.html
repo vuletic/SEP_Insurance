@@ -8,6 +8,7 @@
             <label class="marker-rect" ng-class="{'marker-select': pr.selectedProcessPanel[3]}"></label>
             <label class="marker-rect" ng-class="{'marker-select': pr.selectedProcessPanel[4]}"></label>
         </div>
+        <!-- <page-marker selected-page="selectedProcessPanel"></page-marker> -->
 
         <div class="float-control" ng-class="{'class1' : pr.selectedProcessPanel[0], 'class2' : pr.selectedProcessPanel[1], 'class3' : pr.selectedProcessPanel[2], 'class4' : pr.selectedProcessPanel[3], 'class5' : pr.selectedProcessPanel[4]}">
 
@@ -137,14 +138,11 @@
                                     <td colspan="2">
                                         <table>
                                             <tr>
-                                                <td><input type="checkbox" /></td>
-                                                <td>Poplave</td>
+                                                <td><input type="checkbox"> Poplave</input></td>
                                                 <td> &nbsp;&nbsp;&nbsp; </td>
-                                                <td><input type="checkbox" /></td>
-                                                <td>Požara</td>
+                                                <td><input type="checkbox"> Požara</input></td>
                                                 <td> &nbsp;&nbsp;&nbsp; </td>
-                                                <td><input type="checkbox" /></td>
-                                                <td>Krađe</td>
+                                                <td><input type="checkbox"> Krađe</input></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -182,12 +180,12 @@
                         </h3>
                         <div class="my-form-fields slide-up-animation-vehicle-proccess" ng-show="pr.hideVehicleInsurance">
                             <h4>Podaci osiguranju "Pomoć na putu"</h4>
-                            <table class="my-form-fields-table">
-                                <tr><th colspan="3">Paket osiguranja pokriva:</th></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Alternativni prevoz</td></tr>
+                            <table class="my-form-fields-table header-left">
+                                <tr><th>Paket osiguranja pokriva:</th></tr>
+                                <tr><td><select-checkbox select-enabled="temp1">Šlep služba, do kilometraže:</select-checkbox></td></tr>
+                                <tr><td><select-checkbox select-enabled="chooseRepair">Popravka vozila, do iznosa:</select-checkbox></td></tr>
+                                <tr><td><select-checkbox select-enabled="chooseHotel">Smeštaj u hotelu, do broja dana:</select-checkbox></td></tr>
+                                <tr><td><select-checkbox select-enabled="temp2">Alternativni prevoz:</select-checkbox></td></tr>
                             </table>
 
 

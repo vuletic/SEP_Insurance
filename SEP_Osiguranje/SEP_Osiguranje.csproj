@@ -142,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\angular\app\directives\" />
     <Folder Include="Content\angular\app\shared\localization\" />
   </ItemGroup>
   <ItemGroup>
@@ -266,9 +265,20 @@
     <Content Include="Content\angular\app\components\about\about.html" />
     <Content Include="Content\angular\app\components\process\process.controller.js" />
     <Content Include="Content\angular\app\components\process\process.html" />
+    <Content Include="Content\angular\app\directives\expander_advanced\expander-advanced.directive.js" />
+    <Content Include="Content\angular\app\directives\expander_advanced\expander-advanced.html" />
+    <Content Include="Content\angular\app\directives\expander_simple\expander-simple.directive.js" />
+    <Content Include="Content\angular\app\directives\expander_simple\expander-simple.html" />
+    <Content Include="Content\angular\app\directives\page_marker\page-marker.directive.js" />
+    <Content Include="Content\angular\app\directives\page_marker\page-marker.html" />
+    <Content Include="Content\angular\app\directives\select_checkbox\select-checkbox.directive.js" />
+    <Content Include="Content\angular\app\directives\select_checkbox\select-checkbox.html" />
+    <Content Include="Content\angular\app\directives\select_yesno\select-yesno.directive.js" />
+    <Content Include="Content\angular\app\directives\select_yesno\select-yesno.html" />
     <Content Include="Content\angular\assets\css\animations.css" />
     <Content Include="Content\angular\assets\css\bootstrap-theme.css" />
     <Content Include="Content\angular\assets\css\bootstrap.css" />
+    <Content Include="Content\angular\assets\css\directive_style.css" />
     <Content Include="Content\angular\assets\css\my_style.css" />
     <Content Include="Content\angular\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\angular\assets\images\about.png" />

@@ -65,6 +65,10 @@ hr {
     margin-bottom: 1em;   
 }
 
+.margin-top {
+    margin-top: 1em;   
+}   
+
 .header-left{
 	text-align: left !important;
 }
@@ -73,12 +77,8 @@ hr {
 	color: red !important;
 }
 
-.remove-img {
-	height: 1.6em;
-}
-
-.remove-img:hover {
-	cursor: pointer;
+.force-inline {
+    display: inline-block !important;
 }
 
 /*#######	UPPER PANEL  	########################*/
