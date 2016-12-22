@@ -5,7 +5,7 @@
 		.module('app')
 		.controller('coreController', coreController);
 
-    coreService.$inject = ['localization'];
+    coreController.$inject = ['localization'];
     function coreController(localization) {
         var cr = this;
         cr.l10nObj = "maau";

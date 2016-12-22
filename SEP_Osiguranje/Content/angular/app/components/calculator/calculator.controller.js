@@ -6,9 +6,8 @@
 		.controller('calculatorController', calculatorController);
 
     calculatorController.$inject = ['calculatorService'];
-    function calculatorController() {
+    function calculatorController(calculatorService) {
         var cc = this;
-        cc.testPrice = "$2000";
 
         var hideInsurance = false;
         var hideInsuree = false;
@@ -18,9 +17,21 @@
         var enableObject = false;
         var enableVehicle = false;
 
+        calculatorService.getSports().then(function(response){
+            cc.sports = response;
+        });
 
-        
+        calculatorService.getAgeGroups().then(function (response) {
+            cc.ageGroups = response;
+        });
 
+        calculatorService.getLocations().then(function (response) {
+            cc.locations = response;
+        });
+
+        calculatorService.getInsuranceAmounts().then(function (response) {
+            cc.insuranceAmounts = response;
+        });
 
     }
 })();
