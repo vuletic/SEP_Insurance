@@ -61,6 +61,10 @@ hr {
 	float: right;
 }
 
+.margin-bottom {
+    margin-bottom: 1em;   
+}
+
 .header-left{
 	text-align: left !important;
 }
@@ -189,6 +193,7 @@ hr {
 	background-color: #FFF;
 	border-radius: 0.3em;
 	padding: 4em;
+	padding-top: 1em;
 	padding-bottom: 1em;
 }
 
@@ -198,6 +203,26 @@ hr {
 
 .my-form-fields-table {
 	margin: auto;
+}
+
+.page-marker {
+	margin: auto;
+    margin: 2em;
+    margin-bottom: 0em;
+}
+
+.marker-rect {
+    border: 1px solid #DDD;
+	border-radius: 0.2em;
+	width: 6em;
+	height: 1em;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+	background: #FFF;
+}
+
+.marker-select {
+	background: #39C !important;
 }
 
 /*#######	INPUT DATA FORM INPUTS	########################*/
@@ -228,7 +253,7 @@ hr {
 }
 
 .realy-big-input {
-	width: 21em;
+	width: 23em;
 }
 
 .input-group-addon {

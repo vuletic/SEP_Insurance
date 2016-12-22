@@ -15,9 +15,9 @@
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Mesto putovanja:</th>
-                        <td><select ng-options="location.Id_Rizik as location.Naziv_Rizik for location in cc.locations" ng-model="selectedLocation"></select></td>
+                        <td><select class="form-control" ng-options="location.Id_Rizik as location.Naziv_Rizik for location in cc.locations" ng-model="selectedLocation"></select></td>
                         <th> &nbsp;&nbsp; Visina rizika:</th>
-                        <td><select ng-options="insuranceAmount.Id_Rizik as insuranceAmount.Naziv_Rizik for insuranceAmount in cc.insuranceAmounts" ng-model="selectedInsuranceAmount"></select></td>
+                        <td><select class="form-control" ng-options="insuranceAmount.Id_Rizik as insuranceAmount.Naziv_Rizik for insuranceAmount in cc.insuranceAmounts" ng-model="selectedInsuranceAmount"></select></td>
                     </tr>
                     <tr>
                         <th>Početak važenja:</th>
@@ -45,7 +45,7 @@
                                 <tr>
                                     <th colspan="3">Korisnici osiguranja ce se baviti sportom:</th>
                                     <td><input type="radio" name="os6"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                                    <td colspan="2"><select ng-options="sport.Id_Rizik as sport.Naziv_Rizik for sport in cc.sports" ng-model="selectedSport"></select></td>
+                                    <td colspan="2"><select class="form-control" ng-options="sport.Id_Rizik as sport.Naziv_Rizik for sport in cc.sports" ng-model="selectedSport"></select></td>
                                 </tr>
                             </table>
                         </td>
