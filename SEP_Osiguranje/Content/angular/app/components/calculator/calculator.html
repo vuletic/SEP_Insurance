@@ -4,14 +4,10 @@
         <div class="overview-panel">
             <h2 class="header-center">Kalkulator Osiguranja</h2>
             <hr />
-            <h3>
-                <span class="user-toggle" ng-click="hideInsurance=!hideInsurance">
-                    <span class="glyphicon glyphicon-menu-down" ng-hide="hideInsurance"></span>
-                    <span class="glyphicon glyphicon-menu-right" ng-hide="!hideInsurance"></span>
-                    &nbsp; Osiguranje
-                </span>
-            </h3>
-            <div class="overview-segment slide-up-animation-insurance" ng-hide="hideInsurance">
+            
+            <expander-simple show-expander="showInsurance">Osiguranje</expander-simple>
+            
+            <div class="overview-segment slide-up-animation-insurance" ng-hide="showInsurance">
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Mesto putovanja:</th>
@@ -43,9 +39,11 @@
                                     <td><input type="number" class="form-control small-input" min="0" /></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3">Korisnici osiguranja ce se baviti sportom:</th>
-                                    <td><input type="radio" name="os6"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                                    <td colspan="2"><select class="form-control" ng-options="sport.Id_Rizik as sport.Naziv_Rizik for sport in cc.sports" ng-model="selectedSport"></select></td>
+                                    <td colspan="6">
+                                        <span>
+                                            <select-yesno select-enabled="chooseSport">Korisnici osiguranja ce se baviti sportom:</select-yesno>
+                                        </span>
+                                    </td>
                                 </tr>
                             </table>
                         </td>
@@ -55,23 +53,8 @@
             
             <hr class="hr-grey" />
 
-            <h3>
-                <span class="user-toggle-disabled" ng-show="!enableObject">
-                    <span class="glyphicon glyphicon-menu-right"></span>
-                    &nbsp; Osiguranje Objekta
-                </span>
-                <span class="user-toggle" ng-click="showObject=!showObject" ng-show="enableObject">
-                    <span class="glyphicon glyphicon-menu-down" ng-show="showObject"></span>
-                    <span class="glyphicon glyphicon-menu-right" ng-show="!showObject"></span>
-                    &nbsp; Osiguranje Objekta
-                </span>
-                <span class="force-header-right user-toggle-size">
-                    Zelite li osiguranje objekta:
-                    <input type="radio" name="radioObject" ng-model="enableObject" ng-value="true" ng-click="showObject = true"> Da</input>&nbsp;&nbsp;
-                    <input type="radio" name="radioObject" ng-model="enableObject" ng-value="false" ng-click="showObject = false" ng-checked="true"> Ne</input>
-                </span>
-            </h3>
-
+            <expander-advanced enable-expander="enableObject" show-expander="showObject">Osiguranje Objekta</expander-advanced>
+            
             <div class="overview-segment slide-up-animation-object" ng-show="showObject">
                 <table class="my-form-fields-table">
                     <tr>
@@ -105,9 +88,9 @@
                     <tr><td colspan="4">
                         <table>
                             <tr>
-                                <td><input type="checkbox" /> Poplave &nbsp;&nbsp;&nbsp;</td>
-                                <td><input type="checkbox" /> Požara &nbsp;&nbsp;&nbsp;</td>
-                                <td><input type="checkbox" /> Krađe &nbsp;&nbsp;&nbsp;</td>
+                                <td><input type="checkbox"> Poplave &nbsp;&nbsp;&nbsp;</input></td>
+                                <td><input type="checkbox"> Požara &nbsp;&nbsp;&nbsp;</input></td>
+                                <td><input type="checkbox"> Krađe &nbsp;&nbsp;&nbsp;</input></td>
                                 <td> &nbsp; </td>
                             </tr>
                         </table>
@@ -117,36 +100,22 @@
 
             <hr class="hr-grey" />
 
-            <h3>
-                <span class="user-toggle-disabled" ng-show="!enableVehicle">
-                    <span class="glyphicon glyphicon-menu-right"></span>
-                    &nbsp; Pomoc na Putu
-                </span>
-                <span class="user-toggle" ng-click="showVehicle=!showVehicle" ng-show="enableVehicle">
-                    <span class="glyphicon glyphicon-menu-down" ng-show="showVehicle"></span>
-                    <span class="glyphicon glyphicon-menu-right" ng-show="!showVehicle"></span>
-                    &nbsp; Pomoc na Putu
-                </span>
-                <span class="force-header-right user-toggle-size">                    
-                    Zelite li osiguranje "Pomoc na Putu": 
-                    <input type="radio" name="radioVehicle" ng-model="enableVehicle" ng-value="true" ng-click="showVehicle = true"> Da</input>&nbsp;&nbsp;
-                    <input type="radio" name="radioVehicle" ng-model="enableVehicle" ng-value="false" ng-click="showVehicle = false" ng-checked="true"> Ne</input>
-                </span>
-            </h3>
+            <expander-advanced enable-expander="enableVehicle" show-expander="showVehicle">Osiguranje "Pomoc na Putu"</expander-advanced>
+
             <div class="overview-segment slide-up-animation-vehicle" ng-show="showVehicle">
                 <table class="my-form-fields-table">
                     <tr>
-                        <th colspan="7">Paket pokriva:</th>
+                        <th colspan="3">Paket pokriva:</th>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td><td>Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td>
+                        <td><select-checkbox select-enabled="temp1">Šlep služba, do kilometraže:</select-checkbox></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        <td><input type="checkbox" /></td><td>Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td>
+                        <td><select-checkbox select-enabled="chooseRepair">Popravka vozila, do iznosa:</select-checkbox></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td><td>Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td>
+                        <td><select-checkbox select-enabled="chooseHotel">Smeštaj u hotelu, do broja dana:</select-checkbox></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        <td><input type="checkbox" /></td><td>Alternativni prevoz</td>
+                        <td><select-checkbox select-enabled="temp2">Alternativni prevoz:</select-checkbox></td>
                     </tr>
                 </tr>
 

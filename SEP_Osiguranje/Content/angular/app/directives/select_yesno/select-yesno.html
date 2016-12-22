@@ -1,0 +1,8 @@
+﻿<span>
+    <b>
+        <ng-transclude></ng-transclude> &nbsp;
+    </b>
+    <input type="radio" name="enableSelect" ng-model="selectEnabled" ng-value="true"> Da</input>&nbsp;&nbsp; 
+    <input type="radio" name="enableSelect" ng-model="selectEnabled" ng-value="false" ng-checked="true"> Ne</input>&nbsp;&nbsp;
+    <select class="form-control standard-input force-inline" ng-disabled="!selectEnabled" />
+</span>
