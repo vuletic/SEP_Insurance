@@ -5,14 +5,20 @@
 		.module('app')
 		.controller('processController', processController);
 
-    function processController() {
+    processController.$inject = ['$timeout'];
+    function processController($timeout) {
         
-        var selectedProcessPanel = [true, false, false, false, false];
-        var hideUserDetails = false;
-        var hideObjectInsurance = false;
-        var hideVehicleInsurance = false;
+        var pr = this;
 
-        var insuranceCarrierIsNotInsured = false;
+        pr.selectedProcessPanel = [true, false, false, false, false];
+        pr.hideUserDetails = false;
+        pr.hideObjectInsurance = false;
+        pr.hideVehicleInsurance = false;
+
+        pr.insuranceCarrierIsNotInsured = false;
+
+        //$timeout(function () { pr.selectedProcessPanel[0] = true; }, 10);
+
     }
 
 })();
