@@ -16,6 +16,17 @@ namespace SEP_Osiguranje.Controllers
             return db.Rizik;
         }
 
+        [ActionName("Vrsta")]
+        public IQueryable<Rizik> GetRizikByVrsta(decimal id)
+        {
+
+            var query = from rizik in db.Rizik
+                                       where rizik.Id_Vrsta_rizika == id
+                                       select rizik;
+
+            return query;
+        }
+
         // GET: api/Rizik/5
         [ResponseType(typeof(Rizik))]
         public async Task<IHttpActionResult> GetRizik(decimal id)

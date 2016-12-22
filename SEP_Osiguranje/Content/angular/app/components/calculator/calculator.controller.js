@@ -5,6 +5,7 @@
 		.module('app')
 		.controller('calculatorController', calculatorController);
 
+    calculatorController.$inject = ['calculatorService'];
     function calculatorController() {
         var cc = this;
         cc.testPrice = "$2000";
@@ -16,6 +17,10 @@
 
         var enableObject = false;
         var enableVehicle = false;
+
+
+        
+
 
     }
 })();

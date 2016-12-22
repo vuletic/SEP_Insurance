@@ -5,7 +5,7 @@
 		.module('app')
         .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-      $urlRouterProvider.otherwise("/core");
+      $urlRouterProvider.otherwise("/core/home");
 
       $stateProvider
         .state('core', {
