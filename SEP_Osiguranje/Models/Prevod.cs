@@ -12,13 +12,14 @@ namespace SEP_Osiguranje.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Stopa_PDV
+    public partial class Prevod
     {
-        public short Id_Stopa_PDV { get; set; }
-        public Nullable<short> Id_PDV { get; set; }
-        public decimal Stopa_PDV1 { get; set; }
-        public System.DateTime Datum_pocetka_vazenja_Stopa_PDV { get; set; }
+        public int Id_Prevod { get; set; }
+        public decimal Id_Rizik { get; set; }
+        public short Id_Jezik { get; set; }
+        public string Naziv_Prevod { get; set; }
     
-        public virtual PDV PDV { get; set; }
+        public virtual Jezik Jezik { get; set; }
+        public virtual Rizik Rizik { get; set; }
     }
 }

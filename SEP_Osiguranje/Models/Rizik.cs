@@ -9,8 +9,9 @@
 
 namespace SEP_Osiguranje.Models
 {
+    using System;
     using System.Collections.Generic;
-
+    
     public partial class Rizik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -18,6 +19,7 @@ namespace SEP_Osiguranje.Models
         {
             this.CK_Rizik = new HashSet<CK_Rizik>();
             this.Rizik_za_osigurani_entitet = new HashSet<Rizik_za_osigurani_entitet>();
+            this.Prevod = new HashSet<Prevod>();
         }
     
         public decimal Id_Rizik { get; set; }
@@ -29,5 +31,7 @@ namespace SEP_Osiguranje.Models
         public virtual Vrsta_rizika Vrsta_rizika { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prevod> Prevod { get; set; }
     }
 }

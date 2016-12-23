@@ -10,7 +10,8 @@
 namespace SEP_Osiguranje.Models
 {
     using System;
-
+    using System.Collections.Generic;
+    
     public partial class CK_Rizik
     {
         public decimal Id_CK_Rizik { get; set; }

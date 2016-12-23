@@ -9,9 +9,10 @@
 
 namespace SEP_Osiguranje.Models
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class SEP_Entities : DbContext
     {
         public SEP_Entities()
@@ -36,5 +37,7 @@ namespace SEP_Osiguranje.Models
         public virtual DbSet<Vrsta_rizika> Vrsta_rizika { get; set; }
         public virtual DbSet<Rizik> Rizik { get; set; }
         public virtual DbSet<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
+        public virtual DbSet<Jezik> Jezik { get; set; }
+        public virtual DbSet<Prevod> Prevod { get; set; }
     }
 }

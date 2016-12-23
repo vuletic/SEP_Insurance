@@ -12,19 +12,18 @@ namespace SEP_Osiguranje.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tip_osiguranja
+    public partial class Jezik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tip_osiguranja()
+        public Jezik()
         {
-            this.Vrsta_rizika = new HashSet<Vrsta_rizika>();
+            this.Prevod = new HashSet<Prevod>();
         }
     
-        public decimal Id_Tip_osiguranja { get; set; }
-        public string Naziv_Tip_osiguranja { get; set; }
-        public string Opis_Tip_osiguranja { get; set; }
+        public short Id_Jezik { get; set; }
+        public string Naziv_Jezik { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vrsta_rizika> Vrsta_rizika { get; set; }
+        public virtual ICollection<Prevod> Prevod { get; set; }
     }
 }

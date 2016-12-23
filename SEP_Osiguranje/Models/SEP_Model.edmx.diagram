@@ -28,6 +28,10 @@
         <AssociationConnector Association="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI" />
         <AssociationConnector Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK" />
         <AssociationConnector Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" />
+        <EntityTypeShape EntityType="SEP_Model.Jezik" Width="1.5" PointX="5.25" PointY="16" />
+        <EntityTypeShape EntityType="SEP_Model.Prevod" Width="1.5" PointX="7.5" PointY="15.75" />
+        <AssociationConnector Association="SEP_Model.FK_Prevod_Jezik" />
+        <AssociationConnector Association="SEP_Model.FK_Prevod_Rizik" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
