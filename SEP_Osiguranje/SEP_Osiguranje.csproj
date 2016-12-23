@@ -265,6 +265,7 @@
     <Content Include="Content\angular\app\components\about\about.html" />
     <Content Include="Content\angular\app\components\process\process.controller.js" />
     <Content Include="Content\angular\app\components\process\process.html" />
+    <Content Include="Content\angular\app\components\process\process.service.js" />
     <Content Include="Content\angular\app\directives\expander_advanced\expander-advanced.directive.js" />
     <Content Include="Content\angular\app\directives\expander_advanced\expander-advanced.html" />
     <Content Include="Content\angular\app\directives\expander_simple\expander-simple.directive.js" />

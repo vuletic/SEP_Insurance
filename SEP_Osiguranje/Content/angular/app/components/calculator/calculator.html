@@ -5,9 +5,9 @@
             <h2 class="header-center">Kalkulator Osiguranja</h2>
             <hr />
             
-            <expander-simple show-expander="showInsurance">Osiguranje</expander-simple>
+            <expander-simple show-expander="cc.showInsurance">Osiguranje</expander-simple>
             
-            <div class="overview-segment slide-up-animation-insurance" ng-hide="cc.showInsurance">
+            <div class="overview-segment slide-up-animation-insurance" ng-show="cc.showInsurance">
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Mesto putovanja:</th>
@@ -39,11 +39,9 @@
                                     <td><input type="number" class="form-control small-input" min="0" /></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="6">
-                                        <span>
-                                            <select-yesno select-enabled="chooseSport">Korisnici osiguranja ce se baviti sportom:</select-yesno>
-                                        </span>
-                                    </td>
+                                    <th colspan="3">Korisnici osiguranja ce se baviti sportom:</th>
+                                    <td><input type="radio" name="os6"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" checked="true"> Ne</input>&nbsp;&nbsp;</td>
+                                    <td colspan="2"><select class="form-control" ng-options="sport.Id_Rizik as sport.Naziv_Rizik for sport in cc.sports" ng-model="cc.selectedSport"></select></td>
                                 </tr>
                             </table>
                         </td>
@@ -53,7 +51,7 @@
             
             <hr class="hr-grey" />
 
-            <expander-advanced enable-expander="enableObject" show-expander="showObject">Osiguranje Objekta</expander-advanced>
+            <expander-advanced enable-expander="cc.enableObject" show-expander="cc.showObject">Osiguranje Objekta</expander-advanced>
             
             <div class="overview-segment slide-up-animation-object" ng-show="cc.showObject">
                 <table class="my-form-fields-table">
@@ -100,7 +98,7 @@
 
             <hr class="hr-grey" />
 
-            <expander-advanced enable-expander="enableVehicle" show-expander="showVehicle">Osiguranje "Pomoc na Putu"</expander-advanced>
+            <expander-advanced enable-expander="cc.enableVehicle" show-expander="cc.showVehicle">Osiguranje "Pomoc na Putu"</expander-advanced>
 
             <div class="overview-segment slide-up-animation-vehicle" ng-show="cc.showVehicle">
                 <table class="my-form-fields-table">

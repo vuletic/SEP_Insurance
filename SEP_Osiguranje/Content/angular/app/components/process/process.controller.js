@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('processController', processController);
 
-    processController.$inject = ['$timeout'];
-    function processController($timeout) {
+    processController.$inject = ['processService'];
+    function processController(processService) {
         
         var pr = this;
 
@@ -17,15 +17,28 @@
 
         pr.insuranceCarrierIsNotInsured = false;
 
-        //$timeout(function () { pr.selectedProcessPanel[0] = true; }, 10);
-
-        var chooseSport = false;
+        var chooseSport = false;    // refaktorisati var u pr. !!!
         var chooseRepair = false;
         var chooseHotel = false;
         var temp1 = false;
         var temp2 = false;
 
-        var insuranceCarrierIsNotInsured = false;
+        processService.getSports().then(function (response) {
+            pr.sports = response;
+        });
+
+        processService.getAgeGroups().then(function (response) {
+            pr.ageGroups = response;
+        });
+
+        processService.getLocations().then(function (response) {
+            pr.locations = response;
+        });
+
+        processService.getInsuranceAmounts().then(function (response) {
+            pr.insuranceAmounts = response;
+        });
+        
     }
 
 })();
