@@ -1,14 +1,7 @@
 ﻿<div class="page-holder">
     <div class="main-content-holder">
 
-        <div class="page-marker">
-            <label class="marker-rect" ng-class="{'marker-select': pr.selectedProcessPanel[0]}"></label>
-            <label class="marker-rect" ng-class="{'marker-select': pr.selectedProcessPanel[1]}"></label>
-            <label class="marker-rect" ng-class="{'marker-select': pr.selectedProcessPanel[2]}"></label>
-            <label class="marker-rect" ng-class="{'marker-select': pr.selectedProcessPanel[3]}"></label>
-            <label class="marker-rect" ng-class="{'marker-select': pr.selectedProcessPanel[4]}"></label>
-        </div>
-        <!-- <page-marker selected-page="selectedProcessPanel"></page-marker> -->
+        <page-marker selected-page="pr.selectedProcessPanel"></page-marker>
 
         <div class="float-control" ng-class="{'class1' : pr.selectedProcessPanel[0], 'class2' : pr.selectedProcessPanel[1], 'class3' : pr.selectedProcessPanel[2], 'class4' : pr.selectedProcessPanel[3], 'class5' : pr.selectedProcessPanel[4]}">
 
@@ -44,13 +37,11 @@
                         </table>
                         <div class="insured-manage"><a class="header-red">Ukloni osiguranika</a> &nbsp;&nbsp;&nbsp;&nbsp; <a>Dodaj osiguranika</a></div>
                     </div>
-                    <table class="my-form-fields-table">
-                        <tr>
-                            <th>Korisnici osiguranja ce se baviti sportom:</th>
-                            <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                            <td class="colpicksport"><select class="form-control standard-input" /> </td>
-                        </tr>
-                    </table>
+                    <div class="header-left">
+                        <span>
+                            <select-yesno select-enabled="chooseSport">Korisnici osiguranja ce se baviti sportom:</select-yesno>
+                        </span>
+                    </div>
                     <form>
                         <div class="my-form-fields">
                             <h3 class="header-left">

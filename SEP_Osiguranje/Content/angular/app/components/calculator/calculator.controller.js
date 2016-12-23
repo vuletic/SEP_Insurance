@@ -9,18 +9,18 @@
     function calculatorController(calculatorService) {
         var cc = this;
 
-        var showInsurance = true;
-        var showObject = false;
-        var showVehicle = false;
+        cc.showInsurance = true;
+        cc.showObject = false;
+        cc.showVehicle = false;
 
-        var enableObject = false;
-        var enableVehicle = false;
+        cc.enableObject = false;
+        cc.enableVehicle = false;
 
-        var chooseSport = false;
-        var chooseRepair = false;
-        var chooseHotel = false;
-        var temp1 = false;
-        var temp2 = false;
+        cc.chooseSport = false;
+        cc.chooseRepair = false;
+        cc.chooseHotel = false;
+        cc.temp1 = false;
+        cc.temp2 = false;
 
         calculatorService.getSports().then(function(response){
             cc.sports = response;

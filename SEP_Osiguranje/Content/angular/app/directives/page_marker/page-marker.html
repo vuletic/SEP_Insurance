@@ -1,12 +1,3 @@
 ﻿<div class="page-marker">
-    <label class="marker-rect" ng-hide="selectedPage[0]"></label>
-    <label class="marker-rect marker-select" ng-hide="!selectedPage[0]"></label>
-    <label class="marker-rect" ng-hide="selectedPage[1]"></label>
-    <label class="marker-rect marker-select" ng-hide="!selectedPage[1]"></label>
-    <label class="marker-rect" ng-hide="selectedPage[2]"></label>
-    <label class="marker-rect marker-select" ng-hide="!selectedPage[2]"></label>
-    <label class="marker-rect" ng-hide="selectedPage[3]"></label>
-    <label class="marker-rect marker-select" ng-hide="!selectedPage[3]"></label>
-    <label class="marker-rect" ng-hide="selectedPage[4]"></label>
-    <label class="marker-rect marker-select" ng-hide="!selectedPage[4]"></label>
+    <label ng-repeat="page in selectedPage track by $index" class="marker-rect" ng-class="{'marker-select': selectedPage[$index]}"></label>
 </div>
