@@ -142,12 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\angular\app\shared\localization\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Controllers\RuleEngineController.cs" />
     <Compile Include="Models\Jezik.cs">
       <DependentUpon>SEP_Model.tt</DependentUpon>
     </Compile>
@@ -278,6 +276,8 @@
     <Content Include="Content\angular\app\directives\expander_simple\expander-simple.html" />
     <Content Include="Content\angular\app\directives\page_marker\page-marker.directive.js" />
     <Content Include="Content\angular\app\directives\page_marker\page-marker.html" />
+    <Content Include="Content\angular\app\shared\dataAccess\dataAccess.service.js" />
+    <Content Include="Content\angular\app\shared\localization\localization.service.js" />
     <Content Include="Content\angular\assets\css\animations.css" />
     <Content Include="Content\angular\assets\css\bootstrap-theme.css" />
     <Content Include="Content\angular\assets\css\bootstrap.css" />

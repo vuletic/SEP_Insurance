@@ -14,7 +14,11 @@
         cr.localize = function (language) {
             localization.getLocalizationObj(language).then(function (response) {
                 cr.l10nObj = response;
-
+                if (cr.l10nObj.lng == 'english') {
+                    cr.lang = 1;
+                } else {
+                    cr.lang = 0;
+                }
             });
         };
 
@@ -28,6 +32,7 @@
         });*/
 
         cr.localize("srpski");
+   
     }
 
 
