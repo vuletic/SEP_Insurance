@@ -11,9 +11,9 @@
                 <table class="my-form-fields-table">
                     <tr>
                         <th>Mesto putovanja:</th>
-                        <td><select class="form-control" ng-options="location.Id_Rizik as location.Naziv_Rizik for location in cc.locations" ng-model="cc.selectedLocation"></select></td>
+                        <td><select class="form-control" ng-options="location.Id_Rizik as location.Prevod[cr.lang].Naziv_Prevod for location in cc.locations" ng-model="cc.selectedLocation"></select></td>
                         <th> &nbsp;&nbsp; Visina rizika:</th>
-                        <td><select class="form-control" ng-options="insuranceAmount.Id_Rizik as insuranceAmount.Naziv_Rizik for insuranceAmount in cc.insuranceAmounts" ng-model="cc.selectedInsuranceAmount"></select></td>
+                        <td><select class="form-control" ng-options="insuranceAmount.Id_Rizik as insuranceAmount.Prevod[cr.lang].Naziv_Prevod for insuranceAmount in cc.insuranceAmounts" ng-model="cc.selectedInsuranceAmount"></select></td>
                     </tr>
                     <tr>
                         <th>Početak važenja:</th>
@@ -31,17 +31,17 @@
                         <td colspan="4">
                             <table>
                                 <tr>
-                                    <th>{{cc.ageGroups[0].Naziv_Rizik}}</th>
+                                    <th>{{cc.ageGroups[0].Prevod[cr.lang].Naziv_Prevod}}</th>
                                     <td><input type="number" class="form-control small-input" min="0" /></td>
-                                    <th>&nbsp; &nbsp; {{cc.ageGroups[1].Naziv_Rizik}}</th>
+                                    <th>&nbsp; &nbsp; {{cc.ageGroups[1].Prevod[cr.lang].Naziv_Prevod}}</th>
                                     <td><input type="number" class="form-control small-input" min="0" /></td>
-                                    <th>&nbsp; &nbsp; {{cc.ageGroups[2].Naziv_Rizik}}</th>
+                                    <th>&nbsp; &nbsp; {{cc.ageGroups[2].Prevod[cr.lang].Naziv_Prevod}}</th>
                                     <td><input type="number" class="form-control small-input" min="0" /></td>
                                 </tr>
                                 <tr>
                                     <th colspan="3">Korisnici osiguranja ce se baviti sportom:</th>
                                     <td><input type="radio" name="os6"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                                    <td colspan="2"><select class="form-control" ng-options="sport.Id_Rizik as sport.Naziv_Rizik for sport in cc.sports" ng-model="cc.selectedSport"></select></td>
+                                    <td colspan="2"><select class="form-control" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in cc.sports" ng-model="cc.selectedSport"></select></td>
                                 </tr>
                             </table>
                         </td>

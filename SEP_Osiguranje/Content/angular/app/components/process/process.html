@@ -11,10 +11,10 @@
                     <form>
                         <div class="my-form-fields">
                             <table class="my-form-fields-table">
-                                <tr><th>Mesto putovanja:</th><td><select class="form-control" ng-options="location.Id_Rizik as location.Naziv_Rizik for location in pr.locations" ng-model="pr.selectedLocation"></select></td></tr>
+                                <tr><th>Mesto putovanja:</th><td><select class="form-control" ng-options="location.Id_Rizik as location.Prevod[cr.lang].Naziv_Prevod for location in pr.locations" ng-model="pr.selectedLocation"></select></td></tr>
                                 <tr><th>Početak važenja:</th><td><input type="date" class="form-control" /></td></tr>
                                 <tr><th>Kraj važenja:</th><td><input type="date" class="form-control" /></td></tr>
-                                <tr><th>Visina rizika:</th><td><select class="form-control" ng-options="insuranceAmount.Id_Rizik as insuranceAmount.Naziv_Rizik for insuranceAmount in pr.insuranceAmounts" ng-model="pr.selectedInsuranceAmount"></select></td></tr>
+                                <tr><th>Visina rizika:</th><td><select class="form-control" ng-options="insuranceAmount.Id_Rizik as insuranceAmount.Prevod[cr.lang].Naziv_Prevod for insuranceAmount in pr.insuranceAmounts" ng-model="pr.selectedInsuranceAmount"></select></td></tr>
                             </table>
                         </div>
                         <hr />
@@ -42,7 +42,7 @@
                         <tr>
                             <th>Korisnici osiguranja ce se baviti sportom:</th>
                             <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                            <td class="colpicksport"><select class="form-control" ng-options="sport.Id_Rizik as sport.Naziv_Rizik for sport in pr.sports" ng-model="pr.selectedSport"></select></td>
+                            <td class="colpicksport"><select class="form-control" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in pr.sports" ng-model="pr.selectedSport"></select></td>
                         </tr>
                     </table>
 

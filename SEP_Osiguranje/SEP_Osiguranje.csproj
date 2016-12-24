@@ -147,7 +147,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Controllers\RuleEngineController.cs" />
     <Compile Include="Models\Jezik.cs">
       <DependentUpon>SEP_Model.tt</DependentUpon>
     </Compile>
