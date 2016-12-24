@@ -41,7 +41,7 @@
                                 <tr>
                                     <th colspan="3">Korisnici osiguranja ce se baviti sportom:</th>
                                     <td><input type="radio" name="os6"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                                    <td colspan="2"><select class="form-control" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in cc.sports" ng-model="cc.data.selectedSport"></select></td>
+                                    <td colspan="2"><select class="form-control standard-input" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in cc.sports" ng-model="cc.data.selectedSport"></select></td>
                                 </tr>
                             </table>
                         </td>
@@ -103,17 +103,26 @@
             <div class="overview-segment slide-up-animation-vehicle" ng-show="cc.showVehicle">
                 <table class="my-form-fields-table">
                     <tr>
-                        <th colspan="3">Paket pokriva:</th>
+                        <th colspan="7">Paket pokriva:</th>
                     </tr>
                     <tr>
-                        <td><select-checkbox select-enabled="temp1" ng-model="cc.data.carKilometers">Šlep služba, do kilometraže:</select-checkbox></td>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>Šlep služba, do kilometraže:</td>
+                        <td><select class="form-control small-input" ng-model="cc.data.carKilometers"/></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        <td><select-checkbox select-enabled="chooseRepair" ng-model="cc.data.carRepairs">Popravka vozila, do iznosa:</select-checkbox></td>
+                        <td><input type="checkbox" /></td>
+                        <td>Popravka vozila, do iznosa:</td>
+                        <td><select class="form-control small-input"  ng-model="cc.data.carRepairs"/></td>
                     </tr>
                     <tr>
-                        <td><select-checkbox select-enabled="chooseHotel" ng-model="cc.data.carHotel">Smeštaj u hotelu, do broja dana:</select-checkbox></td>
+                        <td><input type="checkbox" /></td>
+                        <td>Smeštaj u hotelu, do broja dana:</td>
+                        <td><select class="form-control small-input"  ng-model="cc.data.carHotel"/></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        <td><select-checkbox select-enabled="temp2" ng-model="cc.data.carKilometers">Alternativni prevoz:</select-checkbox></td>
+                        <td><input type="checkbox" /></td>
+                        <td>Alternativni prevoz</td>
+                        <td><select class="form-control small-input"  ng-model="cc.data.carAlternative"/></td>
                     </tr>
                 </tr>
 

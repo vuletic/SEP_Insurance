@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('coreController', coreController);
 
-    coreController.$inject = ['localization'];
-    function coreController(localization) {
+    coreController.$inject = ['localization', '$window'];
+    function coreController(localization, $window) {
         var cr = this;
         cr.l10nObj = "maau";
         cr.neu = "mau";
@@ -20,6 +20,10 @@
                     cr.lang = 0;
                 }
             });
+        };
+
+        cr.scroll = function () {
+            $window.scrollTo(0, 240);
         };
 
         /*localization.getLocalizationObj("srpski").then(function(response){

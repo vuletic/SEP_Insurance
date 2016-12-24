@@ -11,7 +11,7 @@
         var pr = this;
 
         pr.selectedProcessPanel = [true, false, false, false, false];
-        pr.hideUserDetails = false;
+        pr.showUserDetails = false;
         pr.hideObjectInsurance = false;
         pr.hideVehicleInsurance = false;
 
