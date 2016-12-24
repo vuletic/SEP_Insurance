@@ -31,6 +31,10 @@ hr {
 	margin-bottom: 0em !important;
 }
 
+.element-hidden {
+    visibility: hidden;
+}
+
 .hr-grey {
     border-color: #DDD !important;
 }
