@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('calculatorController', calculatorController);
 
-    calculatorController.$inject = ['calculatorService'];
-    function calculatorController(calculatorService) {
+    calculatorController.$inject = ['dataAccessService'];
+    function calculatorController(dataAccessService) {
         var cc = this;
 
         cc.showInsurance = true;
@@ -22,19 +22,19 @@
         cc.temp1 = false;
         cc.temp2 = false;
 
-        calculatorService.getSports().then(function(response){
+        dataAccessService.getSports().then(function (response) {
             cc.sports = response;
         });
 
-        calculatorService.getAgeGroups().then(function (response) {
+        dataAccessService.getAgeGroups().then(function (response) {
             cc.ageGroups = response;
         });
 
-        calculatorService.getLocations().then(function (response) {
+        dataAccessService.getLocations().then(function (response) {
             cc.locations = response;
         });
 
-        calculatorService.getInsuranceAmounts().then(function (response) {
+        dataAccessService.getInsuranceAmounts().then(function (response) {
             cc.insuranceAmounts = response;
         });
 

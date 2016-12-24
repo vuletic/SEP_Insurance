@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('processController', processController);
 
-    processController.$inject = ['processService'];
-    function processController(processService) {
+    processController.$inject = ['dataAccessService'];
+    function processController(dataAccessService) {
         
         var pr = this;
 
@@ -23,19 +23,19 @@
         var temp1 = false;
         var temp2 = false;
 
-        processService.getSports().then(function (response) {
+        dataAccessService.getSports().then(function (response) {
             pr.sports = response;
         });
 
-        processService.getAgeGroups().then(function (response) {
+        dataAccessService.getAgeGroups().then(function (response) {
             pr.ageGroups = response;
         });
 
-        processService.getLocations().then(function (response) {
+        dataAccessService.getLocations().then(function (response) {
             pr.locations = response;
         });
 
-        processService.getInsuranceAmounts().then(function (response) {
+        dataAccessService.getInsuranceAmounts().then(function (response) {
             pr.insuranceAmounts = response;
         });
         

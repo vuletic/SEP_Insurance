@@ -142,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\angular\app\shared\localization\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -281,6 +280,8 @@
     <Content Include="Content\angular\app\directives\select_checkbox\select-checkbox.html" />
     <Content Include="Content\angular\app\directives\select_yesno\select-yesno.directive.js" />
     <Content Include="Content\angular\app\directives\select_yesno\select-yesno.html" />
+    <Content Include="Content\angular\app\shared\dataAccess\dataAccess.service.js" />
+    <Content Include="Content\angular\app\shared\localization\localization.service.js" />
     <Content Include="Content\angular\assets\css\animations.css" />
     <Content Include="Content\angular\assets\css\bootstrap-theme.css" />
     <Content Include="Content\angular\assets\css\bootstrap.css" />
