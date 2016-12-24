@@ -9,6 +9,7 @@
     function calculatorController(dataAccessService) {
         var cc = this;
 
+        cc.calculatedPrice = 956000;
         cc.showInsurance = true;
         cc.showObject = false;
         cc.showVehicle = false;
@@ -37,6 +38,11 @@
         dataAccessService.getInsuranceAmounts().then(function (response) {
             cc.insuranceAmounts = response;
         });
+
+        cc.calculate = function () {
+            // send data
+            alert(cc.data.selectedSport);
+        }
 
 
     }

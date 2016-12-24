@@ -17,6 +17,10 @@
 
         pr.insuranceCarrierIsNotInsured = false;
 
+        /* Razmisliti o slanju podataka. Podaci za racunanje idu rules aplikaciji (pr.data!!!),
+           a ostali mozda bolje odmah u web api. Mozda sve zajedno ipak?
+        */
+
         var chooseSport = false;    // refaktorisati var u pr. !!!
         var chooseRepair = false;
         var chooseHotel = false;
