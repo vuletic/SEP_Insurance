@@ -18,6 +18,7 @@ namespace SEP_Osiguranje.Models
         public SEP_Entities()
             : base("name=SEP_Entities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

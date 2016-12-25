@@ -20,7 +20,7 @@ namespace SEP_Osiguranje.Controllers
         public IQueryable<Rizik> GetRizikByVrsta(decimal id)
         {
 
-            var query = from rizik in db.Rizik
+            var query = from rizik in db.Rizik.Include("Prevod")
                                        where rizik.Id_Vrsta_rizika == id
                                        select rizik;
 
