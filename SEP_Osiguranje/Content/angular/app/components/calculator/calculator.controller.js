@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('calculatorController', calculatorController);
 
-    calculatorController.$inject = ['dataAccessService'];
-    function calculatorController(dataAccessService) {
+    calculatorController.$inject = ['dataAccessService', 'calculatorService'];
+    function calculatorController(dataAccessService, calculatorService) {
         var cc = this;
 
         cc.calculatedPrice = 956000;
@@ -40,8 +40,7 @@
         });
 
         cc.calculate = function () {
-            // send data
-            alert(cc.data.selectedSport);
+            cc.calculatedPrice = calculatorService.sendCalculateData(cc.data);
         }
 
 
