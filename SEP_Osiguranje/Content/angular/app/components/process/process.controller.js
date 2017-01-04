@@ -5,10 +5,14 @@
 		.module('app')
 		.controller('processController', processController);
 
-    processController.$inject = ['dataAccessService'];
-    function processController(dataAccessService) {
+    processController.$inject = ['dataAccessService', '$stateParams'];
+    function processController(dataAccessService, $stateParams) {
+        
         
         var pr = this;
+
+        if ($stateParams.data != null)
+            pr.data = $stateParams.data;
 
         pr.selectedProcessPanel = [true, false, false, false, false];
         pr.showUserDetails = false;

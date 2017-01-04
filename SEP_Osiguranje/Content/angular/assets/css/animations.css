@@ -35,7 +35,7 @@
 /*##########    PROCCES PAGE ANIMATIONS     ##########*/
 .slide-up-animation-user {
     transition: .5s linear all;
-    height: 30em;
+    height: 35em;
     overflow: hidden;
     display: block !important;
 }

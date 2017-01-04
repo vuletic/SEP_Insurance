@@ -8,7 +8,7 @@
             <div class="main-content" style="margin-left: 0em" ng-show="true">
                 <div class="form-holder">
                     <h3 class="margin-bottom">Podaci o osiguranju</h3>
-                    <form>
+                    <form><!-- Da li mora biti ngForm? -->
                         <div class="my-form-fields">
                             <table class="my-form-fields-table">
                                 <tr><th>Mesto putovanja:</th><td><select class="form-control" ng-options="location.Id_Rizik as location.Prevod[cr.lang].Naziv_Prevod for location in pr.locations" ng-model="pr.data.selectedLocation"></select></td></tr>
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="main-content" ng-show="true">
+            <div class="main-content" ng-show="true"><!-- Tabela sa listom osiguranika, može hide ako je prazna. -->
                 <div class="form-holder">
                     <h3 class="margin-bottom">Podaci o osiguranicima</h3>
                     <div>
@@ -34,11 +34,12 @@
                             <tr class="insured-table-header"><th class="colname">Ime</th><th class="colsurname">Prezime</th><th class="coljmbg">JMBG</th><th class="colcat">Kategorija</th></tr>
                             <tr class="insured-table-data"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td></tr>
                             <tr class="insured-table-data selected"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td></tr>
-                        </table>
-                        <div class="insured-manage"><a class="header-red">Ukloni osiguranika</a> &nbsp;&nbsp;&nbsp;&nbsp; <a>Dodaj osiguranika</a></div>
+                        </table> <!-- Buttons da se ne vide ako nema nikoga u tabeli, to je samo isti tag, ngHide-->
+                        <div class="insured-manage"><a class="header-red">Ukloni osiguranika</a> &nbsp;&nbsp;&nbsp;&nbsp; 
+                        <a>Dodaj osiguranika</a></div>
                     </div>
 
-                    <table class="my-form-fields-table">
+                    <table class="my-form-fields-table"> <!-- samo kad se vidi tabela. -->
                         <tr>
                             <th>Korisnici osiguranja ce se baviti sportom:</th>
                             <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
