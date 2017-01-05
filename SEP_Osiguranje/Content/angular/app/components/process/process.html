@@ -8,7 +8,7 @@
             <div class="main-content" style="margin-left: 0em" ng-show="true">
                 <div class="form-holder">
                     <h3 class="margin-bottom">Podaci o osiguranju</h3>
-                    <form><!-- Da li mora biti ngForm? -->
+                    <form>
                         <div class="my-form-fields">
                             <table class="my-form-fields-table">
                                 <tr><th>Mesto putovanja:</th><td><select class="form-control" ng-options="location.Id_Rizik as location.Prevod[cr.lang].Naziv_Prevod for location in pr.locations" ng-model="pr.data.selectedLocation"></select></td></tr>
@@ -25,28 +25,40 @@
                     </form>
                 </div>
             </div>
-
-            <div class="main-content" ng-show="true"><!-- Tabela sa listom osiguranika, može hide ako je prazna. -->
+            
+            <div class="main-content" ng-show="true">
                 <div class="form-holder">
                     <h3 class="margin-bottom">Podaci o osiguranicima</h3>
-                    <div>
+                    <div ng-show="pr.data.customers.length">
+                        <div class="insured-manage">
+                            <button type="button" class="btn btn-success btn-xl" title="Add New">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-xl" title="Edit" ng-disabled="0">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xl" data-toggle="modal" data-target="#confirmModal" title="Delete" ng-disabled="0"><!--stavi ng-disabled, ako nije nista selektovano-->
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                        </div>                        
                         <table class="insured-table">
                             <tr class="insured-table-header"><th class="colname">Ime</th><th class="colsurname">Prezime</th><th class="coljmbg">JMBG</th><th class="colcat">Kategorija</th></tr>
-                            <tr class="insured-table-data"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td></tr>
-                            <tr class="insured-table-data selected"><td>Djordje</td><td>Jovicevic</td><td>1212987345632</td><td>od 18 do 65</td></tr>
-                        </table> <!-- Buttons da se ne vide ako nema nikoga u tabeli, to je samo isti tag, ngHide-->
-                        <div class="insured-manage"><a class="header-red">Ukloni osiguranika</a> &nbsp;&nbsp;&nbsp;&nbsp; 
-                        <a>Dodaj osiguranika</a></div>
+                            <tr class="insured-table-data" ng-repeat="customer in pr.data.customers">
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.surname}}</td>
+                                <td>{{customer.jmbg}}</td>
+                                <td>{{customer.category}}</td>
+                            </tr>
+                        </table>
+                        
+                        <table class="my-form-fields-table">
+                            <tr>
+                                <th>Korisnici osiguranja ce se baviti sportom:</th>
+                                <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
+                                <td class="colpicksport"><select class="form-control" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in pr.sports" ng-model="pr.data.selectedSport"></select></td>
+                            </tr>
+                        </table>
                     </div>
-
-                    <table class="my-form-fields-table"> <!-- samo kad se vidi tabela. -->
-                        <tr>
-                            <th>Korisnici osiguranja ce se baviti sportom:</th>
-                            <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
-                            <td class="colpicksport"><select class="form-control" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in pr.sports" ng-model="pr.data.selectedSport"></select></td>
-                        </tr>
-                    </table>
-
                         
                     <form>
                         <div class="my-form-fields">
@@ -55,21 +67,21 @@
 
                             <div class="slide-up-animation-user" ng-show="pr.showUserDetails">
                                 <table class="my-form-fields-table">
-                                    <tr><th>Ime:</th><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Prezime:</th><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>JMBG:</th><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Br. pasoša:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><th>Ime:</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.name" /></td></tr>
+                                    <tr><th>Prezime:</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.surname"  /></td></tr>
+                                    <tr><th>JMBG:</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.jmbg"  /></td></tr>
+                                    <tr><th>Br. pasoša:</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.passport" /></td></tr>
                                     <tr class="align-row-top"><th colspan="2">Adresa</th></tr>
-                                    <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" /></td></tr>
-                                    <tr><th>Br telefona:</th><td><input type="text" class="form-control" /></td></tr>
+                                    <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.street"/></td></tr>
+                                    <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.addresNum"/></td></tr>
+                                    <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.city"/></td></tr>
+                                    <tr><th>Br telefona:</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.phoneNum"/></td></tr>
                                     <tr><th>Starosna grupa:</th><td><select class="form-control" /></td></tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="my-buttons-action">
-                                                <div class="my-button-action">Potvrdi</div>
                                                 <div class="my-button-action">Odustani</div>
+                                                <div class="my-button-action" ng-click="pr.addCustomer()">Potvrdi</div>
                                             </div>
                                         </td>
                                     </tr>
@@ -250,6 +262,27 @@
                     </form>
                 </div>
             </div>
+
+            <div class="modal fade" id="confirmModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Delete an item</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form novalidate>
+                                Are you sure you want to delete selected item?
+
+                                <br><br>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="">Yes</button><!--Ugradi akciju za brisanje kad odradis selekciju-->
+                                <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
 
         </div>
     </div>

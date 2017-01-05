@@ -11,8 +11,20 @@
         
         var pr = this;
 
+        
         if ($stateParams.data != null)
             pr.data = $stateParams.data;
+        else
+            pr.data = {};
+
+        pr.data.customers = [];
+
+        pr.addCustomer = function () {
+            var temp = JSON.parse(JSON.stringify(pr.tempCustomer));
+            pr.data.customers.push(temp);
+
+            pr.tempCustomer = {};
+        };
 
         pr.selectedProcessPanel = [true, false, false, false, false];
         pr.showUserDetails = false;
