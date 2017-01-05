@@ -18,12 +18,15 @@
             url: '/home',
             templateUrl: 'Content/angular/app/components/home/home.html',
             controller: 'homeController',
-            controllerAs: 'hc'
+            controllerAs: 'hc',
         })
         .state('core.process', {
             url: '/process',
             templateUrl: 'Content/angular/app/components/process/process.html',
             controller: 'processController',
+            params: {
+                data: null
+            },
             controllerAs: 'pr'
         })
         .state('core.about', {

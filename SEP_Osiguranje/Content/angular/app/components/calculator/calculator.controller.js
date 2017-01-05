@@ -5,9 +5,11 @@
 		.module('app')
 		.controller('calculatorController', calculatorController);
 
-    calculatorController.$inject = ['dataAccessService', 'calculatorService'];
-    function calculatorController(dataAccessService, calculatorService) {
+    calculatorController.$inject = ['dataAccessService', 'calculatorService', '$state'];
+    function calculatorController(dataAccessService, calculatorService, $state) {
         var cc = this;
+
+        cc.data = {};
 
         cc.calculatedPrice = 956000;
         cc.showInsurance = true;
@@ -17,11 +19,6 @@
         cc.enableObject = false;
         cc.enableVehicle = false;
 
-        cc.chooseSport = false;
-        cc.chooseRepair = false;
-        cc.chooseHotel = false;
-        cc.temp1 = false;
-        cc.temp2 = false;
 
         dataAccessService.getSports().then(function (response) {
             cc.sports = response;
@@ -45,6 +42,8 @@
             });
         }
 
-
+        cc.proceedToProcess = function () {
+            $state.go('core.process', { data: cc.data });
+        }
     }
 })();

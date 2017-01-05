@@ -5,10 +5,62 @@
 		.module('app')
 		.controller('processController', processController);
 
-    processController.$inject = ['dataAccessService'];
-    function processController(dataAccessService) {
+    processController.$inject = ['dataAccessService', '$stateParams'];
+    function processController(dataAccessService, $stateParams) {        
         
         var pr = this;
+
+        
+        if ($stateParams.data != null)
+            pr.data = $stateParams.data;
+        else
+            pr.data = {};
+
+        pr.data.customers = [];
+
+
+
+        pr.selected = -1;
+        pr.selectCustomer = function(index){
+            if (pr.selected != -1)
+                pr.data.customers[pr.selected].cssClass = "not_selected";
+
+            pr.data.customers[index].cssClass = "selected";
+            pr.selected = index;
+
+        }
+
+        pr.commit = function () {
+            var temp = JSON.parse(JSON.stringify(pr.tempCustomer));
+            
+            if (!pr.editProcess) {
+                temp.cssClass = "not_selected";
+                pr.data.customers.push(temp);
+            } else {
+                pr.data.customers.splice(pr.selected, 1, temp);
+                pr.editProcess = false;
+            }
+
+            pr.tempCustomer = {};
+        };
+
+        pr.deleteCustomer = function () {
+            if (pr.selected == -1)
+                return;
+
+            pr.data.customers.splice(pr.selected, 1);
+            pr.selected = -1;
+        }
+
+        pr.editProcess = false;
+        pr.editCustomer = function () {
+            if (pr.selected == -1)
+                return;
+            pr.editProcess = true;
+            var temp = pr.data.customers[pr.selected];
+            pr.tempCustomer = JSON.parse(JSON.stringify(temp));
+
+        }
 
         pr.selectedProcessPanel = [true, false, false, false, false];
         pr.showUserDetails = false;

@@ -353,13 +353,13 @@ hr {
 	color: #FFF;
 }
 
-.insured-table .insured-table-data:hover {
+.insured-table .insured-table-data-not_selected:hover {
 	background: #F0F0F0;
 	cursor: pointer;
 }
 
-.insured-table .selected {
-	background: #DDD;
+.insured-table .insured-table-data-selected {
+    background: #25c2ef;
 }
 
 .insured-table .colname {
