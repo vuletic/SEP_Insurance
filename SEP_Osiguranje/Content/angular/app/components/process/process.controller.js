@@ -32,7 +32,8 @@
 
         pr.commit = function () {
             var temp = JSON.parse(JSON.stringify(pr.tempCustomer));
-            
+            temp.ageGroup = pr.ageGroups[temp.category].Id_Rizik;
+
             if (!pr.editProcess) {
                 temp.cssClass = "not_selected";
                 pr.data.customers.push(temp);
@@ -42,7 +43,16 @@
             }
 
             pr.tempCustomer = {};
+            pr.showUserDetails = false;
         };
+
+        pr.addCustomer = function () {
+            if (pr.selected != -1) {
+                pr.data.customers[pr.selected].cssClass = "not_selected";
+                pr.selected = -1;
+            }
+            pr.showUserDetails = true;
+        }
 
         pr.deleteCustomer = function () {
             if (pr.selected == -1)
@@ -59,11 +69,11 @@
             pr.editProcess = true;
             var temp = pr.data.customers[pr.selected];
             pr.tempCustomer = JSON.parse(JSON.stringify(temp));
-
+            pr.showUserDetails = true;
         }
 
         pr.selectedProcessPanel = [true, false, false, false, false];
-        pr.showUserDetails = false;
+        pr.showUserDetails = true;
         pr.hideObjectInsurance = false;
         pr.hideVehicleInsurance = false;
 
