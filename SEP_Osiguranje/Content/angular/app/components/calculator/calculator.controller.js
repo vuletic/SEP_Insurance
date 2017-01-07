@@ -37,7 +37,9 @@
         });
 
         cc.calculate = function () {
-            cc.calculatedPrice = calculatorService.sendCalculateData(cc.data);
+            calculatorService.sendCalculateData(cc.data).then(function (response) {
+                cc.calculatedPrice = response;
+            });
         }
 
         cc.proceedToProcess = function () {
