@@ -72,6 +72,11 @@
             pr.showUserDetails = true;
         }
 
+        pr.finishProcess = function () {
+
+            console.log(pr.data);
+        }
+
         pr.selectedProcessPanel = [true, false, false, false, false];
         pr.showUserDetails = true;
         pr.hideObjectInsurance = false;

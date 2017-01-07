@@ -113,7 +113,7 @@
                                     <th>Površina objekta:</th>
                                     <td>
                                         <div class="input-group standard-input">
-                                            <input type="text" class="form-control" />
+                                            <input type="text" class="form-control" ng-model="pr.data.object.area"/>
                                             <span class="input-group-addon">m2</span>
                                         </div>
                                     </td>
@@ -122,7 +122,7 @@
                                     <th>Starost objekta:</th>
                                     <td>
                                         <div class="input-group standard-input">
-                                            <input type="text" class="form-control" />
+                                            <input type="text" class="form-control" ng-model="pr.data.object.age"/>
                                             <span class="input-group-addon">god</span>
                                         </div>
                                     </td>
@@ -131,7 +131,7 @@
                                     <th>Vrednost objekta:</th>
                                     <td>
                                         <div class="input-group standard-input">
-                                            <input type="text" class="form-control" />
+                                            <input type="text" class="form-control" ng-model="pr.data.object.value"/>
                                             <span class="input-group-addon">EUR</span>
                                         </div>
                                     </td>
@@ -143,11 +143,11 @@
                                     <td colspan="2">
                                         <table>
                                             <tr>
-                                                <td><input type="checkbox"> Poplave</input></td>
+                                                <td><input type="checkbox" ng-model="pr.data.object.protection.flood"> Poplave</input></td>
                                                 <td> &nbsp;&nbsp;&nbsp; </td>
-                                                <td><input type="checkbox"> Požara</input></td>
+                                                <td><input type="checkbox" ng-model="pr.data.object.protection.fire"> Požara</input></td>
                                                 <td> &nbsp;&nbsp;&nbsp; </td>
-                                                <td><input type="checkbox"> Krađe</input></td>
+                                                <td><input type="checkbox" ng-model="pr.data.object.protection.theft"> Krađe</input></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -157,13 +157,13 @@
 
                             <h4> &nbsp; Podaci o objektu</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" /></td>
+                                <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.name"/></td></tr>
+                                <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.surname"/></td></tr>
+                                <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.jmbg"/></td>
                                 <tr class="align-row-top"><th colspan="2">Adresa objekta</th></tr>
-                                <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" /></td></tr>
-                                <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" /></td></tr>
-                                <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" /></td></tr>
+                                <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.street"/></td></tr>
+                                <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.number"/></td></tr>
+                                <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.city"/></td></tr>
                             </table>
                         </div>
                         <hr />
@@ -187,22 +187,22 @@
                             <h4>Podaci osiguranju "Pomoć na putu"</h4>         
                             <table class="my-form-fields-table">
                                 <tr><th colspan="3">Paket osiguranja pokriva:</th></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" /></td><td class="align-cell-left">Alternativni prevoz</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.tow"/></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.repair"/></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.accom"/></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.ride"/></td><td class="align-cell-left">Alternativni prevoz</td><td><select class="form-control small-input" /></td></tr>
                             </table>
 
                             <h4>&nbsp; Podaci o vozilu</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>Marka vozila:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Tip vozila:</th><td><select class="form-control" /></td></tr>
-                                <tr><th>Broj šasije:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>God. propizvodnje:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Registarska oznaka:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" /></td>
+                                <tr><th>Marka vozila:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.brand"/></td></tr>
+                                <tr><th>Tip vozila:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.type"/></td></tr>
+                                <tr><th>Broj šasije:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.chassisNumber"/></td></tr>
+                                <tr><th>God. propizvodnje:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.productionYear"/></td></tr>
+                                <tr><th>Registarska oznaka:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.registrationNumber"/></td></tr>
+                                <tr><th>Ime vlasnika:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.name"/></td></tr>
+                                <tr><th>Prezime vlasnika:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.surname"/></td></tr>
+                                <tr><th>JMBG vlasnika:</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.jmbg"/></td>
                             </table>
                         </div>
 
@@ -234,30 +234,32 @@
                             <h4>Odaberite nosioca osiguranja</h4>
                             <table class="my-form-fields-table">
                                 <tr>
-                                    <td><select class="form-control realy-big-input"><option>Aleksandar Petronijevicic (0909090090909)</option></select></td>
+                                    <td><select class="form-control realy-big-input" ng-options="idx as customer.name + ' ' + customer.surname + ' ' + customer.jmbg for (idx, customer) in pr.data.customers" ng-model="pr.data.insCarrierI"/></td>
                                 </tr>
+                                <tr><th>Br. telefona:</th><td><input type="text" class="form-control" ng-model="pr.data.customers[pr.data.insCarrierI].phoneNum" /></td></tr>
+                                <tr><th>E-mail:</th><td><input type="text" class="form-control" ng-model="pr.data.customers[pr.data.insCarrierI].email" /></td></tr>
                             </table>
                         </div>
 
                         <div ng-show="pr.insuranceCarrierIsNotInsured">
                             <h4>Unesite podatke o nosiocu osiguranja</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>Ime:</th><td><input type="text" class="form-control big-input" /></td></tr>
-                                <tr><th>Prezime:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>JMBG:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><th>Ime:</th><td><input type="text" class="form-control big-input" ng-model="pr.data.insCarrierNI.name"/></td></tr>
+                                <tr><th>Prezime:</th><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.surname"/></td></tr>
+                                <tr><th>JMBG:</th><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.jmbg"/></td></tr>
                                 <tr class="align-row-top"><th colspan="2">Adresa</th></tr>
-                                <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" /></td></tr>
-                                <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" /></td></tr>
-                                <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>Br. telefona:</th><td><input type="text" class="form-control" /></td></tr>
-                                <tr><th>E-mail:</th><td><input type="text" class="form-control" /></td></tr>
+                                <tr><td class="align-cell-right">Ulica:</td><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.address.street"/></td></tr>
+                                <tr><td class="align-cell-right">Broj:</td><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.address.number"/></td></tr>
+                                <tr><td class="align-cell-right">Naselje:</td><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.address.city"/></td></tr>
+                                <tr><th>Br. telefona:</th><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.phoneNum"/></td></tr>
+                                <tr><th>E-mail:</th><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.email"/></td></tr>
                             </table>
                         </div>
 
                         <hr />
                         <div class="my-form-buttons">
                             <div class="my-button-navigation" ng-click="pr.selectedProcessPanel = [false, false, false, true, false]; cr.scroll()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; Nazad</div>
-                            <div class="my-button-navigation"><a ui-sref="core.preview">Završi</a></div>
+                            <div class="my-button-navigation"><a ng-click="pr.finishProcess()">Završi</a></div>
                         </div>
                     </form>
                 </div>
