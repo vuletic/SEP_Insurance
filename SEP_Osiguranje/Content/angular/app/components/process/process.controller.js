@@ -224,6 +224,30 @@
         dataAccessService.getInsuranceAmounts().then(function (response) {
             pr.insuranceAmounts = response;
         });
+
+        dataAccessService.getRealEstateAges().then(function (response) {
+            pr.realEstateAges = response;
+        });
+
+        dataAccessService.getRealEstateValues().then(function (response) {
+            pr.realEstateValues = response;
+        });
+
+        dataAccessService.getTowingDistances().then(function (response) {
+            pr.towingDistances = response;
+        });
+
+        dataAccessService.getAlternateTransportationDistances().then(function (response) {
+            pr.alternateTransportationDistances = response;
+        });
+
+        dataAccessService.getReparationPrices().then(function (response) {
+            pr.reparationPrices = response;
+        });
+
+        dataAccessService.getHotelDays().then(function (response) {
+            pr.hotelDays = response;
+        });
         
     }
 
