@@ -17,6 +17,7 @@ namespace SEP_Osiguranje.Controllers
 
         public async Task<HttpResponseMessage> Post(ProcessData data)
         {
+
             HttpResponseMessage response = await client.GetAsync("http://sepruleapi.azurewebsites.net/rules");
             if (response.IsSuccessStatusCode)
             {
