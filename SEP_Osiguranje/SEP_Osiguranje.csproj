@@ -148,7 +148,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\FinalizeController.cs" />
     <Compile Include="Models\DTO\CustomersData.cs" />
+    <Compile Include="Models\DTO\ObjectData.cs" />
     <Compile Include="Models\DTO\ProcessData.cs" />
+    <Compile Include="Models\DTO\VehicleData.cs" />
     <Compile Include="Models\Jezik.cs">
       <DependentUpon>SEP_Model.tt</DependentUpon>
     </Compile>

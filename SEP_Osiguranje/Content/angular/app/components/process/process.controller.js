@@ -121,7 +121,7 @@
                     tempCustomer.osoba.Nosilac_Osoba = false;
                 }
 
-                tempCustomer.category = currCustomer.category;
+                tempCustomer.ageGroup = currCustomer.ageGroup;
 
                 dto.customers.push(tempCustomer);
                 
@@ -142,7 +142,7 @@
                 tempCustomer.osoba.Broj_telefona_Osoba = pr.data.insCarrierNI.phoneNum;
                 tempCustomer.osoba.E_mail_Osoba = pr.data.insCarrierNI.email;
 
-                tempCustomer.category = -1;
+                tempCustomer.ageGroup = -1;
                 dto.customers.push(tempCustomer);
 
             }
@@ -150,34 +150,74 @@
 
             //Rizici?
             if (pr.data.object != null && pr.data.object != undefined) {
-                dto.obj = {};
+                dto.objectData = {};
+                dto.objectData.obj = {};
 
-                dto.obj.Id_Osigurani_entitet = -1;
-                dto.obj.JMBG_vlasnik_Nekretnina = pr.data.object.owner.jmbg;
-                dto.obj.Adresa_Nekretnina = pr.data.object.address.street + " " + pr.data.object.address.number + ", " + pr.data.object.address.city;
-                dto.obj.Ime_vlasnik_Nekretnina = pr.data.object.owner.name;
-                dto.obj.Prezime_vlasnik_Nekretnina = pr.data.object.owner.surname;
-                dto.obj.Povrsina_Nekretnina = pr.data.object.area;
-                dto.obj.Starost_Nekretnina = pr.data.object.age;
-                dto.obj.Procenjena_vrednost_Nekretnina = pr.data.object.value;
+                dto.objectData.obj.Id_Osigurani_entitet = -1;
+                dto.objectData.obj.JMBG_vlasnik_Nekretnina = pr.data.object.owner.jmbg;
+                dto.objectData.obj.Adresa_Nekretnina = pr.data.object.address.street + " " + pr.data.object.address.number + ", " + pr.data.object.address.city;
+                dto.objectData.obj.Ime_vlasnik_Nekretnina = pr.data.object.owner.name;
+                dto.objectData.obj.Prezime_vlasnik_Nekretnina = pr.data.object.owner.surname;
+                dto.objectData.obj.Povrsina_Nekretnina = pr.data.residenceSize;
+                dto.objectData.obj.Starost_Nekretnina = pr.data.selectedRealEstateAge;
+                dto.objectData.obj.Procenjena_vrednost_Nekretnina = pr.data.selectedRealEstateValue;
+
+                if (pr.data.residenceFromFlood) {
+                    dto.objectData.flood = true;
+                } else
+                    dto.objectData.flood = false;
+
+                if (pr.data.residenceFromFire) {
+                    dto.objectData.fire = true;
+                } else
+                    dto.objectData.fire = false;
+
+                if (pr.data.residenceFromTheft) {
+                    dto.objectData.theft = true;
+                } else
+                    dto.objectData.theft = false;
+
+
 
             } else {
-                dto.obj = null;
+                dto.objectData = null;
             }
 
             //Rizici?
             if (pr.data.vehicle != null && pr.data.vehicle != undefined) {
-                dto.vehicle = {};
+                dto.vehicleData = {};
+                dto.vehicleData.vehicle = {};
 
-                dto.vehicle.Id_Osigurani_entitet = -1;
-                dto.vehicle.JMBG_Vlasnik_Vozilo = pr.data.vehicle.customer.jmbg;
-                dto.vehicle.Ime_Vlasnik_Vozilo = pr.data.vehicle.customer.name;
-                dto.vehicle.Prezime_Vlasnik_Vozilo = pr.data.vehicle.customer.surname;
-                dto.vehicle.Broj_sasije_Vozilo = pr.data.vehicle.chassisNumber;
-                dto.vehicle.Broj_registarske_tablice_Vozilo = pr.data.vehicle.registrationNumber;
-                dto.vehicle.Godina_proizvodnje_Vozilo = pr.data.vehicle.productionYear;
+                dto.vehicleData.vehicle.Id_Osigurani_entitet = -1;
+                dto.vehicleData.vehicle.JMBG_Vlasnik_Vozilo = pr.data.vehicle.customer.jmbg;
+                dto.vehicleData.vehicle.Ime_Vlasnik_Vozilo = pr.data.vehicle.customer.name;
+                dto.vehicleData.vehicle.Prezime_Vlasnik_Vozilo = pr.data.vehicle.customer.surname;
+                dto.vehicleData.vehicle.Broj_sasije_Vozilo = pr.data.vehicle.chassisNumber;
+                dto.vehicleData.vehicle.Broj_registarske_tablice_Vozilo = pr.data.vehicle.registrationNumber;
+                dto.vehicleData.vehicle.Godina_proizvodnje_Vozilo = pr.data.vehicle.productionYear;
+
+                if (pr.data.vehicle.cover.tow) {
+                    dto.vehicleData.tow = pr.data.selectedTowingDistance;
+                } else
+                    dto.vehicleData.tow = -1;
+
+                if (pr.data.vehicle.cover.repair) {
+                    dto.vehicleData.repair = pr.data.selectedReparationPrice;
+                } else
+                    dto.vehicleData.repair = -1;
+
+                if (pr.data.vehicle.cover.accom) {
+                    dto.vehicleData.accom = pr.data.selectedHotelDays;
+                } else
+                    dto.vehicleData.accom = -1;
+
+                if (pr.data.vehicle.cover.ride) {
+                    dto.vehicleData.ride = pr.data.selectedAlternateTransportationDistance;
+                } else
+                    dto.vehicleData.ride = -1;
+                
             } else {
-                dto.vehicle = null;
+                dto.vehicleData = null;
             }
 
 

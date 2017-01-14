@@ -9,7 +9,7 @@ namespace SEP_Osiguranje.Models.DTO
     {
 
         public Osoba osoba { get; set; }
-        public decimal category { get; set; }
+        public decimal ageGroup { get; set; }
 
     }
 }

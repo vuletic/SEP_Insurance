@@ -9,8 +9,8 @@ namespace SEP_Osiguranje.Models.DTO
     {
 
         public List<CustomersData> customers { get; set; }
-        public Vozilo vehicle { get; set; }
-        public Nekretnina obj { get; set; }
+        public VehicleData vehicleData { get; set; }
+        public ObjectData objectData { get; set; }
 
 
         public DateTime dateFrom { get; set; }
