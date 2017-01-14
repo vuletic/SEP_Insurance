@@ -36,11 +36,59 @@
             });
         }
 
+        function getRealEstateAges() {
+            var resUrl = "api/rizik/vrsta/7";
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function getRealEstateValues() {
+            var resUrl = "api/rizik/vrsta/12";
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function getTowingDistances() {
+            var resUrl = "api/rizik/vrsta/13";
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function getReparationPrices() {
+            var resUrl = "api/rizik/vrsta/14";
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function getAlternateTransportationDistances() {
+            var resUrl = "api/rizik/vrsta/15";
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function getHotelDays() {
+            var resUrl = "api/rizik/vrsta/16";
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
         return {
             getSports: getSports,
             getAgeGroups: getAgeGroups,
             getLocations: getLocations,
-            getInsuranceAmounts: getInsuranceAmounts
+            getInsuranceAmounts: getInsuranceAmounts,
+            getRealEstateAges: getRealEstateAges,
+            getRealEstateValues: getRealEstateValues,
+            getTowingDistances: getTowingDistances,
+            getReparationPrices: getReparationPrices,
+            getAlternateTransportationDistances: getAlternateTransportationDistances,
+            getHotelDays: getHotelDays
         };
 
 

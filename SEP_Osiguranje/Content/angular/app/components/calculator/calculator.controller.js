@@ -11,7 +11,11 @@
 
         cc.data = {};
 
-        cc.calculatedPrice = 956000;
+        cc.calculatedPrice = 0;
+
+        cc.data.ageNumberYoung = 0;
+        cc.data.ageNumberAdult = 0;
+        cc.data.ageNumberOld = 0;
         cc.showInsurance = true;
         cc.showObject = false;
         cc.showVehicle = false;
@@ -35,6 +39,31 @@
         dataAccessService.getInsuranceAmounts().then(function (response) {
             cc.insuranceAmounts = response;
         });
+
+        dataAccessService.getRealEstateAges().then(function (response) {
+            cc.realEstateAges = response;
+        });
+
+        dataAccessService.getRealEstateValues().then(function (response) {
+            cc.realEstateValues = response;
+        });
+
+        dataAccessService.getTowingDistances().then(function (response) {
+            cc.towingDistances = response;
+        });
+
+        dataAccessService.getAlternateTransportationDistances().then(function (response) {
+            cc.alternateTransportationDistances = response;
+        });
+
+        dataAccessService.getReparationPrices().then(function (response) {
+            cc.reparationPrices = response;
+        });
+
+        dataAccessService.getHotelDays().then(function (response) {
+            cc.hotelDays = response;
+        });
+
 
         cc.calculate = function () {
             calculatorService.sendCalculateData(cc.data).then(function (response) {

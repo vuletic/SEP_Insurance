@@ -113,7 +113,8 @@
                                     <th>Površina objekta:</th>
                                     <td>
                                         <div class="input-group standard-input">
-                                            <input type="text" class="form-control" ng-model="pr.data.object.area"/>
+                                            <input type="text" class="form-control" ng-model="pr.data.residenceSize" />
+
                                             <span class="input-group-addon">m2</span>
                                         </div>
                                     </td>
@@ -122,8 +123,8 @@
                                     <th>Starost objekta:</th>
                                     <td>
                                         <div class="input-group standard-input">
-                                            <input type="text" class="form-control" ng-model="pr.data.object.age"/>
-                                            <span class="input-group-addon">god</span>
+                                            <select class="form-control" ng-options="realEstateAge.Id_Rizik as realEstateAge.Prevod[cr.lang].Naziv_Prevod for realEstateAge in pr.realEstateAges" ng-model="pr.data.selectedRealEstateAge"></select>
+                                        
                                         </div>
                                     </td>
                                 </tr>
@@ -131,8 +132,7 @@
                                     <th>Vrednost objekta:</th>
                                     <td>
                                         <div class="input-group standard-input">
-                                            <input type="text" class="form-control" ng-model="pr.data.object.value"/>
-                                            <span class="input-group-addon">EUR</span>
+                                            <select class="form-control" ng-options="realEstateValue.Id_Rizik as realEstateValue.Prevod[cr.lang].Naziv_Prevod for realEstateValue in pr.realEstateValues" ng-model="pr.data.selectedRealEstateValue"></select>
                                         </div>
                                     </td>
                                 </tr>
@@ -143,11 +143,10 @@
                                     <td colspan="2">
                                         <table>
                                             <tr>
-                                                <td><input type="checkbox" ng-model="pr.data.object.protection.flood"> Poplave</input></td>
-                                                <td> &nbsp;&nbsp;&nbsp; </td>
-                                                <td><input type="checkbox" ng-model="pr.data.object.protection.fire"> Požara</input></td>
-                                                <td> &nbsp;&nbsp;&nbsp; </td>
-                                                <td><input type="checkbox" ng-model="pr.data.object.protection.theft"> Krađe</input></td>
+                                                <td><input type="checkbox" ng-model="pr.data.residenceFromFlood"> Poplave &nbsp;&nbsp;&nbsp;</input></td>
+                                                <td><input type="checkbox" ng-model="pr.data.residenceFromFire"> Požara &nbsp;&nbsp;&nbsp;</input></td>
+                                                <td><input type="checkbox" ng-model="pr.data.residenceFromTheft"> Krađe &nbsp;&nbsp;&nbsp;</input></td>
+                                                <td> &nbsp; </td>
                                             </tr>
                                         </table>
                                     </td>
@@ -187,10 +186,10 @@
                             <h4>Podaci osiguranju "Pomoć na putu"</h4>         
                             <table class="my-form-fields-table">
                                 <tr><th colspan="3">Paket osiguranja pokriva:</th></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.tow"/></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.repair"/></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.accom"/></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control small-input" /></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.ride"/></td><td class="align-cell-left">Alternativni prevoz</td><td><select class="form-control small-input" /></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.tow"/></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in pr.towingDistances" ng-model="pr.data.selectedTowingDistance"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.repair"/></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in pr.reparationPrices" ng-model="pr.data.selectedReparationPrice"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.accom"/></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in pr.hotelDays" ng-model="pr.data.selectedHotelDays"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.ride"/></td><td class="align-cell-left">Alternativni prevoz</td><td><select class="form-control" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in pr.alternateTransportationDistances" ng-model="pr.data.selectedAlternateTransportationDistance"></select></tr>
                             </table>
 
                             <h4>&nbsp; Podaci o vozilu</h4>

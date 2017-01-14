@@ -9,7 +9,7 @@
     function calculatorService($http) {
 
         function sendCalculateData(data) {
-            var resUrl = 'http://localhost:8080/rules';
+            var resUrl = 'http://localhost:8080/calculator';
             return $http.post(resUrl, data)
             .then(function (response) {
                 return response.data;
