@@ -40,7 +40,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="3">Korisnici osiguranja ce se baviti sportom:</th>
-                                    <td><input type="radio" name="os6"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" checked="true"> Ne</input>&nbsp;&nbsp;</td>
+                                    <td><input type="radio" name="os6" ng-model="cc.data.sport" ng-value="true"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" ng-model="cc.data.sport" checked="true" ng-value="false"> Ne</input>&nbsp;&nbsp;</td>
                                     <td colspan="2"><select class="form-control standard-input" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in cc.sports" ng-model="cc.data.selectedSport"></select></td>
                                 </tr>
                             </table>
@@ -76,7 +76,7 @@
                         <td>
                             <div class="input-group standard-input">
                                 <select class="form-control" ng-options="realEstateValue.Id_Rizik as realEstateValue.Prevod[cr.lang].Naziv_Prevod for realEstateValue in cc.realEstateValues" ng-model="cc.data.selectedRealEstateValue"></select>
-                               
+                                
                             </div>
                         </td>
                     </tr>        
@@ -107,20 +107,20 @@
                     </tr>
                     <tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" ng-model="cc.data.towing"/></td>
                         <td>Šlep služba, do kilometraže:</td>
                         <td><select class="form-control" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in cc.towingDistances" ng-model="cc.data.selectedTowingDistance"></select></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" ng-model="cc.data.repair"/></td>
                         <td>Popravka vozila, do iznosa:</td>
                         <td><select class="form-control" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in cc.reparationPrices" ng-model="cc.data.selectedReparationPrice"></select></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" ng-model="cc.data.hotel"/></td>
                         <td>Smeštaj u hotelu, do broja dana:</td>
                         <td><select class="form-control" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in cc.hotelDays" ng-model="cc.data.selectedHotelDays"></select></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" ng-model="cc.data.alternateTransport"/></td>
                         <td>Alternativni prevoz</td>
                         <td><select class="form-control" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in cc.alternateTransportationDistances" ng-model="cc.data.selectedAlternateTransportationDistance"></select></td>
                     </tr>

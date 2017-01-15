@@ -54,7 +54,7 @@
                         <table class="my-form-fields-table">
                             <tr>
                                 <th>Korisnici osiguranja ce se baviti sportom:</th>
-                                <td><input type="radio" name="os"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" checked="true"> Ne</input>&nbsp;&nbsp;</td>
+                                <td><input type="radio" name="os" ng-model="pr.data.sport" ng-value="true"> Da</input>&nbsp;&nbsp; <input type="radio" name="os" ng-model="pr.data.sport" ng-value="false" checked="true"> Ne</input>&nbsp;&nbsp;</td>
                                 <td class="colpicksport"><select class="form-control" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in pr.sports" ng-model="pr.data.selectedSport"></select></td>
                             </tr>
                         </table>
@@ -102,8 +102,8 @@
                 <div class="form-holder">
                     <h3 class="margin-bottom">
                         Da li želite osiguranje objekta?<br /><br />
-                        <input type="radio" name="objectInsurance" ng-model="pr.hideObjectInsurance" ng-value="true"> Da</input>&nbsp;&nbsp;&nbsp;
-                        <input type="radio" name="objectInsurance" ng-model="pr.hideObjectInsurance" ng-value="false" ng-checked="true"> Ne</input>
+                        <input type="radio" name="objectInsurance" ng-model="pr.hideObjectInsurance" ng-value="true" ng-checked="pr.hideObjectInsurance"> Da</input>&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="objectInsurance" ng-model="pr.hideObjectInsurance" ng-value="false" ng-checked="!pr.hideObjectInsurance"> Ne</input>
                     </h3>
                     <form>
                         <div class="my-form-fields slide-up-animation-object-proccess" ng-show="pr.hideObjectInsurance">
@@ -180,16 +180,16 @@
                         <h3 class="margin-bottom">
                             Da li želite osiguranje "Pomoć na putu"?<br /><br />
                             <input type="radio" name="vehicleInsurance" ng-model="pr.hideVehicleInsurance" ng-value="true"> Da</input>&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="vehicleInsurance" ng-model="pr.hideVehicleInsurance" ng-value="false" ng-checked="true"> Ne</input>
+                            <input type="radio" name="vehicleInsurance" ng-model="pr.hideVehicleInsurance" ng-value="false"> Ne</input>
                         </h3>
                         <div class="my-form-fields slide-up-animation-vehicle-proccess" ng-show="pr.hideVehicleInsurance">
                             <h4>Podaci osiguranju "Pomoć na putu"</h4>         
                             <table class="my-form-fields-table">
                                 <tr><th colspan="3">Paket osiguranja pokriva:</th></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.tow"/></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in pr.towingDistances" ng-model="pr.data.selectedTowingDistance"></select></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.repair"/></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in pr.reparationPrices" ng-model="pr.data.selectedReparationPrice"></select></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.accom"/></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in pr.hotelDays" ng-model="pr.data.selectedHotelDays"></select></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.vehicle.cover.ride"/></td><td class="align-cell-left">Alternativni prevoz</td><td><select class="form-control" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in pr.alternateTransportationDistances" ng-model="pr.data.selectedAlternateTransportationDistance"></select></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.towing"/></td><td class="align-cell-left">Šlep služba, do kilometraže:</td><td><select class="form-control" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in pr.towingDistances" ng-model="pr.data.selectedTowingDistance"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.repair"/></td><td class="align-cell-left">Popravka vozila, do iznosa:</td><td><select class="form-control" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in pr.reparationPrices" ng-model="pr.data.selectedReparationPrice"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.hotel"/></td><td class="align-cell-left">Smeštaj u hotelu, do broja dana:</td><td><select class="form-control" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in pr.hotelDays" ng-model="pr.data.selectedHotelDays"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.alternateTransport"/></td><td class="align-cell-left">Alternativni prevoz</td><td><select class="form-control" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in pr.alternateTransportationDistances" ng-model="pr.data.selectedAlternateTransportationDistance"></select></tr>
                             </table>
 
                             <h4>&nbsp; Podaci o vozilu</h4>

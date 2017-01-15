@@ -10,10 +10,26 @@
         
         var pr = this;
 
+        pr.data = {};
+
+        pr.hideObjectInsurance = false;
+        pr.hideVehicleInsurance = false;
+
+        pr.data.ageNumberYoung = 0;
+        pr.data.ageNumberAdult = 0;
+        pr.data.ageNumberOld = 0;
+        pr.data.towing = false;
+        pr.alternateTransport = false;
+        pr.data.hotel = false;
+        pr.data.repair = false;
+        pr.data.sport = false;
+
         
-        if ($stateParams.data != null)
+        if ($stateParams.data != null) {
             pr.data = $stateParams.data;
-        else
+            pr.hideObjectInsurance = pr.data.realEstateInsured;
+            pr.hideVehicleInsurance = pr.data.carInsured;
+        } else
             pr.data = {};
 
         pr.data.customers = [];
@@ -79,8 +95,7 @@
 
         pr.selectedProcessPanel = [true, false, false, false, false];
         pr.showUserDetails = true;
-        pr.hideObjectInsurance = false;
-        pr.hideVehicleInsurance = false;
+        
 
         pr.insuranceCarrierIsNotInsured = false;
 

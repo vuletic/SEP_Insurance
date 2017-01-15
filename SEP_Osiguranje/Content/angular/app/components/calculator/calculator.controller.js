@@ -19,6 +19,11 @@
         cc.showInsurance = true;
         cc.showObject = false;
         cc.showVehicle = false;
+        cc.data.towing = false;
+        cc.alternateTransport = false;
+        cc.data.hotel = false;
+        cc.data.repair = false;
+        cc.data.sport = false;
 
         cc.enableObject = false;
         cc.enableVehicle = false;
@@ -66,12 +71,16 @@
 
 
         cc.calculate = function () {
+            cc.data.realEstateInsured = cc.enableObject;
+            cc.data.carInsured = cc.enableVehicle;
             calculatorService.sendCalculateData(cc.data).then(function (response) {
                 cc.calculatedPrice = response;
             });
         }
 
         cc.proceedToProcess = function () {
+            cc.data.realEstateInsured = cc.enableObject;
+            cc.data.carInsured = cc.enableVehicle;
             $state.go('core.process', { data: cc.data });
         }
     }
