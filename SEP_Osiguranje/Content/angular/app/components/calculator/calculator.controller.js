@@ -20,7 +20,7 @@
         cc.showObject = false;
         cc.showVehicle = false;
         cc.data.towing = false;
-        cc.alternateTransport = false;
+        cc.data.alternateTransport = false;
         cc.data.hotel = false;
         cc.data.repair = false;
         cc.data.sport = false;
