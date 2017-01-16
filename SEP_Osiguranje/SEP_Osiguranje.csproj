@@ -59,9 +59,6 @@
       <HintPath>..\packages\PayPalCoreSDK.1.7.0\lib\net45\PayPalCoreSDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RuleEngine">
-      <HintPath>..\packages\SimpleRuleEngine.1.0.4.1\lib\net40\RuleEngine.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
