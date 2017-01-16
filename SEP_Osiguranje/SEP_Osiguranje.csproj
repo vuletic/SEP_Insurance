@@ -647,6 +647,10 @@
     <Content Include="Content\angular\assets\components\jquery\external\sizzle\dist\sizzle.min.map" />
     <Content Include="Content\angular\assets\components\jquery\README.md" />
     <Content Include="Content\angular\assets\components\jquery\src\.eslintrc.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\SEPOsiguranje - Web Deploy.pubxml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -667,9 +671,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
