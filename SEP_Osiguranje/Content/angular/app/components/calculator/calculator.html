@@ -2,30 +2,30 @@
     <div class="overview-content-holder">
     
         <div class="overview-panel">
-            <h2 class="header-center">Kalkulator Osiguranja</h2>
+            <h2 class="header-center">{{cr.l10nObj.clcPgHead}}</h2>
             <hr />
             
-            <expander-simple show-expander="cc.showInsurance">Osiguranje</expander-simple>
+            <expander-simple show-expander="cc.showInsurance">>{{cr.l10nObj.clcPgTIHead}}</expander-simple>
             
             <div class="overview-segment slide-up-animation-insurance" ng-show="cc.showInsurance">
                 <table class="my-form-fields-table">
                     <tr>
-                        <th>Mesto putovanja:</th>
+                        <th>{{cr.l10nObj.clcPgTIPlace}}</th>
                         <td><select class="form-control" ng-options="location.Id_Rizik as location.Prevod[cr.lang].Naziv_Prevod for location in cc.locations" ng-model="cc.data.selectedLocation"></select></td>
-                        <th> &nbsp;&nbsp; Visina rizika:</th>
+                        <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgTIToSum}}</th>
                         <td><select class="form-control" ng-options="insuranceAmount.Id_Rizik as insuranceAmount.Prevod[cr.lang].Naziv_Prevod for insuranceAmount in cc.insuranceAmounts" ng-model="cc.data.selectedInsuranceAmount"></select></td>
                     </tr>
                     <tr>
-                        <th>Početak važenja:</th>
+                        <th>{{cr.l10nObj.clcPgTIStartDate}}</th>
                         <td><input type="date" class="form-control" ng-model="cc.data.dateFrom"/></td>
-                        <th> &nbsp;&nbsp; Kraj važenja:</th>
+                        <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgTIEndDate}}</th>
                         <td><input type="date" class="form-control" ng-model="cc.data.dateTo"/></td>
                     </tr>
                     <tr>
                         <th>&nbsp;</th>
                     </tr>
                     <tr class="align-row-top">
-                        <th colspan="4">Podaci o osiguranicima:</th>
+                        <th colspan="4">{{cr.l10nObj.clcPgTIPersonsData}}</th>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -39,8 +39,8 @@
                                     <td><input type="number" class="form-control small-input" min="0" ng-model="cc.data.ageNumberOld"/></td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3">Korisnici osiguranja ce se baviti sportom:</th>
-                                    <td><input type="radio" name="os6" ng-model="cc.data.sport" ng-value="true"> Da</input>&nbsp;&nbsp; <input type="radio" name="os6" ng-model="cc.data.sport" checked="true" ng-value="false"> Ne</input>&nbsp;&nbsp;</td>
+                                    <th colspan="3">{{cr.l10nObj.clcPgTISport}}</th>
+                                    <td><input type="radio" name="os6" ng-model="cc.data.sport" ng-value="true">{{cr.l10nObj.Y}}</input>&nbsp;&nbsp; <input type="radio" name="os6" ng-model="cc.data.sport" checked="true" ng-value="false">{{cr.l10nObj.N}}</input>&nbsp;&nbsp;</td>
                                     <td colspan="2"><select class="form-control standard-input" ng-options="sport.Id_Rizik as sport.Prevod[cr.lang].Naziv_Prevod for sport in cc.sports" ng-model="cc.data.selectedSport"></select></td>
                                 </tr>
                             </table>
@@ -51,19 +51,19 @@
             
             <hr class="hr-grey" />
 
-            <expander-advanced enable-expander="cc.enableObject" show-expander="cc.showObject">Osiguranje Objekta</expander-advanced>
+            <expander-advanced enable-expander="cc.enableObject" show-expander="cc.showObject">{{cr.l10nObj.clcPgOIHead}}</expander-advanced>
             
             <div class="overview-segment slide-up-animation-object" ng-show="cc.showObject">
                 <table class="my-form-fields-table">
                     <tr>
-                        <th>Površina objekta:</th>
+                        <th>{{cr.l10nObj.clcPgOIArea}}</th>
                         <td>
                             <div class="input-group standard-input">
                                 <input type="text" class="form-control" ng-model="cc.data.residenceSize"/>
                                 <span class="input-group-addon">m2</span>
                             </div>
                         </td>
-                        <th> &nbsp;&nbsp; Starost objekta:</th>
+                        <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgOIAge}}</th>
                         <td>
                             <div class="input-group standard-input">
                                 <select class="form-control" ng-options="realEstateAge.Id_Rizik as realEstateAge.Prevod[cr.lang].Naziv_Prevod for realEstateAge in cc.realEstateAges" ng-model="cc.data.selectedRealEstateAge"></select>
@@ -72,7 +72,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Vrednost objekta:</th>
+                        <th>{{cr.l10nObj.clcPgOIValue}}</th>
                         <td>
                             <div class="input-group standard-input">
                                 <select class="form-control" ng-options="realEstateValue.Id_Rizik as realEstateValue.Prevod[cr.lang].Naziv_Prevod for realEstateValue in cc.realEstateValues" ng-model="cc.data.selectedRealEstateValue"></select>
@@ -81,14 +81,14 @@
                         </td>
                     </tr>        
                     <tr class="align-row-top">
-                        <th colspan="4">Osiguranje vazi u slucajevima kada je steta nastala kao posledica:</th>
+                        <th colspan="4">{{cr.l10nObj.clcPgOICases}}</th>
                     </tr>
                     <tr><td colspan="4">
                         <table>
                             <tr>
-                                <td><input type="checkbox" ng-model="cc.data.residenceFromFlood"> Poplave &nbsp;&nbsp;&nbsp;</input></td>
-                                <td><input type="checkbox" ng-model="cc.data.residenceFromFire"> Požara &nbsp;&nbsp;&nbsp;</input></td>
-                                <td><input type="checkbox" ng-model="cc.data.residenceFromTheft"> Krađe &nbsp;&nbsp;&nbsp;</input></td>
+                                <td><input type="checkbox" ng-model="cc.data.residenceFromFlood"> {{cr.l10nObj.clcPgOIFlood}} &nbsp;&nbsp;&nbsp;</input></td>
+                                <td><input type="checkbox" ng-model="cc.data.residenceFromFire"> {{cr.l10nObj.clcPgOIFire}} &nbsp;&nbsp;&nbsp;</input></td>
+                                <td><input type="checkbox" ng-model="cc.data.residenceFromTheft"> {{cr.l10nObj.clcPgOITheft}} &nbsp;&nbsp;&nbsp;</input></td>
                                 <td> &nbsp; </td>
                             </tr>
                         </table>
@@ -98,30 +98,30 @@
 
             <hr class="hr-grey" />
 
-            <expander-advanced enable-expander="cc.enableVehicle" show-expander="cc.showVehicle">Osiguranje "Pomoc na Putu"</expander-advanced>
+            <expander-advanced enable-expander="cc.enableVehicle" show-expander="cc.showVehicle">{{cr.l10nObj.clcPgCIHead}}</expander-advanced>
 
             <div class="overview-segment slide-up-animation-vehicle" ng-show="cc.showVehicle">
                 <table class="my-form-fields-table">
                     <tr>
-                        <th colspan="7">Paket pokriva:</th>
+                        <th colspan="7">{{cr.l10nObj.clcPgCICoverage}}</th>
                     </tr>
                     <tr>
                     <tr>
                         <td><input type="checkbox" ng-model="cc.data.towing"/></td>
-                        <td>Šlep služba, do kilometraže:</td>
+                        <td>{{cr.l10nObj.clcPgCITowing}}</td>
                         <td><select class="form-control" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in cc.towingDistances" ng-model="cc.data.selectedTowingDistance"></select></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                         <td><input type="checkbox" ng-model="cc.data.repair"/></td>
-                        <td>Popravka vozila, do iznosa:</td>
+                        <td>{{cr.l10nObj.clcPgCIRepair}}</td>
                         <td><select class="form-control" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in cc.reparationPrices" ng-model="cc.data.selectedReparationPrice"></select></td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" ng-model="cc.data.hotel"/></td>
-                        <td>Smeštaj u hotelu, do broja dana:</td>
+                        <td>{{cr.l10nObj.clcPgCIAcc}}</td>
                         <td><select class="form-control" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in cc.hotelDays" ng-model="cc.data.selectedHotelDays"></select></td>
                         <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                         <td><input type="checkbox" ng-model="cc.data.alternateTransport"/></td>
-                        <td>Alternativni prevoz</td>
+                        <td>{{cr.l10nObj.clcPgCIAltTrans}}</td>
                         <td><select class="form-control" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in cc.alternateTransportationDistances" ng-model="cc.data.selectedAlternateTransportationDistance"></select></td>
                     </tr>
                 </tr>
@@ -131,7 +131,7 @@
 
             <div class="calculator-final-price">
                 <hr class="hr-grey" />
-                <h3 class="header-right header-red">Cena osiguranja: {{cc.calculatedPrice | number : 2}} RSD</h3>
+                <h3 class="header-right header-red">{{cr.l10nObj.clcPgCalcPr}} {{cc.calculatedPrice | number : 2}} RSD</h3>
             </div>
 
             <hr />
@@ -139,9 +139,9 @@
             <div>
                 <table class="my-overview-buttons">
                     <tr>
-                        <td class="my-button-overview-single" ng-click="cc.calculate()"><div>Izracunaj cenu</div></td>
+                        <td class="my-button-overview-single" ng-click="cc.calculate()"><div>{{cr.l10nObj.clcPgCalculate}}</div></td>
                         <th>&nbsp;</th>
-                        <td class="my-button-overview-single"><a ng-click="cc.proceedToProcess()"><div>Produzi ka kupovini &nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div></a></td>
+                        <td class="my-button-overview-single"><a ng-click="cc.proceedToProcess()"><div>{{cr.l10nObj.clcPgProceedToP}} &nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div></a></td>
                     </tr>
                 </table>
             </div>
