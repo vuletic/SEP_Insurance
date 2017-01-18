@@ -1,4 +1,5 @@
 ﻿using SEP_Osiguranje.Models.DTO;
+using SEP_Osiguranje.Models.DTO.Output;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace SEP_Osiguranje.Controllers
 
         static HttpClient client = new HttpClient();
 
-        public async Task<HttpResponseMessage> Post(ProcessData data)
+        public async Task<HttpResponseMessage> Post(ProcessData processData)
         {
 
             HttpResponseMessage response = await client.GetAsync("http://sepruleapi.azurewebsites.net/rules");
@@ -24,6 +25,8 @@ namespace SEP_Osiguranje.Controllers
                 String a = await response.Content.ReadAsStringAsync();
 
             }
+
+            Data data = new Data(processData);
 
             HttpResponseMessage res = new HttpResponseMessage();
             res.Content = new StringContent("<h1>BemTiSvjet</h1>");

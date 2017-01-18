@@ -144,10 +144,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\FinalizeController.cs" />
-    <Compile Include="Models\DTO\CustomersData.cs" />
-    <Compile Include="Models\DTO\ObjectData.cs" />
-    <Compile Include="Models\DTO\ProcessData.cs" />
-    <Compile Include="Models\DTO\VehicleData.cs" />
+    <Compile Include="Models\DTO\Input\CustomersData.cs" />
+    <Compile Include="Models\DTO\Input\ObjectData.cs" />
+    <Compile Include="Models\DTO\Input\ProcessData.cs" />
+    <Compile Include="Models\DTO\Input\VehicleData.cs" />
+    <Compile Include="Models\DTO\Output\Data.cs" />
+    <Compile Include="Models\DTO\Output\InsuredCar.cs" />
+    <Compile Include="Models\DTO\Output\InsuredPerson.cs" />
+    <Compile Include="Models\DTO\Output\InsuredRealEstate.cs" />
     <Compile Include="Models\Jezik.cs">
       <DependentUpon>SEP_Model.tt</DependentUpon>
     </Compile>

@@ -212,22 +212,22 @@
                 dto.vehicleData.vehicle.Broj_registarske_tablice_Vozilo = pr.data.vehicle.registrationNumber;
                 dto.vehicleData.vehicle.Godina_proizvodnje_Vozilo = pr.data.vehicle.productionYear;
 
-                if (pr.data.vehicle.cover.tow) {
-                    dto.vehicleData.tow = pr.data.selectedTowingDistance;
+                if (pr.data.towing) {
+                    dto.vehicleData.tow = pr.data.selectedTowingDistance
                 } else
                     dto.vehicleData.tow = -1;
 
-                if (pr.data.vehicle.cover.repair) {
+                if (pr.data.repair) {
                     dto.vehicleData.repair = pr.data.selectedReparationPrice;
                 } else
                     dto.vehicleData.repair = -1;
 
-                if (pr.data.vehicle.cover.accom) {
+                if (pr.data.hotel) {
                     dto.vehicleData.accom = pr.data.selectedHotelDays;
                 } else
                     dto.vehicleData.accom = -1;
 
-                if (pr.data.vehicle.cover.ride) {
+                if (pr.data.alternateTransport) {
                     dto.vehicleData.ride = pr.data.selectedAlternateTransportationDistance;
                 } else
                     dto.vehicleData.ride = -1;
