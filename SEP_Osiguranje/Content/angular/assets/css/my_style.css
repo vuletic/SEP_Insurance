@@ -62,7 +62,7 @@ hr {
 }
 
 .force-header-right{
-	float: right;
+    float: right;
 }
 
 .margin-bottom {
@@ -157,7 +157,7 @@ hr {
 
 .footer-columns {
     margin: 0 auto; 
-	width: 92em;
+	width: 74em;
 }
 
 .footer-column {
@@ -562,13 +562,6 @@ hr {
 	width: 70em;
 }
 
-.home-picker {
-    width: 55em;
-    height: 15em;
-    margin-top: 3em;
-    margin-bottom: 3em;
-}
-
 .home-picker:hover {
     cursor: pointer;
 }
@@ -585,11 +578,12 @@ hr {
 
 .home-picker a {
     color: #666;
+    width: 100%;
 }
 
 .home-img {
     margin: 2em;
-    margin-top: 54em;
+    margin-top: 2em;
     width: 94%;
 }
 
@@ -599,73 +593,55 @@ hr {
     vertical-align: middle;
 }
 
+.home-picker {
+    width: 53%;
+    height: 15em;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    position: absolute;
+    left: 0em;
+}
+
 .picker-border {
     background: rgba(230, 230, 230, 0.5);
     height: 100%;
     padding: 1em;
     border-top: 1px solid #39C;
     border-bottom: 1px solid #39C;
+    width: 70%;
+    border-right: 1px solid #39C;
+    float: left;
 }
 
 .picker-image {
-    width: 16em;
     height: 100%;
+    width: 40%;
+    margin-left: 60%;
+    text-align: right;
+    float: left;
 }
 
 .picker-text {
+    width: 30%;
+    background: rgba(230, 230, 230, 0.75);
+    color: #333 !important;
     height: 100%;
     padding: 1em;
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
-/*#######	LEFT / RIGHT */
-.picker-text-left {
-    margin-left: 40em;
+    margin-left: 70%;
     text-align: left;
-}
-
-.picker-image-left {
-    margin-left: 22em;
-    text-align: right;
-    float: left;
-}
-
-.picker-border-left {
-    border-right: 1px solid #39C;
-    float: left;
-}
-
-.picker-text-right {
-    margin-right: 40em;
-    text-align: right;
-}
-
-.picker-image-right {
-    margin-right: 22em;
-    text-align: left;
-    float: right;
-}
-
-.picker-border-right {
-    border-left: 1px solid #39C;
-    float: right;
 }
 
 .picker-1-position {
-    position: absolute;
-    top: 15em;
-    left: 0em;
+    top: 17em;
 }
 
 .picker-2-position {
-    position: absolute;
-    top: 32em;
-    right: 0em;
+    top: 34em;
 }
 
 .picker-3-position {
-    position: absolute;
-    top: 49em;
-    left: 0em;
+    top: 51em;
 }

@@ -13,7 +13,8 @@
             templateUrl: "../Content/angular/app/directives/expander_advanced/expander-advanced.html",
             scope: {
                 enableExpander: '=',
-                showExpander: '='
+                showExpander: '=',
+                cr: '='
             }
         };
         return expanderAdvancedDirective;

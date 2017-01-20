@@ -5,7 +5,7 @@
             <h2 class="header-center">{{cr.l10nObj.clcPgHead}}</h2>
             <hr />
             
-            <expander-simple show-expander="cc.showInsurance">>{{cr.l10nObj.clcPgTIHead}}</expander-simple>
+            <expander-simple show-expander="cc.showInsurance">{{cr.l10nObj.clcPgTIHead}}</expander-simple>
             
             <div class="overview-segment slide-up-animation-insurance" ng-show="cc.showInsurance">
                 <table class="my-form-fields-table">
@@ -51,7 +51,7 @@
             
             <hr class="hr-grey" />
 
-            <expander-advanced enable-expander="cc.enableObject" show-expander="cc.showObject">{{cr.l10nObj.clcPgOIHead}}</expander-advanced>
+            <expander-advanced enable-expander="cc.enableObject" show-expander="cc.showObject" cr="cr">{{cr.l10nObj.clcPgOIHead}}</expander-advanced>
             
             <div class="overview-segment slide-up-animation-object" ng-show="cc.showObject">
                 <table class="my-form-fields-table">
@@ -98,7 +98,7 @@
 
             <hr class="hr-grey" />
 
-            <expander-advanced enable-expander="cc.enableVehicle" show-expander="cc.showVehicle">{{cr.l10nObj.clcPgCIHead}}</expander-advanced>
+            <expander-advanced enable-expander="cc.enableVehicle" show-expander="cc.showVehicle" cr="cr">{{cr.l10nObj.clcPgCIHead}}</expander-advanced>
 
             <div class="overview-segment slide-up-animation-vehicle" ng-show="cc.showVehicle">
                 <table class="my-form-fields-table">
