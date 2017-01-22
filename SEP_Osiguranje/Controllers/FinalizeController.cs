@@ -1,4 +1,5 @@
-﻿using SEP_Osiguranje.Models.DTO;
+﻿using Newtonsoft.Json;
+using SEP_Osiguranje.Models.DTO;
 using SEP_Osiguranje.Models.DTO.Output;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,15 @@ namespace SEP_Osiguranje.Controllers
         {
             Data data = new Data(processData);
             HttpResponseMessage response = await client.PostAsJsonAsync("http://sepruleapi.azurewebsites.net/policy", data);
-            
+
+            String json = "";
+
             if (response.IsSuccessStatusCode)
             {
-                String a = await response.Content.ReadAsStringAsync();
-
+                json = await response.Content.ReadAsStringAsync();
             }
+
+            data = JsonConvert.DeserializeObject<Data>(json);
 
             HttpResponseMessage res = new HttpResponseMessage();
             res.Content = new StringContent("<h1>sksksk</h1>");

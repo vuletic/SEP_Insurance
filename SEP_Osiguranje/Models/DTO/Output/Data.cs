@@ -73,8 +73,15 @@ namespace SEP_Osiguranje.Models.DTO.Output
         public InsuredRealEstate insuredRealEstate { get; set; }
         public InsuredCar insuredCar { get; set; }
 
+        public double groupDiscount { get; set; }
+        public double packageDiscount { get; set; }
 
-        public Double basePrice { get
+        public Double VATRate { get; set; } 
+        public Double VAT { get { return finalPrice * (VATRate / (1 + VATRate)); } }  
+
+        public double totalPrice
+        {
+            get
             {
                 double priceBase = 0;
                 foreach (InsuredPerson person in insuredPeople)
@@ -91,9 +98,18 @@ namespace SEP_Osiguranje.Models.DTO.Output
                 return priceBase;
             }
         }
-        public Double VAT { get; set; } //Value-added tax!
-        public Double VATTotal { get { return basePrice * VAT; } }  //Value-added tax applied on total price base.
 
-        public double totalPrice { get { return basePrice * VATTotal; } }
+        public double finalPrice //includes discounts
+        {
+            get
+            {
+                return totalPrice - groupDiscount - packageDiscount;
+            }
+        }
+
+        public double priceWithoutVAT
+        {
+            get { return finalPrice - VAT; }
+        }
     }
 }
