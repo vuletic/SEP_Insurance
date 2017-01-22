@@ -18,15 +18,14 @@ namespace SEP_Osiguranje.Controllers
 
         public async Task<HttpResponseMessage> Post(ProcessData processData)
         {
-
-            HttpResponseMessage response = await client.GetAsync("http://sepruleapi.azurewebsites.net/rules");
+            Data data = new Data(processData);
+            HttpResponseMessage response = await client.PostAsJsonAsync("http://sepruleapi.azurewebsites.net/policy", data);
+            
             if (response.IsSuccessStatusCode)
             {
                 String a = await response.Content.ReadAsStringAsync();
 
             }
-
-            Data data = new Data(processData);
 
             HttpResponseMessage res = new HttpResponseMessage();
             res.Content = new StringContent("<h1>sksksk</h1>");
