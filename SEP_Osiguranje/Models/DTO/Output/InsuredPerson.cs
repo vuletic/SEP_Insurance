@@ -17,7 +17,7 @@ namespace SEP_Osiguranje.Models.DTO.Output
         public int id {get; set; }
         public int ageGroup { get; set; }
 
-        public double calculatedPrice { get; set; }
+        public double price { get; set; }
 
     }
 }

@@ -27,7 +27,7 @@ namespace SEP_Osiguranje.Models.DTO.Output
             }
 
             this.selectedLocation = (int) processData.location;
-            this.insuranceAmount = (int) processData.insuranceAmount;
+            this.selectedInsuranceAmount = (int) processData.insuranceAmount;
 
 
             if(processData.vehicleData != null)
@@ -63,7 +63,7 @@ namespace SEP_Osiguranje.Models.DTO.Output
         public int selectedSport;
         public Boolean sport;
 
-        public int insuranceAmount { get; set; }
+        public int selectedInsuranceAmount { get; set; }
 
         public Boolean realEstateInsured;
         public Boolean carInsured { get; set; }
@@ -79,14 +79,14 @@ namespace SEP_Osiguranje.Models.DTO.Output
                 double priceBase = 0;
                 foreach (InsuredPerson person in insuredPeople)
                 {
-                    priceBase += person.calculatedPrice;
+                    priceBase += person.price;
                 }
 
                 if (carInsured)
-                    priceBase += insuredCar.calculatedPrice;
+                    priceBase += insuredCar.price;
 
                 if (realEstateInsured)
-                    priceBase += insuredRealEstate.calculatedPrice;
+                    priceBase += insuredRealEstate.price;
 
                 return priceBase;
             }

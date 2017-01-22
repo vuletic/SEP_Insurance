@@ -27,12 +27,12 @@ namespace SEP_Osiguranje.Models.DTO.Output
             if (vehicleData.repair > -1)
             {
                 this.selectedReparationPrice = (int)vehicleData.repair;
-                this.repair = true;
+                this.repairment = true;
             }
             else
             {
                 this.selectedReparationPrice = 0;
-                this.repair = false;
+                this.repairment = false;
             }
 
             if (vehicleData.tow > -1)
@@ -49,24 +49,24 @@ namespace SEP_Osiguranje.Models.DTO.Output
             if (vehicleData.ride > -1)
             {
                 this.selectedAlternateTransportationDistance = (int)vehicleData.ride;
-                this.alternateTransport = true;
+                this.alternativRide = true;
             }
             else
             {
                 this.selectedAlternateTransportationDistance = 0;
-                this.alternateTransport = false;
+                this.alternativRide = false;
             }
         }
 
-        public Boolean alternateTransport { get; set; }
+        public Boolean alternativRide { get; set; }
         public Boolean hotel { get; set; }
         public Boolean towing { get; set; }
-        public Boolean repair { get; set; }
+        public Boolean repairment { get; set; }
         public int selectedAlternateTransportationDistance { get; set; }
         public int selectedHotelDays { get; set; }
         public int selectedTowingDistance { get; set; }
         public int selectedReparationPrice { get; set; }
 
-        public double calculatedPrice { get; set; }
+        public double price { get; set; }
     }
 }

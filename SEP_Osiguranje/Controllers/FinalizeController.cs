@@ -29,7 +29,7 @@ namespace SEP_Osiguranje.Controllers
             Data data = new Data(processData);
 
             HttpResponseMessage res = new HttpResponseMessage();
-            res.Content = new StringContent("<h1>BemTiSvjet</h1>");
+            res.Content = new StringContent("<h1>sksksk</h1>");
             res.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return res;
         }

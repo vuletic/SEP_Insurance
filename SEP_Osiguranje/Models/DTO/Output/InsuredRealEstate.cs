@@ -16,7 +16,7 @@ namespace SEP_Osiguranje.Models.DTO.Output
 
             this.area = (double) objectData.obj.Povrsina_Nekretnina;
             this.selectedRealEstateAge = (int) objectData.obj.Starost_Nekretnina;
-            this.selectedRealEstateValue = (int) objectData.obj.Procenjena_vrednost_Nekretnina; //It should have been double...
+            this.selectedRealEstateValue = (int) objectData.obj.Procenjena_vrednost_Nekretnina;
         }
 
 
@@ -28,6 +28,6 @@ namespace SEP_Osiguranje.Models.DTO.Output
         public int selectedRealEstateValue { get; set; }
 
 
-        public double calculatedPrice { get; set; }
+        public double price { get; set; }
     }
 }
