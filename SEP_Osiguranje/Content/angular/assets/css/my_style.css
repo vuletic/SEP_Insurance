@@ -26,6 +26,12 @@ hr {
 	margin-bottom: 2em;
 }
 
+button {
+     background:none !important;
+     border: none; 
+     padding: 0!important;
+}
+
 .flat {
 	margin-top: 0em !important;
 	margin-bottom: 0em !important;
@@ -486,7 +492,7 @@ hr {
 	height: 3em;
 	text-align: center;
 	vertical-align: middle;
-	height: 3em;
+	width: 12em;
 }
 
 .my-button-overview-center:hover, .my-button-overview-single:hover {
@@ -644,4 +650,22 @@ hr {
 
 .picker-3-position {
     top: 51em;
+}
+
+/*#######	ERROR CSS		########################*/
+input[class~="ng-invalid"][class~="ng-touched"] {
+    border: 1px solid red;
+}
+
+input[class~="ng-invalid"][type="checkbox"] {
+    border: 1px solid red;
+    background-color: red;
+}
+
+button[disabled="disabled"] {
+    color: #AAA;
+}
+
+button[disabled="disabled"]:hover {
+    cursor: not-allowed;
 }
