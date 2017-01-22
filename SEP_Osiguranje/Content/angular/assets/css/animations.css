@@ -12,7 +12,7 @@
 
 .slide-up-animation-object {
     transition: .5s linear all;
-    height: 13em;
+    height: 16em;
     overflow: hidden;
     display: block !important;
 }
@@ -23,7 +23,7 @@
 
 .slide-up-animation-vehicle {
     transition: .5s linear all;
-    height: 10em;
+    height: 12em;
     overflow: hidden;
     display: block !important;
 }

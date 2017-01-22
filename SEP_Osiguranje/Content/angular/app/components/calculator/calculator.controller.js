@@ -5,25 +5,32 @@
 		.module('app')
 		.controller('calculatorController', calculatorController);
 
-    calculatorController.$inject = ['dataAccessService', 'calculatorService', '$state'];
-    function calculatorController(dataAccessService, calculatorService, $state) {
+    calculatorController.$inject = ['$scope', 'dataAccessService', 'calculatorService', '$state'];
+    function calculatorController($scope, dataAccessService, calculatorService, $state) {
         var cc = this;
 
-        cc.data = {};
-
-        cc.calculatedPrice = 0;
-
-        cc.data.ageNumberYoung = 0;
-        cc.data.ageNumberAdult = 0;
-        cc.data.ageNumberOld = 0;
         cc.showInsurance = true;
         cc.showObject = false;
         cc.showVehicle = false;
+
+
+        cc.calculatedPrice = 0;
+
+        cc.data = {};
+        cc.data.ageNumberYoung = 0;
+        cc.data.ageNumberAdult = 0;
+        cc.data.ageNumberOld = 0;
         cc.data.towing = false;
         cc.data.alternateTransport = false;
         cc.data.hotel = false;
         cc.data.repair = false;
         cc.data.sport = false;
+        
+        cc.countYoungTouchedValue = false;
+        cc.countAdultTouchedValue = false;
+        cc.countOldTouchedValue = false;
+        cc.currentDate = new Date();
+        cc.nextDate = new Date();
 
         cc.enableObject = false;
         cc.enableVehicle = false;
@@ -82,6 +89,73 @@
             cc.data.realEstateInsured = cc.enableObject;
             cc.data.carInsured = cc.enableVehicle;
             $state.go('core.process', { data: cc.data });
+        }
+
+
+        cc.checkPeopleCount = function () {
+            var sum = cc.data.ageNumberYoung + cc.data.ageNumberAdult + cc.data.ageNumberOld;
+            if (sum <= 0) {
+                $scope.calculatorForm.nameCountYoung.$setValidity("sum", false);
+                $scope.calculatorForm.nameCountAdult.$setValidity("sum", false);
+                $scope.calculatorForm.nameCountOld.$setValidity("sum", false);
+            } else {
+                $scope.calculatorForm.nameCountYoung.$setValidity("sum", true);
+                $scope.calculatorForm.nameCountAdult.$setValidity("sum", true);
+                $scope.calculatorForm.nameCountOld.$setValidity("sum", true);
+            }
+        }
+
+        cc.peopleCountChanged = function () {
+            if (cc.countYoungTouchedValue && cc.countAdultTouchedValue && cc.countOldTouchedValue)
+                cc.checkPeopleCount();
+        }
+
+        cc.countYoungTouched = function () {
+            cc.countYoungTouchedValue = true;
+            if (cc.countAdultTouchedValue && cc.countOldTouchedValue)
+                cc.checkPeopleCount();
+        }
+
+        cc.countAdultTouched = function () {
+            cc.countAdultTouchedValue = true;
+            if (cc.countYoungTouchedValue && cc.countOldTouchedValue)
+                cc.checkPeopleCount();
+        }
+
+        cc.countOldTouched = function () {
+            cc.countOldTouchedValue = true;
+            if (cc.countYoungTouchedValue && cc.countAdultTouchedValue)
+                cc.checkPeopleCount();
+        }
+
+        cc.changeStartDate = function () {
+            cc.nextDate.setDate(cc.data.dateFrom.getDate() + 1);
+        }
+
+        cc.changeObjectOption = function () {
+            if (!cc.data.residenceFromFlood && !cc.data.residenceFromFire && !cc.data.residenceFromTheft) {
+                $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", false);
+                $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", false);
+                $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", false);
+            } else {
+                $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
+                $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
+                $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
+            }
+        }
+
+        cc.changeVehicleOption = function () {
+            if (!cc.data.alternateTransport && !cc.data.hotel && !cc.data.repair && !cc.data.towing) {
+                $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
+                $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
+                $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
+                $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
+            } else {
+                $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+                $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+                $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+                $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+            }
         }
     }
 })();
