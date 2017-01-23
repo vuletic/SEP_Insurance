@@ -423,7 +423,6 @@ button {
 .user-toggle:hover {
 	color: #AAA !important;
 	cursor: pointer;
-	font-weight: bold;
 }
 
 .user-toggle-disabled:hover {
@@ -657,9 +656,8 @@ input[class~="ng-invalid"][class~="ng-touched"] {
     border: 1px solid red;
 }
 
-input[class~="ng-invalid"][type="checkbox"] {
+input[class~="ng-invalid"][class~="show-error"] {
     border: 1px solid red;
-    background-color: red;
 }
 
 button[disabled="disabled"] {

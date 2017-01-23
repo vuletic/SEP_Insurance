@@ -25,11 +25,11 @@
                         <tr>
                             <th>{{cr.l10nObj.clcPgTIStartDate}}</th>
                             <td>
-                                <input type="date" name="nameDateFrom" class="form-control" ng-model="cc.data.dateFrom" ng-change="cc.changeStartDate()"
+                                <input type="date" name="nameDateFrom" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateFrom" ng-change="cc.changeStartDate()"
                                        placeholder="yyyy-MM-dd" min="{{cc.currentDate | date: 'yyyy-MM-dd'}}" required /></td>
                             <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgTIEndDate}}</th>
                             <td>
-                                <input type="date" name="nameDateTo" class="form-control" ng-model="cc.data.dateTo"
+                                <input type="date" name="nameDateTo" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateTo"
                                        placeholder="yyyy-MM-dd" min="{{cc.nextDate | date: 'yyyy-MM-dd'}}" required />
                             </td>
                         </tr>
@@ -44,11 +44,11 @@
                                 <table>
                                     <tr>
                                         <th>{{cc.ageGroups[0].Prevod[cr.lang].Naziv_Prevod}}</th>
-                                        <td><input type="number" name="nameCountYoung" ng-blur="cc.countYoungTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" min="0" ng-model="cc.data.ageNumberYoung" /></td>
+                                        <td><input type="number" name="nameCountYoung" ng-blur="cc.countYoungTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberYoung" /></td>
                                         <th>&nbsp; &nbsp; {{cc.ageGroups[1].Prevod[cr.lang].Naziv_Prevod}}</th>
-                                        <td><input type="number" name="nameCountAdult" ng-blur="cc.countAdultTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" min="0" ng-model="cc.data.ageNumberAdult" /></td>
+                                        <td><input type="number" name="nameCountAdult" ng-blur="cc.countAdultTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberAdult" /></td>
                                         <th>&nbsp; &nbsp; {{cc.ageGroups[2].Prevod[cr.lang].Naziv_Prevod}}</th>
-                                        <td><input type="number" name="nameCountOld" ng-blur="cc.countOldTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" min="0" ng-model="cc.data.ageNumberOld" /></td>
+                                        <td><input type="number" name="nameCountOld" ng-blur="cc.countOldTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberOld" /></td>
                                     </tr>
                                     <tr>
                                         <th colspan="3">{{cr.l10nObj.clcPgTISport}}</th>
@@ -63,7 +63,17 @@
 
                 <hr class="hr-grey" />
 
-                <expander-advanced enable-expander="cc.enableObject" show-expander="cc.showObject" cr="cr.l10nObj">{{cr.l10nObj.clcPgOIHead}}</expander-advanced>
+                <h3>
+                    <span class="user-toggle" ng-class="{'user-toggle-disabled': !cc.enableObject}" ng-click="cc.showObject=cc.enableObject?!cc.showObject:cc.showObject">
+                        <span class="glyphicon glyphicon-menu-down" ng-show="cc.showObject"></span><span class="glyphicon glyphicon-menu-right" ng-show="!cc.showObject"></span>
+                        &nbsp;{{cr.l10nObj.clcPgOIHead}}
+                    </span>
+                    <span class="force-header-right user-toggle-size">
+                        {{cr.l10nObj.clcPgNeed}}{{cr.l10nObj.clcPgOIHead}}?&nbsp;&nbsp;
+                        <input type="radio" ng-model="cc.enableObject" ng-value="true" ng-click="cc.showObject = true; "> {{cr.l10nObj.Y}}</input>&nbsp;
+                        <input type="radio" ng-model="cc.enableObject" ng-value="false" ng-click="cc.disableObjects(); cc.showObject = false" ng-checked="true"> {{cr.l10nObj.N}}</input>
+                    </span>
+                </h3>
 
                 <div class="overview-segment slide-up-animation-object" ng-show="cc.showObject">
                     <table class="my-form-fields-table">
@@ -71,7 +81,7 @@
                             <th>{{cr.l10nObj.clcPgOIArea}}</th>
                             <td>
                                 <div class="input-group standard-input">
-                                    <input type="text" class="form-control" ng-model="cc.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" required />
+                                    <input type="text" class="form-control" name="nameObjectSize" ng-model="cc.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" ng-class="{'show-error': cc.objectRequiredShow() }" ng-required="cc.enableObject" />
                                     <span class="input-group-addon">m2</span>
                                 </div>
                             </td>
@@ -79,7 +89,6 @@
                             <td>
                                 <div class="input-group standard-input">
                                     <select class="form-control" ng-options="realEstateAge.Id_Rizik as realEstateAge.Prevod[cr.lang].Naziv_Prevod for realEstateAge in cc.realEstateAges" ng-model="cc.data.selectedRealEstateAge"></select>
-
                                 </div>
                             </td>
                         </tr>
@@ -88,7 +97,6 @@
                             <td>
                                 <div class="input-group standard-input">
                                     <select class="form-control" ng-options="realEstateValue.Id_Rizik as realEstateValue.Prevod[cr.lang].Naziv_Prevod for realEstateValue in cc.realEstateValues" ng-model="cc.data.selectedRealEstateValue"></select>
-
                                 </div>
                             </td>
                         </tr>
@@ -99,17 +107,17 @@
                             <td colspan="4">
                                 <table>
                                     <tr>
-                                        <td class="medium-input"><input type="checkbox" name="nameObjectFlood" ng-change="cc.changeObjectOption()" ng-model="cc.data.residenceFromFlood"> {{cr.l10nObj.clcPgOIFlood}} &nbsp;&nbsp;&nbsp;</input></td>
-                                        <td class="medium-input"><input type="checkbox" name="nameObjectFire" ng-change="cc.changeObjectOption()" ng-model="cc.data.residenceFromFire"> {{cr.l10nObj.clcPgOIFire}} &nbsp;&nbsp;&nbsp;</input></td>
-                                        <td class="medium-input"><input type="checkbox" name="nameObjectTheft" ng-change="cc.changeObjectOption()" ng-model="cc.data.residenceFromTheft"> {{cr.l10nObj.clcPgOITheft}} &nbsp;&nbsp;&nbsp;</input></td>
+                                        <td class="medium-input"><input type="checkbox" name="nameObjectFlood" ng-change="cc.validateObjectOptions()" ng-model="cc.data.residenceFromFlood"> {{cr.l10nObj.clcPgOIFlood}} &nbsp;&nbsp;&nbsp;</input></td>
+                                        <td class="medium-input"><input type="checkbox" name="nameObjectFire" ng-change="cc.validateObjectOptions()" ng-model="cc.data.residenceFromFire"> {{cr.l10nObj.clcPgOIFire}} &nbsp;&nbsp;&nbsp;</input></td>
+                                        <td class="medium-input"><input type="checkbox" name="nameObjectTheft" ng-change="cc.validateObjectOptions()" ng-model="cc.data.residenceFromTheft"> {{cr.l10nObj.clcPgOITheft}} &nbsp;&nbsp;&nbsp;</input></td>
                                         <td class="medium-input"> &nbsp; </td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td class="align-cell-right" colspan="4">(odaberite barem jednu od opcija)</td>
-</table>                            </tr>
+                                        <td class="align-cell-right" ng-class="{'header-red': !calculatorForm.nameObjectFire.$valid}" colspan="4">(odaberite barem jednu od opcija)</td>
+                                   </tr>
                                 </table>
                             </td>
                         </tr>
@@ -118,7 +126,17 @@
 
                 <hr class="hr-grey" />
 
-                <expander-advanced enable-expander="cc.enableVehicle" show-expander="cc.showVehicle" cr="cr.l10nObj">{{cr.l10nObj.clcPgCIHead}}</expander-advanced>
+                <h3>
+                    <span class="user-toggle" ng-class="{'user-toggle-disabled': !cc.enableVehicle}" ng-click="cc.showVehicle=cc.enableVehicle?!cc.showVehicle:cc.showVehicle">
+                        <span class="glyphicon glyphicon-menu-down" ng-show="cc.showVehicle"></span><span class="glyphicon glyphicon-menu-right" ng-show="!cc.showVehicle"></span>
+                        &nbsp;{{cr.l10nObj.clcPgCIHead}}
+                    </span>
+                    <span class="force-header-right user-toggle-size">
+                        {{cr.l10nObj.clcPgNeed}}{{cr.l10nObj.clcPgCIHead}}?&nbsp;&nbsp;
+                        <input type="radio" ng-model="cc.enableVehicle" ng-value="true" ng-click="cc.showVehicle = true"> {{cr.l10nObj.Y}}</input>&nbsp;
+                        <input type="radio" ng-model="cc.enableVehicle" ng-value="false" ng-click="cc.disableVehicles(); cc.showVehicle = false" ng-checked="true"> {{cr.l10nObj.N}}</input>
+                    </span>
+                </h3>
 
                 <div class="overview-segment slide-up-animation-vehicle" ng-show="cc.showVehicle">
                     <table class="my-form-fields-table">
@@ -126,20 +144,20 @@
                             <th colspan="7">{{cr.l10nObj.clcPgCICoverage}}</th>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name="nameVehicleTowing" ng-model="cc.data.towing" ng-change="cc.changeVehicleOption()" /></td>
+                            <td><input type="checkbox" name="nameVehicleTowing" ng-model="cc.data.towing" ng-change="cc.validateVehicleOptions()" /></td>
                             <td>{{cr.l10nObj.clcPgCITowing}}</td>
                             <td><select class="form-control standard-input" ng-disabled="!cc.data.towing" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in cc.towingDistances" ng-model="cc.data.selectedTowingDistance"></select></td>
                             <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                            <td><input type="checkbox" name="nameVehicleRepair" ng-model="cc.data.repair" ng-change="cc.changeVehicleOption()" /></td>
+                            <td><input type="checkbox" name="nameVehicleRepair" ng-model="cc.data.repair" ng-change="cc.validateVehicleOptions()" /></td>
                             <td>{{cr.l10nObj.clcPgCIRepair}}</td>
                             <td><select class="form-control standard-input" ng-disabled="!cc.data.repair" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in cc.reparationPrices" ng-model="cc.data.selectedReparationPrice"></select></td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" name="nameVehicleHotel" ng-model="cc.data.hotel" ng-change="cc.changeVehicleOption()" /></td>
+                            <td><input type="checkbox" name="nameVehicleHotel" ng-model="cc.data.hotel" ng-change="cc.validateVehicleOptions()" /></td>
                             <td>{{cr.l10nObj.clcPgCIAcc}}</td>
                             <td><select class="form-control standard-input" ng-disabled="!cc.data.hotel" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in cc.hotelDays" ng-model="cc.data.selectedHotelDays"></select></td>
                             <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                            <td><input type="checkbox" name="nameVehicleTransport" ng-model="cc.data.alternateTransport" ng-change="cc.changeVehicleOption()" /></td>
+                            <td><input type="checkbox" name="nameVehicleTransport" ng-model="cc.data.alternateTransport" ng-change="cc.validateVehicleOptions()" /></td>
                             <td>{{cr.l10nObj.clcPgCIAltTrans}}</td>
                             <td><select class="form-control standard-input" ng-disabled="!cc.data.alternateTransport" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in cc.alternateTransportationDistances" ng-model="cc.data.selectedAlternateTransportationDistance"></select></td>
                         </tr>
@@ -147,7 +165,7 @@
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="align-cell-right" colspan="7">(odaberite barem jednu od opcija)</td>
+                            <td class="align-cell-right" ng-class="{'header-red': !calculatorForm.nameVehicleTransport.$valid}" colspan="7">(odaberite barem jednu od opcija)</td>
                         </tr>
 
                     </table>
@@ -163,7 +181,7 @@
                 <div>
                     <table class="my-overview-buttons">
                         <tr>
-                            <td><button class="" ng-click="cc.calculate()" ng-disabled="calculatorForm.$invalid">{{cr.l10nObj.clcPgCalculate}}</button></td>
+                            <td><button class="my-button-overview-single" ng-click="cc.calculate()">{{cr.l10nObj.clcPgCalculate}}</button></td>
                             <th>&nbsp;</th>
                             <td><button class="my-button-overview-single" ng-click="cc.proceedToProcess()"><div>{{cr.l10nObj.clcPgProceedToP}} &nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div></button></td>
                         </tr>
