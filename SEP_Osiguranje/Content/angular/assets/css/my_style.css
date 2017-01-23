@@ -667,3 +667,14 @@ button[disabled="disabled"] {
 button[disabled="disabled"]:hover {
     cursor: not-allowed;
 }
+
+/* SIZE FIXES */
+@media screen and (max-width: 1160px) {
+   .picker-image {
+    height: 100%;
+    width: 40%;
+    margin-left: 45%;
+    text-align: right;
+    float: left;
+}
+}
