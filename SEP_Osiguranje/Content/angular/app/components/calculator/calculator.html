@@ -4,13 +4,17 @@
         <div class="overview-panel">
 
             <h2 class="header-center">{{cr.l10nObj.clcPgHead}}</h2>
+            <p>
+                <br/>Iskoristite kalkulator osiguranja kako biste dobili tačan iznos cene osiguranja bez ulaska u proceduru kupovine osiguranja.<br />
+                Molimo Vas da popunite <b>SVA</b> polja.
+            </p>
             <hr />
 
-            <form name="calculatorForm">
+            <form name="calculatorForm" novalidate>
 
                 <expander-simple show-expander="cc.showInsurance">{{cr.l10nObj.clcPgTIHead}}</expander-simple>
 
-                <div class="overview-segment slide-up-animation-insurance" ng-show="cc.showInsurance">
+                <div class="overview-segment" ng-slide-down="cc.showInsurance">
                     <table class="my-form-fields-table">
                         <tr>
                             <th>{{cr.l10nObj.clcPgTIPlace}}</th>
@@ -25,12 +29,17 @@
                         <tr>
                             <th>{{cr.l10nObj.clcPgTIStartDate}}</th>
                             <td>
-                                <input type="date" name="nameDateFrom" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateFrom" ng-change="cc.changeStartDate()"
-                                       placeholder="yyyy-MM-dd" min="{{cc.currentDate | date: 'yyyy-MM-dd'}}" required /></td>
+                                <span message="Datum početka važenja mora biti barem današnji datum." ng-class="{'error-info': calculatorForm.nameDateFrom.$invalid && (calculatorForm.nameDateFrom.$touched || cc.showErrors)}">
+                                    <input type="date" name="nameDateFrom" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateFrom" ng-change="cc.changeStartDate()"
+                                           placeholder="yyyy-MM-dd" min="{{cc.currentDate | date: 'yyyy-MM-dd'}}" required />
+                                </span>
+                            </td>
                             <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgTIEndDate}}</th>
                             <td>
-                                <input type="date" name="nameDateTo" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateTo"
-                                       placeholder="yyyy-MM-dd" min="{{cc.nextDate | date: 'yyyy-MM-dd'}}" required />
+                                <span message="Datum kraja važenja mora biti nakon datuma početka važenja." ng-class="{'error-info': calculatorForm.nameDateTo.$invalid && (calculatorForm.nameDateTo.$touched || cc.showErrors)}">
+                                    <input type="date" name="nameDateTo" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateTo"
+                                           placeholder="yyyy-MM-dd" min="{{cc.nextDate | date: 'yyyy-MM-dd'}}" required />
+                                </span>
                             </td>
                         </tr>
                         <tr>
@@ -44,11 +53,23 @@
                                 <table>
                                     <tr>
                                         <th>{{cc.ageGroups[0].Prevod[cr.lang].Naziv_Prevod}}</th>
-                                        <td><input type="number" name="nameCountYoung" ng-blur="cc.countYoungTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberYoung" /></td>
+                                        <td>
+                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info': calculatorForm.nameCountYoung.$invalid && (calculatorForm.nameCountYoung.$touched || cc.showErrors)}">
+                                                <input type="number" name="nameCountYoung" ng-blur="cc.countYoungTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberYoung" />
+                                            </span>
+                                        </td>
                                         <th>&nbsp; &nbsp; {{cc.ageGroups[1].Prevod[cr.lang].Naziv_Prevod}}</th>
-                                        <td><input type="number" name="nameCountAdult" ng-blur="cc.countAdultTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberAdult" /></td>
+                                        <td>
+                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info': calculatorForm.nameCountAdult.$invalid && (calculatorForm.nameCountAdult.$touched || cc.showErrors)}">
+                                                <input type="number" name="nameCountAdult" ng-blur="cc.countAdultTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberAdult" />
+                                            </span>
+                                        </td>
                                         <th>&nbsp; &nbsp; {{cc.ageGroups[2].Prevod[cr.lang].Naziv_Prevod}}</th>
-                                        <td><input type="number" name="nameCountOld" ng-blur="cc.countOldTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberOld" /></td>
+                                        <td>
+                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info': calculatorForm.nameCountOld.$invalid && (calculatorForm.nameCountOld.$touched || cc.showErrors)}">
+                                                <input type="number" name="nameCountOld" ng-blur="cc.countOldTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberOld" />
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th colspan="3">{{cr.l10nObj.clcPgTISport}}</th>
@@ -64,26 +85,28 @@
                 <hr class="hr-grey" />
 
                 <h3>
-                    <span class="user-toggle" ng-class="{'user-toggle-disabled': !cc.enableObject}" ng-click="cc.showObject=cc.enableObject?!cc.showObject:cc.showObject">
+                    <span class="user-toggle" ng-class="{'user-toggle-disabled': !cc.enableObject}" ng-click="cc.showObject=cc.enableObject?!cc.showObject:false">
                         <span class="glyphicon glyphicon-menu-down" ng-show="cc.showObject"></span><span class="glyphicon glyphicon-menu-right" ng-show="!cc.showObject"></span>
                         &nbsp;{{cr.l10nObj.clcPgOIHead}}
                     </span>
                     <span class="force-header-right user-toggle-size">
                         {{cr.l10nObj.clcPgNeed}}{{cr.l10nObj.clcPgOIHead}}?&nbsp;&nbsp;
-                        <input type="radio" ng-model="cc.enableObject" ng-value="true" ng-click="cc.showObject = true; "> {{cr.l10nObj.Y}}</input>&nbsp;
-                        <input type="radio" ng-model="cc.enableObject" ng-value="false" ng-click="cc.disableObjects(); cc.showObject = false" ng-checked="true"> {{cr.l10nObj.N}}</input>
+                        <input type="radio" ng-model="cc.enableObject" ng-value="true" ng-click="cc.showObject = true;"> {{cr.l10nObj.Y}}</input>&nbsp;
+                        <input type="radio" ng-model="cc.enableObject" ng-value="false" ng-click="cc.showObject = false; cc.disableObjects();" ng-checked="true"> {{cr.l10nObj.N}}</input>
                     </span>
                 </h3>
 
-                <div class="overview-segment slide-up-animation-object" ng-show="cc.showObject">
+                <div class="overview-segment" ng-slide-down="cc.showObject" lazy-render>
                     <table class="my-form-fields-table">
                         <tr>
                             <th>{{cr.l10nObj.clcPgOIArea}}</th>
                             <td>
-                                <div class="input-group standard-input">
-                                    <input type="text" class="form-control" name="nameObjectSize" ng-model="cc.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" ng-class="{'show-error': cc.objectRequiredShow() }" ng-required="cc.enableObject" />
-                                    <span class="input-group-addon">m2</span>
-                                </div>
+                                <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info': calculatorForm.nameObjectSize.$invalid && (calculatorForm.nameObjectSize.$touched || cc.showErrors)}">
+                                    <div class="input-group standard-input">
+                                        <input type="text" class="form-control" name="nameObjectSize" ng-model="cc.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" ng-class="{'show-error': cc.objectRequiredShow() }" ng-required="cc.enableObject" />
+                                        <span class="input-group-addon">m2</span>
+                                    </div>
+                                </span>
                             </td>
                             <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgOIAge}}</th>
                             <td>
@@ -117,7 +140,7 @@
                                     </tr>
                                     <tr>
                                         <td class="align-cell-right" ng-class="{'header-red': !calculatorForm.nameObjectFire.$valid}" colspan="4">(odaberite barem jednu od opcija)</td>
-                                   </tr>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>
@@ -127,18 +150,18 @@
                 <hr class="hr-grey" />
 
                 <h3>
-                    <span class="user-toggle" ng-class="{'user-toggle-disabled': !cc.enableVehicle}" ng-click="cc.showVehicle=cc.enableVehicle?!cc.showVehicle:cc.showVehicle">
+                    <span class="user-toggle" ng-class="{'user-toggle-disabled': !cc.enableVehicle}" ng-click="cc.showVehicle=cc.enableVehicle?!cc.showVehicle:false">
                         <span class="glyphicon glyphicon-menu-down" ng-show="cc.showVehicle"></span><span class="glyphicon glyphicon-menu-right" ng-show="!cc.showVehicle"></span>
                         &nbsp;{{cr.l10nObj.clcPgCIHead}}
                     </span>
                     <span class="force-header-right user-toggle-size">
                         {{cr.l10nObj.clcPgNeed}}{{cr.l10nObj.clcPgCIHead}}?&nbsp;&nbsp;
                         <input type="radio" ng-model="cc.enableVehicle" ng-value="true" ng-click="cc.showVehicle = true"> {{cr.l10nObj.Y}}</input>&nbsp;
-                        <input type="radio" ng-model="cc.enableVehicle" ng-value="false" ng-click="cc.disableVehicles(); cc.showVehicle = false" ng-checked="true"> {{cr.l10nObj.N}}</input>
+                        <input type="radio" ng-model="cc.enableVehicle" ng-value="false" ng-click="cc.showVehicle=false; cc.disableVehicles();" ng-checked="true"> {{cr.l10nObj.N}}</input>
                     </span>
                 </h3>
 
-                <div class="overview-segment slide-up-animation-vehicle" ng-show="cc.showVehicle">
+                <div class="overview-segment" ng-slide-down="cc.showVehicle" lazy-render>
                     <table class="my-form-fields-table">
                         <tr>
                             <th colspan="7">{{cr.l10nObj.clcPgCICoverage}}</th>

@@ -446,8 +446,8 @@ button {
 }
 
 .overview-segment {
-	margin-top: 2em;
-	margin-bottom: 4em;
+	margin-top: 0em;
+	margin-bottom: 2em;
 	margin-left: 3%;
     margin-right: 2%;
 	width: 95%;
@@ -667,3 +667,33 @@ button[disabled="disabled"] {
 button[disabled="disabled"]:hover {
     cursor: not-allowed;
 }
+
+.error-info {
+    position: relative;
+}
+	
+.error-info:hover:before{
+    top: 34px;
+    left: 2em;
+    border: solid;
+    border-color: red transparent;
+    border-width: 0 2em 2em 2em;
+    content: "";
+    position: absolute;
+    z-index:98;
+}
+
+.error-info:hover:after{
+    top: 0.7em;
+    left: -1em;
+    background: #FFF;
+    border: 2px solid red;
+    border-radius: 2px;
+    color: red;
+    content: attr(message);
+    padding: 0.2em 0.4em;
+    z-index:99;
+    width: 16em;
+    position: absolute;
+    display: block;
+}	

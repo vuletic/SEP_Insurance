@@ -1,37 +1,3 @@
-/*##########    OVERVIEW PAGE ANIMATIONS     ##########*/
-.slide-up-animation-insurance {
-    transition: .5s linear all;
-    height: 18em;
-    overflow: hidden;
-    display: block !important;
-}
-
-.slide-up-animation-insurance.ng-hide {
-    height: 0em;
-}
-
-.slide-up-animation-object {
-    transition: .5s linear all;
-    height: 16em;
-    overflow: hidden;
-    display: block !important;
-}
-
-.slide-up-animation-object.ng-hide {
-    height: 0em;
-}
-
-.slide-up-animation-vehicle {
-    transition: .5s linear all;
-    height: 12em;
-    overflow: hidden;
-    display: block !important;
-}
-
-.slide-up-animation-vehicle.ng-hide {
-    height: 0em;
-}
-
 /*##########    PROCCES PAGE ANIMATIONS     ##########*/
 .slide-up-animation-user {
     transition: .5s linear all;

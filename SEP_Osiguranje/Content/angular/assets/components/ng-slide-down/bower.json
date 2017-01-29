@@ -1,0 +1,27 @@
+{
+  "name": "ng-slide-down",
+  "version": "1.2.0",
+  "authors": [
+    "TheRusskiy <dimanrussian@gmail.com>"
+  ],
+  "description": "Slider animation directive for AngularJS",
+  "main": "dist/ng-slide-down.js",
+  "keywords": [
+    "angularjs",
+    "animation",
+    "slider",
+    "directive"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/TheRusskiy/ng-slide-down",
+  "ignore": [
+    "demo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TheRusskiy/ng-slide-down.git"
+  },
+  "dependencies": {
+    "angular": ">=1.2.20"
+  }
+}
