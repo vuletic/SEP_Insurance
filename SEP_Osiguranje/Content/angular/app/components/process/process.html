@@ -65,18 +65,18 @@
 
                             <expander-simple show-expander="pr.showUserDetails">{{cr.l10nObj.prsPg2DataForm}}</expander-simple>
 
-                            <div class="slide-up-animation-user" ng-show="pr.showUserDetails">
+                            <div ng-slide-down="pr.showUserDetails" lazy-render>
                                 <table class="my-form-fields-table">
                                     <tr><th>{{cr.l10nObj.prsPg2Name}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.name" /></td></tr>
-                                    <tr><th>{{cr.l10nObj.prsPg2Surname}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.surname"  /></td></tr>
-                                    <tr><th>{{cr.l10nObj.prsPg2JMBG}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.jmbg"  /></td></tr>
+                                    <tr><th>{{cr.l10nObj.prsPg2Surname}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.surname" /></td></tr>
+                                    <tr><th>{{cr.l10nObj.prsPg2JMBG}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.jmbg" /></td></tr>
                                     <tr><th>{{cr.l10nObj.prsPg2Passport}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.passport" /></td></tr>
                                     <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg2Address}}</th></tr>
-                                    <tr><td class="align-cell-right">{{cr.l10nObj.prsPg2Street}}</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.street"/></td></tr>
-                                    <tr><td class="align-cell-right">{{cr.l10nObj.prsPg2Number}}</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.addresNum"/></td></tr>
-                                    <tr><td class="align-cell-right">{{cr.l10nObj.prsPg2Place}}</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.city"/></td></tr>
-                                    <tr><th>{{cr.l10nObj.prsPg2PhoneNum}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.phoneNum"/></td></tr>
-                                    <tr><th>{{cr.l10nObj.prsPg2AgeGroup}}</th><td><select class="form-control" ng-options="idx as ageGroup.Prevod[cr.lang].Naziv_Prevod for (idx, ageGroup) in pr.ageGroups" ng-model="pr.tempCustomer.category"/></td></tr>
+                                    <tr><td class="align-cell-right">{{cr.l10nObj.prsPg2Street}}</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.street" /></td></tr>
+                                    <tr><td class="align-cell-right">{{cr.l10nObj.prsPg2Number}}</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.addresNum" /></td></tr>
+                                    <tr><td class="align-cell-right">{{cr.l10nObj.prsPg2Place}}</td><td><input type="text" class="form-control" ng-model="pr.tempCustomer.city" /></td></tr>
+                                    <tr><th>{{cr.l10nObj.prsPg2PhoneNum}}</th><td><input type="text" class="form-control" ng-model="pr.tempCustomer.phoneNum" /></td></tr>
+                                    <tr><th>{{cr.l10nObj.prsPg2AgeGroup}}</th><td><select class="form-control" ng-options="idx as ageGroup.Prevod[cr.lang].Naziv_Prevod for (idx, ageGroup) in pr.ageGroups" ng-model="pr.tempCustomer.category" /></td></tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="my-buttons-action">
@@ -106,7 +106,7 @@
                         <input type="radio" name="objectInsurance" ng-model="pr.hideObjectInsurance" ng-value="false" ng-checked="!pr.hideObjectInsurance">{{cr.l10nObj.N}} </input>
                     </h3>
                     <form>
-                        <div class="my-form-fields slide-up-animation-object-proccess" ng-show="pr.hideObjectInsurance">
+                        <div class="my-form-fields" ng-slide-down="pr.hideObjectInsurance" lazy-render>
                             <h4>{{cr.l10nObj.prsPg3OIHead}}</h4>
                             <table class="my-form-fields-table">
                                 <tr>
@@ -124,7 +124,7 @@
                                     <td>
                                         <div class="input-group standard-input">
                                             <select class="form-control" ng-options="realEstateAge.Id_Rizik as realEstateAge.Prevod[cr.lang].Naziv_Prevod for realEstateAge in pr.realEstateAges" ng-model="pr.data.selectedRealEstateAge"></select>
-                                        
+
                                         </div>
                                     </td>
                                 </tr>
@@ -156,13 +156,13 @@
 
                             <h4> &nbsp; {{cr.l10nObj.prsPg3OIObjectData}}</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>{{cr.l10nObj.prsPg3OIName}}</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.name"/></td></tr>
-                                <tr><th>P{{cr.l10nObj.prsPg3OISurname}}</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.surname"/></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg3OIJMBG}}</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.jmbg"/></td>
+                                <tr><th>{{cr.l10nObj.prsPg3OIName}}</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.name" /></td></tr>
+                                <tr><th>P{{cr.l10nObj.prsPg3OISurname}}</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.surname" /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg3OIJMBG}}</th><td><input type="text" class="form-control" ng-model="pr.data.object.owner.jmbg" /></td>
                                 <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg3OIAddress}}</th></tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIStreet}}</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.street"/></td></tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OINumber}}</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.number"/></td></tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIPlace}}</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.city"/></td></tr>
+                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIStreet}}</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.street" /></td></tr>
+                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OINumber}}</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.number" /></td></tr>
+                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIPlace}}</td><td><input type="text" class="form-control" ng-model="pr.data.object.address.city" /></td></tr>
                             </table>
                         </div>
                         <hr />
@@ -182,24 +182,24 @@
                             <input type="radio" name="vehicleInsurance" ng-model="pr.hideVehicleInsurance" ng-value="true">{{cr.l10nObj.Y}}</input>&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="vehicleInsurance" ng-model="pr.hideVehicleInsurance" ng-value="false">{{cr.l10nObj.N}}</input>
                         </h3>
-                        <div class="my-form-fields slide-up-animation-vehicle-proccess" ng-show="pr.hideVehicleInsurance">
-                            <h4>{{cr.l10nObj.prsPg4CIHead}}</h4>         
+                        <div class="my-form-fields" ng-slide-down="pr.hideVehicleInsurance" lazy-render>
+                            <h4>{{cr.l10nObj.prsPg4CIHead}}</h4>
                             <table class="my-form-fields-table">
                                 <tr><th colspan="3">{{cr.l10nObj.prsPg4CICoverage}}</th></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.towing"/></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CITowing}}</td><td><select class="form-control" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in pr.towingDistances" ng-model="pr.data.selectedTowingDistance"></select></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.repair"/></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIRepair}}</td><td><select class="form-control" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in pr.reparationPrices" ng-model="pr.data.selectedReparationPrice"></select></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.hotel"/></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAcc}}</td><td><select class="form-control" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in pr.hotelDays" ng-model="pr.data.selectedHotelDays"></select></td></tr>
-                                <tr><td><input type="checkbox" ng-model="pr.data.alternateTransport"/></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAltTrans}}</td><td><select class="form-control" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in pr.alternateTransportationDistances" ng-model="pr.data.selectedAlternateTransportationDistance"></select></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.towing" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CITowing}}</td><td><select class="form-control" ng-options="towingDistance.Id_Rizik as towingDistance.Prevod[cr.lang].Naziv_Prevod for towingDistance in pr.towingDistances" ng-model="pr.data.selectedTowingDistance"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.repair" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIRepair}}</td><td><select class="form-control" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in pr.reparationPrices" ng-model="pr.data.selectedReparationPrice"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.hotel" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAcc}}</td><td><select class="form-control" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in pr.hotelDays" ng-model="pr.data.selectedHotelDays"></select></td></tr>
+                                <tr><td><input type="checkbox" ng-model="pr.data.alternateTransport" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAltTrans}}</td><td><select class="form-control" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in pr.alternateTransportationDistances" ng-model="pr.data.selectedAlternateTransportationDistance"></select></tr>
                             </table>
 
                             <h4>&nbsp; {{cr.l10nObj.prsPg4CIData}}</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>{{cr.l10nObj.prsPg4CIChassisNum}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.chassisNumber"/></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIManDate}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.productionYear"/></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIRegNum}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.registrationNumber"/></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerName}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.name"/></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerSurname}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.surname"/></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerJMBG}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.jmbg"/></td>
+                                <tr><th>{{cr.l10nObj.prsPg4CIChassisNum}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.chassisNumber" /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg4CIManDate}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.productionYear" /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg4CIRegNum}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.registrationNumber" /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerName}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.name" /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerSurname}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.surname" /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerJMBG}}</th><td><input type="text" class="form-control" ng-model="pr.data.vehicle.customer.jmbg" /></td>
                             </table>
                         </div>
 
@@ -231,7 +231,7 @@
                             <h4>{{cr.l10nObj.prsPg5ChooseIP}}</h4>
                             <table class="my-form-fields-table">
                                 <tr>
-                                    <td><select class="form-control realy-big-input" ng-options="idx as customer.name + ' ' + customer.surname + ' ' + customer.jmbg for (idx, customer) in pr.data.customers" ng-model="pr.data.insCarrierI"/></td>
+                                    <td colspan="2"><select class="form-control realy-big-input" ng-options="idx as customer.name + ' ' + customer.surname + ' ' + customer.jmbg for (idx, customer) in pr.data.customers" ng-model="pr.data.insCarrierI"/></td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5PhoneNum}}</th><td><input type="text" class="form-control" ng-model="pr.data.customers[pr.data.insCarrierI].phoneNum" /></td></tr>
                                 <tr><th>{{cr.l10nObj.prsPg5Email}}</th><td><input type="text" class="form-control" ng-model="pr.data.customers[pr.data.insCarrierI].email" /></td></tr>
@@ -239,7 +239,7 @@
                         </div>
 
                         <div ng-show="pr.insuranceCarrierIsNotInsured">
-                            <h4>{{cr.l10nObj.prsPg5FormHead}}</</h4>
+                            <h4>{{cr.l10nObj.prsPg5FormHead}}</h4>
                             <table class="my-form-fields-table">
                                 <tr><th>{{cr.l10nObj.prsPg5Name}}</th><td><input type="text" class="form-control big-input" ng-model="pr.data.insCarrierNI.name"/></td></tr>
                                 <tr><th>{{cr.l10nObj.prsPg5Surname}}</th><td><input type="text" class="form-control" ng-model="pr.data.insCarrierNI.surname"/></td></tr>
