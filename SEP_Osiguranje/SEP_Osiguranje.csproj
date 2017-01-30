@@ -441,6 +441,11 @@
     <Content Include="Content\angular\assets\components\jquery\src\var\support.js" />
     <Content Include="Content\angular\assets\components\jquery\src\var\toString.js" />
     <Content Include="Content\angular\assets\components\jquery\src\wrap.js" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\dist\ng-slide-down.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\ng-slide-down\dist\ng-slide-down.min.js" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\Gruntfile.js" />
     <Content Include="Content\angular\assets\css\animations.css" />
     <Content Include="Content\angular\assets\css\bootstrap-theme.css" />
     <Content Include="Content\angular\assets\css\bootstrap.css" />
@@ -653,6 +658,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\.bower.json" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\.gitignore" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\bower.json" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\package.json" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\README.md" />
+    <Content Include="Content\angular\assets\components\ng-slide-down\src\ng-slide-down.coffee" />
     <None Include="Properties\PublishProfiles\SEPOsiguranje - Web Deploy.pubxml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
