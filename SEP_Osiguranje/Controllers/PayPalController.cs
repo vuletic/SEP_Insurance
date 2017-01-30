@@ -84,7 +84,6 @@ namespace SEP_Osiguranje.Controllers
             }
             catch (Exception e)
             {
-                int k = 7;
                 Console.WriteLine(e);
             }
 
