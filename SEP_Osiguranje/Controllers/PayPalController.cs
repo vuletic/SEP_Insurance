@@ -65,7 +65,7 @@ namespace SEP_Osiguranje.Controllers
 
             try
             {
-                var verificationReq = (HttpWebRequest)WebRequest.Create("https://www.sandbox.paypal.com/cgi-bin/webscr");
+                HttpWebRequest verificationReq = WebRequest.Create("https://www.sandbox.paypal.com/cgi-bin/webscr") as HttpWebRequest;
                 
                 verificationReq.Method = "POST";
                 verificationReq.ContentType = "application/x-www-form-urlencoded";
