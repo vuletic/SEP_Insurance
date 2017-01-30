@@ -120,6 +120,7 @@
 
         cc.disableObjects = function () {
             cc.objectJustExpanded = true;
+            cc.data.residenceSize = "";
             cc.data.residenceFromFlood = false;
             cc.data.residenceFromFire = false;
             cc.data.residenceFromTheft = false;

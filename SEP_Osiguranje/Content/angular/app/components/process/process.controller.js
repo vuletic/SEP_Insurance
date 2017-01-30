@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('processController', processController);
 
-    processController.$inject = ['dataAccessService', 'processService', '$stateParams'];
-    function processController(dataAccessService, processService, $stateParams) {        
+    processController.$inject = ['$scope', 'dataAccessService', 'processService', '$stateParams'];
+    function processController($scope, dataAccessService, processService, $stateParams) {        
         
         var pr = this;
 
@@ -90,6 +90,8 @@
         }
 
         pr.finishProcess = function () {
+            if (!pr.everythingIsValidFinal())
+                return;
 
             console.log(pr.data);
             
@@ -154,7 +156,7 @@
                 tempCustomer.osoba.Ime_Osoba = pr.data.insCarrierNI.name;
                 tempCustomer.osoba.Prezime_Osoba = pr.data.insCarrierNI.surname;
                 tempCustomer.osoba.Broj_pasosa_Osoba = pr.data.insCarrierNI.passport;
-                tempCustomer.osoba.Adresa_Osoba = pr.data.insCarrierNI.address.street + " " + pr.data.insCarrierNI.address.addresNum + ", " + pr.data.insCarrierNI.address.city;
+                tempCustomer.osoba.Adresa_Osoba = pr.data.insCarrierNI.address.street + " " + pr.data.insCarrierNI.address.number + ", " + pr.data.insCarrierNI.address.city;
                 tempCustomer.osoba.Broj_telefona_Osoba = pr.data.insCarrierNI.phoneNum;
                 tempCustomer.osoba.E_mail_Osoba = pr.data.insCarrierNI.email;
 
@@ -303,7 +305,170 @@
         dataAccessService.getHotelDays().then(function (response) {
             pr.hotelDays = response;
         });
-        
+
+        /******         FIRST PAGE VALIDATION       ******/
+        pr.currentDate = new Date();
+        pr.nextDate = new Date();
+        pr.showErrorsFirst = false;
+
+        pr.changeStartDate = function () {
+            pr.nextDate.setDate(pr.data.dateFrom.getDate() + 1);
+        }
+
+        pr.goFromFirstPage = function () {
+            if (!pr.everythingIsValidFirst()) {
+                //    return;
+            }
+            pr.selectedProcessPanel = [false, true, false, false, false];
+        }
+
+        pr.everythingIsValidFirst = function () {
+            if (!$scope.firstPageForm.$valid) {
+                pr.showErrorsFirst = true;
+                return false;
+            } else {
+                pr.showErrorsFirst = false;
+                return true;
+            }
+        }
+
+        /******         THIRD PAGE VALIDATION       ******/
+        pr.showErrorsThird = false;
+
+        pr.goFromThirdPage = function () {
+            if (pr.hideObjectInsurance) {
+                if (!pr.everythingIsValidThird()) {
+                    return;
+                }
+            }
+            pr.selectedProcessPanel = [false, false, false, true, false];
+        }
+
+        pr.everythingIsValidThird = function () {
+            pr.validateObjectOptions();
+            if (!$scope.thirdPageForm.$valid) {
+                pr.showErrorsThird = true;
+                return false;
+            } else {
+                pr.showErrorsThird = false;
+                return true;
+            }
+        }
+
+        pr.validateObjectOptions = function () {
+            if (!pr.data.residenceFromFlood && !pr.data.residenceFromFire && !pr.data.residenceFromTheft) {
+                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", false);
+                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", false);
+                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", false);
+            } else {
+                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
+                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
+                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
+            }
+        }
+
+        pr.disableObjects = function () {
+            pr.showErrorsThird = false;
+            pr.data.residenceFromFlood = false;
+            pr.data.residenceFromFire = false;
+            pr.data.residenceFromTheft = false;
+            pr.data.residenceSize = "";
+            pr.data.object.owner.name = "";
+            pr.data.object.owner.surname = "";
+            pr.data.object.owner.jmbg = "";
+            pr.data.object.address.street = "";
+            pr.data.object.address.number = "";
+            pr.data.object.address.city = "";
+            $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
+            $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
+            $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
+
+        }
+
+        /******         FOURTH PAGE VALIDATION       ******/
+        pr.showErrorsFourth = false;
+        pr.currentYear = (new Date()).getFullYear();
+
+        pr.goFromFourthPage = function () {
+            if (pr.hideVehicleInsurance) {
+                if (!pr.everythingIsValidFourth()) {
+                    return;
+                }
+            }
+            pr.selectedProcessPanel = [false, false, false, false, true];
+        }
+
+        pr.everythingIsValidFourth = function () {
+            pr.validateVehicleOptions();
+            if (!$scope.fourthPageForm.$valid) {
+                pr.showErrorsFourth = true;
+                return false;
+            } else {
+                pr.showErrorsFourth = false;
+                return true;
+            }
+        }
+
+        pr.validateVehicleOptions = function () {
+            if (!pr.data.alternateTransport && !pr.data.hotel && !pr.data.repair && !pr.data.towing) {
+                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
+            } else {
+                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+            }
+        }
+
+        pr.disableVehicles = function () {
+            pr.showErrorsFourth = false;
+            pr.data.towing = false;
+            pr.data.repair = false;
+            pr.data.hotel = false;
+            pr.data.alternateTransport = false;
+            pr.data.vehicle.chassisNumber = "";
+            pr.data.vehicle.productionYear = "";
+            pr.data.vehicle.registrationNumber = "";
+            pr.data.vehicle.customer.name = "";
+            pr.data.vehicle.customer.surname = "";
+            pr.data.vehicle.customer.jmbg = "";
+            $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+            $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+            $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+            $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+        }
+
+        /******         FINAL PAGE VALIDATION       ******/
+        pr.showErrorsFinal = false;
+
+        pr.everythingIsValidFinal = function () {
+            if (!$scope.finalPageForm.$valid) {
+                pr.showErrorsFinal = true;
+                return false;
+            } else {
+                pr.showErrorsFinal = false;
+                return true;
+            }
+        }
+
+        pr.switchCarrier = function () {
+            pr.showErrorsFinal = false;
+
+            if (!pr.insuranceCarrierIsNotInsured) {
+                pr.data.insCarrierNI.name = "";
+                pr.data.insCarrierNI.surname = "";
+                pr.data.insCarrierNI.jmbg = "";
+                pr.data.insCarrierNI.address.street = "";
+                pr.data.insCarrierNI.address.number = "";
+                pr.data.insCarrierNI.address.city = "";
+            } else {
+                pr.data.customers[pr.data.insCarrierI].phoneNum = "";
+                pr.data.customers[pr.data.insCarrierI].email = "";
+            }
+        }
     }
 
 })();
