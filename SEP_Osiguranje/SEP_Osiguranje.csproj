@@ -193,7 +193,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NekretninaController.cs" />
     <Compile Include="Controllers\OsobaController.cs" />
-    <Compile Include="Controllers\PayPalController.cs" />
+    <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\PDVController.cs" />
     <Compile Include="Controllers\Realizacija_osiguranjaController.cs" />
     <Compile Include="Controllers\RizikController.cs" />

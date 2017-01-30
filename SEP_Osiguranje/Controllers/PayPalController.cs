@@ -8,15 +8,16 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace SEP_Osiguranje.Controllers
 {
-    public class PayPalController : Controller
+    public class PaypalController : ApiController
     {
-        [Route("api/paypal/getbutton")]
-        [HttpGet]
-        public HttpResponseMessage PaypalButton()
+        //[Route("api/paypal/getbutton")]
+        //[HttpGet]
+        public HttpResponseMessage GetPaypal()
         {
             // Create request object
             BMCreateButtonRequestType request = new BMCreateButtonRequestType();
@@ -54,20 +55,23 @@ namespace SEP_Osiguranje.Controllers
             res.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return res;
         }
+        
 
-        [Route("api/paypal/notify")]
-        [HttpPost]
-        public void PaypalNotify()
+        //[Route("api/paypal/notify")]
+        //[HttpGet]
+        public async void PostPaypal()
         {
             var verificationResp = string.Empty;
 
             try
             {
                 var verificationReq = (HttpWebRequest)WebRequest.Create("https://www.sandbox.paypal.com/cgi-bin/webscr");
-
+                
                 verificationReq.Method = "POST";
                 verificationReq.ContentType = "application/x-www-form-urlencoded";
-                var param = Request.BinaryRead(Request.ContentLength);
+                //var param = Request.BinaryRead(Request.ContentLength);
+                //var strRequest = Encoding.ASCII.GetString(param);
+                var param = await Request.Content.ReadAsByteArrayAsync();
                 var strRequest = Encoding.ASCII.GetString(param);
                 strRequest = "cmd=_notify-validate&" + strRequest;
                 verificationReq.ContentLength = strRequest.Length;
