@@ -59,7 +59,7 @@ namespace SEP_Osiguranje.Controllers
 
         //[Route("api/paypal/notify")]
         //[HttpGet]
-        public void PostPaypal()
+        public async void PostPaypal()
         {
             var verificationResp = string.Empty;
 
@@ -70,8 +70,8 @@ namespace SEP_Osiguranje.Controllers
                 verificationReq.Method = "POST";
                 verificationReq.ContentType = "application/x-www-form-urlencoded";
                 //var param = Request.BinaryRead(Request.ContentLength);
-                //var strRequest = Encoding.ASCII.GetString(param);
-                var strRequest = "cmd=_notify-validate&" + (string)(Request.Properties["body"]);
+                var param = await Request.Content.ReadAsByteArrayAsync();
+                var strRequest = Encoding.ASCII.GetString(param);
                 verificationReq.ContentLength = strRequest.Length;
 
                 var streamOut = new StreamWriter(verificationReq.GetRequestStream(), Encoding.ASCII);
