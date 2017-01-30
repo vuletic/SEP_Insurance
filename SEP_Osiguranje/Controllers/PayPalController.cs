@@ -84,7 +84,8 @@ namespace SEP_Osiguranje.Controllers
             }
             catch (Exception e)
             {
-                //handle exception, write log, etc...
+                int k; 
+                k = 7;
             }
 
             ProcessVerificationResponse(verificationResp);
