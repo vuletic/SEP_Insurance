@@ -59,7 +59,7 @@ namespace SEP_Osiguranje.Controllers
 
         //[Route("api/paypal/notify")]
         //[HttpGet]
-        public async void PostPaypal()
+        public void PostPaypal()
         {
             var verificationResp = string.Empty;
 
