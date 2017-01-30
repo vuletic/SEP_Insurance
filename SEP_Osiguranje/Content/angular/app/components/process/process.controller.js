@@ -93,6 +93,11 @@
             if (!pr.everythingIsValidFinal())
                 return;
 
+            if (pr.insuranceCarrierIsNotInsured) {
+                pr.data.customers[pr.data.insCarrierI].phoneNum = pr.tempPhoneNum;
+                pr.data.customers[pr.data.insCarrierI].email = pr.tempEmail;
+            }
+
             console.log(pr.data);
             
             var dto = {};            
@@ -317,7 +322,7 @@
 
         pr.goFromFirstPage = function () {
             if (!pr.everythingIsValidFirst()) {
-                //    return;
+                return;
             }
             pr.selectedProcessPanel = [false, true, false, false, false];
         }
@@ -443,6 +448,8 @@
 
         /******         FINAL PAGE VALIDATION       ******/
         pr.showErrorsFinal = false;
+        pr.tempPhoneNum = "";
+        pr.tempEmail = "";
 
         pr.everythingIsValidFinal = function () {
             if (!$scope.finalPageForm.$valid) {
@@ -458,15 +465,28 @@
             pr.showErrorsFinal = false;
 
             if (!pr.insuranceCarrierIsNotInsured) {
+                $scope.finalPageForm.nameNameNew.$setUntouched();
+                $scope.finalPageForm.nameSurnameNew.$setUntouched();
+                $scope.finalPageForm.nameJmbgNew.$setUntouched();
+                $scope.finalPageForm.nameStreetNew.$setUntouched();
+                $scope.finalPageForm.nameNumberNew.$setUntouched();
+                $scope.finalPageForm.nameCityNew.$setUntouched();
+                $scope.finalPageForm.namePhoneNew.$setUntouched();
+                $scope.finalPageForm.nameEmailNew.$setUntouched();
                 pr.data.insCarrierNI.name = "";
                 pr.data.insCarrierNI.surname = "";
                 pr.data.insCarrierNI.jmbg = "";
+                pr.data.insCarrierNI.phoneNum = "";
+                pr.data.insCarrierNI.email = "";
                 pr.data.insCarrierNI.address.street = "";
                 pr.data.insCarrierNI.address.number = "";
                 pr.data.insCarrierNI.address.city = "";
+
             } else {
-                pr.data.customers[pr.data.insCarrierI].phoneNum = "";
-                pr.data.customers[pr.data.insCarrierI].email = "";
+                pr.tempPhoneNum = "";
+                pr.tempEmail = "";
+                $scope.finalPageForm.namePhoneIncluded.$setUntouched();
+                $scope.finalPageForm.nameEmailIncluded.$setUntouched();
             }
         }
     }
