@@ -71,9 +71,7 @@ namespace SEP_Osiguranje.Controllers
                 verificationReq.ContentType = "application/x-www-form-urlencoded";
                 //var param = Request.BinaryRead(Request.ContentLength);
                 //var strRequest = Encoding.ASCII.GetString(param);
-                var param = await Request.Content.ReadAsByteArrayAsync();
-                var strRequest = Encoding.ASCII.GetString(param);
-                strRequest = "cmd=_notify-validate&" + strRequest;
+                var strRequest = "cmd=_notify-validate&" + (string)(Request.Properties["body"]);
                 verificationReq.ContentLength = strRequest.Length;
 
                 var streamOut = new StreamWriter(verificationReq.GetRequestStream(), Encoding.ASCII);
