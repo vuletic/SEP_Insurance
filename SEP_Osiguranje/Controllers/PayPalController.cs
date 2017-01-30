@@ -84,8 +84,8 @@ namespace SEP_Osiguranje.Controllers
             }
             catch (Exception e)
             {
-                int k; 
-                k = 7;
+                int k = 7;
+                Console.WriteLine(e);
             }
 
             ProcessVerificationResponse(verificationResp);
