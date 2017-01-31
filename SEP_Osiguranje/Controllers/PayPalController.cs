@@ -66,14 +66,15 @@ namespace SEP_Osiguranje.Controllers
             try
             {
                 HttpWebRequest verificationReq = WebRequest.Create("https://www.sandbox.paypal.com/cgi-bin/webscr") as HttpWebRequest;
-                
+
                 verificationReq.Method = "POST";
                 verificationReq.ContentType = "application/x-www-form-urlencoded";
-                //var param = Request.BinaryRead(Request.ContentLength);
                 var param = await Request.Content.ReadAsByteArrayAsync();
-                var strRequest = Encoding.ASCII.GetString(param);
+                string strRequest = Encoding.ASCII.GetString(param);
+                strRequest = "cmd=_notify-validate&" + strRequest;
                 verificationReq.ContentLength = strRequest.Length;
 
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
                 var streamOut = new StreamWriter(verificationReq.GetRequestStream(), Encoding.ASCII);
                 streamOut.Write(strRequest);
                 streamOut.Close();
@@ -84,7 +85,9 @@ namespace SEP_Osiguranje.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("Exception occured while parsing IPN Notification!");
+                Console.WriteLine(e.Message);
+                // write log
             }
 
             ProcessVerificationResponse(verificationResp);
