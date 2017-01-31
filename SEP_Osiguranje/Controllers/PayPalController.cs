@@ -74,7 +74,7 @@ namespace SEP_Osiguranje.Controllers
                 strRequest = "cmd=_notify-validate&" + strRequest;
                 verificationReq.ContentLength = strRequest.Length;
 
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 var streamOut = new StreamWriter(verificationReq.GetRequestStream(), Encoding.ASCII);
                 streamOut.Write(strRequest);
                 streamOut.Close();
