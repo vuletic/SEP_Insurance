@@ -15,31 +15,27 @@ namespace SEP_Osiguranje.Controllers
 {
     public class PaypalController : ApiController
     {
-        //[Route("api/paypal/getbutton")]
-        //[HttpGet]
+        private const string policyName = "Moje Najbolje Osiguranje ;)";
+        private const string accountEmail = "projekat.sep@gmail.com";
+
         public HttpResponseMessage GetPaypal()
         {
-            // Create request object
             BMCreateButtonRequestType request = new BMCreateButtonRequestType();
 
             request.ButtonType = ButtonTypeType.BUYNOW;
-
-            // HOSTED - A secure button stored on PayPal; default for all buttons except View Cart, Unsubscribe, and Pay Now
-            // ENCRYPTED - An encrypted button, not stored on PayPal; default for View Cart button
-            // CLEARTEXT - nije preporucljivo - An unencrypted button, not stored on PayPal; default for Unsubscribe button
             request.ButtonCode = ButtonCodeType.ENCRYPTED;
 
-            String itemName = "Moje Najbolje Osiguranje ;)";
-            String accountEMail = "projekat.sep@gmail.com";
-            String price = "1430";
-            String currency = "USD";
+            String returnAdress = "https://seposiguranje.azurewebsites.net/#!/core/home";
+            String policyId = "12943032419";
+            String price = "50";
 
             List<string> buttonVars = new List<string>();
-            buttonVars.Add("return=" + "https://seposiguranje.azurewebsites.net/#!/core/home");
-            buttonVars.Add("item_name=" + itemName);
-            buttonVars.Add("business=" + accountEMail);
+            buttonVars.Add("return=" + returnAdress);
+            buttonVars.Add("item_name=" + policyName);
+            buttonVars.Add("item_number=" + policyId);
             buttonVars.Add("amount=" + price);
-            buttonVars.Add("currency_code=" + currency);
+            buttonVars.Add("currency_code=" + "EUR");
+            buttonVars.Add("business=" + accountEmail);
             request.ButtonVar = buttonVars;
 
             // Invoke the API
@@ -56,9 +52,6 @@ namespace SEP_Osiguranje.Controllers
             return res;
         }
         
-
-        //[Route("api/paypal/notify")]
-        //[HttpGet]
         public async void PostPaypal()
         {
             var verificationResp = string.Empty;
@@ -82,37 +75,79 @@ namespace SEP_Osiguranje.Controllers
                 var streamIn = new StreamReader(verificationReq.GetResponse().GetResponseStream());
                 verificationResp = streamIn.ReadToEnd();
                 streamIn.Close();
+
+                ProcessVerificationResponse(verificationResp, strRequest);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception occured while parsing IPN Notification!");
-                Console.WriteLine(e.Message);
-                // write log
+                // zapisati zasto je doslo do greske...
             }
-
-            ProcessVerificationResponse(verificationResp);
         }
 
-        private void ProcessVerificationResponse(string response)
+        private void ProcessVerificationResponse(string response, string paymentDetails)
         {
+            // postoji i polje "payment_date", (svi podaci o uplatiocu(ime, prezime, adresa))
+
+            Dictionary<string, string> details = organizeDetails(paymentDetails);
             if (response.Equals("VERIFIED"))
             {
-                // check that Payment_status is Completed
-                // check that Txn_id has not been previously processed
-                // check that Receiver_email is your Primary PayPal email
-                // check that Payment_amount is correct
-                // check that Payment_currency is correct
-                // process payment
-            }
-            else if (response.Equals("INVALID"))
-            {
-                //this means that notification is false and that there was no payment
-                //handle exception, write log, etc...
+                if (!details.ContainsKey("receiver_email"))
+                    return;
+                if (!details["receiver_email"].Equals(accountEmail))
+                    return; // transakcija nije namenjena meni
+
+                if (!details.ContainsKey("payment_status"))
+                    return;
+                if (!details["payment_status"].Equals("Completed"))
+                    return; // nije prosla transakcija
+
+                if (!details.ContainsKey("item_name1"))
+                    return;
+                if (!details["item_name1"].Equals(policyName))
+                    return; // nije placeno osiguranje vec nesto drugo
+
+                if (!details.ContainsKey("item_number1"))
+                    return; // ne mozemo nista obraditi jer ne znamo o kojoj je polisi rec
+                string policyId = details["item_number1"];
+                
+                // nadji datu polisu u bazi
+
+                string currency = "", ammount = "";
+                if (details.ContainsKey("mc_currency"))
+                    currency = details["mc_currency"];
+
+                if (details.ContainsKey("mc_gross"))
+                    ammount = details["mc_gross"];
+
+                // proveriti da li se valuta i placeni iznos poklapaju sa ocekivanim
+
+
+                // upisati u bazu za odgovarajucu polisu da je placanje izvrseno
+                // upisati u bazu za odgovarajucu polisu id transakcije
             }
             else
             {
-                //handle exception, write log, etc...
+                //upisati u redovan log
+                //upisati u log potencijalnih opasnosti
+
+                string email = "", status = "";
+                if (details.ContainsKey("payer_email"))
+                    email = details["payer_email"];
+                if (details.ContainsKey("payer_status"))
+                    status = details["payer_status"];       // da li ima verifikovan nalog na paypal-u
             }
+        }
+
+        private Dictionary<string, string> organizeDetails(string detailsList)
+        {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            String[] details = detailsList.Split('&');
+            foreach (string detail in details)
+            {
+                String[] data = detail.Split('=');
+                dictionary.Add(data[0], data[1]);
+            }
+            return dictionary;
         }
     }
 }
