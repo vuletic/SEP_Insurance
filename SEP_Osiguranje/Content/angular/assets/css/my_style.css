@@ -161,7 +161,7 @@ button {
 	width: 100%;
 	border-top: #39C solid 4px !important;
 }
-
+/*
 .footer-columns {
     margin: 0 auto; 
 	width: 74em;
@@ -173,9 +173,9 @@ button {
 	width: 17em;
 	float: left;
 }
-
+    */
 .footer .signature {
-    margin-top: 17.3em;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -707,4 +707,16 @@ button[disabled="disabled"]:hover {
         text-align: right;
         float: left;
     }
+}
+
+@media screen and (max-width: 950px) {
+    .overview-panel {
+        width: 100%;
+       
+    }
+
+    .overview-content-holder{
+        width: 100%;
+    }
+
 }
