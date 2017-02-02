@@ -1,12 +1,4 @@
-@media screen and (max-width: 1160px) {
-    .picker-image {
-        height: 100%;
-        width: 40%;
-        margin-left: 45%;
-        text-align: right;
-        float: left;
-    }
-}
+
 /*#######	GENERAL		 	########################*/
 body {
     font-family: 'Tahoma' !important;
@@ -705,4 +697,14 @@ button[disabled="disabled"]:hover {
     width: 16em;
     position: absolute;
     display: block;
+}
+
+@media screen and (max-width: 1160px) {
+    .picker-image {
+        height: 100%;
+        width: 40%;
+        margin-left: 45%;
+        text-align: right;
+        float: left;
+    }
 }
