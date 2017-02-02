@@ -171,7 +171,8 @@
                             <table class="my-form-fields-table">
                                 <tr><th>{{cr.l10nObj.prsPg3OIName}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.name" required /></td></tr>
                                 <tr><th>P{{cr.l10nObj.prsPg3OISurname}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.surname" required /></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg3OIJMBG}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.jmbg" ng-pattern="/^(\d{13})$/" required /></td>
+                                <tr><th>{{cr.l10nObj.prsPg3OIJMBG}}</th><td><input type="text" name="nameObjectJmbg" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.jmbg" ng-blur="pr.validateObjectJmbg()"
+                                                                                        ng-pattern="/^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))|30(?!02))(0[1-9]|1[0-2])([09][0-9]{2})([0-8][0-9]|9[0-6])([0-9]{3})(\d)$/" required /></td>
                                 <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg3OIAddress}}</th></tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIStreet}}</td><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.street" required /></td></tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OINumber}}</td><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.number" ng-pattern="/^(\d)+$/" required /></td></tr>
@@ -213,8 +214,9 @@
                                 <tr><th>{{cr.l10nObj.prsPg4CIManDate}}</th><td><input type="number" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.productionYear" min="1950" max="{{pr.currentYear}}" required /></td></tr>
                                 <tr><th>{{cr.l10nObj.prsPg4CIRegNum}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.registrationNumber" ng-pattern="/^[a-zA-Z0-9]{6,10}$/" required /></td></tr>
                                 <tr><th>{{cr.l10nObj.prsPg4CIOwnerName}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.name" required /></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerSurname}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.surname" required /></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerJMBG}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.jmbg" ng-pattern="/^\d{13}$/" required /></td>
+                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerSurname}}</th><td><input type="text" class="form-control" name="nameVehicleJmbg" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.surname" required /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerJMBG}}</th><td><input type="text" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.jmbg" ng-blur="pr.validateVehicleJmbg()"
+                                                                                        ng-pattern="/^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))|30(?!02))(0[1-9]|1[0-2])([09][0-9]{2})([0-8][0-9]|9[0-6])([0-9]{3})(\d)$/" required /></td>
                             </table>
                         </div>
 
@@ -258,7 +260,8 @@
                             <table class="my-form-fields-table">
                                 <tr><th>{{cr.l10nObj.prsPg5Name}}</th><td><input type="text" name="nameNameNew" class="form-control big-input" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.name" ng-required="pr.insuranceCarrierIsNotInsured" /></td></tr>
                                 <tr><th>{{cr.l10nObj.prsPg5Surname}}</th><td><input type="text" name="nameSurnameNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.surname" ng-required="pr.insuranceCarrierIsNotInsured" /></td></tr>
-                                <tr><th>{{cr.l10nObj.prsPg5JMBG}}</th><td><input type="text" name="nameJmbgNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.jmbg" ng-pattern="/^\d{13}$/" ng-required="pr.insuranceCarrierIsNotInsured" /></td></tr>
+                                <tr><th>{{cr.l10nObj.prsPg5JMBG}}</th><td><input type="text" name="nameJmbgNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.jmbg" ng-blur="pr.validateCarrierJmbg()"
+                                                                                ng-pattern="/^(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))|30(?!02))(0[1-9]|1[0-2])([09][0-9]{2})([0-8][0-9]|9[0-6])([0-9]{3})(\d)$/" ng-required="pr.insuranceCarrierIsNotInsured" /></td></tr>
                                 <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg5Address}}</th></tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Street}}</td><td><input type="text" name="nameStreetNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.street" ng-required="pr.insuranceCarrierIsNotInsured" /></td></tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Number}}</td><td><input type="text" name="nameNumberNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.number" ng-pattern="/^(\d)+$/" ng-required="pr.insuranceCarrierIsNotInsured" /></td></tr>

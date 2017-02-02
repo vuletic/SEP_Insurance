@@ -311,6 +311,26 @@
             pr.hotelDays = response;
         });
 
+        /******         COMMON VALIDATION           ******/
+        pr.validAge = function (jmbgValue, ageString) {
+            if (jmbgValue.length != 13)
+                return false;
+
+            var age = parseInt(ageString);
+            var day = parseInt(jmbgValue.substring(0, 2));
+            var month = parseInt(jmbgValue.substring(2, 4)) - 1;
+            var yearString = jmbgValue[4]==0 ? '2' : '1' + jmbgValue.substring(4, 7)
+            var year = parseInt(yearString) + age;
+
+            var validDate = new Date(year, month, day);
+            var currentDate = new Date();
+
+            if (currentDate.getTime() < validDate.getTime())
+                return false;
+
+            return true;
+        }        
+
         /******         FIRST PAGE VALIDATION       ******/
         pr.currentDate = new Date();
         pr.nextDate = new Date();
@@ -351,12 +371,25 @@
 
         pr.everythingIsValidThird = function () {
             pr.validateObjectOptions();
+            pr.validateObjectJmbg();
             if (!$scope.thirdPageForm.$valid) {
                 pr.showErrorsThird = true;
                 return false;
             } else {
                 pr.showErrorsThird = false;
                 return true;
+            }
+        }
+
+        pr.validateObjectJmbg = function () {
+            if (pr.data.object.owner == undefined)
+                return;
+            if (pr.data.object.owner.jmbg == undefined)
+                return;
+            if (!pr.validAge(pr.data.object.owner.jmbg, 18)) {
+                $scope.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", false);
+            } else {
+                $scope.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", true);
             }
         }
 
@@ -387,7 +420,7 @@
             $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
             $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
             $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
-
+            $scope.thirdPageForm.nameObjectJmbg.$setValidity("validJmbg", true);
         }
 
         /******         FOURTH PAGE VALIDATION       ******/
@@ -405,12 +438,25 @@
 
         pr.everythingIsValidFourth = function () {
             pr.validateVehicleOptions();
+            pr.validateVehicleJmbg();
             if (!$scope.fourthPageForm.$valid) {
                 pr.showErrorsFourth = true;
                 return false;
             } else {
                 pr.showErrorsFourth = false;
                 return true;
+            }
+        }
+
+        pr.validateVehicleJmbg = function () {
+            if (pr.data.vehicle.customer == undefined)
+                return;
+            if (pr.data.vehicle.customer.jmbg == undefined)
+                return;
+            if (!pr.validAge(pr.data.vehicle.customer.jmbg, 18)) {
+                $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", false);
+            } else {
+                $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
             }
         }
 
@@ -440,6 +486,7 @@
             pr.data.vehicle.customer.name = "";
             pr.data.vehicle.customer.surname = "";
             pr.data.vehicle.customer.jmbg = "";
+            $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
             $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
             $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
             $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
@@ -452,6 +499,7 @@
         pr.tempEmail = "";
 
         pr.everythingIsValidFinal = function () {
+            pr.validateCarrierJmbg();
             if (!$scope.finalPageForm.$valid) {
                 pr.showErrorsFinal = true;
                 return false;
@@ -461,10 +509,23 @@
             }
         }
 
+        pr.validateCarrierJmbg = function () {
+            if (pr.data.insCarrierNI == undefined)
+                return;
+            if (pr.data.insCarrierNI.jmbg == undefined)
+                return;
+            if (!pr.validAge(pr.data.insCarrierNI.jmbg, 18)) {
+                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", false);
+            } else {
+                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
+            }
+        }
+        
         pr.switchCarrier = function () {
             pr.showErrorsFinal = false;
 
             if (!pr.insuranceCarrierIsNotInsured) {
+                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
                 $scope.finalPageForm.nameNameNew.$setUntouched();
                 $scope.finalPageForm.nameSurnameNew.$setUntouched();
                 $scope.finalPageForm.nameJmbgNew.$setUntouched();
@@ -481,7 +542,6 @@
                 pr.data.insCarrierNI.address.street = "";
                 pr.data.insCarrierNI.address.number = "";
                 pr.data.insCarrierNI.address.city = "";
-
             } else {
                 pr.tempPhoneNum = "";
                 pr.tempEmail = "";
