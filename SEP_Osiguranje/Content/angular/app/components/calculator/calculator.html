@@ -29,14 +29,14 @@
                         <tr>
                             <th>{{cr.l10nObj.clcPgTIStartDate}}</th>
                             <td>
-                                <span message="Datum početka važenja mora biti barem današnji datum." ng-class="{'error-info': calculatorForm.nameDateFrom.$invalid && (calculatorForm.nameDateFrom.$touched || cc.showErrors)}">
+                                <span message="Datum početka važenja mora biti barem današnji datum." ng-class="{'error-info-calc': calculatorForm.nameDateFrom.$invalid && (calculatorForm.nameDateFrom.$touched || cc.showErrors)}">
                                     <input type="date" name="nameDateFrom" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateFrom" ng-change="cc.changeStartDate()"
                                            placeholder="yyyy-MM-dd" min="{{cc.currentDate | date: 'yyyy-MM-dd'}}" required />
                                 </span>
                             </td>
                             <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgTIEndDate}}</th>
                             <td>
-                                <span message="Datum kraja važenja mora biti nakon datuma početka važenja." ng-class="{'error-info': calculatorForm.nameDateTo.$invalid && (calculatorForm.nameDateTo.$touched || cc.showErrors)}">
+                                <span message="Datum kraja važenja mora biti nakon datuma početka važenja." ng-class="{'error-info-calc': calculatorForm.nameDateTo.$invalid && (calculatorForm.nameDateTo.$touched || cc.showErrors)}">
                                     <input type="date" name="nameDateTo" class="form-control" ng-class="{'show-error': cc.showErrors}" ng-model="cc.data.dateTo"
                                            placeholder="yyyy-MM-dd" min="{{cc.nextDate | date: 'yyyy-MM-dd'}}" required />
                                 </span>
@@ -54,19 +54,19 @@
                                     <tr>
                                         <th>{{cc.ageGroups[0].Prevod[cr.lang].Naziv_Prevod}}</th>
                                         <td>
-                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info': calculatorForm.nameCountYoung.$invalid && (calculatorForm.nameCountYoung.$touched || cc.showErrors)}">
+                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info-calc': calculatorForm.nameCountYoung.$invalid && (calculatorForm.nameCountYoung.$touched || cc.showErrors)}">
                                                 <input type="number" name="nameCountYoung" ng-blur="cc.countYoungTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberYoung" />
                                             </span>
                                         </td>
                                         <th>&nbsp; &nbsp; {{cc.ageGroups[1].Prevod[cr.lang].Naziv_Prevod}}</th>
                                         <td>
-                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info': calculatorForm.nameCountAdult.$invalid && (calculatorForm.nameCountAdult.$touched || cc.showErrors)}">
+                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info-calc': calculatorForm.nameCountAdult.$invalid && (calculatorForm.nameCountAdult.$touched || cc.showErrors)}">
                                                 <input type="number" name="nameCountAdult" ng-blur="cc.countAdultTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberAdult" />
                                             </span>
                                         </td>
                                         <th>&nbsp; &nbsp; {{cc.ageGroups[2].Prevod[cr.lang].Naziv_Prevod}}</th>
                                         <td>
-                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info': calculatorForm.nameCountOld.$invalid && (calculatorForm.nameCountOld.$touched || cc.showErrors)}">
+                                            <span message="Mora biti osiguran barem jedan putnik, bilo kog uzrasta." ng-class="{'error-info-calc': calculatorForm.nameCountOld.$invalid && (calculatorForm.nameCountOld.$touched || cc.showErrors)}">
                                                 <input type="number" name="nameCountOld" ng-blur="cc.countOldTouched()" ng-change="cc.peopleCountChanged()" class="form-control small-input" ng-class="{'show-error': cc.showErrors}" min="0" ng-model="cc.data.ageNumberOld" />
                                             </span>
                                         </td>
@@ -101,7 +101,7 @@
                         <tr>
                             <th>{{cr.l10nObj.clcPgOIArea}}</th>
                             <td>
-                                <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info': calculatorForm.nameObjectSize.$invalid && (calculatorForm.nameObjectSize.$touched || cc.showErrors)}">
+                                <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info-calc': calculatorForm.nameObjectSize.$invalid && (calculatorForm.nameObjectSize.$touched || cc.showErrors)}">
                                     <div class="input-group standard-input">
                                         <input type="text" class="form-control" name="nameObjectSize" ng-model="cc.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" ng-class="{'show-error': cc.objectRequiredShow() }" ng-required="cc.enableObject" />
                                         <span class="input-group-addon">m2</span>

@@ -669,11 +669,11 @@ button[disabled="disabled"]:hover {
     cursor: not-allowed;
 }
 
-.error-info {
+.error-info-calc {
     position: relative;
 }
 	
-.error-info:hover:before{
+.error-info-calc:hover:before{
     top: 34px;
     left: 20%;
     border: solid;
@@ -684,9 +684,40 @@ button[disabled="disabled"]:hover {
     z-index:98;
 }
 
-.error-info:hover:after{
+.error-info-calc:hover:after{
     top: 0.7em;
     left: -1em;
+    background: #FFF;
+    border: 2px solid red;
+    border-radius: 2px;
+    color: red;
+    content: attr(message);
+    padding: 0.2em 0.4em;
+    z-index:99;
+    width: 16em;
+    position: absolute;
+    text-align:center;
+    display: block;
+}
+
+.error-info-proc {
+    position: relative;
+}
+	
+.error-info-proc:hover:before{
+    top: 34px;
+    right: 2em;
+    border: solid;
+    border-color: red transparent;
+    border-width: 0 2em 2em 2em;
+    content: "";
+    position: absolute;
+    z-index:98;
+}
+
+.error-info-proc:hover:after{
+    top: 0.7em;
+    left: -7.5em;
     background: #FFF;
     border: 2px solid red;
     border-radius: 2px;

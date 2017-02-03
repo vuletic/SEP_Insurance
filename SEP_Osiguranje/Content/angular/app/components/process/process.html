@@ -14,14 +14,14 @@
                                 <tr><th>{{cr.l10nObj.prsPg1Place}}</th><td><select class="form-control" ng-options="location.Id_Rizik as location.Prevod[cr.lang].Naziv_Prevod for location in pr.locations" ng-model="pr.data.selectedLocation"></select></td></tr>
                                 <tr><th>{{cr.l10nObj.prsPg1StartDate}}</th>
                                 <td>
-                                    <span message="Datum početka važenja mora biti barem današnji datum." ng-class="{'error-info': firstPageForm.nameDateFrom.$invalid && (firstPageForm.nameDateFrom.$touched || pr.showErrorsFirst)}">
+                                    <span message="Datum početka važenja mora biti barem današnji datum." ng-class="{'error-info-proc': firstPageForm.nameDateFrom.$invalid && (firstPageForm.nameDateFrom.$touched || pr.showErrorsFirst)}">
                                         <input type="date" name="nameDateFrom" class="form-control" ng-class="{'show-error': pr.showErrorsFirst}" ng-model="pr.data.dateFrom" ng-change="pr.changeStartDate()"
                                                placeholder="yyyy-MM-dd" min="{{pr.currentDate | date: 'yyyy-MM-dd'}}" required />
                                     </span>    
                                 </td></tr>
                                 <tr><th>{{cr.l10nObj.prsPg1EndDate}}</th>
                                 <td>
-                                    <span message="Datum kraja važenja mora biti nakon datuma početka važenja." ng-class="{'error-info': firstPageForm.nameDateTo.$invalid && (firstPageForm.nameDateTo.$touched || pr.showErrorsFirst)}">
+                                    <span message="Datum kraja važenja mora biti nakon datuma početka važenja." ng-class="{'error-info-proc': firstPageForm.nameDateTo.$invalid && (firstPageForm.nameDateTo.$touched || pr.showErrorsFirst)}">
                                         <input type="date" name="nameDateTo" class="form-control" ng-class="{'show-error': pr.showErrorsFirst}" ng-model="pr.data.dateTo"
                                                placeholder="yyyy-MM-dd" min="{{pr.nextDate | date: 'yyyy-MM-dd'}}" required />
                                     </span>
@@ -124,7 +124,7 @@
                                 <tr>
                                     <th>{{cr.l10nObj.prsPg3OIArea}}</th>
                                     <td>
-                                        <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info': thirdPageForm.nameObjectSize.$invalid && (thirdPageForm.nameObjectSize.$touched || pr.showErrorsThird)}">
+                                        <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info-proc-proc': thirdPageForm.nameObjectSize.$invalid && (thirdPageForm.nameObjectSize.$touched || pr.showErrorsThird)}">
                                             <div class="input-group standard-input">
                                                 <input type="text" name="nameObjectSize" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" ng-required="pr.hideObjectInsurance" />
                                                 <span class="input-group-addon">m2</span>
@@ -173,21 +173,21 @@
                             <table class="my-form-fields-table">
                                 <tr><th>{{cr.l10nObj.prsPg3OIName}}</th>
                                     <td>
-                                        <span message="Ime vlasnika je obavezno." ng-class="{'error-info': thirdPageForm.nameObjectName.$invalid && (thirdPageForm.nameObjectName.$touched || pr.showErrorsThird)}">
+                                        <span message="Ime vlasnika je obavezno." ng-class="{'error-info-proc': thirdPageForm.nameObjectName.$invalid && (thirdPageForm.nameObjectName.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectName" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.name" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>P{{cr.l10nObj.prsPg3OISurname}}</th>
                                     <td>
-                                        <span message="Prezime vlasnika je obavezno." ng-class="{'error-info': thirdPageForm.nameObjectSurname.$invalid && (thirdPageForm.nameObjectSurname.$touched || pr.showErrorsThird)}">
+                                        <span message="Prezime vlasnika je obavezno." ng-class="{'error-info-proc': thirdPageForm.nameObjectSurname.$invalid && (thirdPageForm.nameObjectSurname.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectSurname" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.surname" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg3OIJMBG}}</th>
                                     <td>
-                                        <span message="Unesite validan JMBG osobe koja je punoletna." ng-class="{'error-info': thirdPageForm.nameObjectJmbg.$invalid && (thirdPageForm.nameObjectJmbg.$touched || pr.showErrorsThird)}">
+                                        <span message="Unesite validan JMBG osobe koja je punoletna." ng-class="{'error-info-proc': thirdPageForm.nameObjectJmbg.$invalid && (thirdPageForm.nameObjectJmbg.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectJmbg" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.jmbg" ng-blur="pr.validateObjectJmbg()" ng-pattern="pr.jmbgRegex" required />
                                         </span>
                                     </td>
@@ -195,21 +195,21 @@
                                 <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg3OIAddress}}</th></tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIStreet}}</td>
                                     <td>
-                                        <span message="Ulica stanovanja vlasnika je obavezna." ng-class="{'error-info': thirdPageForm.nameObjectStreet.$invalid && (thirdPageForm.nameObjectStreet.$touched || pr.showErrorsThird)}">
+                                        <span message="Ulica stanovanja vlasnika je obavezna." ng-class="{'error-info-proc': thirdPageForm.nameObjectStreet.$invalid && (thirdPageForm.nameObjectStreet.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectStreet" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.street" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OINumber}}</td>
                                     <td>
-                                        <span message="Broj objekta stanovanja vlasnika je obavezan." ng-class="{'error-info': thirdPageForm.nameObjectNumber.$invalid && (thirdPageForm.nameObjectNumber.$touched || pr.showErrorsThird)}">
-                                            <input type="text" name="nameObjectNumber" class="form-control small-input" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.number" ng-pattern="/^(\d)+$/" required />
+                                        <span message="Broj objekta stanovanja vlasnika je obavezan." ng-class="{'error-info-proc': thirdPageForm.nameObjectNumber.$invalid && (thirdPageForm.nameObjectNumber.$touched || pr.showErrorsThird)}">
+                                            <input type="number" name="nameObjectNumber" min="1" class="form-control small-input" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.number" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIPlace}}</td>
                                     <td>
-                                        <span message="Naziv mesta stanovanja vlasnika je obavezan." ng-class="{'error-info': thirdPageForm.nameObjectCity.$invalid && (thirdPageForm.nameObjectCity.$touched || pr.showErrorsThird)}">
+                                        <span message="Naziv mesta stanovanja vlasnika je obavezan." ng-class="{'error-info-proc': thirdPageForm.nameObjectCity.$invalid && (thirdPageForm.nameObjectCity.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectCity" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.city" required />
                                         </span>
                                     </td>
@@ -249,42 +249,42 @@
                             <table class="my-form-fields-table">
                                 <tr><th>{{cr.l10nObj.prsPg4CIChassisNum}}</th>
                                     <td>
-                                        <span message="Broj sasije treba da sadrzi ukupno 17 slova i brojeva." ng-class="{'error-info': fourthPageForm.nameVehicleChasis.$invalid && (fourthPageForm.nameVehicleChasis.$touched || pr.showErrorsFourth)}">
+                                        <span message="Broj sasije treba da sadrzi ukupno 17 slova i brojeva." ng-class="{'error-info-proc': fourthPageForm.nameVehicleChasis.$invalid && (fourthPageForm.nameVehicleChasis.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleChasis" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.chassisNumber" ng-pattern="/^[a-zA-Z0-9]{17}$/" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg4CIManDate}}</th>
                                     <td>
-                                        <span message="Godina treba da je u rasponu od 1950 do tekuce." ng-class="{'error-info': fourthPageForm.nameVehicleYear.$invalid && (fourthPageForm.nameVehicleYear.$touched || pr.showErrorsFourth)}">
+                                        <span message="Godina treba da je u rasponu od 1950 do tekuce." ng-class="{'error-info-proc': fourthPageForm.nameVehicleYear.$invalid && (fourthPageForm.nameVehicleYear.$touched || pr.showErrorsFourth)}">
                                             <input type="number" name="nameVehicleYear" class="form-control small-input" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.productionYear" min="1950" max="{{pr.currentYear}}" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg4CIRegNum}}</th>
                                     <td>
-                                        <span message="Broj tablica je u formatu GG-XXXXXX (G-oznaka grada, x-broj, 4-8 karaktera)." ng-class="{'error-info': fourthPageForm.nameVehicleRegistration.$invalid && (fourthPageForm.nameVehicleRegistration.$touched || pr.showErrorsFourth)}">
+                                        <span message="Broj tablica je u formatu GG-XXXXXX (G-oznaka grada, x-broj, 4-8 karaktera)." ng-class="{'error-info-proc': fourthPageForm.nameVehicleRegistration.$invalid && (fourthPageForm.nameVehicleRegistration.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleRegistration" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.registrationNumber" ng-pattern="/^[a-zA-Z]{2}-[a-zA-Z0-9\u017E\u017D\u0160\u0161\u0110\u0111\u010D\u010C\u0106\u0107]{4,8}$/" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg4CIOwnerName}}</th>
                                     <td>
-                                        <span message="Ime vlasnika vozila je obavezno." ng-class="{'error-info': fourthPageForm.nameVehicleName.$invalid && (fourthPageForm.nameVehicleName.$touched || pr.showErrorsFourth)}">
+                                        <span message="Ime vlasnika vozila je obavezno." ng-class="{'error-info-proc': fourthPageForm.nameVehicleName.$invalid && (fourthPageForm.nameVehicleName.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleName" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.name" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg4CIOwnerSurname}}</th>
                                     <td>
-                                        <span message="Prezime vlasnika vozila je obavezno." ng-class="{'error-info': fourthPageForm.nameVehicleSurname.$invalid && (fourthPageForm.nameVehicleSurname.$touched || pr.showErrorsFourth)}">
+                                        <span message="Prezime vlasnika vozila je obavezno." ng-class="{'error-info-proc': fourthPageForm.nameVehicleSurname.$invalid && (fourthPageForm.nameVehicleSurname.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleSurname" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.surname" required />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg4CIOwnerJMBG}}</th>
                                     <td>
-                                        <span message="Unesite validan JMBG osobe koja je punoletna." ng-class="{'error-info': fourthPageForm.nameVehicleJmbg.$invalid && (fourthPageForm.nameVehicleJmbg.$touched || pr.showErrorsFourth)}">
+                                        <span message="Unesite validan JMBG osobe koja je punoletna." ng-class="{'error-info-proc': fourthPageForm.nameVehicleJmbg.$invalid && (fourthPageForm.nameVehicleJmbg.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleJmbg" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.jmbg" ng-blur="pr.validateVehicleJmbg()" ng-pattern="pr.jmbgRegex" required />
                                         </span>
                                     </td>
@@ -324,14 +324,14 @@
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5PhoneNum}}</th>
                                     <td>
-                                        <span message="Unesite broj telefona bez specijalnih karaktera (osim '+')." ng-class="{'error-info': finalPageForm.namePhoneIncluded.$invalid && (finalPageForm.namePhoneIncluded.$touched || pr.showErrorsFinal)}">
+                                        <span message="Unesite broj telefona bez specijalnih karaktera (osim '+')." ng-class="{'error-info-proc': finalPageForm.namePhoneIncluded.$invalid && (finalPageForm.namePhoneIncluded.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="namePhoneIncluded" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.tempPhoneNum" ng-pattern="/^\+?\d{6,14}$/" ng-required="!pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5Email}}</th>
                                     <td>
-                                        <span message="E-mail adresa je u formatu XXXXXX@XXXX.XXX." ng-class="{'error-info': finalPageForm.nameEmailIncluded.$invalid && (finalPageForm.nameEmailIncluded.$touched || pr.showErrorsFinal)}">
+                                        <span message="E-mail adresa je u formatu XXXXXX@XXXX.XXX." ng-class="{'error-info-proc': finalPageForm.nameEmailIncluded.$invalid && (finalPageForm.nameEmailIncluded.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameEmailIncluded" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.tempEmail" ng-pattern="/^[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+.[a-zA-Z0-9_]+$/" ng-required="!pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
@@ -344,21 +344,21 @@
                             <table class="my-form-fields-table">
                                 <tr><th>{{cr.l10nObj.prsPg5Name}}</th>
                                     <td>
-                                        <span message="Ime nosioca osiguranja je obavezno." ng-class="{'error-info': finalPageForm.nameNameNew.$invalid && (finalPageForm.nameNameNew.$touched || pr.showErrorsFinal)}">
+                                        <span message="Ime nosioca osiguranja je obavezno." ng-class="{'error-info-proc': finalPageForm.nameNameNew.$invalid && (finalPageForm.nameNameNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameNameNew" class="form-control big-input" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.name" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5Surname}}</th>
                                     <td>
-                                        <span message="Prezime nosioca osiguranja je obavezno." ng-class="{'error-info': finalPageForm.nameSurnameNew.$invalid && (finalPageForm.nameSurnameNew.$touched || pr.showErrorsFinal)}">
+                                        <span message="Prezime nosioca osiguranja je obavezno." ng-class="{'error-info-proc': finalPageForm.nameSurnameNew.$invalid && (finalPageForm.nameSurnameNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameSurnameNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.surname" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5JMBG}}</th>
                                     <td>
-                                        <span message="Unesite validan JMBG osobe koja je punoletna." ng-class="{'error-info': finalPageForm.nameJmbgNew.$invalid && (finalPageForm.nameJmbgNew.$touched || pr.showErrorsFinal)}">
+                                        <span message="Unesite validan JMBG osobe koja je punoletna." ng-class="{'error-info-proc': finalPageForm.nameJmbgNew.$invalid && (finalPageForm.nameJmbgNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameJmbgNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.jmbg" ng-blur="pr.validateCarrierJmbg()" ng-pattern="pr.jmbgRegex" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
@@ -366,35 +366,35 @@
                                 <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg5Address}}</th></tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Street}}</td>
                                     <td>
-                                        <span message="Ulica stanovanja nosioca osiguranja je obavezna." ng-class="{'error-info': finalPageForm.nameStreetNew.$invalid && (finalPageForm.nameStreetNew.$touched || pr.showErrorsFinal)}">
-                                            <input type="text" name="nameStreetNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.street" ng-required="pr.insuranceCarrierIsNotInsured" />
+                                        <span message="Ulica stanovanja nosioca osiguranja je obavezna." ng-class="{'error-info-proc': finalPageForm.nameStreetNew.$invalid && (finalPageForm.nameStreetNew.$touched || pr.showErrorsFinal)}">
+                                            <input type="text" name="nameStreetNew" class="form-control" min="1" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.street" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Number}}</td>
                                     <td>
-                                        <span message="Broj objekta nosioca osiguranja je obavezan." ng-class="{'error-info': finalPageForm.nameNumberNew.$invalid && (finalPageForm.nameNumberNew.$touched || pr.showErrorsFinal)}">
-                                            <input type="text" name="nameNumberNew" class="form-control small-input" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.number" ng-pattern="/^(\d)+$/" ng-required="pr.insuranceCarrierIsNotInsured" />
+                                        <span message="Broj objekta nosioca osiguranja je obavezan." ng-class="{'error-info-proc': finalPageForm.nameNumberNew.$invalid && (finalPageForm.nameNumberNew.$touched || pr.showErrorsFinal)}">
+                                            <input type="number" name="nameNumberNew" min="1" class="form-control small-input" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.number" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Place}}</td>
                                     <td>
-                                        <span message="Mesto stanovanja nosioca osiguranja je obavezno." ng-class="{'error-info': finalPageForm.nameCityNew.$invalid && (finalPageForm.nameCityNew.$touched || pr.showErrorsFinal)}">
+                                        <span message="Mesto stanovanja nosioca osiguranja je obavezno." ng-class="{'error-info-proc': finalPageForm.nameCityNew.$invalid && (finalPageForm.nameCityNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameCityNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.city" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5PhoneNum}}</th>
                                     <td>
-                                        <span message="Unesite broj telefona bez specijalnih karaktera (osim '+')." ng-class="{'error-info': finalPageForm.namePhoneNew.$invalid && (finalPageForm.namePhoneNew.$touched || pr.showErrorsFinal)}">
+                                        <span message="Unesite broj telefona bez specijalnih karaktera (osim '+')." ng-class="{'error-info-proc': finalPageForm.namePhoneNew.$invalid && (finalPageForm.namePhoneNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="namePhoneNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.phoneNum" ng-pattern="/^\+?\d{6,14}$/" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5Email}}</th>
                                     <td>
-                                        <span message="E-mail adresa je u formatu XXXXXX@XXXX.XXX." ng-class="{'error-info': finalPageForm.nameEmailNew.$invalid && (finalPageForm.nameEmailNew.$touched || pr.showErrorsFinal)}">
+                                        <span message="E-mail adresa je u formatu XXXXXX@XXXX.XXX." ng-class="{'error-info-proc': finalPageForm.nameEmailNew.$invalid && (finalPageForm.nameEmailNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameEmailNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.email" ng-pattern="/^[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+.[a-zA-Z0-9_]+$/" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
