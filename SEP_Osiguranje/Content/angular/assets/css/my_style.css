@@ -675,7 +675,7 @@ button[disabled="disabled"]:hover {
 	
 .error-info:hover:before{
     top: 34px;
-    left: 2em;
+    left: 20%;
     border: solid;
     border-color: red transparent;
     border-width: 0 2em 2em 2em;

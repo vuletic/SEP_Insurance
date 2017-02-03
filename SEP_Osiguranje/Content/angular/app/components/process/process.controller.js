@@ -383,9 +383,7 @@
         }
 
         pr.validateObjectJmbg = function () {
-            if (pr.data.object.owner == undefined)
-                return;
-            if (pr.data.object.owner.jmbg == undefined)
+            if (pr.data.object == undefined || pr.data.object.owner == undefined || pr.data.object.owner.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.object.owner.jmbg, 18)) {
                 $scope.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", false);
@@ -450,9 +448,7 @@
         }
 
         pr.validateVehicleJmbg = function () {
-            if (pr.data.vehicle.customer == undefined)
-                return;
-            if (pr.data.vehicle.customer.jmbg == undefined)
+            if (pr.data.vehicle == undefined || pr.data.vehicle.customer == undefined || pr.data.vehicle.customer.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.vehicle.customer.jmbg, 18)) {
                 $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", false);
