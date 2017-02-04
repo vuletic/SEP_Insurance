@@ -16,7 +16,7 @@ namespace SEP_Osiguranje.Controllers
     public class PaypalController : ApiController
     {
         private const string policyName = "Moje Najbolje Osiguranje ;)";
-        private const string accountEmail = "projekat.sep@gmail.com";
+        private const string accountEmail = "radi.molim.te@radi.com";
 
         public HttpResponseMessage GetPaypal()
         {
@@ -51,7 +51,7 @@ namespace SEP_Osiguranje.Controllers
             res.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return res;
         }
-        
+
         public async void PostPaypal()
         {
             var verificationResp = string.Empty;
@@ -109,7 +109,7 @@ namespace SEP_Osiguranje.Controllers
                 if (!details.ContainsKey("item_number1"))
                     return; // ne mozemo nista obraditi jer ne znamo o kojoj je polisi rec
                 string policyId = details["item_number1"];
-                
+
                 // nadji datu polisu u bazi
 
                 string currency = "", ammount = "";

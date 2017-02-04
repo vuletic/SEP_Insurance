@@ -14,18 +14,18 @@ namespace SEP_Osiguranje.PayPalData
             configMap = GetConfig();
 
             // Signature Credential
-            //configMap.Add("account1.apiUsername", "jb-us-seller_api1.paypal.com");
-            //configMap.Add("account1.apiPassword", "WX4WTU3S8MY44S7F");
-            //configMap.Add("account1.apiSignature", "AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+            configMap.Add("account1.apiUsername", "radi.molim.te_api1.radi.com");
+            configMap.Add("account1.apiPassword", "QWAHQGP79YXD6K7C");
+            configMap.Add("account1.apiSignature", "AFcWxV21C7fd0v3bYYYRCpSSRl31ApIVuBmM5Mx6ZSDg5AgkrYnSGGgp");
             // Optional
             // configMap.Add("account1.Subject", "");
 
             // Sample Certificate Credential
-            string certPath = AppDomain.CurrentDomain.BaseDirectory + "PayPalData\\paypal_cert.p12";
-            configMap.Add("account2.apiUsername", "projekat.sep_api1.gmail.com");
-            configMap.Add("account2.apiPassword", "5QM55C5Z4QR6R7L2");
-            configMap.Add("account2.apiCertificate", certPath);
-            configMap.Add("account2.privateKeyPassword", "elektronsko123");
+            //string certPath = AppDomain.CurrentDomain.BaseDirectory + "PayPalData\\paypal_cert.p12";
+            //configMap.Add("account2.apiUsername", "projekat.sep_api1.gmail.com");
+            //configMap.Add("account2.apiPassword", "5QM55C5Z4QR6R7L2");
+            //configMap.Add("account2.apiCertificate", certPath);
+            //configMap.Add("account2.privateKeyPassword", "elektronsko123");
             // Optional
             // configMap.Add("account2.Subject", "");
             return configMap;
