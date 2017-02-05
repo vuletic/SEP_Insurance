@@ -12,6 +12,7 @@
         cc.showInsurance = true;
         cc.showObject = false;
         cc.showVehicle = false;
+        cc.priceCalculated = false;
 
 
         cc.calculatedPrice = 0;
@@ -84,6 +85,7 @@
             }
             cc.data.realEstateInsured = cc.enableObject;
             cc.data.carInsured = cc.enableVehicle;
+            cc.priceCalculated = true;
             calculatorService.sendCalculateData(cc.data).then(function (response) {
                 cc.calculatedPrice = response;
             });

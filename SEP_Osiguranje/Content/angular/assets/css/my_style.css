@@ -667,6 +667,7 @@ button[disabled="disabled"] {
 
 button[disabled="disabled"]:hover {
     cursor: not-allowed;
+    color: #AAA;
 }
 
 .error-info-calc {
