@@ -194,7 +194,7 @@
                     </table>
                 </div>
 
-                <div class="calculator-final-price">
+                <div class="calculator-final-price" ng-show="cc.priceIsCalculated">
                     <hr class="hr-grey" />
                     <h3 class="header-right header-red">{{cr.l10nObj.clcPgCalcPr}} {{cc.calculatedPrice | number : 2}} RSD</h3>
                 </div>
@@ -204,9 +204,9 @@
                 <div>
                     <table class="my-overview-buttons">
                         <tr>
-                            <td><button class="my-button-overview-single" ng-disabled="calculatorForm.$pristine && cc.priceCalculated" ng-click="cc.calculate()">{{cr.l10nObj.clcPgCalculate}}</button></td>
+                            <td><button class="my-button-overview-single" ng-disabled="calculatorForm.$pristine && cc.priceIsCalculated" ng-click="cc.calculate()">{{cr.l10nObj.clcPgCalculate}}</button></td>
                             <th>&nbsp;</th>
-                            <td><button class="my-button-overview-single" ng-disabled="!calculatorForm.$pristine || !cc.priceCalculated" ng-click="cc.proceedToProcess()"><div>{{cr.l10nObj.clcPgProceedToP}} &nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div></button></td>
+                            <td><button class="my-button-overview-single" ng-disabled="!calculatorForm.$pristine || !cc.priceIsCalculated" ng-click="cc.proceedToProcess()"><div>{{cr.l10nObj.clcPgProceedToP}} &nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div></button></td>
                         </tr>
                     </table>
                 </div>

@@ -274,6 +274,7 @@
 
         dataAccessService.getSports().then(function (response) {
             pr.sports = response;
+            pr.data.selectedSport = pr.sports[0].Id_Rizik;
         });
 
         dataAccessService.getAgeGroups().then(function (response) {
@@ -282,34 +283,42 @@
 
         dataAccessService.getLocations().then(function (response) {
             pr.locations = response;
+            pr.data.selectedLocation = pr.locations[0].Id_Rizik;
         });
 
         dataAccessService.getInsuranceAmounts().then(function (response) {
             pr.insuranceAmounts = response;
+            pr.data.selectedInsuranceAmount = pr.insuranceAmounts[0].Id_Rizik;
         });
 
         dataAccessService.getRealEstateAges().then(function (response) {
             pr.realEstateAges = response;
+            pr.data.selectedRealEstateAge = pr.realEstateAges[0].Id_Rizik;
         });
 
         dataAccessService.getRealEstateValues().then(function (response) {
             pr.realEstateValues = response;
+            pr.data.selectedRealEstateValue = pr.realEstateValues[0].Id_Rizik;
         });
 
         dataAccessService.getTowingDistances().then(function (response) {
             pr.towingDistances = response;
+            pr.data.selectedTowingDistance = pr.towingDistances[0].Id_Rizik;
         });
 
         dataAccessService.getAlternateTransportationDistances().then(function (response) {
             pr.alternateTransportationDistances = response;
+            pr.data.selectedAlternateTransportationDistance = pr.alternateTransportationDistances[0].Id_Rizik;
         });
 
         dataAccessService.getReparationPrices().then(function (response) {
             pr.reparationPrices = response;
+            pr.data.selectedReparationPrice = pr.reparationPrices[0].Id_Rizik;
         });
 
         dataAccessService.getHotelDays().then(function (response) {
             pr.hotelDays = response;
+            pr.data.selectedHotelDays = pr.hotelDays[0].Id_Rizik;
         });
 
         /******         COMMON VALIDATION           ******/
@@ -409,6 +418,8 @@
             pr.data.residenceFromFlood = false;
             pr.data.residenceFromFire = false;
             pr.data.residenceFromTheft = false;
+            pr.data.selectedRealEstateAge = pr.realEstateAges[0].Id_Rizik;
+            pr.data.selectedRealEstateValue = pr.realEstateValues[0].Id_Rizik;
             pr.data.residenceSize = "";
             pr.data.object.owner.name = "";
             pr.data.object.owner.surname = "";
@@ -473,6 +484,14 @@
 
         pr.disableVehicles = function () {
             pr.showErrorsFourth = false;
+            pr.data.towing = false;
+            pr.data.repair = false;
+            pr.data.hotel = false;
+            pr.data.alternateTransport = false;
+            pr.data.selectedTowingDistance = pr.towingDistances[0].Id_Rizik;
+            pr.data.selectedAlternateTransportationDistance = pr.alternateTransportationDistances[0].Id_Rizik;
+            pr.data.selectedReparationPrice = pr.reparationPrices[0].Id_Rizik;
+            pr.data.selectedHotelDays = pr.hotelDays[0].Id_Rizik;
             pr.data.towing = false;
             pr.data.repair = false;
             pr.data.hotel = false;

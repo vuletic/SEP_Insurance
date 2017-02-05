@@ -12,7 +12,7 @@
         cc.showInsurance = true;
         cc.showObject = false;
         cc.showVehicle = false;
-        cc.priceCalculated = false;
+        cc.priceIsCalculated = false;
 
 
         cc.calculatedPrice = 0;
@@ -40,6 +40,7 @@
 
         dataAccessService.getSports().then(function (response) {
             cc.sports = response;
+            cc.data.selectedSport = cc.sports[0].Id_Rizik;
         });
 
         dataAccessService.getAgeGroups().then(function (response) {
@@ -48,34 +49,42 @@
 
         dataAccessService.getLocations().then(function (response) {
             cc.locations = response;
+            cc.data.selectedLocation = cc.locations[0].Id_Rizik;
         });
 
         dataAccessService.getInsuranceAmounts().then(function (response) {
             cc.insuranceAmounts = response;
+            cc.data.selectedInsuranceAmount = cc.insuranceAmounts[0].Id_Rizik;
         });
 
         dataAccessService.getRealEstateAges().then(function (response) {
             cc.realEstateAges = response;
+            cc.data.selectedRealEstateAge = cc.realEstateAges[0].Id_Rizik;
         });
 
         dataAccessService.getRealEstateValues().then(function (response) {
             cc.realEstateValues = response;
+            cc.data.selectedRealEstateValue = cc.realEstateValues[0].Id_Rizik;
         });
 
         dataAccessService.getTowingDistances().then(function (response) {
             cc.towingDistances = response;
+            cc.data.selectedTowingDistance = cc.towingDistances[0].Id_Rizik;
         });
 
         dataAccessService.getAlternateTransportationDistances().then(function (response) {
             cc.alternateTransportationDistances = response;
+            cc.data.selectedAlternateTransportationDistance = cc.alternateTransportationDistances[0].Id_Rizik;
         });
 
         dataAccessService.getReparationPrices().then(function (response) {
             cc.reparationPrices = response;
+            cc.data.selectedReparationPrice = cc.reparationPrices[0].Id_Rizik;
         });
 
         dataAccessService.getHotelDays().then(function (response) {
             cc.hotelDays = response;
+            cc.data.selectedHotelDays = cc.hotelDays[0].Id_Rizik;
         });
 
 
@@ -85,10 +94,11 @@
             }
             cc.data.realEstateInsured = cc.enableObject;
             cc.data.carInsured = cc.enableVehicle;
-            cc.priceCalculated = true;
+            cc.priceIsCalculated = true;
             calculatorService.sendCalculateData(cc.data).then(function (response) {
                 cc.calculatedPrice = response;
             });
+            $scope.calculatorForm.$setPristine();
         }
 
         cc.proceedToProcess = function () {
@@ -109,10 +119,14 @@
                 cc.showErrors = true;
                 if (!$scope.calculatorForm.nameDateFrom.$valid || !$scope.calculatorForm.nameDateTo.$valid || !$scope.calculatorForm.nameCountYoung.$valid)
                     cc.showInsurance = true;
-                if (!$scope.calculatorForm.nameObjectFire.$valid || !$scope.calculatorForm.nameObjectSize.$valid)
-                    cc.showObject = true;
-                if (!$scope.calculatorForm.nameVehicleTransport.$valid)
-                    cc.showVehicle = true;
+                if (cc.enableObject) {
+                    if (!$scope.calculatorForm.nameObjectFire.$valid || !$scope.calculatorForm.nameObjectSize.$valid)
+                        cc.showObject = true;
+                }
+                if (cc.enableVehicle) {
+                    if (!$scope.calculatorForm.nameVehicleTransport.$valid)
+                        cc.showVehicle = true;
+                }
                 return false;
             } else {
                 cc.showErrors = false;
@@ -126,6 +140,8 @@
             cc.data.residenceFromFlood = false;
             cc.data.residenceFromFire = false;
             cc.data.residenceFromTheft = false;
+            cc.data.selectedRealEstateAge = cc.realEstateAges[0].Id_Rizik;
+            cc.data.selectedRealEstateValue = cc.realEstateValues[0].Id_Rizik;
             $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
             $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
             $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
@@ -136,6 +152,10 @@
             cc.data.repair = false;
             cc.data.hotel = false;
             cc.data.alternateTransport = false;
+            cc.data.selectedTowingDistance = cc.towingDistances[0].Id_Rizik;
+            cc.data.selectedReparationPrice = cc.reparationPrices[0].Id_Rizik;
+            cc.data.selectedHotelDays = cc.hotelDays[0].Id_Rizik;
+            cc.data.selectedAlternateTransportationDistance = cc.alternateTransportationDistances[0].Id_Rizik;
             $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
             $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
             $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
@@ -188,27 +208,39 @@
 
         cc.validateObjectOptions = function () {
             if (!cc.data.residenceFromFlood && !cc.data.residenceFromFire && !cc.data.residenceFromTheft) {
-                $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", false);
-                $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", false);
-                $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", false);
+                if (cc.enableObject) {
+                //if ($scope.calculatorForm.nameObjectFlood != undefined && $scope.calculatorForm.nameObjectFire && $scope.calculatorForm.nameObjectTheft) {
+                    $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", false);
+                    $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", false);
+                    $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", false);
+                }
             } else {
-                $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
-                $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
-                $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
+                if (cc.enableObject) {
+                //if ($scope.calculatorForm.nameObjectFlood != undefined && $scope.calculatorForm.nameObjectFire && $scope.calculatorForm.nameObjectTheft) {
+                    $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
+                    $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
+                    $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
+                }
             }
         }
 
         cc.validateVehicleOptions = function () {
             if (!cc.data.alternateTransport && !cc.data.hotel && !cc.data.repair && !cc.data.towing) {
-                $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
-                $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
-                $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
-                $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
+                if (cc.enableVehicle) {
+                //if ($scope.calculatorForm.nameVehicleTowing != undefined && $scope.calculatorForm.nameVehicleRepair && $scope.calculatorForm.nameVehicleHotel && $scope.calculatorForm.nameVehicleTransport) {
+                    $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
+                    $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
+                    $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
+                    $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
+                }
             } else {
-                $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-                $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-                $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-                $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+                if (cc.enableVehicle) {
+                //if ($scope.calculatorForm.nameVehicleTowing != undefined && $scope.calculatorForm.nameVehicleRepair && $scope.calculatorForm.nameVehicleHotel && $scope.calculatorForm.nameVehicleTransport) {
+                    $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+                    $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+                    $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+                    $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+                }
             }
         }
     }
