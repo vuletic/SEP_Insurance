@@ -278,6 +278,8 @@
     <Content Include="Content\angular\app\components\process\process.service.js" />
     <Content Include="Content\angular\app\directives\expander_simple\expander-simple.directive.js" />
     <Content Include="Content\angular\app\directives\expander_simple\expander-simple.html" />
+    <Content Include="Content\angular\app\directives\insurees_table\insurees-table.directive.js" />
+    <Content Include="Content\angular\app\directives\insurees_table\insurees-table.html" />
     <Content Include="Content\angular\app\directives\page_marker\page-marker.directive.js" />
     <Content Include="Content\angular\app\directives\page_marker\page-marker.html" />
     <Content Include="Content\angular\app\shared\dataAccess\dataAccess.service.js" />

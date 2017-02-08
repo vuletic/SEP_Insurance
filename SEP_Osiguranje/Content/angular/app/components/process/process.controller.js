@@ -38,57 +38,6 @@
         pr.data.vehicle;
         pr.data.obj = null;
 
-        pr.selected = -1;
-        pr.selectCustomer = function(index){
-            if (pr.selected != -1)
-                pr.data.customers[pr.selected].cssClass = "not_selected";
-
-            pr.data.customers[index].cssClass = "selected";
-            pr.selected = index;
-
-        }
-
-        pr.commit = function () {
-            var temp = JSON.parse(JSON.stringify(pr.tempCustomer));
-            temp.ageGroup = pr.ageGroups[temp.category].Id_Rizik;
-
-            if (!pr.editProcess) {
-                temp.cssClass = "not_selected";
-                pr.data.customers.push(temp);
-            } else {
-                pr.data.customers.splice(pr.selected, 1, temp);
-                pr.editProcess = false;
-            }
-
-            pr.tempCustomer = {};
-            pr.showUserDetails = false;
-        };
-
-        pr.addCustomer = function () {
-            if (pr.selected != -1) {
-                pr.data.customers[pr.selected].cssClass = "not_selected";
-                pr.selected = -1;
-            }
-            pr.showUserDetails = true;
-        }
-
-        pr.deleteCustomer = function () {
-            if (pr.selected == -1)
-                return;
-
-            pr.data.customers.splice(pr.selected, 1);
-            pr.selected = -1;
-        }
-
-        pr.editProcess = false;
-        pr.editCustomer = function () {
-            if (pr.selected == -1)
-                return;
-            pr.editProcess = true;
-            var temp = pr.data.customers[pr.selected];
-            pr.tempCustomer = JSON.parse(JSON.stringify(temp));
-            pr.showUserDetails = true;
-        }
 
         pr.finishProcess = function () {
             if (!pr.everythingIsValidFinal())

@@ -209,14 +209,12 @@
         cc.validateObjectOptions = function () {
             if (!cc.data.residenceFromFlood && !cc.data.residenceFromFire && !cc.data.residenceFromTheft) {
                 if (cc.enableObject) {
-                //if ($scope.calculatorForm.nameObjectFlood != undefined && $scope.calculatorForm.nameObjectFire && $scope.calculatorForm.nameObjectTheft) {
                     $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", false);
                     $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", false);
                     $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", false);
                 }
             } else {
                 if (cc.enableObject) {
-                //if ($scope.calculatorForm.nameObjectFlood != undefined && $scope.calculatorForm.nameObjectFire && $scope.calculatorForm.nameObjectTheft) {
                     $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
                     $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
                     $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
@@ -227,7 +225,6 @@
         cc.validateVehicleOptions = function () {
             if (!cc.data.alternateTransport && !cc.data.hotel && !cc.data.repair && !cc.data.towing) {
                 if (cc.enableVehicle) {
-                //if ($scope.calculatorForm.nameVehicleTowing != undefined && $scope.calculatorForm.nameVehicleRepair && $scope.calculatorForm.nameVehicleHotel && $scope.calculatorForm.nameVehicleTransport) {
                     $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
                     $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
                     $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
@@ -235,7 +232,6 @@
                 }
             } else {
                 if (cc.enableVehicle) {
-                //if ($scope.calculatorForm.nameVehicleTowing != undefined && $scope.calculatorForm.nameVehicleRepair && $scope.calculatorForm.nameVehicleHotel && $scope.calculatorForm.nameVehicleTransport) {
                     $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
                     $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
                     $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
