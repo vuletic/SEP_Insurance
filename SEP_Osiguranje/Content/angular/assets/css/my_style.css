@@ -80,12 +80,17 @@ button {
     margin-top: 1em;   
 }   
 
-.header-left{
+.header-left {
 	text-align: left !important;
 }
 
-.header-red{
+.header-red {
 	color: red !important;
+}
+
+.red-bold {
+	color: red !important;
+    font-weight: bold !important;
 }
 
 .force-inline {
@@ -313,6 +318,7 @@ button {
 	float: left;
 	width: 40%;
 	height: 100%;	
+    text-align: center;
 }
 
 .my-button-action {
@@ -680,6 +686,14 @@ input[class~="ng-invalid"][class~="ng-touched"] {
 }
 
 input[class~="ng-invalid"][class~="show-error"] {
+    border: 1px solid red;
+}
+
+select[class~="ng-invalid"][class~="ng-touched"] {
+    border: 1px solid red;
+}
+
+select[class~="ng-invalid"][class~="show-error"] {
     border: 1px solid red;
 }
 

@@ -102,10 +102,10 @@
                             <th>{{cr.l10nObj.clcPgOIArea}}</th>
                             <td>
                                 <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info-calc': calculatorForm.nameObjectSize.$invalid && (calculatorForm.nameObjectSize.$touched || cc.showErrors)}">
-                                    <div class="input-group standard-input">
+                                    <span class="input-group standard-input">
                                         <input type="text" class="form-control" name="nameObjectSize" ng-model="cc.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" ng-class="{'show-error': cc.objectRequiredShow() }" ng-required="cc.enableObject" />
                                         <span class="input-group-addon">m2</span>
-                                    </div>
+                                    </span>
                                 </span>
                             </td>
                             <th> &nbsp;&nbsp; {{cr.l10nObj.clcPgOIAge}}</th>
@@ -139,7 +139,7 @@
                                         <td>&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td class="align-cell-right" ng-class="{'header-red': !calculatorForm.nameObjectFire.$valid}" colspan="4">(odaberite barem jednu od opcija)</td>
+                                        <td class="align-cell-right" ng-class="{'red-bold': !calculatorForm.nameObjectFire.$valid}" colspan="4">(odaberite barem jednu od opcija)</td>
                                     </tr>
                                 </table>
                             </td>
@@ -188,7 +188,7 @@
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="align-cell-right" ng-class="{'header-red': !calculatorForm.nameVehicleTransport.$valid}" colspan="7">(odaberite barem jednu od opcija)</td>
+                            <td class="align-cell-right" ng-class="{'red-bold': !calculatorForm.nameVehicleTransport.$valid}" colspan="7">(odaberite barem jednu od opcija)</td>
                         </tr>
 
                     </table>

@@ -42,7 +42,7 @@
                 <div class="form-holder">
                     <h3 class="margin-bottom">{{cr.l10nObj.prsPg2PersonsData}}</h3>
 
-                    <insurees-table insurees="pr.data.customers" localization="cr"></insurees-table>
+                    <insurees-table insurees="pr.data.customers" localization="cr" process-error="pr.showErrorsSecond" jmbg-pattern="pr.jmbgRegex"></insurees-table>
 
                     <table class="my-form-fields-table">
                         <tr>
@@ -60,7 +60,7 @@
                     <hr />
                     <div class="my-form-buttons">
                         <div class="my-button-navigation" ng-click="pr.selectedProcessPanel = [true, false, false, false, false]; cr.scroll()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; {{cr.l10nObj.prsPgBack}}</div>
-                        <div class="my-button-navigation" ng-click="pr.selectedProcessPanel = [false, false, true, false, false]; cr.scroll()">{{cr.l10nObj.prsPgNext}} &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div>
+                        <div class="my-button-navigation" ng-click="pr.goFromSecondPage(); cr.scroll()">{{cr.l10nObj.prsPgNext}} &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-chevron-right"></span></div>
                     </div>
 
                 </div>
@@ -80,11 +80,11 @@
                                 <tr>
                                     <th>{{cr.l10nObj.prsPg3OIArea}}</th>
                                     <td>
-                                        <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info-proc-proc': thirdPageForm.nameObjectSize.$invalid && (thirdPageForm.nameObjectSize.$touched || pr.showErrorsThird)}">
-                                            <div class="input-group standard-input">
+                                        <span message="Povrsina treba da bude broj sa najvise dve decimale." ng-class="{'error-info-proc': thirdPageForm.nameObjectSize.$invalid && (thirdPageForm.nameObjectSize.$touched || pr.showErrorsThird)}">
+                                            <span class="input-group standard-input">
                                                 <input type="text" name="nameObjectSize" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.residenceSize" ng-pattern="/^[1-9][0-9]*(\.[0-9][0-9]?)?$/" ng-required="pr.hideObjectInsurance" />
                                                 <span class="input-group-addon">m2</span>
-                                            </div>
+                                            </span>
                                         </span>
                                     </td>
                                 </tr>
@@ -120,7 +120,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="align-cell-right" ng-class="{'header-red': !thirdPageForm.nameObjectFire.$valid}" colspan="2">(odaberite barem jednu od opcija)</td>
+                                    <td class="align-cell-right" ng-class="{'red-bold': !thirdPageForm.nameObjectFire.$valid}" colspan="2">(odaberite barem jednu od opcija)</td>
                                 </tr>
 
                             </table>
@@ -197,7 +197,7 @@
                                 <tr><td><input type="checkbox" name="nameVehicleRepair" ng-model="pr.data.repair" ng-change="pr.validateVehicleOptions()" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIRepair}}</td><td><select class="form-control" ng-disabled="!pr.data.repair" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in pr.reparationPrices" ng-model="pr.data.selectedReparationPrice"></select></td></tr>
                                 <tr><td><input type="checkbox" name="nameVehicleHotel" ng-model="pr.data.hotel" ng-change="pr.validateVehicleOptions()" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAcc}}</td><td><select class="form-control" ng-disabled="!pr.data.hotel" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in pr.hotelDays" ng-model="pr.data.selectedHotelDays"></select></td></tr>
                                 <tr><td><input type="checkbox" name="nameVehicleTransport" ng-model="pr.data.alternateTransport" ng-change="pr.validateVehicleOptions()" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAltTrans}}</td><td><select class="form-control" ng-disabled="!pr.data.alternateTransport" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in pr.alternateTransportationDistances" ng-model="pr.data.selectedAlternateTransportationDistance"></select></tr>
-                                <tr><td class="align-cell-right" ng-class="{'header-red': !fourthPageForm.nameVehicleHotel.$valid}" colspan="3">(odaberite barem jednu od opcija)</td>
+                                <tr><td class="align-cell-right" ng-class="{'red-bold': !fourthPageForm.nameVehicleHotel.$valid}" colspan="3">(odaberite barem jednu od opcija)</td>
                                 </tr>
                             </table>
 
@@ -276,14 +276,7 @@
                             <h4>{{cr.l10nObj.prsPg5ChooseIP}}</h4>
                             <table class="my-form-fields-table">
                                 <tr>
-                                    <td colspan="2"><select class="form-control realy-big-input" ng-options="idx as customer.name + ' ' + customer.surname + ' ' + customer.jmbg for (idx, customer) in pr.data.customers" ng-model="pr.data.insCarrierI"/></td>
-                                </tr>
-                                <tr><th>{{cr.l10nObj.prsPg5PhoneNum}}</th>
-                                    <td>
-                                        <span message="Unesite broj telefona bez specijalnih karaktera (osim '+')." ng-class="{'error-info-proc': finalPageForm.namePhoneIncluded.$invalid && (finalPageForm.namePhoneIncluded.$touched || pr.showErrorsFinal)}">
-                                            <input type="text" name="namePhoneIncluded" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.tempPhoneNum" ng-pattern="/^\+?\d{6,14}$/" ng-required="!pr.insuranceCarrierIsNotInsured" />
-                                        </span>
-                                    </td>
+                                    <td colspan="2"><select class="form-control realy-big-input" ng-options="idx as customer.name + ' ' + customer.surname + ' ' + customer.jmbg for (idx, customer) in pr.data.customersFilter" ng-model="pr.data.insCarrierI" /></td>
                                 </tr>
                                 <tr><th>{{cr.l10nObj.prsPg5Email}}</th>
                                     <td>
@@ -323,13 +316,13 @@
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Street}}</td>
                                     <td>
                                         <span message="Ulica stanovanja nosioca osiguranja je obavezna." ng-class="{'error-info-proc': finalPageForm.nameStreetNew.$invalid && (finalPageForm.nameStreetNew.$touched || pr.showErrorsFinal)}">
-                                            <input type="text" name="nameStreetNew" class="form-control" min="1" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.street" ng-required="pr.insuranceCarrierIsNotInsured" />
+                                            <input type="text" name="nameStreetNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.street" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
                                 <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Number}}</td>
                                     <td>
-                                        <span message="Broj objekta nosioca osiguranja je obavezan." ng-class="{'error-info-proc': finalPageForm.nameNumberNew.$invalid && (finalPageForm.nameNumberNew.$touched || pr.showErrorsFinal)}">
+                                        <span message="Broj objekta stanovanja nosioca osiguranja je obavezan." ng-class="{'error-info-proc': finalPageForm.nameNumberNew.$invalid && (finalPageForm.nameNumberNew.$touched || pr.showErrorsFinal)}">
                                             <input type="number" name="nameNumberNew" min="1" class="form-control small-input" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.number" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
@@ -361,7 +354,7 @@
                         <hr />
                         <div class="my-form-buttons">
                             <div class="my-button-navigation" ng-click="pr.selectedProcessPanel = [false, false, false, true, false]; cr.scroll()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; {{cr.l10nObj.prsPgBack}}</div>
-                            <div class="my-button-navigation"><a ng-click="pr.finishProcess()">{{cr.l10nObj.prsPg5Finish}}</a></div>
+                            <div class="my-button-navigation" ng-click="pr.finishProcess()">{{cr.l10nObj.prsPg5Finish}}</div>
                         </div>
                     </form>
                 </div>
