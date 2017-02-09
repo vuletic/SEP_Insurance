@@ -13,8 +13,8 @@
 
         pr.data = {};
 
-        pr.hideObjectInsurance = false;
-        pr.hideVehicleInsurance = false;
+        pr.showObjectInsurance = false;
+        pr.showVehicleInsurance = false;
 
         pr.data.ageNumberYoung = 0;
         pr.data.ageNumberAdult = 0;
@@ -28,8 +28,8 @@
         
         if ($stateParams.data != null) {
             pr.data = $stateParams.data;
-            pr.hideObjectInsurance = pr.data.realEstateInsured;
-            pr.hideVehicleInsurance = pr.data.carInsured;
+            pr.showObjectInsurance = pr.data.realEstateInsured;
+            pr.showVehicleInsurance = pr.data.carInsured;
         } else
             pr.data = {};
 
@@ -311,7 +311,7 @@
 
         pr.goFromFirstPage = function () {
             if (!pr.everythingIsValidFirst()) {
-                //return;
+                return;
             }
             pr.selectedProcessPanel = [false, true, false, false, false];
         }
@@ -330,8 +330,9 @@
         pr.showErrorsSecond = false;
 
         pr.goFromSecondPage = function () {
-            if (!pr.everythingIsValidSecond())
+            if (!pr.everythingIsValidSecond()) {
                 return;
+            }
             pr.selectedProcessPanel = [false, false, true, false, false];
         }
 
@@ -353,7 +354,7 @@
         pr.showErrorsThird = false;
 
         pr.goFromThirdPage = function () {
-            if (pr.hideObjectInsurance) {
+            if (pr.showObjectInsurance) {
                 if (!pr.everythingIsValidThird()) {
                     return;
                 }
@@ -362,8 +363,10 @@
         }
 
         pr.everythingIsValidThird = function () {
-            pr.validateObjectOptions();
-            pr.validateObjectJmbg();
+            if (pr.showObjectInsurance) {
+                pr.validateObjectOptions();
+                pr.validateObjectJmbg();
+            }
             if (!$scope.thirdPageForm.$valid) {
                 pr.showErrorsThird = true;
                 return false;
@@ -385,17 +388,13 @@
 
         pr.validateObjectOptions = function () {
             if (!pr.data.residenceFromFlood && !pr.data.residenceFromFire && !pr.data.residenceFromTheft) {
-                if (!pr.hideObjectInsurance) {
-                    $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", false);
-                    $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", false);
-                    $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", false);
-                }
+                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", false);
+                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", false);
+                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", false);
             } else {
-                if (!pr.hideObjectInsurance) {
-                    $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
-                    $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
-                    $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
-                }
+                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
+                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
+                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
             }
         }
 
@@ -422,11 +421,12 @@
 
         /******         FOURTH PAGE VALIDATION       ******/
         pr.showErrorsFourth = false;
+        pr.chooseCarrierDisabled = false;
         pr.currentYear = (new Date()).getFullYear();
 
         pr.goFromFourthPage = function () {
             pr.filterForCarriers();
-            if (pr.hideVehicleInsurance) {
+            if (pr.showVehicleInsurance) {
                 if (!pr.everythingIsValidFourth()) {
                     return;
                 }
@@ -434,9 +434,11 @@
             pr.selectedProcessPanel = [false, false, false, false, true];
         }
 
-        pr.everythingIsValidFourth = function () {
-            pr.validateVehicleOptions();
-            pr.validateVehicleJmbg();
+        pr.everythingIsValidFourth = function () {            
+            if (pr.showVehicleInsurance) {
+                pr.validateVehicleOptions();
+                pr.validateVehicleJmbg();
+            }
             if (!$scope.fourthPageForm.$valid) {
                 pr.showErrorsFourth = true;
                 return false;
@@ -458,19 +460,15 @@
 
         pr.validateVehicleOptions = function () {
             if (!pr.data.alternateTransport && !pr.data.hotel && !pr.data.repair && !pr.data.towing) {
-                if (!pr.hideVehicleInsurance) {
-                    $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
-                    $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
-                    $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
-                    $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
-                }
+                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
             } else {
-                if (!pr.hideVehicleInsurance) {
-                    $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-                    $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-                    $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-                    $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
-                }
+                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
             }
         }
 
@@ -506,7 +504,13 @@
             pr.data.customersFilter = pr.data.customers.filter(function (customer) {
                 return customer.category != "0";
             });
-            pr.data.insCarrierI = "0";
+            if (pr.data.customersFilter.length == 0) {
+                pr.insuranceCarrierIsNotInsured = true;
+                pr.chooseCarrierDisabled = true;
+            } else {
+                pr.chooseCarrierDisabled = false;
+                pr.data.insCarrierI = "0";
+            }
         }
 
         /******         FINAL PAGE VALIDATION       ******/

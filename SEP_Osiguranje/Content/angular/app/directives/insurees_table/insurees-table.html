@@ -23,7 +23,7 @@
 </div>
 <br/>
 <div class="center-panel" ng-hide="insurees.length">
-    <p ng-class="{'red-bold': processError}">Trenutno nema dodatih osiguranika.</p>
+    <p ng-class="{'red-bold': processError}">{{localization.l10nObj.prsPg2NoCustomers}}</p>
     <p class="my-button-navigation table-empty-panel" data-toggle="modal" data-target="#dataModal" ng-click="addCustomer()">{{localization.l10nObj.prsPg2Add}}</p>
 </div>
 
@@ -54,7 +54,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" ng-click="clear()" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Podaci o osiguraniku</h4>
+                <h4 class="modal-title">{{localization.l10nObj.prsPg2DataForm}} - {{changeTypeHeader}}</h4>
             </div>
 
             <form name="insureeForm" novalidate>
@@ -63,7 +63,7 @@
                         <tr>
                             <th>{{localization.l10nObj.prsPg2Name}}</th>
                             <td>
-                                <span message="Ime osiguranika je obavezno." ng-class="{'error-info-proc': insureeForm.nameName.$invalid && (insureeForm.nameName.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustName}}" ng-class="{'error-info-proc': insureeForm.nameName.$invalid && (insureeForm.nameName.$touched || showErrorsInsuree)}">
                                     <input type="text" name="nameName" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.name" required />
                                 </span>
                             </td>
@@ -71,7 +71,7 @@
                         <tr>
                             <th>{{localization.l10nObj.prsPg2Surname}}</th>
                             <td>
-                                <span message="Prezime osiguranika je obavezno." ng-class="{'error-info-proc': insureeForm.nameSurname.$invalid && (insureeForm.nameSurname.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustSurname}}" ng-class="{'error-info-proc': insureeForm.nameSurname.$invalid && (insureeForm.nameSurname.$touched || showErrorsInsuree)}">
                                     <input type="text" name="nameSurname" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.surname" required />
                                 </span>
                             </td>
@@ -79,7 +79,7 @@
                         <tr>
                             <th>{{localization.l10nObj.prsPg2JMBG}}</th>
                             <td>
-                                <span message="Unesite validan JMBG osiguranika." ng-class="{'error-info-proc': insureeForm.nameJmbg.$invalid && (insureeForm.nameJmbg.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustJmbg}}" ng-class="{'error-info-proc': insureeForm.nameJmbg.$invalid && (insureeForm.nameJmbg.$touched || showErrorsInsuree)}">
                                     <input type="text" name="nameJmbg" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-pattern="jmbgPattern" ng-model="tempCustomer.jmbg" required />
                                 </span>
                             </td>
@@ -87,7 +87,7 @@
                         <tr>
                             <th>{{localization.l10nObj.prsPg2Passport}}</th>
                             <td>
-                                <span message="Pasoš treba da sadrži tačno devet cifara." ng-class="{'error-info-proc': insureeForm.namePassport.$invalid && (insureeForm.namePassport.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustPassport}}" ng-class="{'error-info-proc': insureeForm.namePassport.$invalid && (insureeForm.namePassport.$touched || showErrorsInsuree)}">
                                     <input type="text" name="namePassport" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.passport" ng-pattern="/^\d{9}$/" required />
                                 </span>
                             </td>
@@ -96,7 +96,7 @@
                         <tr>
                             <td class="align-cell-right">{{localization.l10nObj.prsPg2Street}}</td>
                             <td>
-                                <span message="Ulica stanovanja osiguranika je obavezna." ng-class="{'error-info-proc': insureeForm.nameStreet.$invalid && (insureeForm.nameStreet.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustStreet}}" ng-class="{'error-info-proc': insureeForm.nameStreet.$invalid && (insureeForm.nameStreet.$touched || showErrorsInsuree)}">
                                     <input type="text" name="nameStreet" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.street" required />
                                 </span>
                             </td>
@@ -104,7 +104,7 @@
                         <tr>
                             <td class="align-cell-right">{{localization.l10nObj.prsPg2Number}}</td>
                             <td>
-                                <span message="Broj objekta stanovanja osiguranika je obavezan." ng-class="{'error-info-proc': insureeForm.nameNumber.$invalid && (insureeForm.nameNumber.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustNumber}}" ng-class="{'error-info-proc': insureeForm.nameNumber.$invalid && (insureeForm.nameNumber.$touched || showErrorsInsuree)}">
                                     <input type="number" name="nameNumber" class="form-control small-input" min="1" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.addresNum" required />
                                 </span>
                             </td>
@@ -112,7 +112,7 @@
                         <tr>
                             <td class="align-cell-right">{{localization.l10nObj.prsPg2Place}}</td>
                             <td>
-                                <span message="Mesto stanovanja osiguranika je obavezno." ng-class="{'error-info-proc': insureeForm.nameCity.$invalid && (insureeForm.nameCity.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustCity}}" ng-class="{'error-info-proc': insureeForm.nameCity.$invalid && (insureeForm.nameCity.$touched || showErrorsInsuree)}">
                                     <input type="text" name="nameCity" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.city" required />
                                 </span>
                             </td>
@@ -120,7 +120,7 @@
                         <tr>
                             <th>{{localization.l10nObj.prsPg2PhoneNum}}</th>
                             <td>
-                                <span message="Unesite broj telefona bez specijalnih karaktera (osim '+')." ng-class="{'error-info-proc': insureeForm.nameTelephone.$invalid && (insureeForm.nameTelephone.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustPhone}}" ng-class="{'error-info-proc': insureeForm.nameTelephone.$invalid && (insureeForm.nameTelephone.$touched || showErrorsInsuree)}">
                                     <input type="text" name="nameTelephone" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.phoneNum" ng-pattern="/^\+?\d{6,14}$/" required />
                                 </span>
                             </td>
@@ -128,7 +128,7 @@
                         <tr>
                             <th>{{localization.l10nObj.prsPg2AgeGroup}}</th>
                             <td>
-                                <span message="Odabrana kategorija treba da bude u skladu sa godinama osiguranika (unete u JMBG-u)." ng-class="{'error-info-proc': insureeForm.nameGroup.$invalid && (insureeForm.nameGroup.$touched || showErrorsInsuree)}">
+                                <span message="{{localization.l10nObj.vldCustGroup}}" ng-class="{'error-info-proc': insureeForm.nameGroup.$invalid && (insureeForm.nameGroup.$touched || showErrorsInsuree)}">
                                     <select name="nameGroup" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-options="idx as ageGroup.Prevod[localization.lang].Naziv_Prevod for (idx, ageGroup) in categories" ng-model="tempCustomer.category" ng-change="validInsureeGroup()" />
                                 </span>
                             </td>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="my-form-buttons">
-                        <div class="my-button-navigation" ng-click="commit()">{{localization.l10nObj.prsPg2Confirm}}</div>
+                        <div class="my-button-navigation" ng-click="commit()">{{changeTypeFooter}}</div>
                         <div class="my-button-navigation" data-dismiss="modal" ng-click="clear()">{{localization.l10nObj.prsPg2Cancel}}</div>
                     </div>
                 </div>

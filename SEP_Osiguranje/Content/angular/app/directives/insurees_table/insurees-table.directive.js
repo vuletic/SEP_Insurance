@@ -23,6 +23,8 @@
                 it.tempCustomer = {};
                 it.selected = -1;
                 it.editProcess = false;
+                it.changeTypeHeader = "";
+                it.changeTypeFooter = "";
 
                 dataAccessService.getAgeGroups().then(function (response) {
                     it.categories = response;
@@ -32,6 +34,8 @@
 
                 it.addCustomer = function () {
                     it.clear();
+                    it.changeTypeHeader = it.localization.l10nObj.prsPg2HeadAdd;
+                    it.changeTypeFooter = it.localization.l10nObj.prsPg2FootAdd;
                 }
 
                 it.deleteCustomer = function () {
@@ -43,6 +47,8 @@
                 it.editCustomer = function () {
                     if (it.selected == -1)
                         return;
+                    it.changeTypeHeader = it.localization.l10nObj.prsPg2HeadChange;
+                    it.changeTypeFooter = it.localization.l10nObj.prsPg2FootChange;
                     it.editProcess = true;
                     var temp = it.insurees[it.selected];
                     it.tempCustomer = JSON.parse(JSON.stringify(temp));
@@ -93,7 +99,7 @@
 
                 it.insureeIsValid = function () {
                     it.validInsureeGroup();
-                    if (!$scope.insureeForm.$valid) {
+                    if (!it.insureeForm.$valid) {
                         it.showErrorsInsuree = true;
                         return false;
                     } else {
@@ -121,9 +127,9 @@
                     }
 
                     if (it.validAge(jmbgValue, min, max)) {
-                        $scope.insureeForm.nameGroup.$setValidity("group", true);
+                        it.insureeForm.nameGroup.$setValidity("group", true);
                     } else {
-                        $scope.insureeForm.nameGroup.$setValidity("group", false);
+                        it.insureeForm.nameGroup.$setValidity("group", false);
                     }
                 }
 
@@ -146,18 +152,18 @@
 
                 it.clearValidation = function () {
                     it.showErrorsInsuree = false;
-                    $scope.insureeForm.nameGroup.$setValidity("group", true);
-                    $scope.insureeForm.nameJmbg.$setValidity("jmbg", true);
+                    it.insureeForm.nameGroup.$setValidity("group", true);
+                    it.insureeForm.nameJmbg.$setValidity("jmbg", true);
 
-                    $scope.insureeForm.nameName.$setUntouched();
-                    $scope.insureeForm.nameSurname.$setUntouched();
-                    $scope.insureeForm.nameJmbg.$setUntouched();
-                    $scope.insureeForm.namePassport.$setUntouched();
-                    $scope.insureeForm.nameStreet.$setUntouched();
-                    $scope.insureeForm.nameNumber.$setUntouched();
-                    $scope.insureeForm.nameCity.$setUntouched();
-                    $scope.insureeForm.nameTelephone.$setUntouched();
-                    $scope.insureeForm.nameGroup.$setUntouched();
+                    it.insureeForm.nameName.$setUntouched();
+                    it.insureeForm.nameSurname.$setUntouched();
+                    it.insureeForm.nameJmbg.$setUntouched();
+                    it.insureeForm.namePassport.$setUntouched();
+                    it.insureeForm.nameStreet.$setUntouched();
+                    it.insureeForm.nameNumber.$setUntouched();
+                    it.insureeForm.nameCity.$setUntouched();
+                    it.insureeForm.nameTelephone.$setUntouched();
+                    it.insureeForm.nameGroup.$setUntouched();
                 }
             }
         };
