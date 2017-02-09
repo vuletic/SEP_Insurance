@@ -13,10 +13,10 @@ namespace SEP_Osiguranje.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SEP_Entities : DbContext
+    public partial class SEP_EntitiesB : DbContext
     {
-        public SEP_Entities()
-            : base("name=SEP_Entities")
+        public SEP_EntitiesB()
+            : base("name=SEP_EntitiesB")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -27,18 +27,18 @@ namespace SEP_Osiguranje.Models
         }
     
         public virtual DbSet<CK_Rizik> CK_Rizik { get; set; }
+        public virtual DbSet<Jezik> Jezik { get; set; }
         public virtual DbSet<Nekretnina> Nekretnina { get; set; }
-        public virtual DbSet<Osoba> Osoba { get; set; }
         public virtual DbSet<PDV> PDV { get; set; }
+        public virtual DbSet<Prevod> Prevod { get; set; }
         public virtual DbSet<Realizacija_osiguranja> Realizacija_osiguranja { get; set; }
-        public virtual DbSet<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }
+        public virtual DbSet<Rizik> Rizik { get; set; }
+        public virtual DbSet<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
         public virtual DbSet<Stopa_PDV> Stopa_PDV { get; set; }
         public virtual DbSet<Tip_osiguranja> Tip_osiguranja { get; set; }
         public virtual DbSet<Vozilo> Vozilo { get; set; }
         public virtual DbSet<Vrsta_rizika> Vrsta_rizika { get; set; }
-        public virtual DbSet<Rizik> Rizik { get; set; }
-        public virtual DbSet<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
-        public virtual DbSet<Jezik> Jezik { get; set; }
-        public virtual DbSet<Prevod> Prevod { get; set; }
+        public virtual DbSet<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }
+        public virtual DbSet<Osoba> Osoba { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace SEP_Osiguranje.Controllers
 {
     public class Stavka_u_realizacijiController : ApiController
     {
-        private SEP_Entities db = new SEP_Entities();
+        private SEP_EntitiesB db = new SEP_EntitiesB();
 
         // GET: api/Stavka_u_realizaciji
         public IQueryable<Stavka_u_realizaciji> GetStavka_u_realizaciji()

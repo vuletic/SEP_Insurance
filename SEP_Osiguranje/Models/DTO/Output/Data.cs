@@ -46,7 +46,7 @@ namespace SEP_Osiguranje.Models.DTO.Output
             for (int i = 0; i<processData.customers.Count; i++)
             {
 
-                if (processData.customers.ElementAt(i).ageGroup != -1)
+                if (processData.customers.ElementAt(i).insured)
                 {
                     InsuredPerson ip = new InsuredPerson(i, processData.customers.ElementAt(i));
                     insuredPeople.Add(ip);

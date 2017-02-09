@@ -8,7 +8,7 @@ namespace SEP_Osiguranje.Controllers
 {
     public class Stopa_PDVController : ApiController
     {
-        private SEP_Entities db = new SEP_Entities();
+        private SEP_EntitiesB db = new SEP_EntitiesB();
 
         // GET: api/Stopa_PDV
         public IQueryable<Stopa_PDV> GetStopa_PDV()

@@ -144,6 +144,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\FinalizeController.cs" />
+    <Compile Include="Models\CK_Rizik.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTO\Input\CustomersData.cs" />
     <Compile Include="Models\DTO\Input\ObjectData.cs" />
     <Compile Include="Models\DTO\Input\ProcessData.cs" />
@@ -155,7 +158,55 @@
     <Compile Include="Models\Jezik.cs">
       <DependentUpon>SEP_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Nekretnina.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Osoba.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PDV.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Prevod.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Realizacija_osiguranja.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rizik.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rizik_za_osigurani_entitet.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SEP_Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SEP_Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SEP_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SEP_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SEP_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stavka_u_realizaciji.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stopa_PDV.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tip_osiguranja.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vozilo.cs">
+      <DependentUpon>SEP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vrsta_rizika.cs">
       <DependentUpon>SEP_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PayPalData\PayPalConfiguration.cs" />
@@ -205,57 +256,6 @@
     <Compile Include="Controllers\Vrsta_rizikaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CK_Rizik.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Nekretnina.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Osoba.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PDV.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Realizacija_osiguranja.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Rizik.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Rizik_za_osigurani_entitet.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SEP_Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SEP_Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SEP_Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SEP_Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SEP_Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Stavka_u_realizaciji.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Stopa_PDV.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tip_osiguranja.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Vozilo.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Vrsta_rizika.cs">
-      <DependentUpon>SEP_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -479,16 +479,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\SEP_Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SEP_Model.edmx</DependentUpon>
-      <LastGenOutput>SEP_Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\SEP_Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SEP_Model.edmx</DependentUpon>
-      <LastGenOutput>SEP_Model.cs</LastGenOutput>
-    </Content>
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -508,15 +498,18 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\SEP_Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SEP_Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SEP_Model.edmx.diagram">
-      <DependentUpon>SEP_Model.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\angular\app.module.js" />
     <Content Include="Content\angular\assets\css\bootstrap.css.map" />
+    <Content Include="Models\SEP_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SEP_Model.edmx</DependentUpon>
+      <LastGenOutput>SEP_Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SEP_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SEP_Model.edmx</DependentUpon>
+      <LastGenOutput>SEP_Model.cs</LastGenOutput>
+    </Content>
     <Content Include="PayPalData\paypal_cert.p12">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -664,6 +657,13 @@
     <Content Include="Content\angular\assets\components\ng-slide-down\package.json" />
     <Content Include="Content\angular\assets\components\ng-slide-down\README.md" />
     <Content Include="Content\angular\assets\components\ng-slide-down\src\ng-slide-down.coffee" />
+    <EntityDeploy Include="Models\SEP_Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SEP_Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SEP_Model.edmx.diagram">
+      <DependentUpon>SEP_Model.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\SEPOsiguranje - Web Deploy.pubxml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

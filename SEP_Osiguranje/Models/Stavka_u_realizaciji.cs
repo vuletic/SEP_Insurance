@@ -22,16 +22,17 @@ namespace SEP_Osiguranje.Models
     
         public int Id_Stavka_u_realizaciji { get; set; }
         public int Id_Realizacija_osiguranja { get; set; }
-        public int Id_Osigurana_osoba { get; set; }
-        public int Id_Osigurana_nekretnina { get; set; }
-        public int Id_Osigurano_vozilo { get; set; }
+        public Nullable<int> Id_Osigurana_osoba { get; set; }
+        public Nullable<int> Id_Osigurana_nekretnina { get; set; }
+        public Nullable<int> Id_Osigurano_vozilo { get; set; }
         public Nullable<bool> Nosilac_Stavka_u_realiziciji { get; set; }
+        public decimal Vrednost_Stavka_u_realizaciji { get; set; }
     
         public virtual Nekretnina Nekretnina { get; set; }
-        public virtual Osoba Osoba { get; set; }
         public virtual Realizacija_osiguranja Realizacija_osiguranja { get; set; }
-        public virtual Vozilo Vozilo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
+        public virtual Vozilo Vozilo { get; set; }
+        public virtual Osoba Osoba { get; set; }
     }
 }

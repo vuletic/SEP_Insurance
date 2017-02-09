@@ -28,6 +28,7 @@ namespace SEP_Osiguranje.Models
         public Nullable<decimal> Ukupna_vrednost_Realizacija_osiguranja { get; set; }
         public System.DateTime Datum_od { get; set; }
         public System.DateTime Datum_do { get; set; }
+        public bool Potvrdjena_Realizacija_osiguranja { get; set; }
     
         public virtual PDV PDV { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

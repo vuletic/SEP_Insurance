@@ -26,8 +26,6 @@ namespace SEP_Osiguranje.Models
         public string Ime_vlasnik_Nekretnina { get; set; }
         public string Prezime_vlasnik_Nekretnina { get; set; }
         public decimal Povrsina_Nekretnina { get; set; }
-        public decimal Starost_Nekretnina { get; set; }
-        public decimal Procenjena_vrednost_Nekretnina { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }

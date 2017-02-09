@@ -19,5 +19,6 @@ namespace SEP_Osiguranje.Models.DTO
         public decimal location { get; set; }
         public decimal insuranceAmount { get; set; }
         public decimal selectedSport { get; set; }
+        
     }
 }

@@ -15,8 +15,8 @@ namespace SEP_Osiguranje.Models.DTO.Output
             this.burglary = objectData.theft;
 
             this.area = (double) objectData.obj.Povrsina_Nekretnina;
-            this.selectedRealEstateAge = (int) objectData.obj.Starost_Nekretnina;
-            this.selectedRealEstateValue = (int) objectData.obj.Procenjena_vrednost_Nekretnina;
+            this.selectedRealEstateAge = objectData.age;
+            this.selectedRealEstateValue = objectData.value;
         }
 
 

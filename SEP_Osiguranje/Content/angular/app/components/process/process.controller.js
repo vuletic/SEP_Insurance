@@ -147,12 +147,15 @@
 
                 tempCustomer.ageGroup = currCustomer.ageGroup;
 
+                tempCustomer.insured = true;
+                tempCustomer.carrier = false;
+
                 dto.customers.push(tempCustomer);
                 
             }
             
             //I nosilac je osoba ;)
-            if (pr.data.insCarrierNI != null && pr.data.insCarrierNI != undefined) {
+            if (pr.insuranceCarrierIsNotInsured && pr.data.insCarrierNI != null && pr.data.insCarrierNI != undefined) {
 
                 var tempCustomer = {};
                 tempCustomer.osoba = {};
@@ -167,8 +170,16 @@
                 tempCustomer.osoba.E_mail_Osoba = pr.data.insCarrierNI.email;
 
                 tempCustomer.ageGroup = -1;
-                dto.customers.push(tempCustomer);
 
+                tempCustomer.insured = false;
+                tempCustomer.carrier = true;
+
+                dto.customers.push(tempCustomer);
+            } else {
+                var index = pr.data.insCarrierI;
+                dto.customers[index].osoba.E_mail_Osoba = pr.tempEmail;
+                dto.customers[index].osoba.Broj_telefona_Osoba = pr.tempPhoneNum;
+                dto.customers[index].carrier = true;
             }
 
 
@@ -183,8 +194,10 @@
                 dto.objectData.obj.Ime_vlasnik_Nekretnina = pr.data.object.owner.name;
                 dto.objectData.obj.Prezime_vlasnik_Nekretnina = pr.data.object.owner.surname;
                 dto.objectData.obj.Povrsina_Nekretnina = pr.data.residenceSize;
-                dto.objectData.obj.Starost_Nekretnina = pr.data.selectedRealEstateAge;
-                dto.objectData.obj.Procenjena_vrednost_Nekretnina = pr.data.selectedRealEstateValue;
+
+
+                dto.objectData.age = pr.data.selectedRealEstateAge;
+                dto.objectData.value = pr.data.selectedRealEstateValue;
 
                 if (pr.data.residenceFromFlood) {
                     dto.objectData.flood = true;

@@ -31,9 +31,7 @@
           <Property Name="Adresa_Nekretnina" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Ime_vlasnik_Nekretnina" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Prezime_vlasnik_Nekretnina" Type="varchar" MaxLength="35" Nullable="false" />
-          <Property Name="Povrsina_Nekretnina" Type="numeric" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="Starost_Nekretnina" Type="numeric" Precision="4" Scale="0" Nullable="false" />
-          <Property Name="Procenjena_vrednost_Nekretnina" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Povrsina_Nekretnina" Type="numeric" Precision="6" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Osoba">
           <Key>
@@ -43,7 +41,7 @@
           <Property Name="JMBG_Osoba" Type="char" MaxLength="13" Nullable="false" />
           <Property Name="Ime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
           <Property Name="Prezime_Osoba" Type="varchar" MaxLength="35" Nullable="false" />
-          <Property Name="Broj_pasosa_Osoba" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Broj_pasosa_Osoba" Type="varchar" MaxLength="15" />
           <Property Name="Adresa_Osoba" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Broj_telefona_Osoba" Type="varchar" MaxLength="20" />
           <Property Name="E_mail_Osoba" Type="varchar" MaxLength="35" />
@@ -55,14 +53,9 @@
           <Property Name="Id_PDV" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv_PDV" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Prevod">
           <Key>
             <PropertyRef Name="Id_Prevod" />
-            <PropertyRef Name="Id_Rizik" />
-            <PropertyRef Name="Id_Jezik" />
-            <PropertyRef Name="Naziv_Prevod" />
           </Key>
           <Property Name="Id_Prevod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" Nullable="false" />
@@ -81,6 +74,7 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <Property Name="Ukupna_vrednost_Realizacija_osiguranja" Type="numeric" Precision="8" Scale="2" />
           <Property Name="Datum_od" Type="datetime" Nullable="false" />
           <Property Name="Datum_do" Type="datetime" Nullable="false" />
+          <Property Name="Potvrdjena_Realizacija_osiguranja" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Rizik">
           <Key>
@@ -97,7 +91,6 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <Property Name="Id_Rizik_za_osigurani_entitet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Stavka_u_realizaciji" Type="int" />
           <Property Name="Id_Rizik" Type="numeric" Precision="5" Scale="0" />
-          <Property Name="Vrednost_Rizik_za_osigurani_entitet" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Stavka_u_realizaciji">
           <Key>
@@ -105,10 +98,11 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           </Key>
           <Property Name="Id_Stavka_u_realizaciji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Realizacija_osiguranja" Type="int" Nullable="false" />
-          <Property Name="Id_Osigurana_osoba" Type="int" Nullable="false" />
-          <Property Name="Id_Osigurana_nekretnina" Type="int" Nullable="false" />
-          <Property Name="Id_Osigurano_vozilo" Type="int" Nullable="false" />
+          <Property Name="Id_Osigurana_osoba" Type="int" />
+          <Property Name="Id_Osigurana_nekretnina" Type="int" />
+          <Property Name="Id_Osigurano_vozilo" Type="int" />
           <Property Name="Nosilac_Stavka_u_realiziciji" Type="bit" />
+          <Property Name="Vrednost_Stavka_u_realizaciji" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Stopa_PDV">
           <Key>
@@ -232,7 +226,7 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
-          <End Role="Nekretnina" Type="Self.Nekretnina" Multiplicity="1" />
+          <End Role="Nekretnina" Type="Self.Nekretnina" Multiplicity="0..1" />
           <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Nekretnina">
@@ -244,7 +238,7 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STAVKA_U_RELATIONS_OSOBA">
-          <End Role="Osoba" Type="Self.Osoba" Multiplicity="1" />
+          <End Role="Osoba" Type="Self.Osoba" Multiplicity="0..1" />
           <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Osoba">
@@ -268,7 +262,7 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STAVKA_U_RELATIONS_VOZILO">
-          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
           <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vozilo">
@@ -309,6 +303,7 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <EntitySet Name="Nekretnina" EntityType="Self.Nekretnina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Osoba" EntityType="Self.Osoba" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PDV" EntityType="Self.PDV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prevod" EntityType="Self.Prevod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Realizacija_osiguranja" EntityType="Self.Realizacija_osiguranja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rizik" EntityType="Self.Rizik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="Self.Rizik_za_osigurani_entitet" Schema="dbo" store:Type="Tables" />
@@ -317,14 +312,6 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <EntitySet Name="Tip_osiguranja" EntityType="Self.Tip_osiguranja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vrsta_rizika" EntityType="Self.Vrsta_rizika" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Prevod" EntityType="Self.Prevod" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Prevod].[Id_Prevod] AS [Id_Prevod], 
-    [Prevod].[Id_Rizik] AS [Id_Rizik], 
-    [Prevod].[Id_Jezik] AS [Id_Jezik], 
-    [Prevod].[Naziv_Prevod] AS [Naziv_Prevod]
-    FROM [dbo].[Prevod] AS [Prevod]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_CK_RIZIK_RELATIONS_RIZIK" Association="Self.FK_CK_RIZIK_RELATIONS_RIZIK">
             <End Role="Rizik" EntitySet="Rizik" />
             <End Role="CK_Rizik" EntitySet="CK_Rizik" />
@@ -386,55 +373,58 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <Key>
             <PropertyRef Name="Id_CK_Rizik" />
           </Key>
-          <Property Name="Id_CK_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_CK_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
           <Property Name="Koeficijent_CK_Rizik" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="Cena_CK_Rizik" Type="Decimal" Precision="8" Scale="2" />
           <Property Name="Datum_pocetka_vazenja_CL_Rizik" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Rizik" Relationship="SEP_Model.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="CK_Rizik" ToRole="Rizik" />
+          <NavigationProperty Name="Rizik" Relationship="Self.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="CK_Rizik" ToRole="Rizik" />
+        </EntityType>
+        <EntityType Name="Jezik">
+          <Key>
+            <PropertyRef Name="Id_Jezik" />
+          </Key>
+          <Property Name="Id_Jezik" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv_Jezik" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Prevod" Relationship="Self.FK_Prevod_Jezik" FromRole="Jezik" ToRole="Prevod" />
         </EntityType>
         <EntityType Name="Nekretnina">
           <Key>
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
-          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
+          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="JMBG_vlasnik_Nekretnina" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Adresa_Nekretnina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ime_vlasnik_Nekretnina" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Prezime_vlasnik_Nekretnina" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Povrsina_Nekretnina" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="Starost_Nekretnina" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
-          <Property Name="Procenjena_vrednost_Nekretnina" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Nekretnina" ToRole="Stavka_u_realizaciji" />
-        </EntityType>
-        <EntityType Name="Osoba">
-          <Key>
-            <PropertyRef Name="Id_Osigurani_entitet" />
-          </Key>
-          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
-          <Property Name="JMBG_Osoba" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Ime_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Prezime_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Broj_pasosa_Osoba" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Adresa_Osoba" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Broj_telefona_Osoba" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="E_mail_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Osoba" ToRole="Stavka_u_realizaciji" />
+          <Property Name="Povrsina_Nekretnina" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Nekretnina" ToRole="Stavka_u_realizaciji" />
         </EntityType>
         <EntityType Name="PDV">
           <Key>
             <PropertyRef Name="Id_PDV" />
           </Key>
-          <Property Name="Id_PDV" Type="Int16" Nullable="false" />
+          <Property Name="Id_PDV" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naziv_PDV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Realizacija_osiguranja" Relationship="Self.FK_REALIZAC_RELATIONS_PDV" FromRole="PDV" ToRole="Realizacija_osiguranja" />
           <NavigationProperty Name="Stopa_PDV" Relationship="Self.FK_STOPA_PD_RELATIONS_PDV" FromRole="PDV" ToRole="Stopa_PDV" />
+        </EntityType>
+        <EntityType Name="Prevod">
+          <Key>
+            <PropertyRef Name="Id_Prevod" />
+          </Key>
+          <Property Name="Id_Prevod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Id_Jezik" Type="Int16" Nullable="false" />
+          <Property Name="Naziv_Prevod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Jezik" Relationship="Self.FK_Prevod_Jezik" FromRole="Prevod" ToRole="Jezik" />
+          <NavigationProperty Name="Rizik" Relationship="Self.FK_Prevod_Rizik" FromRole="Prevod" ToRole="Rizik" />
         </EntityType>
         <EntityType Name="Realizacija_osiguranja">
           <Key>
             <PropertyRef Name="Id_Realizacija_osiguranja" />
           </Key>
-          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" />
+          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_PDV" Type="Int16" Nullable="false" />
           <Property Name="Datum_Realizacija_osiguranja" Type="DateTime" Precision="3" />
           <Property Name="Vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
@@ -442,30 +432,37 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <Property Name="Ukupna_vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
           <Property Name="Datum_od" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Datum_do" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Potvrdjena_Realizacija_osiguranja" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PDV" Relationship="Self.FK_REALIZAC_RELATIONS_PDV" FromRole="Realizacija_osiguranja" ToRole="PDV" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Realizacija_osiguranja" ToRole="Stavka_u_realizaciji" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Realizacija_osiguranja" ToRole="Stavka_u_realizaciji" />
         </EntityType>
-        <EntityType Name="Stavka_u_realizaciji">
+        <EntityType Name="Rizik">
           <Key>
-            <PropertyRef Name="Id_Stavka_u_realizaciji" />
+            <PropertyRef Name="Id_Rizik" />
           </Key>
-          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" Nullable="false" />
-          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" />
-          <Property Name="Id_Osigurana_osoba" Type="Int32" Nullable="false" />
-          <Property Name="Id_Osigurana_nekretnina" Type="Int32" Nullable="false" />
-          <Property Name="Id_Osigurano_vozilo" Type="Int32" Nullable="false" />
-          <Property Name="Nosilac_Stavka_u_realiziciji" Type="Boolean" />
-          <NavigationProperty Name="Nekretnina" Relationship="Self.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Stavka_u_realizaciji" ToRole="Nekretnina" />
-          <NavigationProperty Name="Osoba" Relationship="Self.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Stavka_u_realizaciji" ToRole="Osoba" />
-          <NavigationProperty Name="Realizacija_osiguranja" Relationship="Self.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Stavka_u_realizaciji" ToRole="Realizacija_osiguranja" />
-          <NavigationProperty Name="Vozilo" Relationship="Self.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Stavka_u_realizaciji" ToRole="Vozilo" />
-          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Stavka_u_realizaciji" ToRole="Rizik_za_osigurani_entitet" />
+          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Vrsta_rizika" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Naziv_Rizik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CK_Rizik" Relationship="Self.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="Rizik" ToRole="CK_Rizik" />
+          <NavigationProperty Name="Prevod" Relationship="Self.FK_Prevod_Rizik" FromRole="Rizik" ToRole="Prevod" />
+          <NavigationProperty Name="Vrsta_rizika" Relationship="Self.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Rizik" ToRole="Vrsta_rizika" />
+          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="Self.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik" ToRole="Rizik_za_osigurani_entitet" />
+        </EntityType>
+        <EntityType Name="Rizik_za_osigurani_entitet">
+          <Key>
+            <PropertyRef Name="Id_Rizik_za_osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Rizik_za_osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" />
+          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" />
+          <NavigationProperty Name="Rizik" Relationship="Self.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik_za_osigurani_entitet" ToRole="Rizik" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Rizik_za_osigurani_entitet" ToRole="Stavka_u_realizaciji" />
         </EntityType>
         <EntityType Name="Stopa_PDV">
           <Key>
             <PropertyRef Name="Id_Stopa_PDV" />
           </Key>
-          <Property Name="Id_Stopa_PDV" Type="Int16" Nullable="false" />
+          <Property Name="Id_Stopa_PDV" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_PDV" Type="Int16" />
           <Property Name="Stopa_PDV1" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Datum_pocetka_vazenja_Stopa_PDV" Type="DateTime" Nullable="false" Precision="3" />
@@ -475,7 +472,7 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <Key>
             <PropertyRef Name="Id_Tip_osiguranja" />
           </Key>
-          <Property Name="Id_Tip_osiguranja" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Id_Tip_osiguranja" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naziv_Tip_osiguranja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Opis_Tip_osiguranja" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Vrsta_rizika" Relationship="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG" FromRole="Tip_osiguranja" ToRole="Vrsta_rizika" />
@@ -484,46 +481,46 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
           <Key>
             <PropertyRef Name="Id_Osigurani_entitet" />
           </Key>
-          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" />
+          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="JMBG_Vlasnik_Vozilo" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Ime_Vlasnik_Vozilo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Prezime_Vlasnik_Vozilo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Broj_sasije_Vozilo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Broj_registarske_tablice_Vozilo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Godina_proizvodnje_Vozilo" Type="Decimal" Precision="4" Scale="0" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="Self.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Vozilo" ToRole="Stavka_u_realizaciji" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Vozilo" ToRole="Stavka_u_realizaciji" />
         </EntityType>
         <EntityType Name="Vrsta_rizika">
           <Key>
             <PropertyRef Name="Id_Vrsta_rizika" />
           </Key>
-          <Property Name="Id_Vrsta_rizika" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Id_Vrsta_rizika" Type="Decimal" Precision="3" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Tip_osiguranja" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="Naziv_Vrsta_rizika" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Rizik" Relationship="Self.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Vrsta_rizika" ToRole="Rizik" />
           <NavigationProperty Name="Tip_osiguranja" Relationship="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG" FromRole="Vrsta_rizika" ToRole="Tip_osiguranja" />
-          <NavigationProperty Name="Rizik" Relationship="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Vrsta_rizika" ToRole="Rizik" />
         </EntityType>
-        <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
-          <End Role="Nekretnina" Type="Self.Nekretnina" Multiplicity="1" />
-          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+        <Association Name="FK_CK_RIZIK_RELATIONS_RIZIK">
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="1" />
+          <End Role="CK_Rizik" Type="Self.CK_Rizik" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Nekretnina">
-              <PropertyRef Name="Id_Osigurani_entitet" />
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
             </Principal>
-            <Dependent Role="Stavka_u_realizaciji">
-              <PropertyRef Name="Id_Osigurana_nekretnina" />
+            <Dependent Role="CK_Rizik">
+              <PropertyRef Name="Id_Rizik" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_STAVKA_U_RELATIONS_OSOBA">
-          <End Role="Osoba" Type="Self.Osoba" Multiplicity="1" />
-          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+        <Association Name="FK_Prevod_Jezik">
+          <End Role="Jezik" Type="Self.Jezik" Multiplicity="1" />
+          <End Role="Prevod" Type="Self.Prevod" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Osoba">
-              <PropertyRef Name="Id_Osigurani_entitet" />
+            <Principal Role="Jezik">
+              <PropertyRef Name="Id_Jezik" />
             </Principal>
-            <Dependent Role="Stavka_u_realizaciji">
-              <PropertyRef Name="Id_Osigurana_osoba" />
+            <Dependent Role="Prevod">
+              <PropertyRef Name="Id_Jezik" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -551,27 +548,39 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_STAVKA_U_RELATIONS_REALIZAC">
-          <End Role="Realizacija_osiguranja" Type="Self.Realizacija_osiguranja" Multiplicity="1" />
-          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+        <Association Name="FK_Prevod_Rizik">
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="1" />
+          <End Role="Prevod" Type="Self.Prevod" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Realizacija_osiguranja">
-              <PropertyRef Name="Id_Realizacija_osiguranja" />
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
             </Principal>
-            <Dependent Role="Stavka_u_realizaciji">
-              <PropertyRef Name="Id_Realizacija_osiguranja" />
+            <Dependent Role="Prevod">
+              <PropertyRef Name="Id_Rizik" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_STAVKA_U_RELATIONS_VOZILO">
-          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
-          <End Role="Stavka_u_realizaciji" Type="Self.Stavka_u_realizaciji" Multiplicity="*" />
+        <Association Name="FK_RIZIK_RELATIONS_VRSTA_RI">
+          <End Role="Vrsta_rizika" Type="Self.Vrsta_rizika" Multiplicity="1" />
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Vozilo">
-              <PropertyRef Name="Id_Osigurani_entitet" />
+            <Principal Role="Vrsta_rizika">
+              <PropertyRef Name="Id_Vrsta_rizika" />
             </Principal>
-            <Dependent Role="Stavka_u_realizaciji">
-              <PropertyRef Name="Id_Osigurano_vozilo" />
+            <Dependent Role="Rizik">
+              <PropertyRef Name="Id_Vrsta_rizika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIZIK_ZA_RELATIONS_RIZIK">
+          <End Role="Rizik" Type="Self.Rizik" Multiplicity="0..1" />
+          <End Role="Rizik_za_osigurani_entitet" Type="Self.Rizik_za_osigurani_entitet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rizik">
+              <PropertyRef Name="Id_Rizik" />
+            </Principal>
+            <Dependent Role="Rizik_za_osigurani_entitet">
+              <PropertyRef Name="Id_Rizik" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -587,24 +596,26 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SEP_Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SEP_EntitiesB" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CK_Rizik" EntityType="Self.CK_Rizik" />
+          <EntitySet Name="Jezik" EntityType="Self.Jezik" />
           <EntitySet Name="Nekretnina" EntityType="Self.Nekretnina" />
-          <EntitySet Name="Osoba" EntityType="Self.Osoba" />
           <EntitySet Name="PDV" EntityType="Self.PDV" />
+          <EntitySet Name="Prevod" EntityType="Self.Prevod" />
           <EntitySet Name="Realizacija_osiguranja" EntityType="Self.Realizacija_osiguranja" />
-          <EntitySet Name="Stavka_u_realizaciji" EntityType="Self.Stavka_u_realizaciji" />
+          <EntitySet Name="Rizik" EntityType="Self.Rizik" />
+          <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="Self.Rizik_za_osigurani_entitet" />
           <EntitySet Name="Stopa_PDV" EntityType="Self.Stopa_PDV" />
           <EntitySet Name="Tip_osiguranja" EntityType="Self.Tip_osiguranja" />
           <EntitySet Name="Vozilo" EntityType="Self.Vozilo" />
           <EntitySet Name="Vrsta_rizika" EntityType="Self.Vrsta_rizika" />
-          <AssociationSet Name="FK_STAVKA_U_RELATIONS_NEKRETNI" Association="Self.FK_STAVKA_U_RELATIONS_NEKRETNI">
-            <End Role="Nekretnina" EntitySet="Nekretnina" />
-            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          <AssociationSet Name="FK_CK_RIZIK_RELATIONS_RIZIK" Association="Self.FK_CK_RIZIK_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="CK_Rizik" EntitySet="CK_Rizik" />
           </AssociationSet>
-          <AssociationSet Name="FK_STAVKA_U_RELATIONS_OSOBA" Association="Self.FK_STAVKA_U_RELATIONS_OSOBA">
-            <End Role="Osoba" EntitySet="Osoba" />
-            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          <AssociationSet Name="FK_Prevod_Jezik" Association="Self.FK_Prevod_Jezik">
+            <End Role="Jezik" EntitySet="Jezik" />
+            <End Role="Prevod" EntitySet="Prevod" />
           </AssociationSet>
           <AssociationSet Name="FK_REALIZAC_RELATIONS_PDV" Association="Self.FK_REALIZAC_RELATIONS_PDV">
             <End Role="PDV" EntitySet="PDV" />
@@ -614,103 +625,83 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
             <End Role="PDV" EntitySet="PDV" />
             <End Role="Stopa_PDV" EntitySet="Stopa_PDV" />
           </AssociationSet>
-          <AssociationSet Name="FK_STAVKA_U_RELATIONS_REALIZAC" Association="Self.FK_STAVKA_U_RELATIONS_REALIZAC">
-            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
-            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          <AssociationSet Name="FK_Prevod_Rizik" Association="Self.FK_Prevod_Rizik">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="Prevod" EntitySet="Prevod" />
           </AssociationSet>
-          <AssociationSet Name="FK_STAVKA_U_RELATIONS_VOZILO" Association="Self.FK_STAVKA_U_RELATIONS_VOZILO">
-            <End Role="Vozilo" EntitySet="Vozilo" />
-            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          <AssociationSet Name="FK_RIZIK_RELATIONS_VRSTA_RI" Association="Self.FK_RIZIK_RELATIONS_VRSTA_RI">
+            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
+            <End Role="Rizik" EntitySet="Rizik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_RIZIK" Association="Self.FK_RIZIK_ZA_RELATIONS_RIZIK">
+            <End Role="Rizik" EntitySet="Rizik" />
+            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
           </AssociationSet>
           <AssociationSet Name="FK_VRSTA_RI_RELATIONS_TIP_OSIG" Association="Self.FK_VRSTA_RI_RELATIONS_TIP_OSIG">
             <End Role="Tip_osiguranja" EntitySet="Tip_osiguranja" />
             <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
           </AssociationSet>
-          <EntitySet Name="Rizik" EntityType="SEP_Model.Rizik" />
-          <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="SEP_Model.Rizik_za_osigurani_entitet" />
-          <AssociationSet Name="FK_CK_RIZIK_RELATIONS_RIZIK" Association="SEP_Model.FK_CK_RIZIK_RELATIONS_RIZIK">
-            <End Role="Rizik" EntitySet="Rizik" />
-            <End Role="CK_Rizik" EntitySet="CK_Rizik" />
+          <EntitySet Name="Stavka_u_realizaciji" EntityType="SEP_Model.Stavka_u_realizaciji" />
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_NEKRETNI" Association="SEP_Model.FK_STAVKA_U_RELATIONS_NEKRETNI">
+            <End Role="Nekretnina" EntitySet="Nekretnina" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
-          <AssociationSet Name="FK_RIZIK_RELATIONS_VRSTA_RI" Association="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI">
-            <End Role="Vrsta_rizika" EntitySet="Vrsta_rizika" />
-            <End Role="Rizik" EntitySet="Rizik" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_RIZIK" Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK">
-            <End Role="Rizik" EntitySet="Rizik" />
-            <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_REALIZAC" Association="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC">
+            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
           <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U" Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U">
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
             <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
           </AssociationSet>
-          <EntitySet Name="Jezik" EntityType="SEP_Model.Jezik" />
-          <EntitySet Name="Prevod" EntityType="SEP_Model.Prevod" />
-          <AssociationSet Name="FK_Prevod_Jezik" Association="SEP_Model.FK_Prevod_Jezik">
-            <End Role="Jezik" EntitySet="Jezik" />
-            <End Role="Prevod" EntitySet="Prevod" />
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_VOZILO" Association="SEP_Model.FK_STAVKA_U_RELATIONS_VOZILO">
+            <End Role="Vozilo" EntitySet="Vozilo" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
-          <AssociationSet Name="FK_Prevod_Rizik" Association="SEP_Model.FK_Prevod_Rizik">
-            <End Role="Rizik" EntitySet="Rizik" />
-            <End Role="Prevod" EntitySet="Prevod" />
+          <EntitySet Name="Osoba" EntityType="SEP_Model.Osoba" />
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_OSOBA" Association="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA">
+            <End Role="Osoba" EntitySet="Osoba" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Rizik">
+        <EntityType Name="Stavka_u_realizaciji">
           <Key>
-            <PropertyRef Name="Id_Rizik" />
+            <PropertyRef Name="Id_Stavka_u_realizaciji" />
           </Key>
-          <Property Name="Id_Rizik" Type="Decimal" Nullable="false" Precision="5" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Vrsta_rizika" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
-          <Property Name="Naziv_Rizik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CK_Rizik" Relationship="SEP_Model.FK_CK_RIZIK_RELATIONS_RIZIK" FromRole="Rizik" ToRole="CK_Rizik" />
-          <NavigationProperty Name="Vrsta_rizika" Relationship="SEP_Model.FK_RIZIK_RELATIONS_VRSTA_RI" FromRole="Rizik" ToRole="Vrsta_rizika" />
-          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik" ToRole="Rizik_za_osigurani_entitet" />
-          <NavigationProperty Name="Prevod" Relationship="SEP_Model.FK_Prevod_Rizik" FromRole="Rizik" ToRole="Prevod" />
+          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" />
+          <Property Name="Id_Osigurana_osoba" Type="Int32" />
+          <Property Name="Id_Osigurana_nekretnina" Type="Int32" />
+          <Property Name="Id_Osigurano_vozilo" Type="Int32" />
+          <Property Name="Nosilac_Stavka_u_realiziciji" Type="Boolean" />
+          <Property Name="Vrednost_Stavka_u_realizaciji" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Nekretnina" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Stavka_u_realizaciji" ToRole="Nekretnina" />
+          <NavigationProperty Name="Realizacija_osiguranja" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Stavka_u_realizaciji" ToRole="Realizacija_osiguranja" />
+          <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Stavka_u_realizaciji" ToRole="Rizik_za_osigurani_entitet" />
+          <NavigationProperty Name="Vozilo" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Stavka_u_realizaciji" ToRole="Vozilo" />
+          <NavigationProperty Name="Osoba" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Stavka_u_realizaciji" ToRole="Osoba" />
         </EntityType>
-        <EntityType Name="Rizik_za_osigurani_entitet">
-          <Key>
-            <PropertyRef Name="Id_Rizik_za_osigurani_entitet" />
-          </Key>
-          <Property Name="Id_Rizik_za_osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Stavka_u_realizaciji" Type="Int32" />
-          <Property Name="Id_Rizik" Type="Decimal" Precision="5" Scale="0" />
-          <Property Name="Vrednost_Rizik_za_osigurani_entitet" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Rizik" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_RIZIK" FromRole="Rizik_za_osigurani_entitet" ToRole="Rizik" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Rizik_za_osigurani_entitet" ToRole="Stavka_u_realizaciji" />
-        </EntityType>
-        <Association Name="FK_CK_RIZIK_RELATIONS_RIZIK">
-          <End Type="SEP_Model.Rizik" Role="Rizik" Multiplicity="1" />
-          <End Type="SEP_Model.CK_Rizik" Role="CK_Rizik" Multiplicity="*" />
+        <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
+          <End Type="SEP_Model.Nekretnina" Role="Nekretnina" Multiplicity="0..1" />
+          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Rizik">
-              <PropertyRef Name="Id_Rizik" />
+            <Principal Role="Nekretnina">
+              <PropertyRef Name="Id_Osigurani_entitet" />
             </Principal>
-            <Dependent Role="CK_Rizik">
-              <PropertyRef Name="Id_Rizik" />
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurana_nekretnina" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RIZIK_RELATIONS_VRSTA_RI">
-          <End Type="SEP_Model.Vrsta_rizika" Role="Vrsta_rizika" Multiplicity="1" />
-          <End Type="SEP_Model.Rizik" Role="Rizik" Multiplicity="*" />
+        <Association Name="FK_STAVKA_U_RELATIONS_REALIZAC">
+          <End Type="SEP_Model.Realizacija_osiguranja" Role="Realizacija_osiguranja" Multiplicity="1" />
+          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Vrsta_rizika">
-              <PropertyRef Name="Id_Vrsta_rizika" />
+            <Principal Role="Realizacija_osiguranja">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
             </Principal>
-            <Dependent Role="Rizik">
-              <PropertyRef Name="Id_Vrsta_rizika" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RIZIK_ZA_RELATIONS_RIZIK">
-          <End Type="SEP_Model.Rizik" Role="Rizik" Multiplicity="0..1" />
-          <End Type="SEP_Model.Rizik_za_osigurani_entitet" Role="Rizik_za_osigurani_entitet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rizik">
-              <PropertyRef Name="Id_Rizik" />
-            </Principal>
-            <Dependent Role="Rizik_za_osigurani_entitet">
-              <PropertyRef Name="Id_Rizik" />
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -726,49 +717,41 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Jezik">
-          <Key>
-            <PropertyRef Name="Id_Jezik" />
-          </Key>
-          <Property Name="Id_Jezik" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv_Jezik" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Prevod" Relationship="SEP_Model.FK_Prevod_Jezik" FromRole="Jezik" ToRole="Prevod" />
-        </EntityType>
-        <EntityType Name="Prevod">
-          <Key>
-            <PropertyRef Name="Id_Prevod" />
-            <PropertyRef Name="Id_Rizik" />
-            <PropertyRef Name="Id_Jezik" />
-            <PropertyRef Name="Naziv_Prevod" />
-          </Key>
-          <Property Name="Id_Prevod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Rizik" Type="Decimal" Nullable="false" Precision="5" Scale="0" />
-          <Property Name="Id_Jezik" Type="Int16" Nullable="false" />
-          <Property Name="Naziv_Prevod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Jezik" Relationship="SEP_Model.FK_Prevod_Jezik" FromRole="Prevod" ToRole="Jezik" />
-          <NavigationProperty Name="Rizik" Relationship="SEP_Model.FK_Prevod_Rizik" FromRole="Prevod" ToRole="Rizik" />
-        </EntityType>
-        <Association Name="FK_Prevod_Jezik">
-          <End Type="SEP_Model.Jezik" Role="Jezik" Multiplicity="1" />
-          <End Type="SEP_Model.Prevod" Role="Prevod" Multiplicity="*" />
+        <Association Name="FK_STAVKA_U_RELATIONS_VOZILO">
+          <End Type="SEP_Model.Vozilo" Role="Vozilo" Multiplicity="0..1" />
+          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jezik">
-              <PropertyRef Name="Id_Jezik" />
+            <Principal Role="Vozilo">
+              <PropertyRef Name="Id_Osigurani_entitet" />
             </Principal>
-            <Dependent Role="Prevod">
-              <PropertyRef Name="Id_Jezik" />
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurano_vozilo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Prevod_Rizik">
-          <End Type="SEP_Model.Rizik" Role="Rizik" Multiplicity="1" />
-          <End Type="SEP_Model.Prevod" Role="Prevod" Multiplicity="*" />
+        <EntityType Name="Osoba">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JMBG_Osoba" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Ime_Osoba" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Prezime_Osoba" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Broj_pasosa_Osoba" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Adresa_Osoba" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Broj_telefona_Osoba" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="E_mail_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Osoba" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <Association Name="FK_STAVKA_U_RELATIONS_OSOBA">
+          <End Type="SEP_Model.Osoba" Role="Osoba" Multiplicity="0..1" />
+          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Rizik">
-              <PropertyRef Name="Id_Rizik" />
+            <Principal Role="Osoba">
+              <PropertyRef Name="Id_Osigurani_entitet" />
             </Principal>
-            <Dependent Role="Prevod">
-              <PropertyRef Name="Id_Rizik" />
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurana_osoba" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -777,7 +760,7 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SEP_ModelStoreContainer" CdmEntityContainer="SEP_Entities">
+        <EntityContainerMapping StorageEntityContainer="SEP_ModelStoreContainer" CdmEntityContainer="SEP_EntitiesB">
           <EntitySetMapping Name="CK_Rizik">
             <EntityTypeMapping TypeName="SEP_Model.CK_Rizik">
               <MappingFragment StoreEntitySet="CK_Rizik">
@@ -786,6 +769,14 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
                 <ScalarProperty Name="Koeficijent_CK_Rizik" ColumnName="Koeficijent_CK_Rizik" />
                 <ScalarProperty Name="Cena_CK_Rizik" ColumnName="Cena_CK_Rizik" />
                 <ScalarProperty Name="Datum_pocetka_vazenja_CL_Rizik" ColumnName="Datum_pocetka_vazenja_CL_Rizik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jezik">
+            <EntityTypeMapping TypeName="SEP_Model.Jezik">
+              <MappingFragment StoreEntitySet="Jezik">
+                <ScalarProperty Name="Id_Jezik" ColumnName="Id_Jezik" />
+                <ScalarProperty Name="Naziv_Jezik" ColumnName="Naziv_Jezik" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -798,22 +789,6 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
                 <ScalarProperty Name="Ime_vlasnik_Nekretnina" ColumnName="Ime_vlasnik_Nekretnina" />
                 <ScalarProperty Name="Prezime_vlasnik_Nekretnina" ColumnName="Prezime_vlasnik_Nekretnina" />
                 <ScalarProperty Name="Povrsina_Nekretnina" ColumnName="Povrsina_Nekretnina" />
-                <ScalarProperty Name="Starost_Nekretnina" ColumnName="Starost_Nekretnina" />
-                <ScalarProperty Name="Procenjena_vrednost_Nekretnina" ColumnName="Procenjena_vrednost_Nekretnina" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Osoba">
-            <EntityTypeMapping TypeName="SEP_Model.Osoba">
-              <MappingFragment StoreEntitySet="Osoba">
-                <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
-                <ScalarProperty Name="JMBG_Osoba" ColumnName="JMBG_Osoba" />
-                <ScalarProperty Name="Ime_Osoba" ColumnName="Ime_Osoba" />
-                <ScalarProperty Name="Prezime_Osoba" ColumnName="Prezime_Osoba" />
-                <ScalarProperty Name="Broj_pasosa_Osoba" ColumnName="Broj_pasosa_Osoba" />
-                <ScalarProperty Name="Adresa_Osoba" ColumnName="Adresa_Osoba" />
-                <ScalarProperty Name="Broj_telefona_Osoba" ColumnName="Broj_telefona_Osoba" />
-                <ScalarProperty Name="E_mail_Osoba" ColumnName="E_mail_Osoba" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -822,6 +797,16 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
               <MappingFragment StoreEntitySet="PDV">
                 <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
                 <ScalarProperty Name="Naziv_PDV" ColumnName="Naziv_PDV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prevod">
+            <EntityTypeMapping TypeName="SEP_Model.Prevod">
+              <MappingFragment StoreEntitySet="Prevod">
+                <ScalarProperty Name="Id_Prevod" ColumnName="Id_Prevod" />
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+                <ScalarProperty Name="Id_Jezik" ColumnName="Id_Jezik" />
+                <ScalarProperty Name="Naziv_Prevod" ColumnName="Naziv_Prevod" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -836,18 +821,25 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
                 <ScalarProperty Name="Ukupna_vrednost_Realizacija_osiguranja" ColumnName="Ukupna_vrednost_Realizacija_osiguranja" />
                 <ScalarProperty Name="Datum_od" ColumnName="Datum_od" />
                 <ScalarProperty Name="Datum_do" ColumnName="Datum_do" />
+                <ScalarProperty Name="Potvrdjena_Realizacija_osiguranja" ColumnName="Potvrdjena_Realizacija_osiguranja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Stavka_u_realizaciji">
-            <EntityTypeMapping TypeName="SEP_Model.Stavka_u_realizaciji">
-              <MappingFragment StoreEntitySet="Stavka_u_realizaciji">
+          <EntitySetMapping Name="Rizik">
+            <EntityTypeMapping TypeName="SEP_Model.Rizik">
+              <MappingFragment StoreEntitySet="Rizik">
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+                <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
+                <ScalarProperty Name="Naziv_Rizik" ColumnName="Naziv_Rizik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rizik_za_osigurani_entitet">
+            <EntityTypeMapping TypeName="SEP_Model.Rizik_za_osigurani_entitet">
+              <MappingFragment StoreEntitySet="Rizik_za_osigurani_entitet">
+                <ScalarProperty Name="Id_Rizik_za_osigurani_entitet" ColumnName="Id_Rizik_za_osigurani_entitet" />
                 <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
-                <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
-                <ScalarProperty Name="Id_Osigurana_osoba" ColumnName="Id_Osigurana_osoba" />
-                <ScalarProperty Name="Id_Osigurana_nekretnina" ColumnName="Id_Osigurana_nekretnina" />
-                <ScalarProperty Name="Id_Osigurano_vozilo" ColumnName="Id_Osigurano_vozilo" />
-                <ScalarProperty Name="Nosilac_Stavka_u_realiziciji" ColumnName="Nosilac_Stavka_u_realiziciji" />
+                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -892,40 +884,30 @@ warning 6002: The table/view 'SEPOsiguranjeDB.dbo.Prevod' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rizik">
-            <EntityTypeMapping TypeName="SEP_Model.Rizik">
-              <MappingFragment StoreEntitySet="Rizik">
-                <ScalarProperty Name="Naziv_Rizik" ColumnName="Naziv_Rizik" />
-                <ScalarProperty Name="Id_Vrsta_rizika" ColumnName="Id_Vrsta_rizika" />
-                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rizik_za_osigurani_entitet">
-            <EntityTypeMapping TypeName="SEP_Model.Rizik_za_osigurani_entitet">
-              <MappingFragment StoreEntitySet="Rizik_za_osigurani_entitet">
-                <ScalarProperty Name="Vrednost_Rizik_za_osigurani_entitet" ColumnName="Vrednost_Rizik_za_osigurani_entitet" />
-                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
+          <EntitySetMapping Name="Stavka_u_realizaciji">
+            <EntityTypeMapping TypeName="SEP_Model.Stavka_u_realizaciji">
+              <MappingFragment StoreEntitySet="Stavka_u_realizaciji">
+                <ScalarProperty Name="Vrednost_Stavka_u_realizaciji" ColumnName="Vrednost_Stavka_u_realizaciji" />
+                <ScalarProperty Name="Nosilac_Stavka_u_realiziciji" ColumnName="Nosilac_Stavka_u_realiziciji" />
+                <ScalarProperty Name="Id_Osigurano_vozilo" ColumnName="Id_Osigurano_vozilo" />
+                <ScalarProperty Name="Id_Osigurana_nekretnina" ColumnName="Id_Osigurana_nekretnina" />
+                <ScalarProperty Name="Id_Osigurana_osoba" ColumnName="Id_Osigurana_osoba" />
+                <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
                 <ScalarProperty Name="Id_Stavka_u_realizaciji" ColumnName="Id_Stavka_u_realizaciji" />
-                <ScalarProperty Name="Id_Rizik_za_osigurani_entitet" ColumnName="Id_Rizik_za_osigurani_entitet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Jezik">
-            <EntityTypeMapping TypeName="SEP_Model.Jezik">
-              <MappingFragment StoreEntitySet="Jezik">
-                <ScalarProperty Name="Naziv_Jezik" ColumnName="Naziv_Jezik" />
-                <ScalarProperty Name="Id_Jezik" ColumnName="Id_Jezik" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Prevod">
-            <EntityTypeMapping TypeName="SEP_Model.Prevod">
-              <MappingFragment StoreEntitySet="Prevod">
-                <ScalarProperty Name="Naziv_Prevod" ColumnName="Naziv_Prevod" />
-                <ScalarProperty Name="Id_Jezik" ColumnName="Id_Jezik" />
-                <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
-                <ScalarProperty Name="Id_Prevod" ColumnName="Id_Prevod" />
+          <EntitySetMapping Name="Osoba">
+            <EntityTypeMapping TypeName="SEP_Model.Osoba">
+              <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="E_mail_Osoba" ColumnName="E_mail_Osoba" />
+                <ScalarProperty Name="Broj_telefona_Osoba" ColumnName="Broj_telefona_Osoba" />
+                <ScalarProperty Name="Adresa_Osoba" ColumnName="Adresa_Osoba" />
+                <ScalarProperty Name="Broj_pasosa_Osoba" ColumnName="Broj_pasosa_Osoba" />
+                <ScalarProperty Name="Prezime_Osoba" ColumnName="Prezime_Osoba" />
+                <ScalarProperty Name="Ime_Osoba" ColumnName="Ime_Osoba" />
+                <ScalarProperty Name="JMBG_Osoba" ColumnName="JMBG_Osoba" />
+                <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

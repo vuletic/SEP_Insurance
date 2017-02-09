@@ -17,7 +17,6 @@ namespace SEP_Osiguranje.Models
         public int Id_Rizik_za_osigurani_entitet { get; set; }
         public Nullable<int> Id_Stavka_u_realizaciji { get; set; }
         public Nullable<decimal> Id_Rizik { get; set; }
-        public Nullable<decimal> Vrednost_Rizik_za_osigurani_entitet { get; set; }
     
         public virtual Rizik Rizik { get; set; }
         public virtual Stavka_u_realizaciji Stavka_u_realizaciji { get; set; }

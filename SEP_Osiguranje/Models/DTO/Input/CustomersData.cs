@@ -11,5 +11,8 @@ namespace SEP_Osiguranje.Models.DTO
         public Osoba osoba { get; set; }
         public decimal ageGroup { get; set; }
 
+        public bool insured { get; set; }
+        public bool carrier { get; set; }
+
     }
 }
