@@ -91,23 +91,19 @@ namespace SEP_Osiguranje.Controllers
             Dictionary<string, string> details = organizeDetails(paymentDetails);
             if (response.Equals("VERIFIED"))
             {
-                if (!details.ContainsKey("receiver_email"))
-                    return;
+                if (!details.ContainsKey("receiver_email") || !details.ContainsKey("payment_status") || !details.ContainsKey("item_name1") || !details.ContainsKey("item_number1"))
+                    return; // ukoliko nam nije dostupan neki od osnovnih podataka
+
                 if (!details["receiver_email"].Equals(accountEmail))
                     return; // transakcija nije namenjena meni
 
-                if (!details.ContainsKey("payment_status"))
-                    return;
                 if (!details["payment_status"].Equals("Completed"))
                     return; // nije prosla transakcija
 
-                if (!details.ContainsKey("item_name1"))
-                    return;
                 if (!details["item_name1"].Equals(policyName))
                     return; // nije placeno osiguranje vec nesto drugo
 
-                if (!details.ContainsKey("item_number1"))
-                    return; // ne mozemo nista obraditi jer ne znamo o kojoj je polisi rec
+
                 string policyId = details["item_number1"];
 
                 // nadji datu polisu u bazi
