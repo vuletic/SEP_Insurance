@@ -31,7 +31,6 @@ namespace SEP_Osiguranje.Models
         public virtual DbSet<Nekretnina> Nekretnina { get; set; }
         public virtual DbSet<PDV> PDV { get; set; }
         public virtual DbSet<Prevod> Prevod { get; set; }
-        public virtual DbSet<Realizacija_osiguranja> Realizacija_osiguranja { get; set; }
         public virtual DbSet<Rizik> Rizik { get; set; }
         public virtual DbSet<Rizik_za_osigurani_entitet> Rizik_za_osigurani_entitet { get; set; }
         public virtual DbSet<Stopa_PDV> Stopa_PDV { get; set; }
@@ -40,5 +39,6 @@ namespace SEP_Osiguranje.Models
         public virtual DbSet<Vrsta_rizika> Vrsta_rizika { get; set; }
         public virtual DbSet<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }
         public virtual DbSet<Osoba> Osoba { get; set; }
+        public virtual DbSet<Realizacija_osiguranja> Realizacija_osiguranja { get; set; }
     }
 }

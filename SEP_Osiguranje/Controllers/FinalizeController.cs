@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -88,7 +89,7 @@ namespace SEP_Osiguranje.Controllers
             BMCreateButtonResponseType response = service.BMCreateButton(wrapper);
 
             DataForPreview dfp = new DataForPreview(ro, response.Website);
-
+            
             return Ok(dfp);
         }
 

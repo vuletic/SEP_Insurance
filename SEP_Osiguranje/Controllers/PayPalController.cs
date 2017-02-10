@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Linq;
+using System.Net.Mail;
 
 namespace SEP_Osiguranje.Controllers
 {
@@ -87,7 +88,7 @@ namespace SEP_Osiguranje.Controllers
 
                 
                 // upisati u bazu za odgovarajucu polisu da je placanje izvrseno
-                // upisati u bazu za odgovarajucu polisu id transakcije -- izmeniti bazu da bi ovo bilo moguce :)
+                // upisati u bazu za odgovarajucu polisu id transakcije
 
                 // nadji datu polisu u bazi
                 Realizacija_osiguranja ro = db.Realizacija_osiguranja.Where(r => r.Id_Realizacija_osiguranja == policyId).FirstOrDefault() ;
@@ -96,8 +97,35 @@ namespace SEP_Osiguranje.Controllers
                     // proveriti da li se valuta i placeni iznos poklapaju sa ocekivanim
                     if (ro.Ukupna_vrednost_Realizacija_osiguranja.Equals(Decimal.Parse(ammount)))
                     {
-                        ro.Potvrdjena_Realizacija_osiguranja = true;
-                        db.SaveChanges();
+                        if (!ro.Potvrdjena_Realizacija_osiguranja)
+                        {
+                            ro.Potvrdjena_Realizacija_osiguranja = true;
+                            ro.Broj_transakcije_Realizacija_osiguranja = details["txn_id"];
+                            db.SaveChanges();
+
+                            //slanje mail-a
+                            NetworkCredential basicCredential = new NetworkCredential("nikola58tod@gmail.com", "hasansakic");
+                            MailMessage mail = new MailMessage();
+                            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                            mail.From = new MailAddress("nikola58tod@gmail.com");
+                            mail.To.Add("nenadtod@live.com");
+                            mail.Subject = "Test Mail";
+                            mail.Body = "MahabHarata.";
+
+                            SmtpServer.Port = 587;
+                            SmtpServer.Credentials = basicCredential;
+                            SmtpServer.EnableSsl = true;
+
+                            try
+                            {
+                                SmtpServer.Send(mail);
+                            }
+                            catch (Exception e)
+                            {
+                                Console.Write(e); // Log...
+                            }
+                        }
                     }
                 }
 

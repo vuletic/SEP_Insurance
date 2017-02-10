@@ -75,6 +75,7 @@
           <Property Name="Datum_od" Type="datetime" Nullable="false" />
           <Property Name="Datum_do" Type="datetime" Nullable="false" />
           <Property Name="Potvrdjena_Realizacija_osiguranja" Type="bit" Nullable="false" />
+          <Property Name="Broj_transakcije_Realizacija_osiguranja" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Rizik">
           <Key>
@@ -406,8 +407,8 @@
           </Key>
           <Property Name="Id_PDV" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naziv_PDV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Realizacija_osiguranja" Relationship="Self.FK_REALIZAC_RELATIONS_PDV" FromRole="PDV" ToRole="Realizacija_osiguranja" />
           <NavigationProperty Name="Stopa_PDV" Relationship="Self.FK_STOPA_PD_RELATIONS_PDV" FromRole="PDV" ToRole="Stopa_PDV" />
+          <NavigationProperty Name="Realizacija_osiguranja" Relationship="SEP_Model.FK_REALIZAC_RELATIONS_PDV" FromRole="PDV" ToRole="Realizacija_osiguranja" />
         </EntityType>
         <EntityType Name="Prevod">
           <Key>
@@ -419,22 +420,6 @@
           <Property Name="Naziv_Prevod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Jezik" Relationship="Self.FK_Prevod_Jezik" FromRole="Prevod" ToRole="Jezik" />
           <NavigationProperty Name="Rizik" Relationship="Self.FK_Prevod_Rizik" FromRole="Prevod" ToRole="Rizik" />
-        </EntityType>
-        <EntityType Name="Realizacija_osiguranja">
-          <Key>
-            <PropertyRef Name="Id_Realizacija_osiguranja" />
-          </Key>
-          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_PDV" Type="Int16" Nullable="false" />
-          <Property Name="Datum_Realizacija_osiguranja" Type="DateTime" Precision="3" />
-          <Property Name="Vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
-          <Property Name="Vrednost_PDV_Realizacija_osiguranja" Type="Decimal" Precision="7" Scale="2" />
-          <Property Name="Ukupna_vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
-          <Property Name="Datum_od" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Datum_do" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Potvrdjena_Realizacija_osiguranja" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="PDV" Relationship="Self.FK_REALIZAC_RELATIONS_PDV" FromRole="Realizacija_osiguranja" ToRole="PDV" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Realizacija_osiguranja" ToRole="Stavka_u_realizaciji" />
         </EntityType>
         <EntityType Name="Rizik">
           <Key>
@@ -524,18 +509,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_REALIZAC_RELATIONS_PDV">
-          <End Role="PDV" Type="Self.PDV" Multiplicity="1" />
-          <End Role="Realizacija_osiguranja" Type="Self.Realizacija_osiguranja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PDV">
-              <PropertyRef Name="Id_PDV" />
-            </Principal>
-            <Dependent Role="Realizacija_osiguranja">
-              <PropertyRef Name="Id_PDV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_STOPA_PD_RELATIONS_PDV">
           <End Role="PDV" Type="Self.PDV" Multiplicity="0..1" />
           <End Role="Stopa_PDV" Type="Self.Stopa_PDV" Multiplicity="*" />
@@ -602,7 +575,6 @@
           <EntitySet Name="Nekretnina" EntityType="Self.Nekretnina" />
           <EntitySet Name="PDV" EntityType="Self.PDV" />
           <EntitySet Name="Prevod" EntityType="Self.Prevod" />
-          <EntitySet Name="Realizacija_osiguranja" EntityType="Self.Realizacija_osiguranja" />
           <EntitySet Name="Rizik" EntityType="Self.Rizik" />
           <EntitySet Name="Rizik_za_osigurani_entitet" EntityType="Self.Rizik_za_osigurani_entitet" />
           <EntitySet Name="Stopa_PDV" EntityType="Self.Stopa_PDV" />
@@ -616,10 +588,6 @@
           <AssociationSet Name="FK_Prevod_Jezik" Association="Self.FK_Prevod_Jezik">
             <End Role="Jezik" EntitySet="Jezik" />
             <End Role="Prevod" EntitySet="Prevod" />
-          </AssociationSet>
-          <AssociationSet Name="FK_REALIZAC_RELATIONS_PDV" Association="Self.FK_REALIZAC_RELATIONS_PDV">
-            <End Role="PDV" EntitySet="PDV" />
-            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
           </AssociationSet>
           <AssociationSet Name="FK_STOPA_PD_RELATIONS_PDV" Association="Self.FK_STOPA_PD_RELATIONS_PDV">
             <End Role="PDV" EntitySet="PDV" />
@@ -646,10 +614,6 @@
             <End Role="Nekretnina" EntitySet="Nekretnina" />
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
-          <AssociationSet Name="FK_STAVKA_U_RELATIONS_REALIZAC" Association="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC">
-            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
-            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
-          </AssociationSet>
           <AssociationSet Name="FK_RIZIK_ZA_RELATIONS_STAVKA_U" Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U">
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
             <End Role="Rizik_za_osigurani_entitet" EntitySet="Rizik_za_osigurani_entitet" />
@@ -661,6 +625,15 @@
           <EntitySet Name="Osoba" EntityType="SEP_Model.Osoba" />
           <AssociationSet Name="FK_STAVKA_U_RELATIONS_OSOBA" Association="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA">
             <End Role="Osoba" EntitySet="Osoba" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <EntitySet Name="Realizacija_osiguranja" EntityType="SEP_Model.Realizacija_osiguranja" />
+          <AssociationSet Name="FK_REALIZAC_RELATIONS_PDV" Association="SEP_Model.FK_REALIZAC_RELATIONS_PDV">
+            <End Role="PDV" EntitySet="PDV" />
+            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_REALIZAC" Association="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC">
+            <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
         </EntityContainer>
@@ -676,10 +649,10 @@
           <Property Name="Nosilac_Stavka_u_realiziciji" Type="Boolean" />
           <Property Name="Vrednost_Stavka_u_realizaciji" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Nekretnina" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Stavka_u_realizaciji" ToRole="Nekretnina" />
-          <NavigationProperty Name="Realizacija_osiguranja" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Stavka_u_realizaciji" ToRole="Realizacija_osiguranja" />
           <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Stavka_u_realizaciji" ToRole="Rizik_za_osigurani_entitet" />
           <NavigationProperty Name="Vozilo" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Stavka_u_realizaciji" ToRole="Vozilo" />
           <NavigationProperty Name="Osoba" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Stavka_u_realizaciji" ToRole="Osoba" />
+          <NavigationProperty Name="Realizacija_osiguranja" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Stavka_u_realizaciji" ToRole="Realizacija_osiguranja" />
         </EntityType>
         <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
           <End Type="SEP_Model.Nekretnina" Role="Nekretnina" Multiplicity="0..1" />
@@ -690,18 +663,6 @@
             </Principal>
             <Dependent Role="Stavka_u_realizaciji">
               <PropertyRef Name="Id_Osigurana_nekretnina" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STAVKA_U_RELATIONS_REALIZAC">
-          <End Type="SEP_Model.Realizacija_osiguranja" Role="Realizacija_osiguranja" Multiplicity="1" />
-          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Realizacija_osiguranja">
-              <PropertyRef Name="Id_Realizacija_osiguranja" />
-            </Principal>
-            <Dependent Role="Stavka_u_realizaciji">
-              <PropertyRef Name="Id_Realizacija_osiguranja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -752,6 +713,47 @@
             </Principal>
             <Dependent Role="Stavka_u_realizaciji">
               <PropertyRef Name="Id_Osigurana_osoba" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Realizacija_osiguranja">
+          <Key>
+            <PropertyRef Name="Id_Realizacija_osiguranja" />
+          </Key>
+          <Property Name="Id_Realizacija_osiguranja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_PDV" Type="Int16" Nullable="false" />
+          <Property Name="Datum_Realizacija_osiguranja" Type="DateTime" Precision="3" />
+          <Property Name="Vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Vrednost_PDV_Realizacija_osiguranja" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="Ukupna_vrednost_Realizacija_osiguranja" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Datum_od" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Datum_do" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Potvrdjena_Realizacija_osiguranja" Type="Boolean" Nullable="false" />
+          <Property Name="Broj_transakcije_Realizacija_osiguranja" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PDV" Relationship="SEP_Model.FK_REALIZAC_RELATIONS_PDV" FromRole="Realizacija_osiguranja" ToRole="PDV" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Realizacija_osiguranja" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <Association Name="FK_REALIZAC_RELATIONS_PDV">
+          <End Type="SEP_Model.PDV" Role="PDV" Multiplicity="1" />
+          <End Type="SEP_Model.Realizacija_osiguranja" Role="Realizacija_osiguranja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PDV">
+              <PropertyRef Name="Id_PDV" />
+            </Principal>
+            <Dependent Role="Realizacija_osiguranja">
+              <PropertyRef Name="Id_PDV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STAVKA_U_RELATIONS_REALIZAC">
+          <End Type="SEP_Model.Realizacija_osiguranja" Role="Realizacija_osiguranja" Multiplicity="1" />
+          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realizacija_osiguranja">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Realizacija_osiguranja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -807,21 +809,6 @@
                 <ScalarProperty Name="Id_Rizik" ColumnName="Id_Rizik" />
                 <ScalarProperty Name="Id_Jezik" ColumnName="Id_Jezik" />
                 <ScalarProperty Name="Naziv_Prevod" ColumnName="Naziv_Prevod" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Realizacija_osiguranja">
-            <EntityTypeMapping TypeName="SEP_Model.Realizacija_osiguranja">
-              <MappingFragment StoreEntitySet="Realizacija_osiguranja">
-                <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
-                <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
-                <ScalarProperty Name="Datum_Realizacija_osiguranja" ColumnName="Datum_Realizacija_osiguranja" />
-                <ScalarProperty Name="Vrednost_Realizacija_osiguranja" ColumnName="Vrednost_Realizacija_osiguranja" />
-                <ScalarProperty Name="Vrednost_PDV_Realizacija_osiguranja" ColumnName="Vrednost_PDV_Realizacija_osiguranja" />
-                <ScalarProperty Name="Ukupna_vrednost_Realizacija_osiguranja" ColumnName="Ukupna_vrednost_Realizacija_osiguranja" />
-                <ScalarProperty Name="Datum_od" ColumnName="Datum_od" />
-                <ScalarProperty Name="Datum_do" ColumnName="Datum_do" />
-                <ScalarProperty Name="Potvrdjena_Realizacija_osiguranja" ColumnName="Potvrdjena_Realizacija_osiguranja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -908,6 +895,22 @@
                 <ScalarProperty Name="Ime_Osoba" ColumnName="Ime_Osoba" />
                 <ScalarProperty Name="JMBG_Osoba" ColumnName="JMBG_Osoba" />
                 <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realizacija_osiguranja">
+            <EntityTypeMapping TypeName="SEP_Model.Realizacija_osiguranja">
+              <MappingFragment StoreEntitySet="Realizacija_osiguranja">
+                <ScalarProperty Name="Broj_transakcije_Realizacija_osiguranja" ColumnName="Broj_transakcije_Realizacija_osiguranja" />
+                <ScalarProperty Name="Potvrdjena_Realizacija_osiguranja" ColumnName="Potvrdjena_Realizacija_osiguranja" />
+                <ScalarProperty Name="Datum_do" ColumnName="Datum_do" />
+                <ScalarProperty Name="Datum_od" ColumnName="Datum_od" />
+                <ScalarProperty Name="Ukupna_vrednost_Realizacija_osiguranja" ColumnName="Ukupna_vrednost_Realizacija_osiguranja" />
+                <ScalarProperty Name="Vrednost_PDV_Realizacija_osiguranja" ColumnName="Vrednost_PDV_Realizacija_osiguranja" />
+                <ScalarProperty Name="Vrednost_Realizacija_osiguranja" ColumnName="Vrednost_Realizacija_osiguranja" />
+                <ScalarProperty Name="Datum_Realizacija_osiguranja" ColumnName="Datum_Realizacija_osiguranja" />
+                <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
+                <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
