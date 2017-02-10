@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using PayPal.PayPalAPIInterfaceService;
+using PayPal.PayPalAPIInterfaceService.Model;
 using SEP_Osiguranje.Models;
 using SEP_Osiguranje.Models.DTO;
 using SEP_Osiguranje.Models.DTO.Output;
@@ -24,16 +26,20 @@ namespace SEP_Osiguranje.Controllers
         private const int MAGIC_NUMBER_THEFT = 34;
         private const int MAGIC_NUMBER_FIRE = 35;
 
-        public async Task<HttpResponseMessage> Post(ProcessData processData)
+        private const string POLICY_NAME = "Holiday Guard";
+        private const string ACCOUNT_EMAIL = "radi.molim.te@radi.com";
+        String RETURN_ADDRESS = "https://seposiguranje.azurewebsites.net/#!/core/home";
+
+        public async Task<IHttpActionResult> Post(ProcessData processData)
         {
             Data data = new Data(processData);
-            HttpResponseMessage response = await client.PostAsJsonAsync("http://sepruleapi.azurewebsites.net/policy", data);
+            HttpResponseMessage resp = await client.PostAsJsonAsync("http://sepruleapi.azurewebsites.net/policy", data);
 
             String json = "";
 
-            if (response.IsSuccessStatusCode)
+            if (resp.IsSuccessStatusCode)
             {
-                json = await response.Content.ReadAsStringAsync();
+                json = await resp.Content.ReadAsStringAsync();
             }
             
             data = JsonConvert.DeserializeObject<Data>(json);
@@ -46,13 +52,44 @@ namespace SEP_Osiguranje.Controllers
                 db.SaveChanges();
             }catch(Exception e)
             {
-                Console.Write(e);
+                Console.Write(e); //Mozda ipak u neki log, hm?
+                return BadRequest();
+
             }
 
-            HttpResponseMessage res = new HttpResponseMessage();
-            res.Content = new StringContent("<h1>sksksk</h1>");
-            res.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-            return res;
+
+            //Paypal button generation
+            BMCreateButtonRequestType request = new BMCreateButtonRequestType();
+
+            request.ButtonType = ButtonTypeType.BUYNOW;
+            request.ButtonCode = ButtonCodeType.ENCRYPTED;
+
+            
+
+            String policyId = ro.Id_Realizacija_osiguranja.ToString();
+            String price = ro.Ukupna_vrednost_Realizacija_osiguranja.ToString();
+
+            List<string> buttonVars = new List<string>();
+            buttonVars.Add("return=" + RETURN_ADDRESS);
+            buttonVars.Add("item_name=" + POLICY_NAME);
+            buttonVars.Add("item_number=" + policyId);
+            buttonVars.Add("amount=" + price);
+            buttonVars.Add("currency_code=" + "EUR");// Ne moze u dinarima.
+            buttonVars.Add("business=" + ACCOUNT_EMAIL);
+            request.ButtonVar = buttonVars;
+
+
+            // Invoke the API
+            BMCreateButtonReq wrapper = new BMCreateButtonReq();
+            wrapper.BMCreateButtonRequest = request;
+
+            Dictionary<string, string> configurationMap = SEP_Osiguranje.PayPalData.PayPalConfiguration.GetAcctAndConfig();
+            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);
+            BMCreateButtonResponseType response = service.BMCreateButton(wrapper);
+
+            DataForPreview dfp = new DataForPreview(ro, response.Website);
+
+            return Ok(dfp);
         }
 
 

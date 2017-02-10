@@ -1,5 +1,6 @@
 ﻿using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
+using SEP_Osiguranje.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,47 +11,16 @@ using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace SEP_Osiguranje.Controllers
 {
     public class PaypalController : ApiController
     {
-        private const string policyName = "Moje Najbolje Osiguranje ;)";
-        private const string accountEmail = "radi.molim.te@radi.com";
+        private SEP_EntitiesB db = new SEP_EntitiesB();
 
-        public HttpResponseMessage GetPaypal()
-        {
-            BMCreateButtonRequestType request = new BMCreateButtonRequestType();
-
-            request.ButtonType = ButtonTypeType.BUYNOW;
-            request.ButtonCode = ButtonCodeType.ENCRYPTED;
-
-            String returnAdress = "https://seposiguranje.azurewebsites.net/#!/core/home";
-            String policyId = "12943032419";
-            String price = "50";
-
-            List<string> buttonVars = new List<string>();
-            buttonVars.Add("return=" + returnAdress);
-            buttonVars.Add("item_name=" + policyName);
-            buttonVars.Add("item_number=" + policyId);
-            buttonVars.Add("amount=" + price);
-            buttonVars.Add("currency_code=" + "EUR");
-            buttonVars.Add("business=" + accountEmail);
-            request.ButtonVar = buttonVars;
-
-            // Invoke the API
-            BMCreateButtonReq wrapper = new BMCreateButtonReq();
-            wrapper.BMCreateButtonRequest = request;
-
-            Dictionary<string, string> configurationMap = SEP_Osiguranje.PayPalData.PayPalConfiguration.GetAcctAndConfig();
-            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(configurationMap);
-            BMCreateButtonResponseType response = service.BMCreateButton(wrapper);
-
-            HttpResponseMessage res = new HttpResponseMessage();
-            res.Content = new StringContent(response.Website);
-            res.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-            return res;
-        }
+        private const string POLICY_NAME = "Holiday Guard";
+        private const string ACCOUNT_EMAIL = "radi.molim.te@radi.com";
 
         public async void PostPaypal()
         {
@@ -94,13 +64,13 @@ namespace SEP_Osiguranje.Controllers
                 if (!details.ContainsKey("receiver_email") || !details.ContainsKey("payment_status") || !details.ContainsKey("item_name1") || !details.ContainsKey("item_number1"))
                     return; // ukoliko nam nije dostupan neki od osnovnih podataka
 
-                if (!details["receiver_email"].Equals(accountEmail))
+                if (!details["receiver_email"].Equals(ACCOUNT_EMAIL))
                     return; // transakcija nije namenjena meni
 
                 if (!details["payment_status"].Equals("Completed"))
                     return; // nije prosla transakcija
 
-                if (!details["item_name1"].Equals(policyName))
+                if (!details["item_name1"].Equals(POLICY_NAME))
                     return; // nije placeno osiguranje vec nesto drugo
 
 
@@ -120,6 +90,9 @@ namespace SEP_Osiguranje.Controllers
 
                 // upisati u bazu za odgovarajucu polisu da je placanje izvrseno
                 // upisati u bazu za odgovarajucu polisu id transakcije
+                //var ro = db.Realizacija_osiguranja.Where(ro => ro.Id_Realizacija_osiguranja == )
+
+
             }
             else
             {

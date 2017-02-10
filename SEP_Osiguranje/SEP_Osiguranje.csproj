@@ -152,6 +152,7 @@
     <Compile Include="Models\DTO\Input\ProcessData.cs" />
     <Compile Include="Models\DTO\Input\VehicleData.cs" />
     <Compile Include="Models\DTO\Output\Data.cs" />
+    <Compile Include="Models\DTO\Output\DataForPreview.cs" />
     <Compile Include="Models\DTO\Output\InsuredCar.cs" />
     <Compile Include="Models\DTO\Output\InsuredPerson.cs" />
     <Compile Include="Models\DTO\Output\InsuredRealEstate.cs" />
