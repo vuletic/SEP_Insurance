@@ -61,7 +61,7 @@ namespace SEP_Osiguranje.Controllers
             Dictionary<string, string> details = organizeDetails(paymentDetails);
             if (response.Equals("VERIFIED"))
             {
-                if (!details.ContainsKey("receiver_email") || !details.ContainsKey("payment_status") || !details.ContainsKey("item_name1") || !details.ContainsKey("item_number1"))
+                if (!details.ContainsKey("receiver_email") || !details.ContainsKey("payment_status") || !details.ContainsKey("item_name") || !details.ContainsKey("item_number"))
                     return; // ukoliko nam nije dostupan neki od osnovnih podataka
 
                 if (!details["receiver_email"].Equals(ACCOUNT_EMAIL))
@@ -70,13 +70,13 @@ namespace SEP_Osiguranje.Controllers
                 if (!details["payment_status"].Equals("Completed"))
                     return; // nije prosla transakcija
 
-                if (!details["item_name1"].Equals(POLICY_NAME))
+                if (!details["item_name"].Equals(POLICY_NAME))
                     return; // nije placeno osiguranje vec nesto drugo
 
 
-                string policyId = details["item_number1"];
-
-                // nadji datu polisu u bazi
+                string policyIdStr = details["item_number"];
+                int policyId = Int32.Parse(policyIdStr);
+                
 
                 string currency = "", ammount = "";
                 if (details.ContainsKey("mc_currency"))
@@ -85,13 +85,21 @@ namespace SEP_Osiguranje.Controllers
                 if (details.ContainsKey("mc_gross"))
                     ammount = details["mc_gross"];
 
-                // proveriti da li se valuta i placeni iznos poklapaju sa ocekivanim
-
-
+                
                 // upisati u bazu za odgovarajucu polisu da je placanje izvrseno
-                // upisati u bazu za odgovarajucu polisu id transakcije
-                //var ro = db.Realizacija_osiguranja.Where(ro => ro.Id_Realizacija_osiguranja == )
+                // upisati u bazu za odgovarajucu polisu id transakcije -- izmeniti bazu da bi ovo bilo moguce :)
 
+                // nadji datu polisu u bazi
+                Realizacija_osiguranja ro = db.Realizacija_osiguranja.Where(r => r.Id_Realizacija_osiguranja == policyId).FirstOrDefault() ;
+                if (ro != null)
+                {
+                    // proveriti da li se valuta i placeni iznos poklapaju sa ocekivanim
+                    if (ro.Ukupna_vrednost_Realizacija_osiguranja.Equals(Decimal.Parse(ammount)))
+                    {
+                        ro.Potvrdjena_Realizacija_osiguranja = true;
+                        db.SaveChanges();
+                    }
+                }
 
             }
             else
@@ -109,6 +117,7 @@ namespace SEP_Osiguranje.Controllers
 
         private Dictionary<string, string> organizeDetails(string detailsList)
         {
+            detailsList = HttpUtility.UrlDecode(detailsList);
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             String[] details = detailsList.Split('&');
             foreach (string detail in details)
