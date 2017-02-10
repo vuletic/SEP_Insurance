@@ -121,7 +121,7 @@
                             <th>{{localization.l10nObj.prsPg2PhoneNum}}</th>
                             <td>
                                 <span message="{{localization.l10nObj.vldCustPhone}}" ng-class="{'error-info-proc': insureeForm.nameTelephone.$invalid && (insureeForm.nameTelephone.$touched || showErrorsInsuree)}">
-                                    <input type="text" name="nameTelephone" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.phoneNum" ng-pattern="/^\+?\d{6,14}$/" required />
+                                    <input type="text" name="nameTelephone" class="form-control" ng-class="{'show-error': showErrorsInsuree}" ng-model="tempCustomer.phoneNum" ng-pattern="/^\+?\d{6,14}$/"/>
                                 </span>
                             </td>
                         </tr>

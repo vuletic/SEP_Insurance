@@ -6,8 +6,8 @@
 		.controller('processController', processController);
 
     processController.$inject = ['$scope', 'dataAccessService', 'processService', '$stateParams'];
-    function processController($scope, dataAccessService, processService, $stateParams) {        
-        
+    function processController($scope, dataAccessService, processService, $stateParams) {
+
         var pr = this;
         pr.jmbgRegex = /^(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((9|\d)\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((9|\d)\d{2}))|((0[1-9]|1\d|2[0-8])02((9|\d)\d{2}))|(2902(([6-9]|\d)(0[48]|[2468][048]|[13579][26])|((6|[048]|[26])00))))([0-8][0-9]|9[0-6])([0-9]{3})(\d)$/;
 
@@ -25,7 +25,6 @@
         pr.data.repair = false;
         pr.data.sport = false;
 
-        
         if ($stateParams.data != null) {
             pr.data = $stateParams.data;
             pr.showObjectInsurance = pr.data.realEstateInsured;
@@ -39,60 +38,37 @@
         pr.data.vehicle;
         pr.data.obj = null;
 
-
         pr.finishProcess = function () {
             if (!pr.everythingIsValidFinal())
                 return;
 
-            if (pr.insuranceCarrierIsNotInsured) {
-                pr.data.customers[pr.data.insCarrierI].email = pr.tempEmail;
-            }
+            var dto = {};
 
-            console.log(pr.data);
-            
-            var dto = {};            
-
-            
             dto.dateFrom = pr.data.dateFrom;
             dto.dateTo = pr.data.dateTo;
-
-            //Ovo bi trebalo da ima Id rizika.
             dto.location = pr.data.selectedLocation;
             dto.insuranceAmount = pr.data.selectedInsuranceAmount;
 
-            if (pr.data.selectedSport != null && pr.data.selectedSport != undefined)
+            if (pr.data.sport)
                 dto.selectedSport = pr.data.selectedSport;
             else
                 dto.selectedSport = -1;
 
-
             dto.customers = [];
 
-            //Dodavanje musterija, pretvaranje u prenosiv oblik, razumljiv backendu. Kad imao vremena, eliminisi ovaj deo tako sto se automatski ovako popunjava. Barem obavezne vrednosti!
             for (var i = 0; i < pr.data.customers.length; i++) {
                 var currCustomer = pr.data.customers[i];
                 var tempCustomer = {};
                 tempCustomer.osoba = {};
 
-                tempCustomer.osoba.Id_Osigurani_entitet = -1;//null?
                 tempCustomer.osoba.JMBG_Osoba = currCustomer.jmbg;
                 tempCustomer.osoba.Ime_Osoba = currCustomer.name;
                 tempCustomer.osoba.Prezime_Osoba = currCustomer.surname;
                 tempCustomer.osoba.Broj_pasosa_Osoba = currCustomer.passport;
                 tempCustomer.osoba.Adresa_Osoba = currCustomer.street + " " + currCustomer.addresNum + ", " + currCustomer.city;
 
-                if (currCustomer.phoneNum != null && currCustomer.phoneNum != undefined)
+                if (currCustomer.phoneNum)
                     tempCustomer.osoba.Broj_telefona_Osoba = currCustomer.phoneNum;
-                else
-                    tempCustomer.osoba.Broj_telefona_Osoba = "";
-
-                if (currCustomer.email != null && currCustomer.email != undefined) {
-                    tempCustomer.osoba.E_mail_Osoba = currCustomer.email;
-                    tempCustomer.osoba.Nosilac_Osoba = true;
-                } else {
-                    tempCustomer.osoba.E_mail_Osoba = "";
-                    tempCustomer.osoba.Nosilac_Osoba = false;
-                }
 
                 tempCustomer.ageGroup = currCustomer.ageGroup;
 
@@ -100,20 +76,16 @@
                 tempCustomer.carrier = false;
 
                 dto.customers.push(tempCustomer);
-                
             }
-            
-            //I nosilac je osoba ;)
-            if (pr.insuranceCarrierIsNotInsured && pr.data.insCarrierNI != null && pr.data.insCarrierNI != undefined) {
+
+            if (pr.insuranceCarrierIsNotInsured) {
 
                 var tempCustomer = {};
                 tempCustomer.osoba = {};
 
-                tempCustomer.osoba.Id_Osigurani_entitet = undefined;//null?
                 tempCustomer.osoba.JMBG_Osoba = pr.data.insCarrierNI.jmbg;
                 tempCustomer.osoba.Ime_Osoba = pr.data.insCarrierNI.name;
                 tempCustomer.osoba.Prezime_Osoba = pr.data.insCarrierNI.surname;
-                tempCustomer.osoba.Broj_pasosa_Osoba = pr.data.insCarrierNI.passport;
                 tempCustomer.osoba.Adresa_Osoba = pr.data.insCarrierNI.address.street + " " + pr.data.insCarrierNI.address.number + ", " + pr.data.insCarrierNI.address.city;
                 tempCustomer.osoba.Broj_telefona_Osoba = pr.data.insCarrierNI.phoneNum;
                 tempCustomer.osoba.E_mail_Osoba = pr.data.insCarrierNI.email;
@@ -127,13 +99,10 @@
             } else {
                 var index = pr.data.insCarrierI;
                 dto.customers[index].osoba.E_mail_Osoba = pr.tempEmail;
-                dto.customers[index].osoba.Broj_telefona_Osoba = pr.tempPhoneNum;
                 dto.customers[index].carrier = true;
             }
 
-
-            //Rizici?
-            if (pr.data.object != null && pr.data.object != undefined) {
+            if (pr.data.object != null) {
                 dto.objectData = {};
                 dto.objectData.obj = {};
 
@@ -143,7 +112,6 @@
                 dto.objectData.obj.Ime_vlasnik_Nekretnina = pr.data.object.owner.name;
                 dto.objectData.obj.Prezime_vlasnik_Nekretnina = pr.data.object.owner.surname;
                 dto.objectData.obj.Povrsina_Nekretnina = pr.data.residenceSize;
-
 
                 dto.objectData.age = pr.data.selectedRealEstateAge;
                 dto.objectData.value = pr.data.selectedRealEstateValue;
@@ -163,14 +131,11 @@
                 } else
                     dto.objectData.theft = false;
 
-
-
             } else {
                 dto.objectData = null;
             }
 
-            //Rizici?
-            if (pr.data.vehicle != null && pr.data.vehicle != undefined) {
+            if (pr.data.vehicle) {
                 dto.vehicleData = {};
                 dto.vehicleData.vehicle = {};
 
@@ -182,55 +147,37 @@
                 dto.vehicleData.vehicle.Broj_registarske_tablice_Vozilo = pr.data.vehicle.registrationNumber;
                 dto.vehicleData.vehicle.Godina_proizvodnje_Vozilo = pr.data.vehicle.productionYear;
 
-                if (pr.data.towing) {
-                    dto.vehicleData.tow = pr.data.selectedTowingDistance
-                } else
+                if (pr.data.towing)
+                    dto.vehicleData.tow = pr.data.selectedTowingDistance;
+                else
                     dto.vehicleData.tow = -1;
 
-                if (pr.data.repair) {
+                if (pr.data.repair)
                     dto.vehicleData.repair = pr.data.selectedReparationPrice;
-                } else
+                else
                     dto.vehicleData.repair = -1;
 
-                if (pr.data.hotel) {
+                if (pr.data.hotel)
                     dto.vehicleData.accom = pr.data.selectedHotelDays;
-                } else
+                else
                     dto.vehicleData.accom = -1;
 
-                if (pr.data.alternateTransport) {
+                if (pr.data.alternateTransport)
                     dto.vehicleData.ride = pr.data.selectedAlternateTransportationDistance;
-                } else
+                else
                     dto.vehicleData.ride = -1;
-                
-            } else {
-                dto.vehicleData = null;
             }
 
-
-            console.log("BAAAA");
             console.log(dto);
-
-            processService.finalizeProcess(dto).then(function(response){
-                
-                console.log(response);
+            processService.finalizeProcess(dto).then(function (response) {
+                console.log(response);//TODO Prebaci se na preview
             });
-            
 
         }
 
-        pr.selectedProcessPanel = [true, false, false, false, false];        
-
+        pr.selectedProcessPanel = [true, false, false, false, false];
         pr.insuranceCarrierIsNotInsured = false;
 
-        /* Razmisliti o slanju podataka. Podaci za racunanje idu rules aplikaciji (pr.data!!!),
-           a ostali mozda bolje odmah u web api. Mozda sve zajedno ipak?
-        */
-
-        var chooseSport = false;    // refaktorisati var u pr. !!!
-        var chooseRepair = false;
-        var chooseHotel = false;
-        var temp1 = false;
-        var temp2 = false;
 
         dataAccessService.getSports().then(function (response) {
             pr.sports = response;
@@ -288,7 +235,7 @@
 
             var day = parseInt(jmbgValue.substring(0, 2));
             var month = parseInt(jmbgValue.substring(2, 4)) - 1;
-            var yearString = (jmbgValue[4]==0 ? '2' : '1') + jmbgValue.substring(4, 7)
+            var yearString = (jmbgValue[4] == 0 ? '2' : '1') + jmbgValue.substring(4, 7)
             var year = parseInt(yearString) + 18;
 
             var validDate = new Date(year, month, day);
@@ -298,7 +245,7 @@
                 return false;
 
             return true;
-        }        
+        }
 
         /******         FIRST PAGE VALIDATION       ******/
         pr.currentDate = new Date();
@@ -407,12 +354,6 @@
             pr.data.selectedRealEstateValue = pr.realEstateValues[0].Id_Rizik;
             pr.data.residenceSize = "";
             pr.data.object = {};
-            //pr.data.object.owner.name = "";
-            //pr.data.object.owner.surname = "";
-            //pr.data.object.owner.jmbg = "";
-            //pr.data.object.address.street = "";
-            //pr.data.object.address.number = "";
-            //pr.data.object.address.city = "";
             $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
             $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
             $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
@@ -434,7 +375,7 @@
             pr.selectedProcessPanel = [false, false, false, false, true];
         }
 
-        pr.everythingIsValidFourth = function () {            
+        pr.everythingIsValidFourth = function () {
             if (pr.showVehicleInsurance) {
                 pr.validateVehicleOptions();
                 pr.validateVehicleJmbg();
@@ -487,12 +428,6 @@
             pr.data.hotel = false;
             pr.data.alternateTransport = false;
             pr.data.vehicle = {};
-            //pr.data.vehicle.chassisNumber = "";
-            //pr.data.vehicle.productionYear = "";
-            //pr.data.vehicle.registrationNumber = "";
-            //pr.data.vehicle.customer.name = "";
-            //pr.data.vehicle.customer.surname = "";
-            //pr.data.vehicle.customer.jmbg = "";
             $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
             $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
             $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
@@ -539,7 +474,7 @@
                 $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
             }
         }
-        
+
         pr.switchCarrier = function () {
             pr.showErrorsFinal = false;
 
@@ -554,14 +489,6 @@
                 $scope.finalPageForm.namePhoneNew.$setUntouched();
                 $scope.finalPageForm.nameEmailNew.$setUntouched();
                 pr.data.insCarrierNI = {};
-                //pr.data.insCarrierNI.name = "";
-                //pr.data.insCarrierNI.surname = "";
-                //pr.data.insCarrierNI.jmbg = "";
-                //pr.data.insCarrierNI.phoneNum = "";
-                //pr.data.insCarrierNI.email = "";
-                //pr.data.insCarrierNI.address.street = "";
-                //pr.data.insCarrierNI.address.number = "";
-                //pr.data.insCarrierNI.address.city = "";
             } else {
                 pr.tempEmail = "";
                 pr.data.insCarrierI = "0";
@@ -569,5 +496,4 @@
             }
         }
     }
-
 })();
