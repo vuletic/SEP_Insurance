@@ -110,9 +110,10 @@ namespace SEP_Osiguranje.Controllers
                             ro.Potvrdjena_Realizacija_osiguranja = true;
                             ro.Broj_transakcije_Realizacija_osiguranja = details["txn_id"];
 
-                            var mail_carrier = ro.Stavka_u_realizaciji.Where(s => s.Nosilac_Stavka_u_realiziciji == true).FirstOrDefault().Osoba.E_mail_Osoba;
-
                             db.SaveChanges();
+
+                            var id_carr = ro.Stavka_u_realizaciji.Where(s => s.Nosilac_Stavka_u_realiziciji == true).FirstOrDefault().Id_Osigurana_osoba;
+                            var mail_carr = db.Osoba.Where(o => o.Id_Osigurani_entitet == id_carr).FirstOrDefault().E_mail_Osoba;
 
                             //Kreiranje pdf-a
                             //slanje mail-a
@@ -133,7 +134,7 @@ namespace SEP_Osiguranje.Controllers
                             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                             mail.From = new MailAddress("nikola58tod@gmail.com");
-                            mail.To.Add(mail_carrier);
+                            mail.To.Add(mail_carr);
                             mail.Subject = "Polisa osiguranja - Holiday Guard";
                             mail.Body = "Pozdrav, \n šaljemo vam vašu polisu jer ste naznačeni kao nosilac. Za sve informacije možete se obratiti na telefon 021/ 4540 021. \n Svako dobro, \n Vaš Holiday Guard!";
                             mail.Attachments.Add(new Attachment(ms, "polisa.pdf", "application/pdf"));
