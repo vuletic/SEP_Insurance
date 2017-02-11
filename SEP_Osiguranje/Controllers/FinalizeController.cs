@@ -58,7 +58,6 @@ namespace SEP_Osiguranje.Controllers
 
             }
 
-
             //Paypal button generation
             BMCreateButtonRequestType request = new BMCreateButtonRequestType();
 
@@ -143,7 +142,7 @@ namespace SEP_Osiguranje.Controllers
                 if (customer.insured)
                 { 
                     InsuredPerson personWithRisks = data.insuredPeople.Where(ip => ip.id == i).FirstOrDefault();
-                    sur.Vrednost_Stavka_u_realizaciji = (decimal)personWithRisks.price;
+                    sur.Vrednost_Stavka_u_realizaciji = (decimal) personWithRisks.price;
 
                     //Rizik_za_osigurani_entitet
                     //Ako bude vremena, resite da se neki rizici vezuju direkt za Realizaciju, a ne za stavke.
@@ -160,6 +159,7 @@ namespace SEP_Osiguranje.Controllers
                 Stavka_u_realizaciji sur = new Stavka_u_realizaciji();
                 sur.Vozilo = processData.vehicleData.vehicle;
                 sur.Rizik_za_osigurani_entitet = handleAppliedRisksForIV(data.insuredCar);
+                sur.Vrednost_Stavka_u_realizaciji = (decimal) data.insuredCar.price;
 
                 retList.Add(sur);
             }
@@ -170,6 +170,7 @@ namespace SEP_Osiguranje.Controllers
                 Stavka_u_realizaciji sur = new Stavka_u_realizaciji();
                 sur.Nekretnina = processData.objectData.obj;
                 sur.Rizik_za_osigurani_entitet = handleAppliedRisksForIRE(data.insuredRealEstate);
+                sur.Vrednost_Stavka_u_realizaciji = (decimal) data.insuredRealEstate.price;
 
                 retList.Add(sur);
             }
@@ -355,6 +356,5 @@ namespace SEP_Osiguranje.Controllers
 
 
         }
-
     }
 }
