@@ -112,7 +112,6 @@ namespace SEP_Osiguranje.Controllers
 
                             db.SaveChanges();
 
-                            var a = ro.Stavka_u_realizaciji.Where(s => s.Nosilac_Stavka_u_realiziciji == true).FirstOrDefault().Id_Osigurana_osoba;
                             var sur = db.Stavka_u_realizaciji.Include("Osoba").Where(s => s.Id_Realizacija_osiguranja == ro.Id_Realizacija_osiguranja && s.Nosilac_Stavka_u_realiziciji == true).FirstOrDefault();
                             var mail_carr = sur.Osoba.E_mail_Osoba;
 
