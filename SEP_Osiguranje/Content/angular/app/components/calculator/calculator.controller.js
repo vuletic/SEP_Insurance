@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('calculatorController', calculatorController);
 
-    calculatorController.$inject = ['$scope', 'dataAccessService', 'calculatorService', '$state'];
-    function calculatorController($scope, dataAccessService, calculatorService, $state) {
+    calculatorController.$inject = ['dataAccessService', 'calculatorService', '$state'];
+    function calculatorController(dataAccessService, calculatorService, $state) {
         var cc = this;
 
         cc.showInsurance = true;
@@ -98,7 +98,7 @@
             calculatorService.sendCalculateData(cc.data).then(function (response) {
                 cc.calculatedPrice = response;
             });
-            $scope.calculatorForm.$setPristine();
+            cc.calculatorForm.$setPristine();
         }
 
         cc.proceedToProcess = function () {
@@ -115,16 +115,16 @@
             }
             if (cc.enableVehicle)
                 cc.validateVehicleOptions();
-            if (!$scope.calculatorForm.$valid) {
+            if (!cc.calculatorForm.$valid) {
                 cc.showErrors = true;
-                if (!$scope.calculatorForm.nameDateFrom.$valid || !$scope.calculatorForm.nameDateTo.$valid || !$scope.calculatorForm.nameCountYoung.$valid)
+                if (!cc.calculatorForm.nameDateFrom.$valid || !cc.calculatorForm.nameDateTo.$valid || !cc.calculatorForm.nameCountYoung.$valid)
                     cc.showInsurance = true;
                 if (cc.enableObject) {
-                    if (!$scope.calculatorForm.nameObjectFire.$valid || !$scope.calculatorForm.nameObjectSize.$valid)
+                    if (!cc.calculatorForm.nameObjectFire.$valid || !cc.calculatorForm.nameObjectSize.$valid)
                         cc.showObject = true;
                 }
                 if (cc.enableVehicle) {
-                    if (!$scope.calculatorForm.nameVehicleTransport.$valid)
+                    if (!cc.calculatorForm.nameVehicleTransport.$valid)
                         cc.showVehicle = true;
                 }
                 return false;
@@ -142,9 +142,9 @@
             cc.data.residenceFromTheft = false;
             cc.data.selectedRealEstateAge = cc.realEstateAges[0].Id_Rizik;
             cc.data.selectedRealEstateValue = cc.realEstateValues[0].Id_Rizik;
-            $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
-            $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
-            $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
+            cc.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
+            cc.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
+            cc.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
         }
 
         cc.disableVehicles = function () {
@@ -156,22 +156,22 @@
             cc.data.selectedReparationPrice = cc.reparationPrices[0].Id_Rizik;
             cc.data.selectedHotelDays = cc.hotelDays[0].Id_Rizik;
             cc.data.selectedAlternateTransportationDistance = cc.alternateTransportationDistances[0].Id_Rizik;
-            $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-            $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-            $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-            $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+            cc.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+            cc.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+            cc.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+            cc.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
         }
 
         cc.checkPeopleCount = function () {
             var sum = cc.data.ageNumberYoung + cc.data.ageNumberAdult + cc.data.ageNumberOld;
             if (sum <= 0) {
-                $scope.calculatorForm.nameCountYoung.$setValidity("sum", false);
-                $scope.calculatorForm.nameCountAdult.$setValidity("sum", false);
-                $scope.calculatorForm.nameCountOld.$setValidity("sum", false);
+                cc.calculatorForm.nameCountYoung.$setValidity("sum", false);
+                cc.calculatorForm.nameCountAdult.$setValidity("sum", false);
+                cc.calculatorForm.nameCountOld.$setValidity("sum", false);
             } else {
-                $scope.calculatorForm.nameCountYoung.$setValidity("sum", true);
-                $scope.calculatorForm.nameCountAdult.$setValidity("sum", true);
-                $scope.calculatorForm.nameCountOld.$setValidity("sum", true);
+                cc.calculatorForm.nameCountYoung.$setValidity("sum", true);
+                cc.calculatorForm.nameCountAdult.$setValidity("sum", true);
+                cc.calculatorForm.nameCountOld.$setValidity("sum", true);
             }
         }
 
@@ -209,15 +209,15 @@
         cc.validateObjectOptions = function () {
             if (!cc.data.residenceFromFlood && !cc.data.residenceFromFire && !cc.data.residenceFromTheft) {
                 if (cc.enableObject) {
-                    $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", false);
-                    $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", false);
-                    $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", false);
+                    cc.calculatorForm.nameObjectFlood.$setValidity("chooseObject", false);
+                    cc.calculatorForm.nameObjectFire.$setValidity("chooseObject", false);
+                    cc.calculatorForm.nameObjectTheft.$setValidity("chooseObject", false);
                 }
             } else {
                 if (cc.enableObject) {
-                    $scope.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
-                    $scope.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
-                    $scope.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
+                    cc.calculatorForm.nameObjectFlood.$setValidity("chooseObject", true);
+                    cc.calculatorForm.nameObjectFire.$setValidity("chooseObject", true);
+                    cc.calculatorForm.nameObjectTheft.$setValidity("chooseObject", true);
                 }
             }
         }
@@ -225,17 +225,17 @@
         cc.validateVehicleOptions = function () {
             if (!cc.data.alternateTransport && !cc.data.hotel && !cc.data.repair && !cc.data.towing) {
                 if (cc.enableVehicle) {
-                    $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
-                    $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
-                    $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
-                    $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
+                    cc.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
+                    cc.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
+                    cc.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
+                    cc.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
                 }
             } else {
                 if (cc.enableVehicle) {
-                    $scope.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-                    $scope.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-                    $scope.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-                    $scope.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+                    cc.calculatorForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+                    cc.calculatorForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+                    cc.calculatorForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+                    cc.calculatorForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
                 }
             }
         }

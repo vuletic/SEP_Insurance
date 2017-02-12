@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('processController', processController);
 
-    processController.$inject = ['$scope', 'dataAccessService', 'processService', '$stateParams'];
-    function processController($scope, dataAccessService, processService, $stateParams) {
+    processController.$inject = ['dataAccessService', 'processService', '$stateParams'];
+    function processController(dataAccessService, processService, $stateParams) {
 
         var pr = this;
         pr.jmbgRegex = /^(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((9|\d)\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((9|\d)\d{2}))|((0[1-9]|1\d|2[0-8])02((9|\d)\d{2}))|(2902(([6-9]|\d)(0[48]|[2468][048]|[13579][26])|((6|[048]|[26])00))))([0-8][0-9]|9[0-6])([0-9]{3})(\d)$/;
@@ -264,7 +264,7 @@
         }
 
         pr.everythingIsValidFirst = function () {
-            if (!$scope.firstPageForm.$valid) {
+            if (!pr.firstPageForm.$valid) {
                 pr.showErrorsFirst = true;
                 return false;
             } else {
@@ -314,7 +314,7 @@
                 pr.validateObjectOptions();
                 pr.validateObjectJmbg();
             }
-            if (!$scope.thirdPageForm.$valid) {
+            if (!pr.thirdPageForm.$valid) {
                 pr.showErrorsThird = true;
                 return false;
             } else {
@@ -327,21 +327,21 @@
             if (pr.data.object == undefined || pr.data.object.owner == undefined || pr.data.object.owner.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.object.owner.jmbg)) {
-                $scope.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", false);
+                pr.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", false);
             } else {
-                $scope.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", true);
+                pr.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", true);
             }
         }
 
         pr.validateObjectOptions = function () {
             if (!pr.data.residenceFromFlood && !pr.data.residenceFromFire && !pr.data.residenceFromTheft) {
-                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", false);
-                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", false);
-                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", false);
+                pr.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", false);
+                pr.thirdPageForm.nameObjectFire.$setValidity("chooseObject", false);
+                pr.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", false);
             } else {
-                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
-                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
-                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
+                pr.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
+                pr.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
+                pr.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
             }
         }
 
@@ -354,10 +354,10 @@
             pr.data.selectedRealEstateValue = pr.realEstateValues[0].Id_Rizik;
             pr.data.residenceSize = "";
             pr.data.object = {};
-            $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
-            $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
-            $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
-            $scope.thirdPageForm.nameObjectJmbg.$setValidity("validJmbg", true);
+            pr.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
+            pr.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
+            pr.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
+            pr.thirdPageForm.nameObjectJmbg.$setValidity("validJmbg", true);
         }
 
         /******         FOURTH PAGE VALIDATION       ******/
@@ -380,7 +380,7 @@
                 pr.validateVehicleOptions();
                 pr.validateVehicleJmbg();
             }
-            if (!$scope.fourthPageForm.$valid) {
+            if (!pr.fourthPageForm.$valid) {
                 pr.showErrorsFourth = true;
                 return false;
             } else {
@@ -393,23 +393,23 @@
             if (pr.data.vehicle == undefined || pr.data.vehicle.customer == undefined || pr.data.vehicle.customer.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.vehicle.customer.jmbg)) {
-                $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", false);
+                pr.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", false);
             } else {
-                $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
+                pr.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
             }
         }
 
         pr.validateVehicleOptions = function () {
             if (!pr.data.alternateTransport && !pr.data.hotel && !pr.data.repair && !pr.data.towing) {
-                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
-                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
-                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
-                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
+                pr.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
+                pr.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
+                pr.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
+                pr.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
             } else {
-                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+                pr.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+                pr.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+                pr.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+                pr.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
             }
         }
 
@@ -428,11 +428,11 @@
             pr.data.hotel = false;
             pr.data.alternateTransport = false;
             pr.data.vehicle = {};
-            $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
-            $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-            $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-            $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-            $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+            pr.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
+            pr.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+            pr.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+            pr.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+            pr.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
         }
 
         pr.filterForCarriers = function () {
@@ -454,7 +454,7 @@
 
         pr.everythingIsValidFinal = function () {
             pr.validateCarrierJmbg();
-            if (!$scope.finalPageForm.$valid) {
+            if (!pr.finalPageForm.$valid) {
                 pr.showErrorsFinal = true;
                 return false;
             } else {
@@ -469,9 +469,9 @@
             if (pr.data.insCarrierNI.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.insCarrierNI.jmbg)) {
-                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", false);
+                pr.finalPageForm.nameJmbgNew.$setValidity("jmbg", false);
             } else {
-                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
+                pr.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
             }
         }
 
@@ -479,20 +479,20 @@
             pr.showErrorsFinal = false;
 
             if (!pr.insuranceCarrierIsNotInsured) {
-                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
-                $scope.finalPageForm.nameNameNew.$setUntouched();
-                $scope.finalPageForm.nameSurnameNew.$setUntouched();
-                $scope.finalPageForm.nameJmbgNew.$setUntouched();
-                $scope.finalPageForm.nameStreetNew.$setUntouched();
-                $scope.finalPageForm.nameNumberNew.$setUntouched();
-                $scope.finalPageForm.nameCityNew.$setUntouched();
-                $scope.finalPageForm.namePhoneNew.$setUntouched();
-                $scope.finalPageForm.nameEmailNew.$setUntouched();
+                pr.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
+                pr.finalPageForm.nameNameNew.$setUntouched();
+                pr.finalPageForm.nameSurnameNew.$setUntouched();
+                pr.finalPageForm.nameJmbgNew.$setUntouched();
+                pr.finalPageForm.nameStreetNew.$setUntouched();
+                pr.finalPageForm.nameNumberNew.$setUntouched();
+                pr.finalPageForm.nameCityNew.$setUntouched();
+                pr.finalPageForm.namePhoneNew.$setUntouched();
+                pr.finalPageForm.nameEmailNew.$setUntouched();
                 pr.data.insCarrierNI = {};
             } else {
                 pr.tempEmail = "";
                 pr.data.insCarrierI = "0";
-                $scope.finalPageForm.nameEmailIncluded.$setUntouched();
+                pr.finalPageForm.nameEmailIncluded.$setUntouched();
             }
         }
     }

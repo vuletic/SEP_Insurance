@@ -9,7 +9,7 @@
             <div class="main-content" style="margin-left: 0em" ng-show="true">
                 <div class="form-holder">
                     <h3 class="margin-bottom">{{cr.l10nObj.prsPg1Head}}</h3>
-                    <form name="firstPageForm" novalidate>
+                    <form name="pr.firstPageForm" novalidate>
                         <div class="my-form-fields">
                             <table class="my-form-fields-table">
                                 <tr><th>{{cr.l10nObj.prsPg1Place}}</th><td><select class="form-control" ng-options="location.Id_Rizik as location.Prevod[cr.lang].Naziv_Prevod for location in pr.locations" ng-model="pr.data.selectedLocation"></select></td></tr>
@@ -76,7 +76,7 @@
                         <input type="radio" name="objectInsurance" ng-model="pr.showObjectInsurance" ng-value="true" ng-checked="pr.showObjectInsurance">&nbsp;{{cr.l10nObj.Y}}</input>&nbsp;&nbsp;&nbsp;
                         <input type="radio" name="objectInsurance" ng-model="pr.showObjectInsurance" ng-value="false" ng-checked="!pr.showObjectInsurance" ng-click="pr.disableObjects();">&nbsp;{{cr.l10nObj.N}} </input>
                     </h3>
-                    <form name="thirdPageForm" novalidate>
+                    <form name="pr.thirdPageForm" novalidate>
                         <div class="my-form-fields" ng-slide-down="pr.showObjectInsurance" lazy-render>
                             <h4>{{cr.l10nObj.prsPg3OIHead}}</h4>
                             <table class="my-form-fields-table">
@@ -130,21 +130,24 @@
 
                             <h4> &nbsp; {{cr.l10nObj.prsPg3OIObjectData}}</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>{{cr.l10nObj.prsPg3OIName}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg3OIName}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldObjName}}" ng-class="{'error-info-proc': thirdPageForm.nameObjectName.$invalid && (thirdPageForm.nameObjectName.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectName" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.name" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg3OISurname}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg3OISurname}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldObjSurname}}" ng-class="{'error-info-proc': thirdPageForm.nameObjectSurname.$invalid && (thirdPageForm.nameObjectSurname.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectSurname" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.surname" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg3OIJMBG}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg3OIJMBG}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldObjJmbg}}" ng-class="{'error-info-proc': thirdPageForm.nameObjectJmbg.$invalid && (thirdPageForm.nameObjectJmbg.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectJmbg" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.owner.jmbg" ng-blur="pr.validateObjectJmbg()" ng-pattern="pr.jmbgRegex" required />
@@ -152,21 +155,24 @@
                                     </td>
                                 </tr>
                                 <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg3OIAddress}}</th></tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIStreet}}</td>
+                                <tr>
+                                    <td class="align-cell-right">{{cr.l10nObj.prsPg3OIStreet}}</td>
                                     <td>
                                         <span message="{{cr.l10nObj.vldObjStreet}}" ng-class="{'error-info-proc': thirdPageForm.nameObjectStreet.$invalid && (thirdPageForm.nameObjectStreet.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectStreet" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.street" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OINumber}}</td>
+                                <tr>
+                                    <td class="align-cell-right">{{cr.l10nObj.prsPg3OINumber}}</td>
                                     <td>
                                         <span message="{{cr.l10nObj.vldObjNumber}}" ng-class="{'error-info-proc': thirdPageForm.nameObjectNumber.$invalid && (thirdPageForm.nameObjectNumber.$touched || pr.showErrorsThird)}">
                                             <input type="number" name="nameObjectNumber" min="1" class="form-control small-input" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.number" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg3OIPlace}}</td>
+                                <tr>
+                                    <td class="align-cell-right">{{cr.l10nObj.prsPg3OIPlace}}</td>
                                     <td>
                                         <span message="{{cr.l10nObj.vldObjCity}}" ng-class="{'error-info-proc': thirdPageForm.nameObjectCity.$invalid && (thirdPageForm.nameObjectCity.$touched || pr.showErrorsThird)}">
                                             <input type="text" name="nameObjectCity" class="form-control" ng-class="{'show-error': pr.showErrorsThird}" ng-model="pr.data.object.address.city" required />
@@ -187,7 +193,7 @@
             <!-- *********************************  FOURTH PAGE ************************************ -->
             <div class="main-content" ng-show="true">
                 <div class="form-holder">
-                    <form name="fourthPageForm" novalidate>
+                    <form name="pr.fourthPageForm" novalidate>
                         <h3 class="margin-bottom">
                             {{cr.l10nObj.prsPg4CINeed}}<br /><br />
                             <input type="radio" name="vehicleInsurance" ng-model="pr.showVehicleInsurance" ng-value="true">&nbsp;{{cr.l10nObj.Y}}</input>&nbsp;&nbsp;&nbsp;
@@ -201,48 +207,55 @@
                                 <tr><td><input type="checkbox" name="nameVehicleRepair" ng-model="pr.data.repair" ng-change="pr.validateVehicleOptions()" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIRepair}}</td><td><select class="form-control" ng-disabled="!pr.data.repair" ng-options="reperationPrice.Id_Rizik as reperationPrice.Prevod[cr.lang].Naziv_Prevod for reperationPrice in pr.reparationPrices" ng-model="pr.data.selectedReparationPrice"></select></td></tr>
                                 <tr><td><input type="checkbox" name="nameVehicleHotel" ng-model="pr.data.hotel" ng-change="pr.validateVehicleOptions()" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAcc}}</td><td><select class="form-control" ng-disabled="!pr.data.hotel" ng-options="hotelDay.Id_Rizik as hotelDay.Prevod[cr.lang].Naziv_Prevod for hotelDay in pr.hotelDays" ng-model="pr.data.selectedHotelDays"></select></td></tr>
                                 <tr><td><input type="checkbox" name="nameVehicleTransport" ng-model="pr.data.alternateTransport" ng-change="pr.validateVehicleOptions()" /></td><td class="align-cell-left">{{cr.l10nObj.prsPg4CIAltTrans}}</td><td><select class="form-control" ng-disabled="!pr.data.alternateTransport" ng-options="alternateTransportationDistance.Id_Rizik as alternateTransportationDistance.Prevod[cr.lang].Naziv_Prevod for alternateTransportationDistance in pr.alternateTransportationDistances" ng-model="pr.data.selectedAlternateTransportationDistance"></select></tr>
-                                <tr><td class="align-cell-right" ng-class="{'red-bold': !fourthPageForm.nameVehicleHotel.$valid}" colspan="3">{{cr.l10nObj.prsPgPickOne}}</td>
+                                <tr>
+                                    <td class="align-cell-right" ng-class="{'red-bold': !fourthPageForm.nameVehicleHotel.$valid}" colspan="3">{{cr.l10nObj.prsPgPickOne}}</td>
                                 </tr>
                             </table>
 
                             <h4>&nbsp; {{cr.l10nObj.prsPg4CIData}}</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>{{cr.l10nObj.prsPg4CIChassisNum}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg4CIChassisNum}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldVhcChasis}}" ng-class="{'error-info-proc': fourthPageForm.nameVehicleChasis.$invalid && (fourthPageForm.nameVehicleChasis.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleChasis" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.chassisNumber" ng-pattern="/^[a-zA-Z0-9]{17}$/" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIManDate}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg4CIManDate}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldVhcYear}}" ng-class="{'error-info-proc': fourthPageForm.nameVehicleYear.$invalid && (fourthPageForm.nameVehicleYear.$touched || pr.showErrorsFourth)}">
                                             <input type="number" name="nameVehicleYear" class="form-control small-input" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.productionYear" min="1950" max="{{pr.currentYear}}" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIRegNum}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg4CIRegNum}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldVhcPlate}}" ng-class="{'error-info-proc': fourthPageForm.nameVehicleRegistration.$invalid && (fourthPageForm.nameVehicleRegistration.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleRegistration" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.registrationNumber" ng-pattern="/^[a-zA-Z]{2}-[a-zA-Z0-9\u017E\u017D\u0160\u0161\u0110\u0111\u010D\u010C\u0106\u0107]{4,8}$/" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerName}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg4CIOwnerName}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldVhcName}}" ng-class="{'error-info-proc': fourthPageForm.nameVehicleName.$invalid && (fourthPageForm.nameVehicleName.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleName" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.name" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerSurname}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg4CIOwnerSurname}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldVhcSurname}}" ng-class="{'error-info-proc': fourthPageForm.nameVehicleSurname.$invalid && (fourthPageForm.nameVehicleSurname.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleSurname" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.surname" required />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg4CIOwnerJMBG}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg4CIOwnerJMBG}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldVhcJmbg}}" ng-class="{'error-info-proc': fourthPageForm.nameVehicleJmbg.$invalid && (fourthPageForm.nameVehicleJmbg.$touched || pr.showErrorsFourth)}">
                                             <input type="text" name="nameVehicleJmbg" class="form-control" ng-class="{'show-error': pr.showErrorsFourth}" ng-model="pr.data.vehicle.customer.jmbg" ng-blur="pr.validateVehicleJmbg()" ng-pattern="pr.jmbgRegex" required />
@@ -265,7 +278,7 @@
             <div class="main-content" ng-show="true">
                 <div class="form-holder">
                     <h3 class="margin-bottom">{{cr.l10nObj.prsPg5IBHead}}</h3>
-                    <form name="finalPageForm" novalidate>
+                    <form name="pr.finalPageForm" novalidate>
                         <table class="my-form-fields-table">
                             <tr>
                                 <th>{{cr.l10nObj.prsPg5Who}}</th>
@@ -276,7 +289,7 @@
                                 <td class="header-left"><input type="radio" name="insCarrier" ng-model="pr.insuranceCarrierIsNotInsured" ng-value="true" ng-click="pr.switchCarrier()" ng-disabled="pr.chooseCarrierDisabled">&nbsp;{{cr.l10nObj.prsPg5NIP}}</input></td>
                             </tr>
                             <tr>
-                                <td colspan="2" ng-show="pr.chooseCarrierDisabled"><p><b>{{cr.l10nObj.prsPg5MustFill1}}<br/>{{cr.l10nObj.prsPg5MustFill2}}</b></p></td>
+                                <td colspan="2" ng-show="pr.chooseCarrierDisabled"><p><b>{{cr.l10nObj.prsPg5MustFill1}}<br />{{cr.l10nObj.prsPg5MustFill2}}</b></p></td>
                             </tr>
                         </table>
 
@@ -286,7 +299,8 @@
                                 <tr>
                                     <td colspan="2"><select class="form-control realy-big-input" ng-options="idx as customer.name + ' ' + customer.surname + ' ' + customer.jmbg for (idx, customer) in pr.data.customersFilter" ng-model="pr.data.insCarrierI" /></td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg5Email}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg5Email}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrEmail}}" ng-class="{'error-info-proc': finalPageForm.nameEmailIncluded.$invalid && (finalPageForm.nameEmailIncluded.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameEmailIncluded" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.tempEmail" ng-pattern="/^[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+.[a-zA-Z0-9_]+$/" ng-required="!pr.insuranceCarrierIsNotInsured" />
@@ -299,21 +313,24 @@
                         <div ng-show="pr.insuranceCarrierIsNotInsured">
                             <h4>{{cr.l10nObj.prsPg5FormHead}}</h4>
                             <table class="my-form-fields-table">
-                                <tr><th>{{cr.l10nObj.prsPg5Name}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg5Name}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrName}}" ng-class="{'error-info-proc': finalPageForm.nameNameNew.$invalid && (finalPageForm.nameNameNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameNameNew" class="form-control big-input" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.name" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg5Surname}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg5Surname}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrSurname}}" ng-class="{'error-info-proc': finalPageForm.nameSurnameNew.$invalid && (finalPageForm.nameSurnameNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameSurnameNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.surname" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg5JMBG}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg5JMBG}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrJmbg}}" ng-class="{'error-info-proc': finalPageForm.nameJmbgNew.$invalid && (finalPageForm.nameJmbgNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameJmbgNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.jmbg" ng-blur="pr.validateCarrierJmbg()" ng-pattern="pr.jmbgRegex" ng-required="pr.insuranceCarrierIsNotInsured" />
@@ -321,35 +338,40 @@
                                     </td>
                                 </tr>
                                 <tr class="align-row-top"><th colspan="2">{{cr.l10nObj.prsPg5Address}}</th></tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Street}}</td>
+                                <tr>
+                                    <td class="align-cell-right">{{cr.l10nObj.prsPg5Street}}</td>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrStreet}}" ng-class="{'error-info-proc': finalPageForm.nameStreetNew.$invalid && (finalPageForm.nameStreetNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameStreetNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.street" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Number}}</td>
+                                <tr>
+                                    <td class="align-cell-right">{{cr.l10nObj.prsPg5Number}}</td>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrNumber}}" ng-class="{'error-info-proc': finalPageForm.nameNumberNew.$invalid && (finalPageForm.nameNumberNew.$touched || pr.showErrorsFinal)}">
                                             <input type="number" name="nameNumberNew" min="1" class="form-control small-input" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.number" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><td class="align-cell-right">{{cr.l10nObj.prsPg5Place}}</td>
+                                <tr>
+                                    <td class="align-cell-right">{{cr.l10nObj.prsPg5Place}}</td>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrCity}}" ng-class="{'error-info-proc': finalPageForm.nameCityNew.$invalid && (finalPageForm.nameCityNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameCityNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.address.city" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg5PhoneNum}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg5PhoneNum}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrPhone}}" ng-class="{'error-info-proc': finalPageForm.namePhoneNew.$invalid && (finalPageForm.namePhoneNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="namePhoneNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.phoneNum" ng-pattern="/^\+?\d{6,14}$/" ng-required="pr.insuranceCarrierIsNotInsured" />
                                         </span>
                                     </td>
                                 </tr>
-                                <tr><th>{{cr.l10nObj.prsPg5Email}}</th>
+                                <tr>
+                                    <th>{{cr.l10nObj.prsPg5Email}}</th>
                                     <td>
                                         <span message="{{cr.l10nObj.vldCarrEmail}}" ng-class="{'error-info-proc': finalPageForm.nameEmailNew.$invalid && (finalPageForm.nameEmailNew.$touched || pr.showErrorsFinal)}">
                                             <input type="text" name="nameEmailNew" class="form-control" ng-class="{'show-error': pr.showErrorsFinal}" ng-model="pr.data.insCarrierNI.email" ng-pattern="/^[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+.[a-zA-Z0-9_]+$/" ng-required="pr.insuranceCarrierIsNotInsured" />
