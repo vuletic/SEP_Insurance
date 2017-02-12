@@ -67,7 +67,8 @@ namespace SEP_Osiguranje.Controllers
             /*
             PDFCreator creator = new PDFCreator();
 
-            Document doc = creator.createDocument(ro);
+            var fullPath = System.Web.HttpContext.Current.Server.MapPath("../fonts/logo.png");
+            Document doc = creator.createDocument(ro, fullPath);
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true);
             pdfRenderer.Document = doc;
             pdfRenderer.RenderDocument();

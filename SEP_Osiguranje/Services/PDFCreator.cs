@@ -19,7 +19,7 @@ namespace SEP_Osiguranje.Services
         private const string POLICY_NAME = "Holiday Guard";
         private const string ACCOUNT_EMAIL = "radi.molim.te@radi.com";
 
-        public Document createDocument(Realizacija_osiguranja ro)
+        public Document createDocument(Realizacija_osiguranja ro, string path)
         {
             Document retDoc = new Document();
             retDoc.Info.Title = "Polisa broj " + ro.Id_Realizacija_osiguranja.ToString();
@@ -30,7 +30,7 @@ namespace SEP_Osiguranje.Services
             Table table = new Table();
 
             defineStyles(ref retDoc);
-            createPage(ref retDoc, ro, ref addressFrame, ref table);
+            createPage(ref retDoc, ro, ref addressFrame, ref table, path);
             fillContent(ref retDoc, ro, ref addressFrame, ref table);
 
             return retDoc;
@@ -57,13 +57,13 @@ namespace SEP_Osiguranje.Services
 
         }
 
-        private void createPage(ref Document doc, Realizacija_osiguranja ro, ref TextFrame addressFrame, ref Table table)
+        private void createPage(ref Document doc, Realizacija_osiguranja ro, ref TextFrame addressFrame, ref Table table, string path)
         {
             Section section = doc.AddSection();
 
-            /*
+            
             // Put a logo in the header TODO ako stignes
-            Image image = section.Headers.Primary.AddImage("../../PowerBooks.png");
+            Image image = section.Headers.Primary.AddImage(path);
             image.Height = "2.5cm";
             image.LockAspectRatio = true;
             image.RelativeVertical = RelativeVertical.Line;
@@ -71,7 +71,7 @@ namespace SEP_Osiguranje.Services
             image.Top = ShapePosition.Top;
             image.Left = ShapePosition.Right;
             image.WrapFormat.Style = WrapStyle.Through;
-            */
+            
 
             // Create footer
             Paragraph paragraph = section.Footers.Primary.AddParagraph();
@@ -81,14 +81,7 @@ namespace SEP_Osiguranje.Services
             paragraph.Format.Font.Size = 13;
             paragraph.Format.Font.Bold = true;
             paragraph.Format.Alignment = ParagraphAlignment.Center;
-
-            // Create header
-            paragraph = section.Headers.Primary.AddParagraph();
-            paragraph.AddText(POLICY_NAME);
-            paragraph.Format.Font.Size = 13;
-            paragraph.Format.Font.Bold = true;
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
-
+            
             // Create the text frame for the address
             addressFrame = section.AddTextFrame();
             addressFrame.Height = "3.0cm";
@@ -158,7 +151,7 @@ namespace SEP_Osiguranje.Services
             Osoba o = db1.Osoba.Where(os => os.Id_Osigurani_entitet == sur1.Id_Osigurana_osoba).FirstOrDefault();
 
             Paragraph paragraph = addressFrame.AddParagraph();
-            paragraph.AddFormattedText("Nosilac: ", TextFormat.Italic);
+            paragraph.AddText("Nosilac: ");
             paragraph.AddLineBreak();
             paragraph.AddText(o.Ime_Osoba + " " + o.Prezime_Osoba);
             paragraph.AddLineBreak();
