@@ -1,0 +1,27 @@
+{
+  "name": "seposiguranje",
+  "version": "1.0.0",
+  "description": "Dependencies for seposiguranje",
+  "main": "app.module.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "angular-mocks": "^1.6.2"
+  },
+  "devDependencies": {
+    "karma": "^1.4.1",
+    "jasmine-core": "^2.5.2",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0"
+  },
+  "scripts": {
+    "test": "karma start tests/karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vuletic/SEP_Insurance/"
+  },
+  "author": "Nenad Todorovic, Nemanja Miladinovic, David Vuletic",
+  "license": "MIT"
+}
