@@ -38,7 +38,7 @@ namespace SEP_Osiguranje.Models
         public virtual DbSet<Vozilo> Vozilo { get; set; }
         public virtual DbSet<Vrsta_rizika> Vrsta_rizika { get; set; }
         public virtual DbSet<Stavka_u_realizaciji> Stavka_u_realizaciji { get; set; }
-        public virtual DbSet<Osoba> Osoba { get; set; }
         public virtual DbSet<Realizacija_osiguranja> Realizacija_osiguranja { get; set; }
+        public virtual DbSet<Osoba> Osoba { get; set; }
     }
 }
