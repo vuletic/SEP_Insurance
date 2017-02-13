@@ -241,8 +241,9 @@
             var validDate = new Date(year, month, day);
             var currentDate = new Date();
 
-            if (currentDate.getTime() < validDate.getTime())
+            if (currentDate.getTime() < validDate.getTime()){
                 return false;
+            }
 
             return true;
         }
@@ -324,6 +325,7 @@
         }
 
         pr.validateObjectJmbg = function () {
+        
             if (pr.data.object == undefined || pr.data.object.owner == undefined || pr.data.object.owner.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.object.owner.jmbg)) {

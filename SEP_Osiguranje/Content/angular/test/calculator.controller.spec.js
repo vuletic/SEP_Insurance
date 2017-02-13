@@ -7,8 +7,7 @@ describe("calculator controller", function() {
 	beforeEach(module("ngAnimate"));
 	beforeEach(module("ng-slide-down"));
 
-	beforeEach(module(function($provide){  // mockuj servise
-
+	beforeEach(module(function($provide){  
 		$provide.value('calculatorService', {
 	        sendCalculateData: function() {
 	          return { 
