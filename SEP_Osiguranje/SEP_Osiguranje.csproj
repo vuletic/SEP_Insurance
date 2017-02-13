@@ -306,9 +306,18 @@
     <Content Include="Content\angular\app\directives\page_marker\page-marker.html" />
     <Content Include="Content\angular\app\shared\dataAccess\dataAccess.service.js" />
     <Content Include="Content\angular\app\shared\localization\localization.service.js" />
-    <Content Include="Content\angular\assets\components\angular-animate\angular-animate.js" />
-    <Content Include="Content\angular\assets\components\angular-animate\angular-animate.min.js" />
-    <Content Include="Content\angular\assets\components\angular-animate\index.js" />
+    <Content Include="Content\angular\assets\components\angular-animate\angular-animate.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-animate\angular-animate.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-animate\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Content\angular\assets\components\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Content\angular\assets\components\angular-sanitize\index.js" />
     <Content Include="Content\angular\assets\components\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="Content\angular\assets\components\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="Content\angular\assets\components\angular-ui-router\src\common.js" />
@@ -322,10 +331,18 @@
     <Content Include="Content\angular\assets\components\angular-ui-router\src\view.js" />
     <Content Include="Content\angular\assets\components\angular-ui-router\src\viewDirective.js" />
     <Content Include="Content\angular\assets\components\angular-ui-router\src\viewScroll.js" />
-    <Content Include="Content\angular\assets\components\angular\angular-csp.css" />
-    <Content Include="Content\angular\assets\components\angular\angular.js" />
-    <Content Include="Content\angular\assets\components\angular\angular.min.js" />
-    <Content Include="Content\angular\assets\components\angular\index.js" />
+    <Content Include="Content\angular\assets\components\angular\angular-csp.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\angular.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\angular.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\angular\assets\components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="Content\angular\assets\components\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="Content\angular\assets\components\bootstrap\dist\css\bootstrap.css" />
@@ -542,25 +559,30 @@
     <Content Include="Content\angular\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\angular\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\angular\bower.json" />
-    <Content Include="Content\angular\assets\components\angular-animate\.bower.json" />
-    <Content Include="Content\angular\assets\components\angular-animate\angular-animate.min.js.map" />
-    <Content Include="Content\angular\assets\components\angular-animate\bower.json" />
-    <Content Include="Content\angular\assets\components\angular-animate\LICENSE.md" />
-    <Content Include="Content\angular\assets\components\angular-animate\package.json" />
-    <Content Include="Content\angular\assets\components\angular-animate\README.md" />
+    <Content Include="Content\angular\assets\components\angular-animate\.bower.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-animate\angular-animate.min.js.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-animate\bower.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-animate\LICENSE.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-animate\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-animate\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\angular\assets\components\angular-ui-router\.bower.json" />
     <Content Include="Content\angular\assets\components\angular-ui-router\bower.json" />
     <Content Include="Content\angular\assets\components\angular-ui-router\CHANGELOG.md" />
     <Content Include="Content\angular\assets\components\angular-ui-router\CONTRIBUTING.md" />
     <Content Include="Content\angular\assets\components\angular-ui-router\LICENSE" />
     <Content Include="Content\angular\assets\components\angular-ui-router\README.md" />
-    <Content Include="Content\angular\assets\components\angular\.bower.json" />
-    <Content Include="Content\angular\assets\components\angular\angular.min.js.gzip" />
-    <Content Include="Content\angular\assets\components\angular\angular.min.js.map" />
-    <Content Include="Content\angular\assets\components\angular\bower.json" />
-    <Content Include="Content\angular\assets\components\angular\LICENSE.md" />
-    <Content Include="Content\angular\assets\components\angular\package.json" />
-    <Content Include="Content\angular\assets\components\angular\README.md" />
     <Content Include="Content\angular\assets\components\bootstrap\.bower.json" />
     <Content Include="Content\angular\assets\components\bootstrap\bower.json" />
     <Content Include="Content\angular\assets\components\bootstrap\CHANGELOG.md" />
@@ -688,6 +710,33 @@
     <Content Include="Models\SEP_Model.edmx.diagram">
       <DependentUpon>SEP_Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\angular\assets\components\angular\.bower.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\angular.min.js.gzip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\angular.min.js.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\bower.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\LICENSE.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\angular\assets\components\angular-sanitize\.bower.json" />
+    <Content Include="Content\angular\assets\components\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Content\angular\assets\components\angular-sanitize\bower.json" />
+    <Content Include="Content\angular\assets\components\angular-sanitize\LICENSE.md" />
+    <Content Include="Content\angular\assets\components\angular-sanitize\package.json" />
+    <Content Include="Content\angular\assets\components\angular-sanitize\README.md" />
     <None Include="Properties\PublishProfiles\SEPOsiguranje - Web Deploy.pubxml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

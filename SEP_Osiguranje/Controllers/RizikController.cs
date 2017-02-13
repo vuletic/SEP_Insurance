@@ -39,6 +39,17 @@ namespace SEP_Osiguranje.Controllers
 
             return Ok(rizik);
         }
+
+        [ActionName("Id")]
+        public IQueryable<Rizik> GetRizikById(decimal id)
+        {
+
+            var query = from rizik in db.Rizik.Include("Prevod")
+                        where rizik.Id_Rizik == id
+                        select rizik;
+
+            return query;
+        }
         /*
         // PUT: api/Rizik/5
         [ResponseType(typeof(void))]

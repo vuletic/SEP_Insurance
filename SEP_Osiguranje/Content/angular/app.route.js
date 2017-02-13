@@ -45,6 +45,10 @@
             url: '/preview',
             templateUrl: 'Content/angular/app/components/preview/preview.html',
             controller: 'previewController',
+            params: {
+                data: null,
+                info: null
+            },
             controllerAs: 'pc'
         });
 

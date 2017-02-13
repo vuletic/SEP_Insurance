@@ -76,6 +76,13 @@
             return $http.get(resUrl).then(function (response) {
                 return response.data;
             });
+        } 
+        
+        function getRisk(id) {
+            var resUrl = "api/rizik/id/" + id;
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
         }
 
         return {
@@ -88,7 +95,8 @@
             getTowingDistances: getTowingDistances,
             getReparationPrices: getReparationPrices,
             getAlternateTransportationDistances: getAlternateTransportationDistances,
-            getHotelDays: getHotelDays
+            getHotelDays: getHotelDays,
+            getRisk: getRisk
         };
 
 

@@ -196,8 +196,8 @@
                     <form name="pr.fourthPageForm" novalidate>
                         <h3 class="margin-bottom">
                             {{cr.l10nObj.prsPg4CINeed}}<br /><br />
-                            <input type="radio" name="vehicleInsurance" ng-model="pr.showVehicleInsurance" ng-value="true">&nbsp;{{cr.l10nObj.Y}}</input>&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="vehicleInsurance" ng-model="pr.showVehicleInsurance" ng-value="false" ng-click="pr.disableVehicles()">&nbsp;{{cr.l10nObj.N}}</input>
+                            <input type="radio" name="vehicleInsurance" ng-model="pr.showVehicleInsurance" ng-value="true" ng-checked="pr.showVehicleInsurance">&nbsp;{{cr.l10nObj.Y}}</input>&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="vehicleInsurance" ng-model="pr.showVehicleInsurance" ng-value="false" ng-checked="!pr.showVehicleInsurance" ng-click="pr.disableVehicles()">&nbsp;{{cr.l10nObj.N}}</input>
                         </h3>
                         <div class="my-form-fields" ng-slide-down="pr.showVehicleInsurance" lazy-render>
                             <h4>{{cr.l10nObj.prsPg4CIHead}}</h4>
@@ -384,7 +384,7 @@
                         <hr />
                         <div class="my-form-buttons">
                             <div class="my-button-navigation" ng-click="pr.selectedProcessPanel = [false, false, false, true, false]; cr.scroll()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp; {{cr.l10nObj.prsPgBack}}</div>
-                            <div class="my-button-navigation" ng-click="pr.finishProcess()">{{cr.l10nObj.prsPg5Finish}}</div>
+                            <div class="my-button-navigation" ng-click="pr.finishProcess(); cr.scroll()">{{cr.l10nObj.prsPg5Finish}}</div>
                         </div>
                     </form>
                 </div>

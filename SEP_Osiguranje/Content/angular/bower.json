@@ -18,6 +18,7 @@
     "angular-animate": "^1.2.0",
     "angular-ui-router": "^0.3.2",
     "bootstrap": "^3.3.7",
-    "ng-slide-down": "^1.2.0"
+    "ng-slide-down": "^1.2.0",
+    "angular-sanitize": "^1.6.1"
   }
 }
