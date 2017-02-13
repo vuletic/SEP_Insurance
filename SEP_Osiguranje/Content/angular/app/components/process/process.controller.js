@@ -5,33 +5,42 @@
 		.module('app')
 		.controller('processController', processController);
 
-    processController.$inject = ['dataAccessService', 'processService', '$stateParams', '$state'];
-    function processController(dataAccessService, processService, $stateParams, $state) {
+    processController.$inject = ['$scope', 'dataAccessService', 'processService', '$stateParams', '$state'];
+    function processController($scope, dataAccessService, processService, $stateParams, $state) {
 
         var pr = this;
         pr.jmbgRegex = /^(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((9|\d)\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((9|\d)\d{2}))|((0[1-9]|1\d|2[0-8])02((9|\d)\d{2}))|(2902(([6-9]|\d)(0[48]|[2468][048]|[13579][26])|((6|[048]|[26])00))))([0-8][0-9]|9[0-6])([0-9]{3})(\d)$/;
 
         pr.data = {};
 
-        pr.showObjectInsurance = false;
-        pr.showVehicleInsurance = false;
+        pr.data.showObjectInsurance = false;
+        pr.data.showVehicleInsurance = false;
 
+        pr.data.sport = false;
         pr.data.ageNumberYoung = 0;
         pr.data.ageNumberAdult = 0;
         pr.data.ageNumberOld = 0;
         pr.data.towing = false;
-        pr.alternateTransport = false;
+        pr.data.alternateTransport = false;
         pr.data.hotel = false;
         pr.data.repair = false;
-        pr.data.sport = false;
+
+        pr.data.tempEmail = "";
+        pr.data.insuranceCarrierIsNotInsured = false;
+
+        pr.useDefaultData = true;
 
         pr.data.vehicle = {};
         pr.data.obj = {};
 
         if ($stateParams.data != null) {
             pr.data = $stateParams.data;
-            pr.showObjectInsurance = pr.data.realEstateInsured;
-            pr.showVehicleInsurance = pr.data.carInsured;
+            pr.data.showObjectInsurance = pr.data.realEstateInsured;
+            pr.data.showVehicleInsurance = pr.data.carInsured;
+            pr.data.sport = pr.data.enableSport;
+            pr.useDefaultData = false;
+            if (pr.data.customers == null)
+                pr.data.customers = [];
         } else {
             pr.data.customers = [];
             pr.data.customersFilter = [];
@@ -78,7 +87,7 @@
                 dto.customers.push(tempCustomer);
             }
 
-            if (pr.insuranceCarrierIsNotInsured) {
+            if (pr.data.insuranceCarrierIsNotInsured) {
 
                 var tempCustomer = {};
                 tempCustomer.osoba = {};
@@ -98,11 +107,11 @@
                 dto.customers.push(tempCustomer);
             } else {
                 var index = pr.data.insCarrierI;
-                dto.customers[index].osoba.E_mail_Osoba = pr.tempEmail;
+                dto.customers[index].osoba.E_mail_Osoba = pr.data.tempEmail;
                 dto.customers[index].carrier = true;
             }
 
-            if (pr.showObjectInsurance) {
+            if (pr.data.showObjectInsurance) {
                 dto.objectData = {};
                 dto.objectData.obj = {};
 
@@ -135,7 +144,7 @@
                 dto.objectData = null;
             }
 
-            if (pr.showVehicleInsurance) {
+            if (pr.data.showVehicleInsurance) {
                 dto.vehicleData = {};
                 dto.vehicleData.vehicle = {};
 
@@ -178,12 +187,18 @@
         }
 
         pr.selectedProcessPanel = [true, false, false, false, false];
-        pr.insuranceCarrierIsNotInsured = false;
 
 
         dataAccessService.getSports().then(function (response) {
             pr.sports = response;
-            pr.data.selectedSport = pr.sports[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedSport = pr.sports[0].Id_Rizik;
+            } else {
+                pr.selectedSports = pr.sports.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedSport;
+                });
+                pr.data.selectedSport = pr.selectedSports[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getAgeGroups().then(function (response) {
@@ -192,42 +207,98 @@
 
         dataAccessService.getLocations().then(function (response) {
             pr.locations = response;
-            pr.data.selectedLocation = pr.locations[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedLocation = pr.locations[0].Id_Rizik;
+            } else {
+                pr.selectedLocations = pr.locations.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedLocation;
+                });
+                pr.data.selectedLocation = pr.selectedLocations[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getInsuranceAmounts().then(function (response) {
             pr.insuranceAmounts = response;
-            pr.data.selectedInsuranceAmount = pr.insuranceAmounts[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedInsuranceAmount = pr.insuranceAmounts[0].Id_Rizik;
+            } else {
+                pr.selectedInsuranceAmounts = pr.insuranceAmounts.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedInsuranceAmount;
+                });
+                pr.data.selectedInsuranceAmount = pr.selectedInsuranceAmounts[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getRealEstateAges().then(function (response) {
             pr.realEstateAges = response;
-            pr.data.selectedRealEstateAge = pr.realEstateAges[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedRealEstateAge = pr.realEstateAges[0].Id_Rizik;
+            } else {
+                pr.selectedRealEstateAges = pr.realEstateAges.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedRealEstateAge;
+                });
+                pr.data.selectedRealEstateAge = pr.selectedRealEstateAges[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getRealEstateValues().then(function (response) {
             pr.realEstateValues = response;
-            pr.data.selectedRealEstateValue = pr.realEstateValues[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedRealEstateValue = pr.realEstateValues[0].Id_Rizik;
+            } else {
+                pr.selectedRealEstateValues = pr.realEstateValues.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedRealEstateValue;
+                });
+                pr.data.selectedRealEstateValue = pr.selectedRealEstateValues[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getTowingDistances().then(function (response) {
             pr.towingDistances = response;
-            pr.data.selectedTowingDistance = pr.towingDistances[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedTowingDistance = pr.towingDistances[0].Id_Rizik;
+            } else {
+                pr.selectedTowingDistances = pr.towingDistances.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedTowingDistance;
+                });
+                pr.data.selectedTowingDistance = pr.selectedTowingDistances[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getAlternateTransportationDistances().then(function (response) {
             pr.alternateTransportationDistances = response;
-            pr.data.selectedAlternateTransportationDistance = pr.alternateTransportationDistances[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedAlternateTransportationDistance = pr.alternateTransportationDistances[0].Id_Rizik;
+            } else {
+                pr.selectedAlternateTransportationDistances = pr.alternateTransportationDistances.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedAlternateTransportationDistance;
+                });
+                pr.data.selectedAlternateTransportationDistance = pr.selectedAlternateTransportationDistances[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getReparationPrices().then(function (response) {
             pr.reparationPrices = response;
-            pr.data.selectedReparationPrice = pr.reparationPrices[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedReparationPrice = pr.reparationPrices[0].Id_Rizik;
+            } else {
+                pr.selectedReparationPrices = pr.reparationPrices.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedReparationPrice;
+                });
+                pr.data.selectedReparationPrice = pr.selectedReparationPrices[0].Id_Rizik;
+            }
         });
 
         dataAccessService.getHotelDays().then(function (response) {
             pr.hotelDays = response;
-            pr.data.selectedHotelDays = pr.hotelDays[0].Id_Rizik;
+            if (pr.useDefaultData) {
+                pr.data.selectedHotelDays = pr.hotelDays[0].Id_Rizik;
+            } else {
+                pr.selectedHotelDayss = pr.hotelDays.filter(function (item) {
+                    return item.Id_Rizik == pr.data.selectedHotelDays;
+                });
+                pr.data.selectedHotelDays = pr.selectedHotelDayss[0].Id_Rizik;
+            }
         });
 
         /******         COMMON VALIDATION           ******/
@@ -261,13 +332,13 @@
 
         pr.goFromFirstPage = function () {
             if (!pr.everythingIsValidFirst()) {
-                return;
+                //return;
             }
             pr.selectedProcessPanel = [false, true, false, false, false];
         }
 
         pr.everythingIsValidFirst = function () {
-            if (!pr.firstPageForm.$valid) {
+            if (!$scope.firstPageForm.$valid) {
                 pr.showErrorsFirst = true;
                 return false;
             } else {
@@ -281,7 +352,7 @@
 
         pr.goFromSecondPage = function () {
             if (!pr.everythingIsValidSecond()) {
-                return;
+                //return;
             }
             pr.selectedProcessPanel = [false, false, true, false, false];
         }
@@ -304,7 +375,7 @@
         pr.showErrorsThird = false;
 
         pr.goFromThirdPage = function () {
-            if (pr.showObjectInsurance) {
+            if (pr.data.showObjectInsurance) {
                 if (!pr.everythingIsValidThird()) {
                     return;
                 }
@@ -313,11 +384,11 @@
         }
 
         pr.everythingIsValidThird = function () {
-            if (pr.showObjectInsurance) {
+            if (pr.data.showObjectInsurance) {
                 pr.validateObjectOptions();
                 pr.validateObjectJmbg();
             }
-            if (!pr.thirdPageForm.$valid) {
+            if (!$scope.thirdPageForm.$valid) {
                 pr.showErrorsThird = true;
                 return false;
             } else {
@@ -331,21 +402,21 @@
             if (pr.data.object == undefined || pr.data.object.owner == undefined || pr.data.object.owner.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.object.owner.jmbg)) {
-                pr.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", false);
+                $scope.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", false);
             } else {
-                pr.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", true);
+                $scope.thirdPageForm.nameObjectJmbg.$setValidity("jmbg", true);
             }
         }
 
         pr.validateObjectOptions = function () {
             if (!pr.data.residenceFromFlood && !pr.data.residenceFromFire && !pr.data.residenceFromTheft) {
-                pr.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", false);
-                pr.thirdPageForm.nameObjectFire.$setValidity("chooseObject", false);
-                pr.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", false);
+                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", false);
+                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", false);
+                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", false);
             } else {
-                pr.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
-                pr.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
-                pr.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
+                $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
+                $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
+                $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
             }
         }
 
@@ -358,10 +429,10 @@
             pr.data.selectedRealEstateValue = pr.realEstateValues[0].Id_Rizik;
             pr.data.residenceSize = "";
             pr.data.object = {};
-            pr.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
-            pr.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
-            pr.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
-            pr.thirdPageForm.nameObjectJmbg.$setValidity("validJmbg", true);
+            $scope.thirdPageForm.nameObjectFlood.$setValidity("chooseObject", true);
+            $scope.thirdPageForm.nameObjectFire.$setValidity("chooseObject", true);
+            $scope.thirdPageForm.nameObjectTheft.$setValidity("chooseObject", true);
+            $scope.thirdPageForm.nameObjectJmbg.$setValidity("validJmbg", true);
         }
 
         /******         FOURTH PAGE VALIDATION       ******/
@@ -371,7 +442,7 @@
 
         pr.goFromFourthPage = function () {
             pr.filterForCarriers();
-            if (pr.showVehicleInsurance) {
+            if (pr.data.showVehicleInsurance) {
                 if (!pr.everythingIsValidFourth()) {
                     return;
                 }
@@ -380,11 +451,11 @@
         }
 
         pr.everythingIsValidFourth = function () {
-            if (pr.showVehicleInsurance) {
+            if (pr.data.showVehicleInsurance) {
                 pr.validateVehicleOptions();
                 pr.validateVehicleJmbg();
             }
-            if (!pr.fourthPageForm.$valid) {
+            if (!$scope.fourthPageForm.$valid) {
                 pr.showErrorsFourth = true;
                 return false;
             } else {
@@ -397,23 +468,23 @@
             if (pr.data.vehicle == undefined || pr.data.vehicle.customer == undefined || pr.data.vehicle.customer.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.vehicle.customer.jmbg)) {
-                pr.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", false);
+                $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", false);
             } else {
-                pr.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
+                $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
             }
         }
 
         pr.validateVehicleOptions = function () {
             if (!pr.data.alternateTransport && !pr.data.hotel && !pr.data.repair && !pr.data.towing) {
-                pr.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
-                pr.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
-                pr.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
-                pr.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", false);
+                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", false);
             } else {
-                pr.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-                pr.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-                pr.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-                pr.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+                $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
             }
         }
 
@@ -432,11 +503,11 @@
             pr.data.hotel = false;
             pr.data.alternateTransport = false;
             pr.data.vehicle = {};
-            pr.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
-            pr.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
-            pr.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
-            pr.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
-            pr.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
+            $scope.fourthPageForm.nameVehicleJmbg.$setValidity("jmbg", true);
+            $scope.fourthPageForm.nameVehicleTowing.$setValidity("chooseVehicle", true);
+            $scope.fourthPageForm.nameVehicleRepair.$setValidity("chooseVehicle", true);
+            $scope.fourthPageForm.nameVehicleHotel.$setValidity("chooseVehicle", true);
+            $scope.fourthPageForm.nameVehicleTransport.$setValidity("chooseVehicle", true);
         }
 
         pr.filterForCarriers = function () {
@@ -444,7 +515,7 @@
                 return customer.category != "0";
             });
             if (pr.data.customersFilter.length == 0) {
-                pr.insuranceCarrierIsNotInsured = true;
+                pr.data.insuranceCarrierIsNotInsured = true;
                 pr.chooseCarrierDisabled = true;
             } else {
                 pr.chooseCarrierDisabled = false;
@@ -454,11 +525,10 @@
 
         /******         FINAL PAGE VALIDATION       ******/
         pr.showErrorsFinal = false;
-        pr.tempEmail = "";
 
         pr.everythingIsValidFinal = function () {
             pr.validateCarrierJmbg();
-            if (!pr.finalPageForm.$valid) {
+            if (!$scope.finalPageForm.$valid) {
                 pr.showErrorsFinal = true;
                 return false;
             } else {
@@ -473,30 +543,30 @@
             if (pr.data.insCarrierNI.jmbg == undefined)
                 return;
             if (!pr.validAge(pr.data.insCarrierNI.jmbg)) {
-                pr.finalPageForm.nameJmbgNew.$setValidity("jmbg", false);
+                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", false);
             } else {
-                pr.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
+                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
             }
         }
 
         pr.switchCarrier = function () {
             pr.showErrorsFinal = false;
 
-            if (!pr.insuranceCarrierIsNotInsured) {
-                pr.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
-                pr.finalPageForm.nameNameNew.$setUntouched();
-                pr.finalPageForm.nameSurnameNew.$setUntouched();
-                pr.finalPageForm.nameJmbgNew.$setUntouched();
-                pr.finalPageForm.nameStreetNew.$setUntouched();
-                pr.finalPageForm.nameNumberNew.$setUntouched();
-                pr.finalPageForm.nameCityNew.$setUntouched();
-                pr.finalPageForm.namePhoneNew.$setUntouched();
-                pr.finalPageForm.nameEmailNew.$setUntouched();
+            if (!pr.data.insuranceCarrierIsNotInsured) {
+                $scope.finalPageForm.nameJmbgNew.$setValidity("jmbg", true);
+                $scope.finalPageForm.nameNameNew.$setUntouched();
+                $scope.finalPageForm.nameSurnameNew.$setUntouched();
+                $scope.finalPageForm.nameJmbgNew.$setUntouched();
+                $scope.finalPageForm.nameStreetNew.$setUntouched();
+                $scope.finalPageForm.nameNumberNew.$setUntouched();
+                $scope.finalPageForm.nameCityNew.$setUntouched();
+                $scope.finalPageForm.namePhoneNew.$setUntouched();
+                $scope.finalPageForm.nameEmailNew.$setUntouched();
                 pr.data.insCarrierNI = {};
             } else {
-                pr.tempEmail = "";
+                pr.data.tempEmail = "";
                 pr.data.insCarrierI = "0";
-                pr.finalPageForm.nameEmailIncluded.$setUntouched();
+                $scope.finalPageForm.nameEmailIncluded.$setUntouched();
             }
         }
     }

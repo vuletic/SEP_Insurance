@@ -68,6 +68,9 @@
         $window.scrollTo(0, 220);
 
         pc.change = function () {
+            pc.info.realEstateInsured = pc.showObject;
+            pc.info.carInsured = pc.showVehicle;
+            pc.info.enableSport = pc.info.sport;
             $state.go('core.process', { data: pc.info });
             return;
         }
