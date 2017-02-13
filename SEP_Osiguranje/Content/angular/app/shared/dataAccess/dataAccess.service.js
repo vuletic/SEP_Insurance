@@ -78,6 +78,13 @@
             });
         }
 
+        function getRisk(id) {
+            var resUrl = "api/rizik/" + id;
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
         return {
             getSports: getSports,
             getAgeGroups: getAgeGroups,
@@ -88,7 +95,8 @@
             getTowingDistances: getTowingDistances,
             getReparationPrices: getReparationPrices,
             getAlternateTransportationDistances: getAlternateTransportationDistances,
-            getHotelDays: getHotelDays
+            getHotelDays: getHotelDays,
+            getRisk: getRisk
         };
 
 
