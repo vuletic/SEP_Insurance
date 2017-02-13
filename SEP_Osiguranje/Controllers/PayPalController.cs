@@ -106,8 +106,8 @@ namespace SEP_Osiguranje.Controllers
                 if (ro != null)
                 {
                     // proveriti da li se valuta i placeni iznos poklapaju sa ocekivanim
-                    if (ro.Ukupna_vrednost_Realizacija_osiguranja.Equals(Decimal.Parse(ammount)))
-                    {
+                    //if (ro.Ukupna_vrednost_Realizacija_osiguranja.Equals(Decimal.Parse(ammount))) Zakomentarisano zbog konverzije evro-dinar, nikada vise nece biti isto :D
+                    //{
                         if (!ro.Potvrdjena_Realizacija_osiguranja)
                         {
                             ro.Potvrdjena_Realizacija_osiguranja = true;
@@ -167,7 +167,7 @@ namespace SEP_Osiguranje.Controllers
                                 Console.Write(e.InnerException);
                             }
                         }
-                    }
+                    //}
                 }
 
             }
