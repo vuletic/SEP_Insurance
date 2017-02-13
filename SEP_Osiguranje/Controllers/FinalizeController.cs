@@ -124,7 +124,11 @@ namespace SEP_Osiguranje.Controllers
 
             Newtonsoft.Json.Linq.JObject o = Newtonsoft.Json.Linq.JObject.Parse(json2);
 
-            string priceEur = (string)o["Result"];
+            String priceEur = (String)o["Result"];
+            int dot = priceEur.IndexOf('.');
+
+            if (dot != -1)
+                priceEur = priceEur.Substring(0, dot + 3);
 
             List<string> buttonVars = new List<string>();
             buttonVars.Add("return=" + RETURN_ADDRESS);
