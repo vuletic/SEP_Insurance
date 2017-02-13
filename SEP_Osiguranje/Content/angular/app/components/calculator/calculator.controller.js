@@ -14,7 +14,6 @@
         cc.showVehicle = false;
         cc.priceIsCalculated = false;
 
-
         cc.calculatedPrice = 0;
 
         cc.data = {};

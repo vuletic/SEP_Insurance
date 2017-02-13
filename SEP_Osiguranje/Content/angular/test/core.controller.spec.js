@@ -19,15 +19,13 @@ describe("controller", function() {
 	}));
 
 	beforeEach(inject(function($injector) {
-	  $controller = $injector.get('$controller');
+	  	$controller = $injector.get('$controller');
 	  
-	  localization = $injector.get('localization');
-	  $window = $injector.get('$window');
-	  $q = $injector.get('$q');
+	  	localization = $injector.get('localization');
+	  	$window = $injector.get('$window');
+	  	$q = $injector.get('$q');
 
-	 
-
-    	 coreCtrl = $controller("coreController", {
+	 	coreCtrl = $controller("coreController", {
 			localization: localization,
 			$window: $window
 		});

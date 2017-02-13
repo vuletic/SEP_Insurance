@@ -38,7 +38,7 @@ namespace SEP_Osiguranje.Controllers
         public async Task<IHttpActionResult> Post(ProcessData processData)
         {
             Data data = new Data(processData);
-            HttpResponseMessage resp = await client.PostAsJsonAsync("http://sepruleapi.azurewebsites.net/policy", data);
+            HttpResponseMessage resp = await client.PostAsJsonAsync("https://sepruleapi.azurewebsites.net/policy", data);
 
             String json = "";
 
