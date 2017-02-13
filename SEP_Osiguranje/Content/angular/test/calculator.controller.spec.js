@@ -8,58 +8,6 @@ describe("calculator controller", function() {
 	beforeEach(module("ng-slide-down"));
 
 	beforeEach(module(function($provide){  // mockuj servise
-		/*$provide.value('dataAccessService', {
-	        getSports: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getAgeGroups: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getLocations: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getInsuranceAmounts: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getRealEstateAges: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getRealEstateValues: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getTowingDistances: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getHotelDays: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getAlternateTransportationDistances: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-	        getReparationPrices: function() {
-	          return { 
-	            then: function(callback) {return callback([{ some: "thing"}]);}
-	          };
-	        },
-      	});*/
 
 		$provide.value('calculatorService', {
 	        sendCalculateData: function() {
@@ -167,6 +115,137 @@ describe("calculator controller", function() {
         expect(calculatorController.data.selectedReparationPrice).toBe(calculatorController.reparationPrices[0].Id_Rizik);
         expect(calculatorController.data.selectedHotelDays).toBe(calculatorController.hotelDays[0].Id_Rizik);
         expect(calculatorController.data.selectedAlternateTransportationDistance).toBe(calculatorController.alternateTransportationDistances[0].Id_Rizik);
+
+	});
+
+	it("people count changed", function() {
+		spyOn(calculatorController, 'checkPeopleCount').and.returnValue("");
+
+		calculatorController.showErrors = false;
+		calculatorController.youngTouchedValue = true;
+		calculatorController.adultTouchedValue = false;
+		calculatorController.oldTouchedValue = true;
+		calculatorController.peopleCountChanged();
+
+		expect(calculatorController.checkPeopleCount).not.toHaveBeenCalled();
+
+		calculatorController.showErrors = true;
+		calculatorController.youngTouchedValue = true;
+		calculatorController.adultTouchedValue = false;
+		calculatorController.oldTouchedValue = true;
+		calculatorController.peopleCountChanged();
+
+		expect(calculatorController.checkPeopleCount).toHaveBeenCalled();
+
+		calculatorController.showErrors = false;
+		calculatorController.youngTouchedValue = true;
+		calculatorController.adultTouchedValue = true;
+		calculatorController.oldTouchedValue = true;
+		calculatorController.peopleCountChanged();
+
+		expect(calculatorController.checkPeopleCount).toHaveBeenCalled();
+		
+	});
+
+	it("count young touched", function() {
+		spyOn(calculatorController, 'checkPeopleCount').and.returnValue("");
+
+		calculatorController.countYoungTouchedValue = true;
+		calculatorController.countAdultTouchedValue = false;
+		calculatorController.countOldTouchedValue = true;
+		calculatorController.countYoungTouched();
+
+		expect(calculatorController.checkPeopleCount).not.toHaveBeenCalled();
+		
+		calculatorController.countYoungTouchedValue = false;
+		calculatorController.countAdultTouchedValue = true;
+		calculatorController.countOldTouchedValue = true;
+		calculatorController.countYoungTouched();
+
+		expect(calculatorController.checkPeopleCount).toHaveBeenCalled();
+		
+	});
+
+	it("count adult touched", function() {
+		spyOn(calculatorController, 'checkPeopleCount').and.returnValue("");
+
+		calculatorController.countYoungTouchedValue = false;
+		calculatorController.countAdultTouchedValue = false;
+		calculatorController.countOldTouchedValue = false;
+		calculatorController.countAdultTouched();
+
+		expect(calculatorController.checkPeopleCount).not.toHaveBeenCalled();
+		
+		calculatorController.countYoungTouchedValue = true;
+		calculatorController.countAdultTouchedValue = false;
+		calculatorController.countOldTouchedValue = true;
+		calculatorController.countAdultTouched();
+
+		expect(calculatorController.checkPeopleCount).toHaveBeenCalled();
+		
+	});
+
+	it("count old touched", function() {
+		spyOn(calculatorController, 'checkPeopleCount').and.returnValue("");
+
+		calculatorController.countYoungTouchedValue = true;
+		calculatorController.countAdultTouchedValue = false;
+		calculatorController.countOldTouchedValue = true;
+		calculatorController.countOldTouched();
+
+		expect(calculatorController.checkPeopleCount).not.toHaveBeenCalled();
+		
+		calculatorController.countYoungTouchedValue = true;
+		calculatorController.countAdultTouchedValue = true;
+		calculatorController.countOldTouchedValue = true;
+		calculatorController.countOldTouched();
+
+		expect(calculatorController.checkPeopleCount).toHaveBeenCalled();
+		
+	});
+
+	it("object required show", function(){
+		calculatorController.showErrors = true;
+		calculatorController.objectJustExpanded = true;
+
+		expect(calculatorController.objectRequiredShow()).toBe(false);
+
+		calculatorController.showErrors = true;
+		calculatorController.objectJustExpanded = false;
+
+		expect(calculatorController.objectRequiredShow()).toBe(true);
+
+		calculatorController.showErrors = false;
+		calculatorController.objectJustExpanded = true;
+
+		expect(calculatorController.objectRequiredShow()).toBe(false);
+
+		calculatorController.showErrors = false;
+		calculatorController.objectJustExpanded = false;
+
+		expect(calculatorController.objectRequiredShow()).toBe(false);
+
+	});
+
+	it("everythingIsValid", function(){
+		calculatorController.checkPeopleCount = function(){};
+		calculatorController.validateObjectOptions = function(){};
+		calculatorController.validateVehicleOptions = function(){};
+
+		calculatorController.calculatorForm = {$valid: true};
+
+		expect(calculatorController.everythingIsValid()).toBe(true);
+		expect(calculatorController.showErrors).toBe(false);
+
+		calculatorController.calculatorForm.$valid = false;
+		calculatorController.enableObject = false;
+		calculatorController.enableVehicle = false;
+		calculatorController.calculatorForm.nameDateFrom = {$valid: false}
+		calculatorController.calculatorForm.nameDateTo = {$valid: false}
+		calculatorController.calculatorForm.nameCountYoung = {$valid: false}
+
+		expect(calculatorController.everythingIsValid()).toBe(false);
+		expect(calculatorController.showErrors).toBe(true);
 
 	});
 
