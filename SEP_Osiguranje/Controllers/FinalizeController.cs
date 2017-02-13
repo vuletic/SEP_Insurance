@@ -25,7 +25,7 @@ namespace SEP_Osiguranje.Controllers
     {
         private SEP_EntitiesB db = new SEP_EntitiesB();
         private static HttpClient client = new HttpClient();
-
+        private string key = "C24E682C2D274F2C9D7FD16F1C173D66";
 
         private const int MAGIC_NUMBER_FLOOD = 33;
         private const int MAGIC_NUMBER_THEFT = 34;
@@ -111,12 +111,26 @@ namespace SEP_Osiguranje.Controllers
 
             String policyId = ro.Id_Realizacija_osiguranja.ToString();
             String price = ro.Ukupna_vrednost_Realizacija_osiguranja.ToString();
+            String converter = "https://globalcurrencies.xignite.com/xGlobalCurrencies.json/ConvertRealTimeValue?From=RSD&To=EUR&Amount=" + price + "&_token=" + key;
+
+            HttpResponseMessage resp2 = await client.GetAsync(converter);
+
+            String json2 = "";
+
+            if (resp2.IsSuccessStatusCode)
+            {
+                json2 = await resp2.Content.ReadAsStringAsync();
+            }
+
+            Newtonsoft.Json.Linq.JObject o = Newtonsoft.Json.Linq.JObject.Parse(json2);
+
+            string priceEur = (string)o["Result"];
 
             List<string> buttonVars = new List<string>();
             buttonVars.Add("return=" + RETURN_ADDRESS);
             buttonVars.Add("item_name=" + POLICY_NAME);
             buttonVars.Add("item_number=" + policyId);
-            buttonVars.Add("amount=" + price);
+            buttonVars.Add("amount=" + priceEur);
             buttonVars.Add("currency_code=" + "EUR");// Ne moze u dinarima.
             buttonVars.Add("business=" + ACCOUNT_EMAIL);
             request.ButtonVar = buttonVars;
