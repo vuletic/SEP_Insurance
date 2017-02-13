@@ -27,11 +27,11 @@
         <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_NEKRETNI" />
         <AssociationConnector Association="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" />
         <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_VOZILO" />
-        <EntityTypeShape EntityType="SEP_Model.Osoba" Width="1.5" PointX="7.375" PointY="5" />
-        <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" />
         <EntityTypeShape EntityType="SEP_Model.Realizacija_osiguranja" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="SEP_Model.FK_REALIZAC_RELATIONS_PDV" />
         <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" />
+        <EntityTypeShape EntityType="SEP_Model.Osoba" Width="1.5" PointX="7.375" PointY="5" />
+        <AssociationConnector Association="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

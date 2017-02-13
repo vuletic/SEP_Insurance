@@ -1,12 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using Newtonsoft.Json;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
 using SEP_Osiguranje.Models;
 using SEP_Osiguranje.Models.DTO;
 using SEP_Osiguranje.Models.DTO.Output;
+using SEP_Osiguranje.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -34,7 +38,7 @@ namespace SEP_Osiguranje.Controllers
         public async Task<IHttpActionResult> Post(ProcessData processData)
         {
             Data data = new Data(processData);
-            HttpResponseMessage resp = await client.PostAsJsonAsync("http://sepruleapi.azurewebsites.net/policy", data);
+            HttpResponseMessage resp = await client.PostAsJsonAsync("https://sepruleapi.azurewebsites.net/policy", data);
 
             String json = "";
 
@@ -57,6 +61,45 @@ namespace SEP_Osiguranje.Controllers
                 return BadRequest();
 
             }
+
+
+            #region Debug
+            /*
+            PDFCreator creator = new PDFCreator();
+
+            var fullPath = System.Web.HttpContext.Current.Server.MapPath("../fonts/logo.png");
+            Document doc = creator.createDocument(ro, fullPath);
+            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true);
+            pdfRenderer.Document = doc;
+            pdfRenderer.RenderDocument();
+
+
+            MemoryStream ms = new MemoryStream();
+            pdfRenderer.Save(ms, false);
+            ms.Position = 0;
+
+
+            NetworkCredential basicCredential = new NetworkCredential("nikola58tod@gmail.com", "hasansakic");
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress("nikola58tod@gmail.com");
+            mail.To.Add("nenadtod@live.com");
+            mail.Subject = "Polisa osiguranja - Holiday Guard";
+            mail.Body = "Pozdrav, \n šaljemo vam vašu polisu jer ste naznačeni kao nosilac. Za sve informacije možete se obratiti na telefon 021/ 4540 021. \n Svako dobro, \n Vaš Holiday Guard!";
+            mail.Attachments.Add(new Attachment(ms, "polisa.pdf", "application/pdf"));
+
+
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = basicCredential;
+            SmtpServer.EnableSsl = true;
+
+
+            SmtpServer.Send(mail);
+
+            ms.Close();
+            */
+            #endregion
 
             //Paypal button generation
             BMCreateButtonRequestType request = new BMCreateButtonRequestType();

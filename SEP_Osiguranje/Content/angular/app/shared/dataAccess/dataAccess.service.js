@@ -85,6 +85,13 @@
             });
         }
 
+        function getRisk(id) {
+            var resUrl = "api/rizik/" + id;
+            return $http.get(resUrl).then(function (response) {
+                return response.data;
+            });
+        }
+
         return {
             getSports: getSports,
             getAgeGroups: getAgeGroups,

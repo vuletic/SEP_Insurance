@@ -622,11 +622,6 @@
             <End Role="Vozilo" EntitySet="Vozilo" />
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
-          <EntitySet Name="Osoba" EntityType="SEP_Model.Osoba" />
-          <AssociationSet Name="FK_STAVKA_U_RELATIONS_OSOBA" Association="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA">
-            <End Role="Osoba" EntitySet="Osoba" />
-            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
-          </AssociationSet>
           <EntitySet Name="Realizacija_osiguranja" EntityType="SEP_Model.Realizacija_osiguranja" />
           <AssociationSet Name="FK_REALIZAC_RELATIONS_PDV" Association="SEP_Model.FK_REALIZAC_RELATIONS_PDV">
             <End Role="PDV" EntitySet="PDV" />
@@ -634,6 +629,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_STAVKA_U_RELATIONS_REALIZAC" Association="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC">
             <End Role="Realizacija_osiguranja" EntitySet="Realizacija_osiguranja" />
+            <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
+          </AssociationSet>
+          <EntitySet Name="Osoba" EntityType="SEP_Model.Osoba" />
+          <AssociationSet Name="FK_STAVKA_U_RELATIONS_OSOBA" Association="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA">
+            <End Role="Osoba" EntitySet="Osoba" />
             <End Role="Stavka_u_realizaciji" EntitySet="Stavka_u_realizaciji" />
           </AssociationSet>
         </EntityContainer>
@@ -651,8 +651,8 @@
           <NavigationProperty Name="Nekretnina" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_NEKRETNI" FromRole="Stavka_u_realizaciji" ToRole="Nekretnina" />
           <NavigationProperty Name="Rizik_za_osigurani_entitet" Relationship="SEP_Model.FK_RIZIK_ZA_RELATIONS_STAVKA_U" FromRole="Stavka_u_realizaciji" ToRole="Rizik_za_osigurani_entitet" />
           <NavigationProperty Name="Vozilo" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_VOZILO" FromRole="Stavka_u_realizaciji" ToRole="Vozilo" />
-          <NavigationProperty Name="Osoba" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Stavka_u_realizaciji" ToRole="Osoba" />
           <NavigationProperty Name="Realizacija_osiguranja" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_REALIZAC" FromRole="Stavka_u_realizaciji" ToRole="Realizacija_osiguranja" />
+          <NavigationProperty Name="Osoba" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Stavka_u_realizaciji" ToRole="Osoba" />
         </EntityType>
         <Association Name="FK_STAVKA_U_RELATIONS_NEKRETNI">
           <End Type="SEP_Model.Nekretnina" Role="Nekretnina" Multiplicity="0..1" />
@@ -687,32 +687,6 @@
             </Principal>
             <Dependent Role="Stavka_u_realizaciji">
               <PropertyRef Name="Id_Osigurano_vozilo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Osoba">
-          <Key>
-            <PropertyRef Name="Id_Osigurani_entitet" />
-          </Key>
-          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JMBG_Osoba" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
-          <Property Name="Ime_Osoba" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="Prezime_Osoba" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="Broj_pasosa_Osoba" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Adresa_Osoba" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Broj_telefona_Osoba" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="E_mail_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Osoba" ToRole="Stavka_u_realizaciji" />
-        </EntityType>
-        <Association Name="FK_STAVKA_U_RELATIONS_OSOBA">
-          <End Type="SEP_Model.Osoba" Role="Osoba" Multiplicity="0..1" />
-          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Osoba">
-              <PropertyRef Name="Id_Osigurani_entitet" />
-            </Principal>
-            <Dependent Role="Stavka_u_realizaciji">
-              <PropertyRef Name="Id_Osigurana_osoba" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -754,6 +728,32 @@
             </Principal>
             <Dependent Role="Stavka_u_realizaciji">
               <PropertyRef Name="Id_Realizacija_osiguranja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Osoba">
+          <Key>
+            <PropertyRef Name="Id_Osigurani_entitet" />
+          </Key>
+          <Property Name="Id_Osigurani_entitet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JMBG_Osoba" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Ime_Osoba" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Prezime_Osoba" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Broj_pasosa_Osoba" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Adresa_Osoba" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Broj_telefona_Osoba" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="E_mail_Osoba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Stavka_u_realizaciji" Relationship="SEP_Model.FK_STAVKA_U_RELATIONS_OSOBA" FromRole="Osoba" ToRole="Stavka_u_realizaciji" />
+        </EntityType>
+        <Association Name="FK_STAVKA_U_RELATIONS_OSOBA">
+          <End Type="SEP_Model.Osoba" Role="Osoba" Multiplicity="0..1" />
+          <End Type="SEP_Model.Stavka_u_realizaciji" Role="Stavka_u_realizaciji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Osoba">
+              <PropertyRef Name="Id_Osigurani_entitet" />
+            </Principal>
+            <Dependent Role="Stavka_u_realizaciji">
+              <PropertyRef Name="Id_Osigurana_osoba" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -884,20 +884,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Osoba">
-            <EntityTypeMapping TypeName="SEP_Model.Osoba">
-              <MappingFragment StoreEntitySet="Osoba">
-                <ScalarProperty Name="E_mail_Osoba" ColumnName="E_mail_Osoba" />
-                <ScalarProperty Name="Broj_telefona_Osoba" ColumnName="Broj_telefona_Osoba" />
-                <ScalarProperty Name="Adresa_Osoba" ColumnName="Adresa_Osoba" />
-                <ScalarProperty Name="Broj_pasosa_Osoba" ColumnName="Broj_pasosa_Osoba" />
-                <ScalarProperty Name="Prezime_Osoba" ColumnName="Prezime_Osoba" />
-                <ScalarProperty Name="Ime_Osoba" ColumnName="Ime_Osoba" />
-                <ScalarProperty Name="JMBG_Osoba" ColumnName="JMBG_Osoba" />
-                <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Realizacija_osiguranja">
             <EntityTypeMapping TypeName="SEP_Model.Realizacija_osiguranja">
               <MappingFragment StoreEntitySet="Realizacija_osiguranja">
@@ -911,6 +897,20 @@
                 <ScalarProperty Name="Datum_Realizacija_osiguranja" ColumnName="Datum_Realizacija_osiguranja" />
                 <ScalarProperty Name="Id_PDV" ColumnName="Id_PDV" />
                 <ScalarProperty Name="Id_Realizacija_osiguranja" ColumnName="Id_Realizacija_osiguranja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Osoba">
+            <EntityTypeMapping TypeName="SEP_Model.Osoba">
+              <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="E_mail_Osoba" ColumnName="E_mail_Osoba" />
+                <ScalarProperty Name="Broj_telefona_Osoba" ColumnName="Broj_telefona_Osoba" />
+                <ScalarProperty Name="Adresa_Osoba" ColumnName="Adresa_Osoba" />
+                <ScalarProperty Name="Broj_pasosa_Osoba" ColumnName="Broj_pasosa_Osoba" />
+                <ScalarProperty Name="Prezime_Osoba" ColumnName="Prezime_Osoba" />
+                <ScalarProperty Name="Ime_Osoba" ColumnName="Ime_Osoba" />
+                <ScalarProperty Name="JMBG_Osoba" ColumnName="JMBG_Osoba" />
+                <ScalarProperty Name="Id_Osigurani_entitet" ColumnName="Id_Osigurani_entitet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

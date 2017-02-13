@@ -10,6 +10,7 @@ using MigraDoc.Rendering;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using SEP_Osiguranje.Models;
+using System.Data.Entity;
 
 namespace SEP_Osiguranje.Services
 {
@@ -18,7 +19,7 @@ namespace SEP_Osiguranje.Services
         private const string POLICY_NAME = "Holiday Guard";
         private const string ACCOUNT_EMAIL = "radi.molim.te@radi.com";
 
-        public Document createDocument(Realizacija_osiguranja ro)
+        public Document createDocument(Realizacija_osiguranja ro, string path)
         {
             Document retDoc = new Document();
             retDoc.Info.Title = "Polisa broj " + ro.Id_Realizacija_osiguranja.ToString();
@@ -29,7 +30,7 @@ namespace SEP_Osiguranje.Services
             Table table = new Table();
 
             defineStyles(ref retDoc);
-            createPage(ref retDoc, ro, ref addressFrame, ref table);
+            createPage(ref retDoc, ro, ref addressFrame, ref table, path);
             fillContent(ref retDoc, ro, ref addressFrame, ref table);
 
             return retDoc;
@@ -39,7 +40,7 @@ namespace SEP_Osiguranje.Services
         {
             Style style = doc.Styles["Normal"];
 
-            style.Font.Name = "Verdana";
+            style.Font.Name = "Arial Unicode MS";
 
             style = doc.Styles[StyleNames.Header];
             style.ParagraphFormat.AddTabStop("5cm", TabAlignment.Right);
@@ -48,8 +49,7 @@ namespace SEP_Osiguranje.Services
             style.ParagraphFormat.AddTabStop("5cm", TabAlignment.Center);
 
             style = doc.Styles.AddStyle("Table", "Normal");
-            style.Font.Name = "Verdana";
-            style.Font.Name = "Times New Roman";
+            style.Font.Name = "Arial Unicode MS";
 
             style = doc.Styles.AddStyle("Reference", "Normal");
             style.ParagraphFormat.SpaceBefore = "5mm";
@@ -57,13 +57,13 @@ namespace SEP_Osiguranje.Services
 
         }
 
-        private void createPage(ref Document doc, Realizacija_osiguranja ro, ref TextFrame addressFrame, ref Table table)
+        private void createPage(ref Document doc, Realizacija_osiguranja ro, ref TextFrame addressFrame, ref Table table, string path)
         {
             Section section = doc.AddSection();
 
-            /*
+            
             // Put a logo in the header TODO ako stignes
-            Image image = section.Headers.Primary.AddImage("../../PowerBooks.png");
+            Image image = section.Headers.Primary.AddImage(path);
             image.Height = "2.5cm";
             image.LockAspectRatio = true;
             image.RelativeVertical = RelativeVertical.Line;
@@ -71,7 +71,7 @@ namespace SEP_Osiguranje.Services
             image.Top = ShapePosition.Top;
             image.Left = ShapePosition.Right;
             image.WrapFormat.Style = WrapStyle.Through;
-            */
+            
 
             // Create footer
             Paragraph paragraph = section.Footers.Primary.AddParagraph();
@@ -81,14 +81,7 @@ namespace SEP_Osiguranje.Services
             paragraph.Format.Font.Size = 13;
             paragraph.Format.Font.Bold = true;
             paragraph.Format.Alignment = ParagraphAlignment.Center;
-
-            // Create header
-            paragraph = section.Headers.Primary.AddParagraph();
-            paragraph.AddText(POLICY_NAME);
-            paragraph.Format.Font.Size = 13;
-            paragraph.Format.Font.Bold = true;
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
-
+            
             // Create the text frame for the address
             addressFrame = section.AddTextFrame();
             addressFrame.Height = "3.0cm";
@@ -108,7 +101,7 @@ namespace SEP_Osiguranje.Services
             paragraph.AddTab();
             paragraph.AddDateField("dd.MM.yyyy");
 
-
+            
             // Create the item table
             table = section.AddTable();
             table.Style = "Table";
@@ -152,10 +145,13 @@ namespace SEP_Osiguranje.Services
 
         private void fillContent(ref Document doc, Realizacija_osiguranja ro, ref TextFrame addressFrame, ref Table table)
         {
-            Osoba o = ro.Stavka_u_realizaciji.Where(s => s.Nosilac_Stavka_u_realiziciji == true).FirstOrDefault().Osoba;
+            SEP_EntitiesB db1 = new SEP_EntitiesB();
+
+            var sur1 = db1.Stavka_u_realizaciji.Where(s => s.Id_Realizacija_osiguranja == ro.Id_Realizacija_osiguranja).Where(s => s.Nosilac_Stavka_u_realiziciji == true).Include(s => s.Osoba).FirstOrDefault();
+            Osoba o = db1.Osoba.Where(os => os.Id_Osigurani_entitet == sur1.Id_Osigurana_osoba).FirstOrDefault();
 
             Paragraph paragraph = addressFrame.AddParagraph();
-            paragraph.AddFormattedText("Nosilac: ", TextFormat.Italic);
+            paragraph.AddText("Nosilac: ");
             paragraph.AddLineBreak();
             paragraph.AddText(o.Ime_Osoba + " " + o.Prezime_Osoba);
             paragraph.AddLineBreak();
@@ -163,10 +159,11 @@ namespace SEP_Osiguranje.Services
             paragraph.AddLineBreak();
             paragraph.AddText(o.E_mail_Osoba);
 
+            var list_sur = db1.Stavka_u_realizaciji.Where(s => s.Id_Realizacija_osiguranja == ro.Id_Realizacija_osiguranja).Include(a => a.Osoba).Include(b => b.Nekretnina).Include(c => c.Nekretnina).ToList();
             int index = 0;
-            for (int i = 0; i < ro.Stavka_u_realizaciji.Count; i++)
+            for (int i = 0; i < list_sur.Count; i++)
             {
-                Stavka_u_realizaciji sur = ro.Stavka_u_realizaciji.ElementAt(i);
+                Stavka_u_realizaciji sur = list_sur.ElementAt(i);
                 if (!(sur.Nosilac_Stavka_u_realiziciji == true && sur.Vrednost_Stavka_u_realizaciji == 0))
                 {
                     Row row1 = table.AddRow();
@@ -177,21 +174,24 @@ namespace SEP_Osiguranje.Services
 
                     row1.Cells[0].AddParagraph((index + 1).ToString());
 
-                    if (sur.Osoba != null)
+                    if (sur.Id_Osigurana_osoba != null)
                     {
-                        row1.Cells[1].AddParagraph(sur.Osoba.Ime_Osoba + " " + sur.Osoba.Prezime_Osoba + ", " + sur.Osoba.Broj_pasosa_Osoba);
+                        Osoba o_temp = db1.Osoba.Where(os => os.Id_Osigurani_entitet == sur.Id_Osigurana_osoba).FirstOrDefault();
+                        row1.Cells[1].AddParagraph(o_temp.Ime_Osoba + " " + o_temp.Prezime_Osoba + ", " + o_temp.Broj_pasosa_Osoba);
                     }
                     else
                     {
-                        if (sur.Nekretnina != null)
+                        if (sur.Id_Osigurana_nekretnina != null)
                         {
-                            row1.Cells[1].AddParagraph("Nekretnina na adresi: " + sur.Nekretnina.Adresa_Nekretnina);
+                            Nekretnina n_temp = db1.Nekretnina.Where(os => os.Id_Osigurani_entitet == sur.Id_Osigurana_nekretnina).FirstOrDefault();
+                            row1.Cells[1].AddParagraph("Nekretnina na adresi: " + n_temp.Adresa_Nekretnina);
                         }
                         else
                         {
-                            if (sur.Vozilo != null)
+                            if (sur.Id_Osigurano_vozilo != null)
                             {
-                                row1.Cells[1].AddParagraph("Vozilo sa brojem šasije: " + sur.Vozilo.Broj_sasije_Vozilo);
+                                Vozilo v_temp = db1.Vozilo.Where(os => os.Id_Osigurani_entitet == sur.Id_Osigurano_vozilo).FirstOrDefault();
+                                row1.Cells[1].AddParagraph("Vozilo sa brojem šasije: " + v_temp.Broj_sasije_Vozilo);
                             }
                         }
                     }

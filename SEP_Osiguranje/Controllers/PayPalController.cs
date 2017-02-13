@@ -21,12 +21,15 @@ using MigraDoc.Rendering;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using SEP_Osiguranje.Services;
+using System.Data.Entity;
 
 namespace SEP_Osiguranje.Controllers
 {
     public class PaypalController : ApiController
     {
         private SEP_EntitiesB db = new SEP_EntitiesB();
+        private SEP_EntitiesB db2 = new SEP_EntitiesB();
+        private SEP_EntitiesB db3 = new SEP_EntitiesB();
 
         private const string POLICY_NAME = "Holiday Guard";
         private const string ACCOUNT_EMAIL = "radi.molim.te@radi.com";
@@ -99,7 +102,7 @@ namespace SEP_Osiguranje.Controllers
                 // upisati u bazu za odgovarajucu polisu id transakcije
 
                 // nadji datu polisu u bazi
-                Realizacija_osiguranja ro = db.Realizacija_osiguranja.Where(r => r.Id_Realizacija_osiguranja == policyId).FirstOrDefault() ;
+                Realizacija_osiguranja ro = db.Realizacija_osiguranja.Where(r => r.Id_Realizacija_osiguranja == policyId).FirstOrDefault();//.Include(s => s.Stavka_u_realizaciji)
                 if (ro != null)
                 {
                     // proveriti da li se valuta i placeni iznos poklapaju sa ocekivanim
@@ -112,48 +115,57 @@ namespace SEP_Osiguranje.Controllers
 
                             db.SaveChanges();
 
-                            var sur = db.Stavka_u_realizaciji.Include("Osoba").Where(s => s.Id_Realizacija_osiguranja == ro.Id_Realizacija_osiguranja && s.Nosilac_Stavka_u_realiziciji == true).FirstOrDefault();
-                            var mail_carr = sur.Osoba.E_mail_Osoba;
-
-                            //Kreiranje pdf-a
-                            //slanje mail-a
-                            PDFCreator creator = new PDFCreator();
-
-                            Document doc = creator.createDocument(ro);
-                            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true);
-                            pdfRenderer.Document = doc;
-                            pdfRenderer.RenderDocument();
-
-                            MemoryStream ms = new MemoryStream();
-                            pdfRenderer.Save(ms, false);
-                            ms.Position = 0;
-
-
-                            NetworkCredential basicCredential = new NetworkCredential("nikola58tod@gmail.com", "hasansakic");
-                            MailMessage mail = new MailMessage();
-                            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-                            mail.From = new MailAddress("nikola58tod@gmail.com");
-                            mail.To.Add(mail_carr);
-                            mail.Subject = "Polisa osiguranja - Holiday Guard";
-                            mail.Body = "Pozdrav, \n šaljemo vam vašu polisu jer ste naznačeni kao nosilac. Za sve informacije možete se obratiti na telefon 021/ 4540 021. \n Svako dobro, \n Vaš Holiday Guard!";
-                            mail.Attachments.Add(new Attachment(ms, "polisa.pdf", "application/pdf"));
-
-
-                            SmtpServer.Port = 587;
-                            SmtpServer.Credentials = basicCredential;
-                            SmtpServer.EnableSsl = true;
-
                             try
                             {
-                                SmtpServer.Send(mail);
+                                
+                                var sur = db2.Stavka_u_realizaciji.Where(s => s.Id_Realizacija_osiguranja == ro.Id_Realizacija_osiguranja).Where(s => s.Nosilac_Stavka_u_realiziciji == true).Include(s => s.Osoba).FirstOrDefault();
+                                var osoba = db2.Osoba.Where(o=> o.Id_Osigurani_entitet == sur.Id_Osigurana_osoba).FirstOrDefault();
+
+                                if (osoba != null)
+                                {
+                                    var mail_carr = osoba.E_mail_Osoba;
+
+                                    //Kreiranje pdf-a
+                                    //slanje mail-a
+                                    PDFCreator creator = new PDFCreator();
+
+                                    var fullPath = System.Web.HttpContext.Current.Server.MapPath("../fonts/logo.png");
+                                    Document doc = creator.createDocument(ro, fullPath);
+                                    PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true);
+                                    pdfRenderer.Document = doc;
+                                    pdfRenderer.RenderDocument();
+
+                                    MemoryStream ms = new MemoryStream();
+                                    pdfRenderer.Save(ms, false);
+                                    ms.Position = 0;
+
+
+                                    NetworkCredential basicCredential = new NetworkCredential("nikola58tod@gmail.com", "hasansakic");
+                                    MailMessage mail = new MailMessage();
+                                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                                    mail.From = new MailAddress("nikola58tod@gmail.com");
+                                    mail.To.Add(mail_carr);
+                                    mail.Subject = "Polisa osiguranja - Holiday Guard";
+                                    mail.Body = "Pozdrav, \n šaljemo vam vašu polisu jer ste naznačeni kao nosilac. Za sve informacije možete se obratiti na telefon 021/ 4540 021. \n Svako dobro, \n Vaš Holiday Guard!";
+                                    mail.Attachments.Add(new Attachment(ms, "polisa.pdf", "application/pdf"));
+
+
+                                    SmtpServer.Port = 587;
+                                    SmtpServer.Credentials = basicCredential;
+                                    SmtpServer.EnableSsl = true;
+
+
+                                    SmtpServer.Send(mail);
+
+                                    ms.Close();
+                                }
                             }
                             catch (Exception e)
                             {
                                 Console.Write(e); // Log...
+                                Console.Write(e.InnerException);
                             }
-
-                            ms.Close();
                         }
                     }
                 }
