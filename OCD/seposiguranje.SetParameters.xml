@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/" />
+  <setParameter name="SEP_Entities-Web.config Connection String" value="metadata=res://*/Models.SEP_Model.csdl|res://*/Models.SEP_Model.ssdl|res://*/Models.SEP_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=seposiguranjeserver.database.windows.net;initial catalog=SEPOsiguranjeDB;user id=portabile;password=5panavia!;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
+  <setParameter name="SEP_EntitiesB-Web.config Connection String" value="metadata=res://*/Models.SEP_Model.csdl|res://*/Models.SEP_Model.ssdl|res://*/Models.SEP_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=seposiguranjeserver.database.windows.net;initial catalog=SEPOsiguranjeDB;user id=portabile;password=5panavia!;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
+</parameters>
