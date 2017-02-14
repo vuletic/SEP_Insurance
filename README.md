@@ -14,36 +14,36 @@ This web application is created as a university project for the Electronic Payme
 
 ## Installation
 ###Prerequisites:
--Installed IIS server, turned on in "Turn Windows Features On and Off"
--MSBuild path set in "Environment Variables"
+- Installed IIS server, turned on in "Turn Windows Features On and Off"
+- MSBuild path set in "Environment Variables"
 
--Installed Java 1.8
--Java path set in "Environment Variables"
--Installed Maven
--Maven path set in "Environment Variables"
+- Installed Java 1.8
+- Java path set in "Environment Variables"
+- Installed Maven
+- Maven path set in "Environment Variables"
 
--Installed Node.js
--(if not by default) npm path set in "Environment Variables"
+- Installed Node.js
+- (if not by default) npm path set in "Environment Variables"
 
--Installed Mongodb
--Installed Robomongo
+- Installed Mongodb
+- Installed Robomongo
 
 ### Procedure for downloading:
--Go to: (http://kinolien.github.io/gitzip/) - a tool for downloading specific github repository subdirectories
--Paste url of One click deploy directory: (https://github.com/vuletic/SEP_Insurance/tree/br/OCD) and click Download
--Unzip the directory
+- Go to: (http://kinolien.github.io/gitzip/) - a tool for downloading specific github repository subdirectories
+- Paste url of One click deploy directory: (https://github.com/vuletic/SEP_Insurance/tree/br/OCD) and click Download
+- Unzip the directory
 
 ### Setting Mongodb:
--Run Mongodb
--From Robomongo, connect to localhost:27017
--Add database named "l10nDB" with directory
--To "l10nDB" database add collection named "languages"
--Add two JSON objects, which you can find in unzipped folder, under the "l10n objects"
+- Run Mongodb
+- From Robomongo, connect to localhost:27017
+- Add database named "l10nDB" with directory
+- To "l10nDB" database add collection named "languages"
+- Add two JSON objects, which you can find in unzipped folder, under the "l10n objects"
 
 ### Deploying the set of applications:
--Run "Command Prompt" as admin user
--Change directory of CMD to unzipped folder
--Run "deploy.bat"
+- Run "Command Prompt" as admin user
+- Change directory of CMD to unzipped folder
+- Run "deploy.bat"
 
 ## Running tests
 
