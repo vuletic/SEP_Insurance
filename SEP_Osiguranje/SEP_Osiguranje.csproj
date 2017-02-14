@@ -519,6 +519,7 @@
     <Content Include="Content\angular\assets\images\team.jpg" />
     <Content Include="Content\angular\assets\js\angular-resource.js" />
     <Content Include="Content\angular\assets\js\jquery.js" />
+    <Content Include="Content\angular\dist\scripts\scripts.min.js" />
     <Content Include="Content\angular\index.html" />
     <Content Include="Content\angular\app.route.js" />
     <Content Include="favicon.ico" />
