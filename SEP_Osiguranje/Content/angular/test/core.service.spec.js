@@ -29,7 +29,7 @@ describe("service", function() {
 
 		
 
-		afterEach(function() {
+	afterEach(function() {
 		$httpBackend.verifyNoOutstandingRequest();
     	$httpBackend.verifyNoOutstandingExpectation();
 	});

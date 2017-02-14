@@ -21,7 +21,7 @@ module.exports = function(config) {
     	'assets/components/ng-slide-down/dist/ng-slide-down.js',
         'assets/components/angular-sanitize/angular-sanitize.js',
     	'node_modules/angular-mocks/angular-mocks.js',
-		'app.module.js',
+		'app/app.module.js',
 		'app/**/*.js',
 		'test/**/*.js'
     ],
@@ -29,6 +29,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+        'app/app.route.js'
     ],
 
 
