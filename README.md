@@ -45,6 +45,15 @@ This web application is created as a university project for the Electronic Payme
 -Change directory of CMD to unzipped folder
 -Run "deploy.bat"
 
+## Running tests
+
+###Prerequisites
+- Installed karma-cli globally ( if it is not run: npm install -g karma-cli )
+
+###Running tests
+- Open terminal in the Content/Angular folder
+- If not already done, run: npm install
+- Run: karma start tests/karma.conf.js
 
 ## Linked repositories
 + [Rule engine repository](https://github.com/nenadTod/RulesAPI) - used to describe and execute business rules
