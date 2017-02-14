@@ -13,7 +13,7 @@ To take a look at our application, visit [https://seposiguranje.azurewebsites.ne
 This web application is created as a university project for the Electronic Payment Systems course. It unites best coding practices, implements effective security measures and database design. For executing business rules the application uses a rule engine. Everything is covered by appropriate tests.
 
 ## Installation
-#Prerequisites:
+###Prerequisites:
 -Installed IIS server, turned on in "Turn Windows Features On and Off"
 -MSBuild path set in "Environment Variables"
 
@@ -28,19 +28,19 @@ This web application is created as a university project for the Electronic Payme
 -Installed Mongodb
 -Installed Robomongo
 
-# Procedure for downloading:
+### Procedure for downloading:
 -Go to: (http://kinolien.github.io/gitzip/) - a tool for downloading specific github repository subdirectories
 -Paste url of One click deploy directory: (https://github.com/vuletic/SEP_Insurance/tree/br/OCD) and click Download
 -Unzip the directory
 
-# Setting Mongodb:
+### Setting Mongodb:
 -Run Mongodb
 -From Robomongo, connect to localhost:27017
 -Add database named "l10nDB" with directory
 -To "l10nDB" database add collection named "languages"
 -Add two JSON objects, which you can find in unzipped folder, under the "l10n objects"
 
-# Deploying the set of applications:
+### Deploying the set of applications:
 -Run "Command Prompt" as admin user
 -Change directory of CMD to unzipped folder
 -Run "deploy.bat"
