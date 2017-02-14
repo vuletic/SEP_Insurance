@@ -197,7 +197,7 @@ namespace SEP_Osiguranje.Services
                     }
 
 
-                    row1.Cells[2].AddParagraph(sur.Vrednost_Stavka_u_realizaciji.ToString());
+                    row1.Cells[2].AddParagraph(sur.Vrednost_Stavka_u_realizaciji.ToString() + " RSD");
                     index++;
                 }
             }
@@ -209,7 +209,7 @@ namespace SEP_Osiguranje.Services
             row2.Shading.Color = new Color(242, 242, 242);
 
             row2.Cells[1].AddParagraph("Ukupna cena polise:");
-            row2.Cells[2].AddParagraph(ro.Ukupna_vrednost_Realizacija_osiguranja.ToString());
+            row2.Cells[2].AddParagraph(ro.Ukupna_vrednost_Realizacija_osiguranja.ToString() + " RSD");
         }
 
     }
