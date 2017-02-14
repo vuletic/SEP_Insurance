@@ -24,6 +24,7 @@ This web application is created as a university project for the Electronic Payme
 
 - Installed Node.js
 - (if not by default) npm path set in "Environment Variables"
+- gulp-cli installed globally
 
 - Installed Mongodb
 - Installed Robomongo
