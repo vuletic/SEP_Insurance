@@ -2,7 +2,10 @@
 title sepinsmain
 git clone https://github.com/vuletic/SEP_Insurance.git
 java -jar adjustPaths.jar http://localhost:8080 http://localhost:8081
-cd SEP_Insurance/SEP_Osiguranje
+cd SEP_Insurance\SEP_Osiguranje\Content\angular
+call npm install
+call gulp scripts
+cd ../../
 msbuild /target:package /p:packageLocation="..\..\sepinsmain\seposiguranje.zip"
 cd ../../
 del .\sepinsmain\seposiguranje.SetParameters.xml
