@@ -1,11 +1,12 @@
 describe("calculator controller", function() {
-	var calculatorController, calculatorService, dataAccessService, $state;
+	var calculatorController, calculatorService, dataAccessService, $state, $scope;
 	
 
 	beforeEach(module("app"));
 	beforeEach(module("ui.router"));
 	beforeEach(module("ngAnimate"));
 	beforeEach(module("ng-slide-down"));
+	beforeEach(module("ngSanitize"));
 
 	beforeEach(module(function($provide){  
 		$provide.value('calculatorService', {
@@ -18,21 +19,25 @@ describe("calculator controller", function() {
 	    $provide.value('$state', {
 	        go: function() {}
 	       });
-	   
+	   	$provide.value('$scope', {
+	   		work: function(){}
+	   	});
 		
 	}));
 
-	beforeEach(inject(function($controller, _dataAccessService_, _calculatorService_, _$state_) {
+	beforeEach(inject(function($controller, _dataAccessService_, _calculatorService_, _$state_, _$scope_) {
 		calculatorService = _calculatorService_;
 		dataAccessService = _dataAccessService_;
 		$state = _$state_;
+		$scope = _$scope_;
 		calculatorController = $controller("calculatorController", {
+			$scope: $scope,
 			calculatorService: calculatorService,
 			dataAccessService: dataAccessService,
 			$state: $state
 		});
-		calculatorController.calculatorForm = {}
-		calculatorController.calculatorForm.$setPristine = function(){};
+		$scope.calculatorForm = {}
+		$scope.calculatorForm.$setPristine = function(){};
 	}));
 
 
@@ -71,12 +76,12 @@ describe("calculator controller", function() {
 		var obj1 = {Id_Rizik: 7}, obj2 = {Id_Rizik: 14};
 		calculatorController.realEstateAges = [obj1];
 		calculatorController.realEstateValues = [obj2];
-		calculatorController.calculatorForm.nameObjectFlood = {};
-		calculatorController.calculatorForm.nameObjectFire = {};
-		calculatorController.calculatorForm.nameObjectTheft = {};
-		calculatorController.calculatorForm.nameObjectFlood.$setValidity = function(){};
-		calculatorController.calculatorForm.nameObjectTheft.$setValidity = function(){};
-		calculatorController.calculatorForm.nameObjectFire.$setValidity = function(){};
+		$scope.calculatorForm.nameObjectFlood = {};
+		$scope.calculatorForm.nameObjectFire = {};
+		$scope.calculatorForm.nameObjectTheft = {};
+		$scope.calculatorForm.nameObjectFlood.$setValidity = function(){};
+		$scope.calculatorForm.nameObjectTheft.$setValidity = function(){};
+		$scope.calculatorForm.nameObjectFire.$setValidity = function(){};
 
 		calculatorController.disableObjects();
 
@@ -95,14 +100,14 @@ describe("calculator controller", function() {
 		calculatorController.reparationPrices = [obj2];
 		calculatorController.hotelDays = [obj3];
 		calculatorController.alternateTransportationDistances = [obj4];
-		calculatorController.calculatorForm.nameVehicleTowing = {};
-		calculatorController.calculatorForm.nameVehicleHotel = {};
-		calculatorController.calculatorForm.nameVehicleTransport = {};
-		calculatorController.calculatorForm.nameVehicleRepair = {};
-		calculatorController.calculatorForm.nameVehicleTowing.$setValidity = function(){};
-		calculatorController.calculatorForm.nameVehicleHotel.$setValidity = function(){};
-		calculatorController.calculatorForm.nameVehicleTransport.$setValidity = function(){};
-		calculatorController.calculatorForm.nameVehicleRepair.$setValidity = function(){};
+		$scope.calculatorForm.nameVehicleTowing = {};
+		$scope.calculatorForm.nameVehicleHotel = {};
+		$scope.calculatorForm.nameVehicleTransport = {};
+		$scope.calculatorForm.nameVehicleRepair = {};
+		$scope.calculatorForm.nameVehicleTowing.$setValidity = function(){};
+		$scope.calculatorForm.nameVehicleHotel.$setValidity = function(){};
+		$scope.calculatorForm.nameVehicleTransport.$setValidity = function(){};
+		$scope.calculatorForm.nameVehicleRepair.$setValidity = function(){};
 
 		calculatorController.disableVehicles();
 
@@ -231,17 +236,17 @@ describe("calculator controller", function() {
 		calculatorController.validateObjectOptions = function(){};
 		calculatorController.validateVehicleOptions = function(){};
 
-		calculatorController.calculatorForm = {$valid: true};
+		$scope.calculatorForm = {$valid: true};
 
 		expect(calculatorController.everythingIsValid()).toBe(true);
 		expect(calculatorController.showErrors).toBe(false);
 
-		calculatorController.calculatorForm.$valid = false;
+		$scope.calculatorForm.$valid = false;
 		calculatorController.enableObject = false;
 		calculatorController.enableVehicle = false;
-		calculatorController.calculatorForm.nameDateFrom = {$valid: false}
-		calculatorController.calculatorForm.nameDateTo = {$valid: false}
-		calculatorController.calculatorForm.nameCountYoung = {$valid: false}
+		$scope.calculatorForm.nameDateFrom = {$valid: false}
+		$scope.calculatorForm.nameDateTo = {$valid: false}
+		$scope.calculatorForm.nameCountYoung = {$valid: false}
 
 		expect(calculatorController.everythingIsValid()).toBe(false);
 		expect(calculatorController.showErrors).toBe(true);

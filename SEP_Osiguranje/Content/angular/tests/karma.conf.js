@@ -19,6 +19,7 @@ module.exports = function(config) {
     	'assets/components/angular-ui-router/release/angular-ui-router.js',
     	'assets/components/angular-animate/angular-animate.js',
     	'assets/components/ng-slide-down/dist/ng-slide-down.js',
+        'assets/components/angular-sanitize/angular-sanitize.js',
     	'node_modules/angular-mocks/angular-mocks.js',
 		'app.module.js',
 		'app/**/*.js',

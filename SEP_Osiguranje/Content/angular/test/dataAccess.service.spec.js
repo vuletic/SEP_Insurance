@@ -5,6 +5,7 @@ describe("service", function() {
 	beforeEach(module("ui.router"));
 	beforeEach(module("ngAnimate"));
 	beforeEach(module("ng-slide-down"));
+	beforeEach(module("ngSanitize"));
 
 	describe("dataAccessService", function() {
 		var $httpBackend, dataAccessService;

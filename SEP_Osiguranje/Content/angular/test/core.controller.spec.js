@@ -6,6 +6,7 @@ describe("controller", function() {
 	beforeEach(module("ui.router"));
 	beforeEach(module("ngAnimate"));
 	beforeEach(module("ng-slide-down"));
+	beforeEach(module("ngSanitize"));
 
 	beforeEach(module(function($provide){
 		$provide.value('localization', {
