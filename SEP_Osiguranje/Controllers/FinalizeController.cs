@@ -25,7 +25,7 @@ namespace SEP_Osiguranje.Controllers
     {
         private SEP_EntitiesB db = new SEP_EntitiesB();
         private static HttpClient client = new HttpClient();
-        private string key = "C24E682C2D274F2C9D7FD16F1C173D66";
+        private string key = "DD554BDFACAD494AA8425F5FB043450D";
 
         private const int MAGIC_NUMBER_FLOOD = 33;
         private const int MAGIC_NUMBER_THEFT = 34;

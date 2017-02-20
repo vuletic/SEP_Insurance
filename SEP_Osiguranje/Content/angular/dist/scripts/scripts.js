@@ -871,7 +871,7 @@
 
         pr.goFromFirstPage = function () {
             if (!pr.everythingIsValidFirst()) {
-                //return;
+                return;
             }
             pr.selectedProcessPanel = [false, true, false, false, false];
         }
@@ -891,7 +891,7 @@
 
         pr.goFromSecondPage = function () {
             if (!pr.everythingIsValidSecond()) {
-                //return;
+                return;
             }
             pr.selectedProcessPanel = [false, false, true, false, false];
         }
