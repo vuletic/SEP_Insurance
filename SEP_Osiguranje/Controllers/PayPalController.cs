@@ -25,6 +25,7 @@ using System.Data.Entity;
 
 namespace SEP_Osiguranje.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PaypalController : ApiController
     {
         private SEP_EntitiesB db = new SEP_EntitiesB();

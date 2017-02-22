@@ -8,8 +8,10 @@ namespace SEP_Osiguranje
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var corsAttr = new EnableCorsAttribute("https://sepruleapi.azurewebsites.net", "*", "*");
-            config.EnableCors(corsAttr);
+           /* var corsAttr = new EnableCorsAttribute("https://sepruleapi.azurewebsites.net", "*", "*");
+            config.EnableCors(corsAttr);*/
+            config.EnableCors();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
