@@ -22,6 +22,7 @@ using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using SEP_Osiguranje.Services;
 using System.Data.Entity;
+using System.Web.Http.Cors;
 
 namespace SEP_Osiguranje.Controllers
 {
